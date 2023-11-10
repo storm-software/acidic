@@ -8,6 +8,10 @@ The 🧪 **Acidic language tools** are used to create schemas for your business 
 <!-- START doctoc -->
 <!-- END doctoc -->
 
+## JSON Schema
+
+This package contains a [JSON Schema definition](./res/acidic.schema.json) for the Acidic language. This is not used by the Acidic Language Server, but is provided for use by other tools that may need to validate Acidic files.
+
 ## Reduced Package Size
 
 This project uses [tsup](https://tsup.egoist.dev/) to package the source code due to its ability to remove unused code and ship smaller javascript files thanks to code splitting. This helps to greatly reduce the size of the package and to make it easier to use in other projects.
