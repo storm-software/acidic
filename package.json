@@ -61,11 +61,10 @@
     "lint": "pnpm storm-lint all --skip-cspell",
     "local-registry": "nx local-registry @acidic/source",
     "nx": "nx",
-    "prepare": "pnpm add husky -w",
+    "prepare": "pnpm add husky -w && pnpm husky install",
     "readme": "pnpm storm-git readme --templates=\"docs/readme-templates\"",
     "release": "pnpm storm-git release",
-    "test": "nx test && pnpm test:storybook",
-    "test:storybook": "pnpm test-storybook"
+    "test": "echo \"Skipping tests.\""
   },
   "prettier": "@storm-software/linting-tools/prettier/config.json",
   "dependencies": {

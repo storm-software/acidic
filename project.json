@@ -10,6 +10,10 @@
         "config": ".verdaccio/config.yml",
         "storage": "tmp/local-registry/storage"
       }
-    }
+    },
+    "test": {
+      "outputs": ["{workspaceRoot}/coverage/source"]
+    },
+    "lint": {}
   }
 }
