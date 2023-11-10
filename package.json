@@ -36,9 +36,8 @@
     "url": "https://stormsoftware.org"
   },
   "scripts": {
-    "adr": "pnpm log4brains adr new",
-    "adr-preview": "pnpm log4brains preview",
-    "api-extractor": "nx g @storm-software/workspace-tools:api-extractor --outputPath 'docs/api-reference' --clean --no-interactive",
+    "nx": "nx",
+    "prepare": "pnpm add husky -w && pnpm husky install",
     "prebuild": "pnpm clean",
     "build": "nx affected -t build --parallel=5",
     "build:all": "nx run-many -t build --all --parallel=5",
@@ -60,11 +59,12 @@
     "install:csb": "corepack enable && pnpm install --frozen-lockfile",
     "lint": "pnpm storm-lint all --skip-cspell",
     "local-registry": "nx local-registry @acidic/source",
-    "nx": "nx",
-    "prepare": "pnpm add husky -w && pnpm husky install",
-    "readme": "pnpm storm-git readme --templates=\"docs/readme-templates\"",
-    "release": "pnpm storm-git release",
-    "test": "echo Skipping workspace testing..."
+    "test": "echo Skipping all workspace testing...",
+    "adr": "pnpm log4brains adr new",
+    "adr-preview": "pnpm log4brains preview",
+    "api-extractor": "nx g @storm-software/workspace-tools:api-extractor --outputPath 'docs/api-reference' --clean --no-interactive",
+    "readme-gen": "pnpm storm-git readme-gen --templates='docs/readme-templates'",
+    "release": "pnpm storm-git release"
   },
   "prettier": "@storm-software/linting-tools/prettier/config.json",
   "dependencies": {

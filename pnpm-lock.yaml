@@ -55,7 +55,7 @@ importers:
         version: 12.1.0(semantic-release@22.0.7)
       '@storm-software/git-tools':
         specifier: latest
-        version: 1.2.11(@swc-node/register@1.6.8)(@swc/core@1.3.96)(typescript@5.2.2)
+        version: 1.2.12(@swc-node/register@1.6.8)(@swc/core@1.3.96)(typescript@5.2.2)
       '@storm-software/linting-tools':
         specifier: latest
         version: 1.3.9
@@ -64,7 +64,7 @@ importers:
         version: 1.1.7(@swc-node/register@1.6.8)(@swc/core@1.3.96)(@types/node@20.9.0)(nx@17.1.1)(ts-node@10.9.1)(typescript@5.2.2)(verdaccio@5.27.0)
       '@storm-software/workspace-tools':
         specifier: latest
-        version: 1.5.25(nx@17.1.1)(tsup@7.2.0)
+        version: 1.5.26(nx@17.1.1)(tsup@7.2.0)
       '@swc-node/register':
         specifier: ^1.6.8
         version: 1.6.8(@swc/core@1.3.96)(typescript@5.2.2)
@@ -3884,8 +3884,8 @@ packages:
     dependencies:
       '@sinonjs/commons': 3.0.0
 
-  /@storm-software/git-tools@1.2.11(@swc-node/register@1.6.8)(@swc/core@1.3.96)(typescript@5.2.2):
-    resolution: {integrity: sha512-ZWgUaxVYSg9GrFFebxgRObEUOlyWmbMVg2616GAsj2eeMfpDIKg9tI2ponmgHsyvfH96n7cOu9APw1V5vMtyMQ==}
+  /@storm-software/git-tools@1.2.12(@swc-node/register@1.6.8)(@swc/core@1.3.96)(typescript@5.2.2):
+    resolution: {integrity: sha512-rGYYiLoh5fYGMioHnfodvlGL2qxmommf2YCp08yv9E16CD0qjo8lutBw7MT64hD8pCwDUJ1OSPU9ZWPdvV4XXA==}
     hasBin: true
     dependencies:
       '@commitlint/cli': 18.2.0(typescript@5.2.2)
@@ -4058,8 +4058,8 @@ packages:
       - nx
     dev: true
 
-  /@storm-software/workspace-tools@1.5.25(nx@17.1.1)(tsup@7.2.0):
-    resolution: {integrity: sha512-aA7P7BoP+MJLJqhZRB61z6oKVum7JdMl41s2qhE0AkNYtWMxpyWaqvbGA1VI6k9bYrH1mgHPURQldJ95ZIqslQ==}
+  /@storm-software/workspace-tools@1.5.26(nx@17.1.1)(tsup@7.2.0):
+    resolution: {integrity: sha512-MsBg/q9oDg9+NPbXSqp1tD6bcPLe2lz89Za67UY3DoGQ143BNN3lzKzxV2OmquvCqgSMOC3E7630jzzX8h+2Ng==}
     peerDependencies:
       tsup: 7.2.0
     peerDependenciesMeta:

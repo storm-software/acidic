@@ -3,7 +3,7 @@
 
 # Acidic Language Tools
 
-The 🧪 Acidic language tools are used to create schemas for your business models and generate static code based on those models. This package supports using Acidic in Visual Studio Code for local development. This language definition is used by the Acidic Language Server to provide support for other Acidic tools (CLI, Nx Plugins, etc.). Included is the specification of the syntax and semantics of Acidic.
+The 🧪 **Acidic language tools** are used to create schemas for your business models and generate static code based on those models. This package supports using Acidic in Visual Studio Code for local development. This language definition is used by the Acidic Language Server to provide support for other Acidic tools (CLI, Nx Plugins, etc.). Included is the specification of the syntax and semantics of Acidic.
 
 <!-- START doctoc -->
 <!-- END doctoc -->
