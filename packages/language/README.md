@@ -3,7 +3,7 @@
 
 # Acidic Language Tools
 
-This package will install the 🧪 Acidic language in Visual Studio Code for local development. This language definition is used by the Acidic Language Server to provide support for other Acidic tools (CLI, Nx Plugins, etc.). Included is the specification of the syntax and semantics of Acidic.
+This package will install the 🧪 Acidic language tools in Visual Studio Code for local development. This language definition is used by the Acidic Language Server to provide support for other Acidic tools (CLI, Nx Plugins, etc.). Included is the specification of the syntax and semantics of Acidic.
 
 <!-- START doctoc -->
 <!-- END doctoc -->
