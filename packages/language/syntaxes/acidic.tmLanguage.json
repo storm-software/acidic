@@ -1,0 +1,72 @@
+{
+  "name": "acidic",
+  "scopeName": "source.acidic",
+  "fileTypes": [
+    ".acid",
+    ".acidic"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "name": "keyword.control.acidic",
+      "match": "\\b(Any|Asc|BigInt|Boolean|Bytes|ContextType|DateTime|Decimal|Desc|FieldReference|Float|Int|Json|Mutation|Null|Object|Query|String|Subscription|TransitiveFieldReference|Unsupported|abstract|attribute|datasource|enum|extend|extends|false|function|generator|implements|import|in|input|interface|model|plugin|sort|true|type|view)\\b"
+    },
+    {
+      "name": "string.quoted.double.acidic",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.single.acidic",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "include": "#string-character-escape"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.acidic",
+          "begin": "/\\*",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.acidic"
+            }
+          },
+          "end": "\\*/",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.acidic"
+            }
+          }
+        },
+        {
+          "begin": "//",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.acidic"
+            }
+          },
+          "end": "(?=$)",
+          "name": "comment.line.acidic"
+        }
+      ]
+    },
+    "string-character-escape": {
+      "name": "constant.character.escape.acidic",
+      "match": "\\\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\\{[0-9A-Fa-f]+\\}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.|$)"
+    }
+  }
+}

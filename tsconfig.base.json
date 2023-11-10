@@ -1,11 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@storm-software/linting-tools/tsconfig/tsconfig.root.json",
-  "display": "Storm Software - acidic",
+  "display": "Storm Software - Acidic",
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@acidic/language": ["packages/language/src/index.ts"],
+      "@acidic/language/*": ["packages/language/src/*"]
+    }
   },
   "references": []
 }

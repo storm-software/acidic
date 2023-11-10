@@ -1,0 +1,17 @@
+{
+  "projectName": "Acidic",
+  "languages": [
+    {
+      "id": "acidic",
+      "grammar": "src/acidic.langium",
+      "fileExtensions": [".acid", ".acidic"],
+      "textMate": {
+        "out": "syntaxes/acidic.tmLanguage.json"
+      },
+      "monarch": {
+        "out": "syntaxes/acidic.monarch.ts"
+      }
+    }
+  ],
+  "out": "src/__generated__"
+}

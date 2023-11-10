@@ -1,0 +1,94 @@
+{
+  "name": "acidic",
+  "displayName": "Acidic Language Tools",
+  "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
+  "version": "0.0.1",
+  "keywords": [
+    "acidic",
+    "storm",
+    "stormstack",
+    "fullstack",
+    "react",
+    "typescript",
+    "data modeling",
+    "graphql",
+    "zenstack",
+    "prisma"
+  ],
+  "publisher": "storm-software",
+  "preview": false,
+  "icon": "./assets/light/icon.png",
+  "galleryBanner": {
+    "color": "#1E1E1E",
+    "theme": "dark"
+  },
+  "homepage": "https://acidic.io",
+  "bugs": {
+    "url": "https://stormsoftware.org/support",
+    "email": "support@stormsoftware.org"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/language"
+  },
+  "license": "Apache License 2.0",
+  "author": {
+    "name": "Storm Software",
+    "email": "contact@stormsoftware.org",
+    "url": "https://stormsoftware.org"
+  },
+  "main": "./extension/main.js",
+  "devDependencies": {
+    "@storm-software/testing-tools": "latest",
+    "@storm-software/workspace-tools": "latest",
+    "@types/node": "20.9.0",
+    "langium-cli": "^2.1.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "langium": "^2.1.2",
+    "ts-pattern": "^5.0.5",
+    "vscode-jsonrpc": "^8.2.0",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11",
+    "vscode-uri": "^3.0.8"
+  },
+  "engines": {
+    "vscode": "^1.67.0"
+  },
+  "publishConfig": {
+    "directory": "dist/packages/language",
+    "linkDirectory": true
+  },
+  "categories": ["Programming Languages", "Data Science"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "acidic",
+        "aliases": [
+          "storm",
+          "acidic language",
+          "acidic schema",
+          "acidic model",
+          "storm acidic"
+        ],
+        "extensions": [".acid", ".acidic"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./assets/light/icon.png",
+          "dark": "./assets/dark/icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "acidic",
+        "scopeName": "source.acidic",
+        "path": "./syntaxes/acidic.tmLanguage.json"
+      }
+    ]
+  },
+  "activationEvents": ["onLanguage:acidic"]
+}

@@ -1,3 +1,23 @@
+## Quick Features
+
+Some of the features of **Acidic** include the following:
+
+- Describe your whole service in a single model, but allow for fined grained control (database structure, Api requests/response, validations, auth, etc.)
+- Generate code for your entire service from a single model
+- Visual Studio Code extension
+- CLI tools to drive processing
+- Nx plugins for an improved development experience
+
+## Model-Driven Development
+
+**Acidic** refers to a collection of applications and libraries that are used to build server-side code from a user-defined model. The specification for this language can be found in the monorepo's [language package](/packages/language/).
+
+<div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/acidic-generate-flow.png" width="800px" /></div>
+<br />
+
+More information can be found in the [📓 Documentation](https://acidic.io/docs).
+<br />
+
 ## Storm Workspaces
 
 Storm workspaces are built using <a href="https://nx.dev/" target="_blank">Nx</a>, a set of extensible dev tools for monorepos, which helps you develop like Google, Facebook, and Microsoft. Building on top of Nx, the Open System provides a set of tools and patterns that help you scale your monorepo to many teams while keeping the codebase maintainable.
@@ -85,7 +105,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 <p><b>Fingerprint:</b> 1BD2 7192 7770 2549 F4C9 F238 E6AD C420 DA5C 4C2D</p>
 </div>
 
-Storm Software is an open source software development organization and creator of Forecast, StormStack and StormCloud. Our mission is to make software development more accessible. Our ideal future is one where anyone can create software without years of prior development experience serving as a barrier to entry. We hope to achieve this via LLMs, Generative AI, and intuitive, high-level data modeling/programming languagues.
+Storm Software is an open source software development organization and creator of Acidic, StormStack and StormCloud. Our mission is to make software development more accessible. Our ideal future is one where anyone can create software without years of prior development experience serving as a barrier to entry. We hope to achieve this via LLMs, Generative AI, and intuitive, high-level data modeling/programming languages.
 
 If this sounds interesting, and you would like to help us in creating the next generation of development tools, please reach out on our website!
 

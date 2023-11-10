@@ -64,7 +64,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
     "*.hbs": "handlebars",
-    "*.4cast": "forecast"
+    "*.acid": "acidic",
+    "*.acidic": "acidic"
   },
 
   "eslint.validate": [
@@ -133,9 +134,9 @@
   },
 
   /******************************
-   * Forecast
+   * Acidic
    ******************************/
-  "[forecast]": {
+  "[acidic]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "Prisma.prisma"
   },

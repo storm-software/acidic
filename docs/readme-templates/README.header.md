@@ -1,12 +1,14 @@
-<div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/logo-banner.png" width="100%" altText="Storm Software" /></div>
+<div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/acidic-banner.gif" width="100%" altText="Acidic" /></div>
 
 <div align="center">
-<a href="https://stormsoftware.org" target="_blank">Website</a>  |  <a href="https://stormsoftware.org/contact" target="_blank">Contact</a>  |  <a href="https://github.com/storm-software/acidic" target="_blank">Repository</a>  |  <a href="https://stormstack.github.io/stormstack/" target="_blank">Documentation</a>  |  <a href="https://github.com/storm-software/acidic/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a> | <a href="https://github.com/storm-software/acidic/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=Feature Request%3A+">Request a Feature</a> | <a href="https://github.com/storm-software/acidic/issues/new?assignees=&labels=documentation&template=documentation.yml&title=Documentation Request%3A+">Request Documentation</a> | <a href="https://github.com/storm-software/acidic/discussions">Ask a Question</a>
+<a href="https://stormsoftware.org" target="_blank">Website</a>  |  <a href="https://stormsoftware.org/contact" target="_blank">Contact</a>  |  <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=Feature Request%3A+">Request a Feature</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=documentation&template=documentation.yml&title=Documentation Request%3A+">Request Documentation</a> | <a href="https://github.com/storm-software/storm-ops/discussions">Ask a Question</a>
 </div>
 
 <br />
-This package is part of the <b>⚡acidic</b> monorepo. The acidic packages include CLI utility applications, tools, and various libraries used to create modern, scalable web applications.
-<br />
+🧪 <b>Acidic</b> is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!
+<br /><br />
+
+⚡<b>Storm Workspaces</b> are built using <a href="https://nx.dev/" target="_blank">Nx</a>, a set of extensible dev tools for monorepos, which helps you develop like Google, Facebook, and Microsoft. Building on top of Nx, the Open System provides a set of tools and patterns that help you scale your monorepo to many teams while keeping the codebase maintainable.
 
 <h3 align="center">💻 Visit <a href="https://stormsoftware.org" target="_blank">stormsoftware.org</a> to stay up to date with this developer</h3><br />
 

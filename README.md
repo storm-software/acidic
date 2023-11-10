@@ -1,7 +1,7 @@
 <div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/acidic-banner.gif" width="100%" altText="Acidic" /></div>
 
 <div align="center">
-<a href="https://stormsoftware.org" target="_blank">Website</a>  |  <a href="https://stormsoftware.org/contact" target="_blank">Contact</a>  |  <a href="https://github.com/storm-software/storm-ops" target="_blank">Repository</a>  |  <a href="https://storm-software.github.io/storm-ops/" target="_blank">Documentation</a>  |  <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=Feature Request%3A+">Request a Feature</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=documentation&template=documentation.yml&title=Documentation Request%3A+">Request Documentation</a> | <a href="https://github.com/storm-software/storm-ops/discussions">Ask a Question</a>
+<a href="https://stormsoftware.org" target="_blank">Website</a>  |  <a href="https://stormsoftware.org/contact" target="_blank">Contact</a>  |  <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=Feature Request%3A+">Request a Feature</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=documentation&template=documentation.yml&title=Documentation Request%3A+">Request Documentation</a> | <a href="https://github.com/storm-software/storm-ops/discussions">Ask a Question</a>
 </div>
 
 <br />
@@ -65,7 +65,7 @@ Some of the features of **Acidic** include the following:
 
 ## Model-Driven Development
 
-**Acidic** refers to a collection of applications and libraries that are used to build server-side code from a user-defined model. This functionality all lives in the Storm monorepo's `tools` directory (/tools/forecast).
+**Acidic** refers to a collection of applications and libraries that are used to build server-side code from a user-defined model. The specification for this language can be found in the monorepo's [language package](/packages/language/).
 
 <div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/acidic-generate-flow.png" width="800px" /></div>
 <br />
@@ -162,7 +162,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 <p><b>Fingerprint:</b> 1BD2 7192 7770 2549 F4C9 F238 E6AD C420 DA5C 4C2D</p>
 </div>
 
-Storm Software is an open source software development organization and creator of Forecast, StormStack and StormCloud. Our mission is to make software development more accessible. Our ideal future is one where anyone can create software without years of prior development experience serving as a barrier to entry. We hope to achieve this via LLMs, Generative AI, and intuitive, high-level data modeling/programming languagues.
+Storm Software is an open source software development organization and creator of Acidic, StormStack and StormCloud. Our mission is to make software development more accessible. Our ideal future is one where anyone can create software without years of prior development experience serving as a barrier to entry. We hope to achieve this via LLMs, Generative AI, and intuitive, high-level data modeling/programming languages.
 
 If this sounds interesting, and you would like to help us in creating the next generation of development tools, please reach out on our [website](https://stormsoftware.org/contact)!
 

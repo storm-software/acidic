@@ -1,0 +1,265 @@
+{
+  "name": "language",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/language/src",
+  "targets": {
+    "compile": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/language",
+        "main": "packages/language/src/main.ts",
+        "additionalEntryPoints": [
+          "packages/language/src/ast.ts",
+          "packages/language/src/acidic-module.ts",
+          "packages/language/src/__generated__/grammar.ts",
+          "packages/language/src/main-browser.ts"
+        ],
+        "project": "packages/language/package.json",
+        "tsConfig": "packages/language/tsconfig.json",
+        "platform": "node",
+        "deleteOutputPath": true,
+        "metafile": true,
+        "bundle": true,
+        "sourcemap": true,
+        "minify": false,
+        "skipTypeCheck": true,
+        "format": ["esm", "cjs"],
+        "external": [".prisma/client/index"],
+        "assets": [
+          {
+            "input": "packages/language",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          },
+          {
+            "input": "packages/language/res",
+            "glob": "*.*",
+            "output": "res"
+          },
+          {
+            "input": "assets/icons/light",
+            "glob": "icon.png",
+            "output": "assets/light"
+          },
+          {
+            "input": "assets/icons/dark",
+            "glob": "icon.png",
+            "output": "assets/dark"
+          },
+          {
+            "input": "packages/language/syntaxes",
+            "glob": "*.*",
+            "output": "syntaxes"
+          },
+          {
+            "input": "packages/language/examples",
+            "glob": "*.*",
+            "output": "examples"
+          }
+        ]
+      }
+    },
+    "compile-vsce": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/vsce",
+        "main": "packages/language/src/extension/main.ts",
+        "additionalEntryPoints": [
+          "packages/language/src/main.ts",
+          "packages/language/src/main-browser.ts"
+        ],
+        "project": "packages/language/package.json",
+        "tsConfig": "packages/language/tsconfig.json",
+        "external": ["vscode"],
+        "platform": "node",
+        "metafile": true,
+        "bundle": true,
+        "sourcemap": false,
+        "minify": true,
+        "skipTypeCheck": true,
+        "deleteOutputPath": true,
+        "assets": [
+          {
+            "input": "packages/language",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          },
+          {
+            "input": "packages/language/res",
+            "glob": "*.*",
+            "output": "res"
+          },
+          {
+            "input": "assets/icons/light",
+            "glob": "icon.png",
+            "output": "assets/light"
+          },
+          {
+            "input": "assets/icons/dark",
+            "glob": "icon.png",
+            "output": "assets/dark"
+          },
+          {
+            "input": "packages/language/syntaxes",
+            "glob": "*.*",
+            "output": "syntaxes"
+          },
+          {
+            "input": "packages/language",
+            "glob": "language-configuration.json",
+            "output": "."
+          },
+          {
+            "input": "packages/language/examples",
+            "glob": "*.*",
+            "output": "examples"
+          },
+          {
+            "input": "packages/language",
+            "glob": "package.vsce.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "langium": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "outputPath": "packages/language",
+      "defaultConfiguration": "default",
+      "options": {
+        "parallel": false,
+        "commands": ["npx langium generate"],
+        "cwd": "packages/language"
+      },
+      "configurations": {
+        "default": {
+          "options": {
+            "commands": ["npx langium generate"],
+            "cwd": "packages/language"
+          }
+        },
+        "watch": {
+          "options": {
+            "commands": ["npx langium generate --watch"],
+            "cwd": "packages/language",
+            "watch": true
+          }
+        }
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "outputPath": "packages/language",
+      "defaultConfiguration": "default",
+      "options": {
+        "commands": [
+          "pnpm nx run language:langium",
+          "pnpm nx run language:compile"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "default": {
+          "options": {
+            "commands": [
+              "pnpm nx run language:langium:default",
+              "pnpm nx run language:compile"
+            ]
+          }
+        },
+        "watch": {
+          "options": {
+            "commands": [
+              "pnpm nx run language:langium:watch",
+              "pnpm nx run language:compile"
+            ],
+            "watch": true
+          }
+        }
+      }
+    },
+    "build-vsce": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "outputPath": "packages/language",
+      "defaultConfiguration": "default",
+      "options": {
+        "commands": [
+          "pnpm nx run language:langium:default",
+          "pnpm nx run language:compile-vsce"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "default": {
+          "options": {
+            "commands": [
+              "pnpm nx run language:langium:default",
+              "pnpm nx run language:compile-vsce"
+            ]
+          }
+        },
+        "watch": {
+          "options": {
+            "commands": [
+              "pnpm nx run language:langium:watch",
+              "pnpm nx run language:compile-vsce"
+            ],
+            "watch": true
+          }
+        }
+      }
+    },
+    "pack": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm nx run language:build-vsce",
+          "pnpm pack \"./packages/language\" --pack-destination \"./dist/packages/vsce\""
+        ],
+        "parallel": false
+      }
+    },
+    "publish-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm nx run language:build-vsce",
+          "cd dist/packages/vsce",
+          "pnpm publish --registry http://localhost:4873"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rimraf /S /Q \"package.json\" ",
+          "renamer --replace --find \"package.vsce.json\" --replace \"package.json\" *",
+          "npx vsce package --no-dependencies",
+          "npx vsce publish --no-dependencies"
+        ],
+        "parallel": false,
+        "cwd": "dist/packages/vsce"
+      }
+    },
+    "lint": {},
+    "test": {}
+  }
+}
