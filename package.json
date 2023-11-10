@@ -64,7 +64,7 @@
     "prepare": "pnpm add husky -w && pnpm husky install",
     "readme": "pnpm storm-git readme --templates=\"docs/readme-templates\"",
     "release": "pnpm storm-git release",
-    "test": "echo Skipping all tests..."
+    "test": "echo Skipping workspace testing..."
   },
   "prettier": "@storm-software/linting-tools/prettier/config.json",
   "dependencies": {
