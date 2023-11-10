@@ -38,7 +38,7 @@
   "scripts": {
     "adr": "pnpm log4brains adr new",
     "adr-preview": "pnpm log4brains preview",
-    "api-extractor": "nx g @storm-software/workspace-tools:api-extractor --outputPath 'docs/api-reference' --clean --no-interactive",
+    "api-extractor": "nx g @storm-software/workspace-tools:api-extractor --outputPath \"docs/api-reference\" --clean --no-interactive",
     "prebuild": "pnpm clean",
     "build": "nx affected -t build --parallel=5",
     "build:all": "nx run-many -t build --all --parallel=5",
@@ -62,7 +62,7 @@
     "local-registry": "nx local-registry @acidic/source",
     "nx": "nx",
     "prepare": "pnpm add husky -w && pnpm husky install",
-    "readme-gen": "pnpm storm-git readme-gen --templates='docs/readme-templates'",
+    "readme-gen": "pnpm storm-git readme-gen --templates=\"docs/readme-templates\"",
     "release": "pnpm storm-git release",
     "test": "echo Skipping all workspace testing..."
   },
