@@ -15,7 +15,7 @@ Some of the features of **Acidic** include the following:
 <div align="center"><img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/acidic-generate-flow.png" width="800px" /></div>
 <br />
 
-More information can be found in the [📓 Documentation](https://acidic.io/docs).
+More information can be found in the [📓 Acidic Documentation](https://acidic.io/docs).
 <br />
 
 ## Storm Workspaces
