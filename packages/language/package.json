@@ -1,9 +1,9 @@
 {
   "name": "@acidic/language",
   "displayName": "Acidic Language Tools",
-  "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
   "version": "0.0.1",
   "private": false,
+  "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
   "categories": [
     "Programming Languages",
     "Data Science"
@@ -37,15 +37,6 @@
     "url": "https://stormsoftware.org"
   },
   "publisher": "storm-software",
-  "devDependencies": {
-    "@storm-software/testing-tools": "latest",
-    "@storm-software/workspace-tools": "latest",
-    "@types/node": "20.9.0",
-    "langium-cli": "^2.1.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "express": "^4.18.2",
     "langium": "^2.1.2",
@@ -55,5 +46,14 @@
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.11",
     "vscode-uri": "^3.0.8"
+  },
+  "devDependencies": {
+    "@storm-software/testing-tools": "latest",
+    "@storm-software/workspace-tools": "latest",
+    "@types/node": "20.9.0",
+    "langium-cli": "^2.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

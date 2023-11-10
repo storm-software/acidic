@@ -36,8 +36,9 @@
     "url": "https://stormsoftware.org"
   },
   "scripts": {
-    "nx": "nx",
-    "prepare": "pnpm add husky -w && pnpm husky install",
+    "adr": "pnpm log4brains adr new",
+    "adr-preview": "pnpm log4brains preview",
+    "api-extractor": "nx g @storm-software/workspace-tools:api-extractor --outputPath 'docs/api-reference' --clean --no-interactive",
     "prebuild": "pnpm clean",
     "build": "nx affected -t build --parallel=5",
     "build:all": "nx run-many -t build --all --parallel=5",
@@ -59,12 +60,11 @@
     "install:csb": "corepack enable && pnpm install --frozen-lockfile",
     "lint": "pnpm storm-lint all --skip-cspell",
     "local-registry": "nx local-registry @acidic/source",
-    "test": "echo Skipping all workspace testing...",
-    "adr": "pnpm log4brains adr new",
-    "adr-preview": "pnpm log4brains preview",
-    "api-extractor": "nx g @storm-software/workspace-tools:api-extractor --outputPath 'docs/api-reference' --clean --no-interactive",
+    "nx": "nx",
+    "prepare": "pnpm add husky -w && pnpm husky install",
     "readme-gen": "pnpm storm-git readme-gen --templates='docs/readme-templates'",
-    "release": "pnpm storm-git release"
+    "release": "pnpm storm-git release",
+    "test": "echo Skipping all workspace testing..."
   },
   "prettier": "@storm-software/linting-tools/prettier/config.json",
   "dependencies": {
@@ -96,6 +96,7 @@
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "eslint": "^8.53.0",
+    "husky": "^8.0.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-environment-node": "^29.7.0",
@@ -132,8 +133,5 @@
       "@acidic/language": "workspace:*"
     }
   },
-  "triggerEmptyDevReleaseByIncrementingThisNumber": 0,
-  "devDependencies": {
-    "husky": "^8.0.3"
-  }
+  "triggerEmptyDevReleaseByIncrementingThisNumber": 0
 }
