@@ -8,7 +8,7 @@ import {
   MaybePromise,
   getDocument
 } from "langium";
-import { DataModel, DataModelField, Model, isDataModel } from "./ast";
+import { AcidicModel, AcidicObjectField, Model, isAcidicModel } from "./ast";
 
 import {
   CodeAction,
@@ -19,7 +19,7 @@ import {
 } from "vscode-languageserver";
 import { AcidicFormatter } from "./acidic-formatter";
 import { IssueCodes } from "./constants";
-import { MissingOppositeRelationData } from "./validators/datamodel-validator";
+import { MissingOppositeRelationData } from "./validators/acidic-model-validator";
 
 export class AcidicCodeActionProvider implements CodeActionProvider {
   protected readonly reflection: AstReflection;
@@ -76,22 +76,26 @@ export class AcidicCodeActionProvider implements CodeActionProvider {
       const fieldModel = rootCst as Model;
       const fieldAstNode = (
         fieldModel.declarations.find(
-          x => isDataModel(x) && x.name === data.relationDataModelName
-        ) as DataModel
-      )?.fields.find(x => x.name === data.relationFieldName) as DataModelField;
+          x => isAcidicModel(x) && x.name === data.relationAcidicModelName
+        ) as AcidicModel
+      )?.fields.find(
+        x => x.name === data.relationFieldName
+      ) as AcidicObjectField;
 
-      if (!fieldAstNode) return undefined;
+      if (!fieldAstNode) {
+        return undefined;
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const oppositeModel = fieldAstNode.type.reference!.ref! as DataModel;
+      const oppositeModel = fieldAstNode.type.reference!.ref! as AcidicModel;
 
       const lastField = oppositeModel.fields[oppositeModel.fields.length - 1];
 
       const currentModel = document.parseResult.value as Model;
 
       const container = currentModel.declarations.find(
-        decl => decl.name === data.dataModelName && isDataModel(decl)
-      ) as DataModel;
+        decl => decl.name === data.dataModelName && isAcidicModel(decl)
+      ) as AcidicModel;
 
       if (container && container.$cstNode) {
         // indent
@@ -107,7 +111,7 @@ export class AcidicCodeActionProvider implements CodeActionProvider {
           //post Post[]
           const idField = container.$resolvedFields.find(f =>
             f.attributes.find(attr => attr.decl.ref?.name === "@id")
-          ) as DataModelField;
+          ) as AcidicObjectField;
 
           // if no id field, we can't generate reference
           if (!idField) {
@@ -158,10 +162,8 @@ export class AcidicCodeActionProvider implements CodeActionProvider {
               [targetDocument.textDocument.uri]: [
                 {
                   range: {
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    start: lastField.$cstNode!.range.end,
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    end: lastField.$cstNode!.range.end
+                    start: lastField?.$cstNode!.range.end!,
+                    end: lastField?.$cstNode!.range.end!
                   },
                   newText
                 }

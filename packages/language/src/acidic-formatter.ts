@@ -11,12 +11,12 @@ export class AcidicFormatter extends AbstractFormatter {
   private formatOptions?: FormattingOptions;
   protected format(node: AstNode): void {
     const formatter = this.getNodeFormatter(node);
-    if (ast.isDataModelField(node)) {
+    if (ast.isAcidicObjectField(node)) {
       formatter.property("type").prepend(Formatting.oneSpace());
       if (node.attributes.length > 0) {
         formatter.properties("attributes").prepend(Formatting.oneSpace());
       }
-    } else if (ast.isDataModelFieldAttribute(node)) {
+    } else if (ast.isAcidicFieldAttribute(node)) {
       formatter.keyword("(").surround(Formatting.noSpace());
       formatter.keyword(")").prepend(Formatting.noSpace());
       formatter.keyword(",").append(Formatting.oneSpace());
@@ -39,7 +39,7 @@ export class AcidicFormatter extends AbstractFormatter {
       const model = node as ast.Model;
       const nodes = formatter.nodes(...model.declarations);
       nodes.prepend(Formatting.noIndent());
-    } else if (ast.isOperation(node)) {
+    } else if (ast.isAcidicOperation(node)) {
       formatter.property("name").prepend(Formatting.oneSpace());
       formatter.property("resultType").prepend(Formatting.oneSpace());
       if (node.attributes.length > 0) {

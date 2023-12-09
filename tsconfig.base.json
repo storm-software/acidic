@@ -6,8 +6,18 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
+      "@acidic/cli": ["packages/cli/src/index.ts"],
+      "@acidic/cli/*": ["packages/cli/src/*"],
+      "@acidic/daemon": ["packages/daemon/src/index.ts"],
+      "@acidic/daemon/*": ["packages/daemon/src/*"],
+      "@acidic/engine": ["packages/engine/src/index.ts"],
+      "@acidic/engine/*": ["packages/engine/src/*"],
       "@acidic/language": ["packages/language/src/index.ts"],
-      "@acidic/language/*": ["packages/language/src/*"]
+      "@acidic/language/*": ["packages/language/src/*"],
+      "@acidic/ui-webview": ["packages/ui-webview/src/index.ts"],
+      "@acidic/ui-webview/*": ["packages/ui-webview/src/*"],
+      "@acidic/vscode-extension": ["packages/vscode-extension/src/index.ts"],
+      "@acidic/vscode-extension/*": ["packages/vscode-extension/src/*"]
     }
   },
   "references": []

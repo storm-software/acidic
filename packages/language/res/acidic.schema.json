@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://acidic.io/acidic.schema.json",
-  "title": "Acidic Schema",
-  "description": "A schema describing the structure of the Acidic language.",
-  "type": "object",
-  "properties": {}
-}

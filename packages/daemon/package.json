@@ -1,0 +1,19 @@
+{
+  "name": "@acidic/daemon",
+  "version": "0.0.1",
+  "private": false,
+  "description": "A package containing the Acidic Engine's daemon process code to allow automatically updated code/artifacts.",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/daemon"
+  },
+  "type": "module",
+  "dependencies": {
+    "@storm-stack/file-system": "latest",
+    "pm2": "^5.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

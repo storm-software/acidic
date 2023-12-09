@@ -1,12 +1,12 @@
-import type { DataModel, DataModelAttribute } from "../language/ast";
+import type { AcidicObject, AcidicObjectAttribute } from "../ast";
 import { getLiteral } from "./utils";
 import { hasValidationAttributes } from "./validation-utils";
 
-export function analyzePolicies(dataModel: DataModel) {
-  const allows = dataModel.attributes.filter(
+export function analyzePolicies(acidicObject: AcidicObject) {
+  const allows = acidicObject.attributes.filter(
     attr => attr.decl.ref?.name === "@@allow"
   );
-  const denies = dataModel.attributes.filter(
+  const denies = acidicObject.attributes.filter(
     attr => attr.decl.ref?.name === "@@deny"
   );
 
@@ -14,7 +14,7 @@ export function analyzePolicies(dataModel: DataModel) {
   const read = toStaticPolicy("read", allows, denies);
   const update = toStaticPolicy("update", allows, denies);
   const del = toStaticPolicy("delete", allows, denies);
-  const hasFieldValidation = hasValidationAttributes(dataModel);
+  const hasFieldValidation = hasValidationAttributes(acidicObject);
 
   return {
     allows,
@@ -33,13 +33,13 @@ export function analyzePolicies(dataModel: DataModel) {
 
 function toStaticPolicy(
   operation: string,
-  allows: DataModelAttribute[],
-  denies: DataModelAttribute[]
+  allows: AcidicObjectAttribute[],
+  denies: AcidicObjectAttribute[]
 ): boolean | undefined {
   const filteredDenies = forOperation(operation, denies);
   if (
     filteredDenies.some(
-      rule => getLiteral<boolean>(rule.args[1].value) === true
+      rule => getLiteral<boolean>(rule.args[1]?.value) === true
     )
   ) {
     // any constant true deny rule
@@ -55,7 +55,7 @@ function toStaticPolicy(
   if (
     filteredDenies.length === 0 &&
     filteredAllows.some(
-      rule => getLiteral<boolean>(rule.args[1].value) === true
+      rule => getLiteral<boolean>(rule.args[1]?.value) === true
     )
   ) {
     // any constant true allow rule
@@ -64,9 +64,9 @@ function toStaticPolicy(
   return undefined;
 }
 
-function forOperation(operation: string, rules: DataModelAttribute[]) {
+function forOperation(operation: string, rules: AcidicObjectAttribute[]) {
   return rules.filter(rule => {
-    const ops = getLiteral<string>(rule.args[0].value);
+    const ops = getLiteral<string>(rule.args[0]?.value);
     if (!ops) {
       return false;
     }

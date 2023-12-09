@@ -1,0 +1,35 @@
+{
+  "name": "@acidic/engine",
+  "private": false,
+  "type": "module",
+  "dependencies": {
+    "@prisma/generator-helper": "^5.5.2",
+    "@prisma/internals": "^5.5.2",
+    "@storm-software/config-tools": "latest",
+    "@storm-stack/date-time": "latest",
+    "@storm-stack/errors": "latest",
+    "@storm-stack/file-system": "latest",
+    "@storm-stack/logging": "latest",
+    "@storm-stack/serialization": "^1.0.0",
+    "@storm-stack/unique-identifier": "^1.0.1",
+    "@storm-stack/utilities": "latest",
+    "chalk": "^5.3.0",
+    "eslint": "^8.55.0",
+    "glob": "^10.3.10",
+    "handlebars": "^4.7.8",
+    "handlebars-utils": "^1.0.6",
+    "langium": "^1.2.0",
+    "ts-morph": "^20.0.0",
+    "vscode-uri": "^3.0.8",
+    "zod": "^3.22.4",
+    "zod-validation-error": "^2.1.0"
+  },
+  "devDependencies": {
+    "@storm-software/testing-tools": "latest",
+    "@storm-software/workspace-tools": "latest",
+    "@types/node": "20.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "name": "@acidic/vscode-extension",
+  "displayName": "Acidic Language Tools",
+  "version": "0.0.1",
+  "private": true,
+  "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
+  "categories": [
+    "Programming Languages",
+    "Data Science"
+  ],
+  "keywords": [
+    "acidic",
+    "storm",
+    "stormstack",
+    "fullstack",
+    "react",
+    "typescript",
+    "data modeling",
+    "trpc",
+    "graphql",
+    "zenstack",
+    "prisma",
+    "zod",
+    "valibot"
+  ],
+  "homepage": "https://acidic.io",
+  "bugs": {
+    "url": "https://stormsoftware.org/support",
+    "email": "support@stormsoftware.org"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/vscode-extension"
+  },
+  "license": "Apache License 2.0",
+  "author": {
+    "name": "Storm Software",
+    "email": "contact@stormsoftware.org",
+    "url": "https://stormsoftware.org"
+  },
+  "publisher": "storm-software",
+  "main": "./extension/main.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "acidic.restart",
+        "title": "Acidic Engine: Restart"
+      },
+      {
+        "command": "acidic.startEngine",
+        "title": "Acidic Engine: Start"
+      },
+      {
+        "command": "acidic.stopEngine",
+        "title": "Acidic Engine: Stop"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "acidic",
+        "scopeName": "source.acidic",
+        "path": "./syntaxes/acidic.tmLanguage.json"
+      }
+    ],
+    "languages": [
+      {
+        "id": "acidic",
+        "aliases": [
+          "storm",
+          "acidic language",
+          "acidic schema",
+          "acidic model",
+          "storm acidic"
+        ],
+        "extensions": [
+          ".acid",
+          ".acidic"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./assets/light/icon.png",
+          "dark": "./assets/dark/icon.png"
+        }
+      }
+    ]
+  },
+  "activationEvents": [
+    "onLanguage:acidic"
+  ],
+  "dependencies": {
+    "@storm-software/config-tools": "latest",
+    "@storm-stack/errors": "latest",
+    "@storm-stack/file-system": "latest",
+    "@storm-stack/logging": "latest",
+    "express": "^4.18.2",
+    "langium": "^1.2.0",
+    "ts-pattern": "^5.0.5",
+    "vscode-jsonrpc": "^8.2.0",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11",
+    "vscode-uri": "^3.0.8"
+  },
+  "devDependencies": {
+    "@storm-software/testing-tools": "latest",
+    "@storm-software/workspace-tools": "latest",
+    "@types/node": "20.9.0",
+    "langium-cli": "^1.2.0"
+  },
+  "engines": {
+    "vscode": "^1.67.0"
+  },
+  "publishConfig": {
+    "directory": "dist/packages/vscode-extension",
+    "linkDirectory": true
+  },
+  "icon": "./assets/light/icon.png",
+  "galleryBanner": {
+    "color": "#1E1E1E",
+    "theme": "dark"
+  },
+  "preview": false
+}

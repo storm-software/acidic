@@ -1,0 +1,57 @@
+{
+  "name": "engine",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/engine/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-node",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/engine",
+        "main": "packages/engine/src/index.ts",
+        "additionalEntryPoints": ["packages/engine/src/main-browser.ts"],
+        "tsConfig": "packages/engine/tsconfig.json",
+        "project": "packages/engine/package.json",
+        "defaultConfiguration": "production",
+        "platform": "node",
+        "assets": [
+          {
+            "input": "packages/engine",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          },
+          {
+            "glob": "packages/engine/src/schema",
+            "input": "acidic.schema.json",
+            "output": "./schema"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "debug": false
+        },
+        "development": {
+          "debug": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/engine/**/*.ts",
+          "packages/engine/package.json"
+        ]
+      }
+    },
+    "test": {}
+  }
+}

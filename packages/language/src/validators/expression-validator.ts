@@ -3,8 +3,8 @@ import {
   BinaryExpr,
   Expression,
   ExpressionType,
-  isBinaryExpr,
-  isEnum
+  isAcidicEnum,
+  isBinaryExpr
 } from "../ast";
 import { AstValidator } from "../types";
 import { isAuthInvocation } from "../utils/ast-utils";
@@ -57,7 +57,7 @@ export default class ExpressionValidator implements AstValidator<Expression> {
       case "in": {
         if (
           typeof expr.left.$resolvedType?.decl !== "string" &&
-          !isEnum(expr.left.$resolvedType?.decl)
+          !isAcidicEnum(expr.left.$resolvedType?.decl)
         ) {
           accept("error", 'left operand of "in" must be of scalar type', {
             node: expr.left

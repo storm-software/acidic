@@ -1,24 +1,24 @@
 import { AstNode, ValidationAcceptor } from "langium";
 import { P, match } from "ts-pattern";
 import {
+  AcidicFieldAttribute,
+  AcidicObjectAttribute,
   Argument,
-  DataModelAttribute,
-  DataModelFieldAttribute,
   Expression,
   FunctionDecl,
   FunctionParam,
   InvocationExpr,
+  isAcidicFieldAttribute,
+  isAcidicObjectAttribute,
   isArrayExpr,
-  isDataModelAttribute,
-  isDataModelFieldAttribute,
   isLiteralExpr
 } from "../ast";
 import { ExpressionContext } from "../constants";
 import { AstValidator } from "../types";
 import {
-  getDataModelFieldReference,
+  getAcidicObjectFieldReference,
   getFunctionExpressionContext,
-  isEnumFieldReference,
+  isAcidicEnumFieldReference,
   isFromStdlib,
   typeAssignable
 } from "../utils";
@@ -46,11 +46,11 @@ export default class FunctionInvocationValidator
       // find the containing attribute context for the invocation
       let curr: AstNode | undefined = expr.$container;
       let containerAttribute:
-        | DataModelAttribute
-        | DataModelFieldAttribute
+        | AcidicObjectAttribute
+        | AcidicFieldAttribute
         | undefined;
       while (curr) {
-        if (isDataModelAttribute(curr) || isDataModelFieldAttribute(curr)) {
+        if (isAcidicObjectAttribute(curr) || isAcidicFieldAttribute(curr)) {
           containerAttribute = curr;
           break;
         }
@@ -90,7 +90,7 @@ export default class FunctionInvocationValidator
         // first argument must refer to a model field
         const firstArg = expr.args?.[0]?.value;
         if (firstArg) {
-          if (!getDataModelFieldReference(firstArg)) {
+          if (!getAcidicObjectFieldReference(firstArg)) {
             accept("error", "first argument must be a field reference", {
               node: firstArg
             });
@@ -104,12 +104,12 @@ export default class FunctionInvocationValidator
           // literal
           !isLiteralExpr(secondArg) &&
           // enum field
-          !isEnumFieldReference(secondArg) &&
+          !isAcidicEnumFieldReference(secondArg) &&
           // array of literal/enum
           !(
             isArrayExpr(secondArg) &&
             secondArg.items.every(
-              item => isLiteralExpr(item) || isEnumFieldReference(item)
+              item => isLiteralExpr(item) || isAcidicEnumFieldReference(item)
             )
           )
         ) {
@@ -135,19 +135,26 @@ export default class FunctionInvocationValidator
       const param = funcDecl.params[i];
       const arg = args[i];
       if (!arg) {
-        if (!param.optional) {
-          accept("error", `missing argument for parameter "${param.name}"`, {
-            node: funcDecl
-          });
+        if (!param?.optional) {
+          accept(
+            "error",
+            !param
+              ? "The parameter does not exist"
+              : `Missing argument for parameter "${param.name}"`,
+            {
+              node: funcDecl
+            }
+          );
           success = false;
         }
-      } else {
+      } else if (param) {
         if (!this.validateInvocationArg(arg, param, accept)) {
           success = false;
         }
       }
     }
     // TODO: do we need to complain for extra arguments?
+
     return success;
   }
 

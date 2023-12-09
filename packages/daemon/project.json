@@ -1,0 +1,53 @@
+{
+  "name": "daemon",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/daemon/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-node",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entry": "packages/daemon/src/index.ts",
+        "outputPath": "dist/packages/daemon",
+        "tsConfig": "packages/daemon/tsconfig.json",
+        "project": "packages/daemon/package.json",
+        "defaultConfiguration": "production",
+        "assets": [
+          {
+            "input": "packages/daemon",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/daemon/**/*.ts",
+          "{projectRoot}/package.json"
+        ]
+      }
+    },
+    "test": {}
+  }
+}

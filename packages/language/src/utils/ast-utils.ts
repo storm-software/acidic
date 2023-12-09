@@ -1,56 +1,63 @@
 import { AstNode, LangiumDocuments, Mutable, getDocument } from "langium";
 import { URI, Utils } from "vscode-uri";
 import {
-  DataModel,
-  DataModelField,
+  AcidicEvent,
+  AcidicModel,
+  AcidicMutation,
+  AcidicObject,
+  AcidicObjectAttribute,
+  AcidicObjectField,
+  AcidicQuery,
+  AcidicSubscription,
   Expression,
-  Input,
   Model,
   ModelImport,
-  Operation,
   ReferenceExpr,
+  isAcidicEvent,
+  isAcidicModel,
+  isAcidicMutation,
+  isAcidicObject,
+  isAcidicObjectField,
+  isAcidicQuery,
+  isAcidicSubscription,
   isArrayExpr,
-  isDataModel,
-  isDataModelField,
-  isInput,
   isInvocationExpr,
   isMemberAccessExpr,
   isModel,
-  isOperation,
   isReferenceExpr
 } from "../ast";
 import { isFromStdlib } from "./server-utils";
 
-export function extractDataModelsWithAllowRules(model: Model): DataModel[] {
+export function extractAcidicModelsWithAllowRules(model: Model): AcidicModel[] {
   return model.declarations.filter(
     d =>
-      isDataModel(d) &&
+      isAcidicModel(d) &&
       d.attributes.some(attr => attr.decl.ref?.name === "@@allow")
-  ) as DataModel[];
+  ) as AcidicModel[];
 }
 
 export function mergeBaseModel(model: Model) {
   model.declarations
-    .filter(x => x.$type === "DataModel")
+    .filter(x => x.$type === "AcidicObject" || x.$type === "AcidicModel")
     .forEach(decl => {
-      const dataModel = decl as DataModel;
+      const dataModel = decl as AcidicObject | AcidicModel;
 
       dataModel.fields = dataModel.superTypes
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         .flatMap(superType => updateContainer(superType.ref!.fields, dataModel))
-        .concat(dataModel.fields);
+        .concat(dataModel.fields) as AcidicObjectField[];
 
       dataModel.attributes = dataModel.superTypes
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         .flatMap(superType =>
           updateContainer(superType.ref!.attributes, dataModel)
         )
-        .concat(dataModel.attributes);
+        .concat(dataModel.attributes) as AcidicObjectAttribute[];
     });
 
   // remove abstract models
   model.declarations = model.declarations.filter(
-    x => !(x.$type == "DataModel" && x.isAbstract)
+    x => !(x.$type == "AcidicModel" && x.isAbstract)
   );
 }
 
@@ -67,7 +74,7 @@ function updateContainer<T extends AstNode>(
   });
 }
 
-export function getIdFields(dataModel: DataModel) {
+export function getIdFields(dataModel: AcidicModel | AcidicObject) {
   const fieldLevelId = dataModel.$resolvedFields.find(f =>
     f.attributes.some(attr => attr.decl.$refText === "@id")
   );
@@ -78,21 +85,22 @@ export function getIdFields(dataModel: DataModel) {
     const modelIdAttr = dataModel.attributes.find(
       attr => attr.decl?.ref?.name === "@@id"
     );
-    if (modelIdAttr) {
+    if (
+      modelIdAttr &&
+      Array.isArray(modelIdAttr.args) &&
+      modelIdAttr.args.length > 0
+    ) {
       // get fields referenced in the attribute: @@id([field1, field2]])
-      if (!isArrayExpr(modelIdAttr.args[0].value)) {
+      if (!isArrayExpr(modelIdAttr.args[0]?.value)) {
         return [];
       }
-      const argValue = modelIdAttr.args[0].value;
-      return argValue.items
+      const argValue = modelIdAttr.args[0]?.value;
+      return argValue?.items
         .filter(
           (expr): expr is ReferenceExpr =>
-            isReferenceExpr(expr) &&
-            !!getDataModelFieldReference(expr) &&
-            !!getOperationReference(expr) &&
-            !!getInputReference(expr)
+            isReferenceExpr(expr) && !!getAcidicObjectFieldReference(expr)
         )
-        .map(expr => expr.target.ref as DataModelField);
+        .map(expr => expr.target.ref as AcidicObjectField);
     }
   }
   return [];
@@ -106,32 +114,87 @@ export function isAuthInvocation(node: AstNode) {
   );
 }
 
-export function getDataModelFieldReference(
+export function getAcidicObjectReference(
   expr: Expression
-): DataModelField | undefined {
-  if (isReferenceExpr(expr) && isDataModelField(expr.target.ref)) {
+): AcidicObject | undefined {
+  if (isReferenceExpr(expr) && isAcidicObject(expr.target.ref)) {
     return expr.target.ref;
-  } else if (isMemberAccessExpr(expr) && isDataModelField(expr.member.ref)) {
+  } else if (isMemberAccessExpr(expr) && isAcidicObject(expr.member.ref)) {
     return expr.member.ref;
   } else {
     return undefined;
   }
 }
 
-export function getOperationReference(expr: Expression): Operation | undefined {
-  if (isReferenceExpr(expr) && isOperation(expr.target.ref)) {
+export function getAcidicModelReference(
+  expr: Expression
+): AcidicModel | undefined {
+  if (isReferenceExpr(expr) && isAcidicModel(expr.target.ref)) {
     return expr.target.ref;
-  } else if (isMemberAccessExpr(expr) && isOperation(expr.member.ref)) {
+  } else if (isMemberAccessExpr(expr) && isAcidicModel(expr.member.ref)) {
     return expr.member.ref;
   } else {
     return undefined;
   }
 }
 
-export function getInputReference(expr: Expression): Input | undefined {
-  if (isReferenceExpr(expr) && isInput(expr.target.ref)) {
+export function getAcidicObjectFieldReference(
+  expr: Expression
+): AcidicObjectField | undefined {
+  if (isReferenceExpr(expr) && isAcidicObjectField(expr.target.ref)) {
     return expr.target.ref;
-  } else if (isMemberAccessExpr(expr) && isInput(expr.member.ref)) {
+  } else if (isMemberAccessExpr(expr) && isAcidicObjectField(expr.member.ref)) {
+    return expr.member.ref;
+  } else {
+    return undefined;
+  }
+}
+
+export function getAcidicQueryReference(
+  expr: Expression
+): AcidicQuery | undefined {
+  if (isReferenceExpr(expr) && isAcidicQuery(expr.target.ref)) {
+    return expr.target.ref;
+  } else if (isMemberAccessExpr(expr) && isAcidicQuery(expr.member.ref)) {
+    return expr.member.ref;
+  } else {
+    return undefined;
+  }
+}
+
+export function getAcidicMutationReference(
+  expr: Expression
+): AcidicMutation | undefined {
+  if (isReferenceExpr(expr) && isAcidicMutation(expr.target.ref)) {
+    return expr.target.ref;
+  } else if (isMemberAccessExpr(expr) && isAcidicMutation(expr.member.ref)) {
+    return expr.member.ref;
+  } else {
+    return undefined;
+  }
+}
+
+export function getAcidicSubscriptionReference(
+  expr: Expression
+): AcidicSubscription | undefined {
+  if (isReferenceExpr(expr) && isAcidicSubscription(expr.target.ref)) {
+    return expr.target.ref;
+  } else if (
+    isMemberAccessExpr(expr) &&
+    isAcidicSubscription(expr.member.ref)
+  ) {
+    return expr.member.ref;
+  } else {
+    return undefined;
+  }
+}
+
+export function getAcidicEventReference(
+  expr: Expression
+): AcidicEvent | undefined {
+  if (isReferenceExpr(expr) && isAcidicEvent(expr.target.ref)) {
+    return expr.target.ref;
+  } else if (isMemberAccessExpr(expr) && isAcidicEvent(expr.member.ref)) {
     return expr.member.ref;
   } else {
     return undefined;

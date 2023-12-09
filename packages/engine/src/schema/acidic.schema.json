@@ -1,0 +1,1041 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "https://acidic.io/acidic.schema.json",
+  "title": "Acidic Service Schema",
+  "description": "A schema describing the structure of the Acidic language.",
+  "$ref": "#/definitions/Service",
+  "definitions": {
+    "Service": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "dataSource": {
+          "$ref": "#/definitions/DataSource"
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Plugin"
+          }
+        },
+        "enums": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Enum"
+          }
+        },
+        "objects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Object"
+          }
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Model"
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Event"
+          }
+        },
+        "queries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Query"
+          }
+        },
+        "mutations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Operation"
+          }
+        },
+        "subscriptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Operation"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "dataSource",
+        "plugins",
+        "objects",
+        "models",
+        "queries",
+        "mutations",
+        "subscriptions",
+        "events"
+      ],
+      "title": "Service"
+    },
+    "DataSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provider": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "provider", "url"],
+      "title": "DataSource"
+    },
+    "Enum": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnumField"
+          }
+        }
+      },
+      "required": ["name", "fields"],
+      "title": "Enum"
+    },
+    "EnumField": {
+      "oneOf": [
+        { "$ref": "#/definitions/StringEnumField" },
+        { "$ref": "#/definitions/IntegerEnumField" }
+      ],
+      "title": "EnumField"
+    },
+    "StringEnumField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "string"
+        },
+        "type": {
+          "const": "String"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "type", "value"],
+      "title": "StringEnumField"
+    },
+    "IntegerEnumField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "type": {
+          "const": "Int"
+        },
+        "value": {
+          "type": "integer"
+        }
+      },
+      "required": ["name", "type", "value"],
+      "title": "IntegerEnumField"
+    },
+    "Operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "input": {
+          "$ref": "#/definitions/Object"
+        },
+        "response": {
+          "oneOf": [
+            { "$ref": "#/definitions/Object" },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Object"
+              }
+            }
+          ]
+        },
+        "emits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Event"
+          }
+        }
+      },
+      "required": ["name", "response", "emits"],
+      "title": "Operation"
+    },
+    "Event": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "topic": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ObjectField"
+          }
+        }
+      },
+      "required": ["name", "topic", "fields"],
+      "title": "Event"
+    },
+    "Query": {
+      "allOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "isLive": {
+              "type": "boolean"
+            }
+          },
+          "required": ["isLive"]
+        },
+        {
+          "$ref": "#/definitions/Operation"
+        }
+      ],
+      "title": "Query"
+    },
+    "Model": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tableName": {
+          "type": "string"
+        },
+        "ref": {
+          "$ref": "#/definitions/Object"
+        }
+      },
+      "required": ["tableName", "ref"],
+      "title": "Model"
+    },
+    "Object": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ObjectField"
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Relationship"
+          }
+        },
+        "extends": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Object"
+          }
+        },
+        "isExtend": {
+          "type": "boolean"
+        }
+      },
+      "required": ["name", "fields", "implements", "extends", "isExtending"],
+      "title": "Object"
+    },
+    "ObjectField": {
+      "oneOf": [
+        { "$ref": "#/definitions/StringObjectField" },
+        { "$ref": "#/definitions/NumberObjectField" },
+        { "$ref": "#/definitions/IntegerObjectField" },
+        { "$ref": "#/definitions/BooleanObjectField" },
+        { "$ref": "#/definitions/DateTimeObjectField" },
+        { "$ref": "#/definitions/EnumObjectField" },
+        { "$ref": "#/definitions/ReferenceObjectField" },
+        { "$ref": "#/definitions/JsonObjectField" },
+        { "$ref": "#/definitions/BytesObjectField" }
+      ],
+      "title": "ObjectField"
+    },
+    "StringObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "String"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "includes": {
+          "type": "string"
+        },
+        "startsWith": {
+          "type": "string"
+        },
+        "endsWith": {
+          "type": "string"
+        },
+        "regex": {
+          "type": "string"
+        },
+        "maxLength": {
+          "type": "integer"
+        },
+        "minLength": {
+          "type": "integer"
+        },
+        "isEmpty": {
+          "type": "boolean"
+        },
+        "isUrl": {
+          "type": "boolean"
+        },
+        "isEmail": {
+          "type": "boolean"
+        },
+        "isSemver": {
+          "type": "boolean"
+        },
+        "isLatitude": {
+          "type": "boolean"
+        },
+        "isLongitude": {
+          "type": "boolean"
+        },
+        "isPostalCode": {
+          "type": "boolean"
+        },
+        "isCountryCode": {
+          "type": "boolean"
+        },
+        "isTimezone": {
+          "type": "boolean"
+        },
+        "isPhoneNumber": {
+          "type": "boolean"
+        },
+        "isIpAddress": {
+          "type": "boolean"
+        },
+        "isMacAddress": {
+          "type": "boolean"
+        },
+        "isDatetime": {
+          "type": "boolean"
+        },
+        "has": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "hasEvery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "hasSome": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["name", "type"],
+      "title": "StringObjectField"
+    },
+    "NumberObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["Float", "Decimal"]
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defaultValue": {
+          "type": "number"
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "multipleOf": {
+          "type": "integer"
+        },
+        "isPositive": {
+          "type": "boolean"
+        },
+        "isNonnegative": {
+          "type": "boolean"
+        },
+        "isNegative": {
+          "type": "boolean"
+        },
+        "isNonpositive": {
+          "type": "boolean"
+        },
+        "isFinite": {
+          "type": "boolean"
+        },
+        "isSafe": {
+          "type": "boolean"
+        },
+        "equals": {
+          "type": "number"
+        },
+        "gt": {
+          "type": "number"
+        },
+        "gte": {
+          "type": "number"
+        },
+        "lt": {
+          "type": "number"
+        },
+        "lte": {
+          "type": "number"
+        },
+        "has": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "hasEvery": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "hasSome": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      "required": ["name", "type"],
+      "title": "NumberObjectField"
+    },
+    "IntegerObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["Int", "BigInt"]
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defaultValue": {
+          "type": "integer"
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "multipleOf": {
+          "type": "integer"
+        },
+        "isPositive": {
+          "type": "boolean"
+        },
+        "isNonnegative": {
+          "type": "boolean"
+        },
+        "isNegative": {
+          "type": "boolean"
+        },
+        "isNonpositive": {
+          "type": "boolean"
+        },
+        "isFinite": {
+          "type": "boolean"
+        },
+        "isSafe": {
+          "type": "boolean"
+        },
+        "equals": {
+          "type": "integer"
+        },
+        "gt": {
+          "type": "integer"
+        },
+        "gte": {
+          "type": "integer"
+        },
+        "lt": {
+          "type": "integer"
+        },
+        "lte": {
+          "type": "integer"
+        },
+        "has": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "hasEvery": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "hasSome": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "required": ["name", "type"],
+      "title": "IntegerObjectField"
+    },
+    "BooleanObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Boolean"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defaultValue": {
+          "type": "boolean"
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "has": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "hasEvery": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "hasSome": {
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        }
+      },
+      "required": ["name", "type"],
+      "title": "BooleanObjectField"
+    },
+    "DateTimeObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["DateTime", "Date", "Time"]
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "isNow": {
+          "type": "boolean"
+        },
+        "isUpdatedAt": {
+          "type": "boolean"
+        },
+        "has": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "hasEvery": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "hasSome": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["name", "type"],
+      "title": "DateTimeObjectField"
+    },
+    "EnumObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Enum"
+        },
+        "ref": {
+          "$ref": "#/definitions/Enum"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "defaultValue": {
+          "$ref": "#/definitions/EnumField"
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        },
+        "has": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnumField"
+          }
+        },
+        "hasEvery": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnumField"
+          }
+        },
+        "hasSome": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EnumField"
+          }
+        }
+      },
+      "required": ["name", "type", "ref"],
+      "title": "EnumObjectField"
+    },
+    "ReferenceObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Object"
+        },
+        "ref": {
+          "$ref": "#/definitions/Object"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        }
+      },
+      "required": ["name", "type", "ref"],
+      "title": "ReferenceObjectField"
+    },
+    "JsonObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Json"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        }
+      },
+      "required": ["name", "type"],
+      "title": "JsonObjectField"
+    },
+    "BytesObjectField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Bytes"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        }
+      },
+      "required": ["name", "type"],
+      "title": "BytesObjectField"
+    },
+    "StringAttributeField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "String"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": ["type", "value"],
+      "title": "StringAttributeField"
+    },
+    "NumberAttributeField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["Float", "Decimal"]
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": ["type", "value"],
+      "title": "NumberAttributeField"
+    },
+    "IntegerAttributeField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["Int", "BigInt"]
+        },
+        "value": {
+          "type": "integer"
+        }
+      },
+      "required": ["type", "value"],
+      "title": "IntegerAttributeField"
+    },
+    "BooleanAttributeField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Boolean"
+        },
+        "value": {
+          "type": "boolean"
+        }
+      },
+      "required": ["type", "value"],
+      "title": "BooleanAttributeField"
+    },
+    "EnumAttributeField": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Enum"
+        },
+        "ref": {
+          "$ref": "#/definitions/Enum"
+        },
+        "value": {
+          "$ref": "#/definitions/EnumField"
+        }
+      },
+      "required": ["type", "ref", "value"],
+      "title": "EnumAttributeField"
+    },
+    "Attribute": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeArg"
+          }
+        }
+      },
+      "required": ["name", "args"],
+      "title": "Attribute"
+    },
+    "AttributeArg": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AttributeField"
+          }
+        }
+      },
+      "required": ["fields"],
+      "title": "AttributeArg"
+    },
+    "AttributeField": {
+      "oneOf": [
+        { "$ref": "#/definitions/StringAttributeField" },
+        { "$ref": "#/definitions/NumberAttributeField" },
+        { "$ref": "#/definitions/IntegerAttributeField" },
+        { "$ref": "#/definitions/BooleanAttributeField" },
+        { "$ref": "#/definitions/EnumAttributeField" }
+      ],
+      "title": "AttributeField"
+    },
+    "Plugin": {
+      "description": "A plugin to use when generating code.",
+      "allOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "comments": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "provider": {
+              "type": "string"
+            },
+            "compile": {
+              "type": "boolean"
+            },
+            "prettier": {
+              "type": "boolean"
+            },
+            "lint": {
+              "type": "boolean"
+            },
+            "generateIndexFiles": {
+              "type": "boolean"
+            },
+            "output": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "provider",
+            "compile",
+            "prettier",
+            "lint",
+            "generateIndexFiles",
+            "output"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {
+            "^.*$": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }]
+            }
+          }
+        }
+      ],
+      "title": "Plugin"
+    },
+    "Relationship": {
+      "description": "An object that describes how two Acidic objects are related to one another.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "description": "A list of foreign keys that exist on the current object.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ObjectField"
+          }
+        },
+        "ref": {
+          "description": "A reference to the foreign object.",
+          "$ref": "#/definitions/Object"
+        },
+        "references": {
+          "description": "A list of keys that exist on the foreign object. These keys must be in the same order as the `fields` values.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ObjectField"
+          }
+        }
+      },
+      "required": ["fields", "ref", "references"],
+      "title": "Relationship"
+    }
+  }
+}

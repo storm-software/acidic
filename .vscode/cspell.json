@@ -1,3 +1,4 @@
 {
-  "import": ["@storm-software/linting-tools/cspell/config.json"]
+  "import": ["@storm-software/linting-tools/cspell/config.json"],
+  "words": ["langium"]
 }

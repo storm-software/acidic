@@ -3,13 +3,12 @@
 (function (Prism) {
   Prism.languages.acidic = Prism.languages.extend("clike", {
     keyword:
-      /\b(?:datasource|enum|generator|model|attribute|function|null|this)\b/,
+      /\b(?:datasource|serviceID|enum|generator|model|attribute|function|null|this)\b/,
     "type-class-name": /(\b()\s+)[\w.\\]+/
   });
 
   Prism.languages.javascript["class-name"][0].pattern =
     /(\b(?:model|datasource|enum|generator)\s+)[\w.\\]+/;
-
   Prism.languages.insertBefore("acidic", "function", {
     annotation: {
       pattern: /(^|[^.])@+\w+/,

@@ -52,7 +52,7 @@ export default class SchemaValidator implements AstValidator<Model> {
     ).filter(d => isDataSource(d));
     if (dataSources.length > 1) {
       accept("error", "Multiple datasource declarations are not allowed", {
-        node: dataSources[1]
+        node: dataSources[1]!
       });
     }
   }

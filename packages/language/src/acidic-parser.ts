@@ -23,5 +23,5 @@ export function prepareAcidicParser(services: LangiumServices): LangiumParser {
   services.parser.ParserConfig = { maxLookahead: 3 };
   const parser = new LangiumParser(services);
 
-  return createParser(grammar, parser, lexer.definition);
+  return createParser(grammar, parser, lexer.definition) as LangiumParser;
 }

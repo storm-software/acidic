@@ -10,7 +10,11 @@ ModelImport:
     'import' path=STRING  ';'?;
 
 AbstractDeclaration:
-    DataSource | GeneratorDecl| Plugin | DataModel | Input | Interface | ApiModel | OperationGroup | Enum | FunctionDecl | Attribute;
+   ServiceID | DataSource | GeneratorDecl | Plugin | AcidicModel | AcidicObject | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicEvent | AcidicEnum | FunctionDecl | Attribute;
+
+// service name
+ServiceID:
+    TRIPLE_SLASH_COMMENT* 'service' name=RegularID;
 
 // datasource
 DataSource:
@@ -43,7 +47,7 @@ LiteralExpr:
 ArrayExpr:
     '[' (items+=Expression (',' items+=Expression)*)? ']';
 
-type ReferenceTarget = FunctionParam | DataModelField | EnumField | Operation;
+type ReferenceTarget = FunctionParam | AcidicObjectField | AcidicEnumField | AcidicOperation;
 
 ThisExpr:
     value=THIS;
@@ -59,7 +63,6 @@ fragment ReferenceArgList:
 
 ReferenceArg:
     name=('sort') ':' value=('Asc' | 'Desc');
-
 
 ObjectExpr:
     '{'
@@ -78,7 +81,7 @@ InvocationExpr:
 MemberAccessExpr infers Expression:
     PrimaryExpr (
         {infer MemberAccessExpr.operand=current}
-        ('.' member=[DataModelField])
+        ('.' member=[AcidicObjectField])
     )*;
 
 UnaryExpr:
@@ -90,22 +93,6 @@ CollectionPredicateExpr infers Expression:
         operator=('?'|'!'|'^')
         '[' right=Expression ']'
     )*;
-
-// TODO: support arithmetics?
-//
-// MultDivExpr infers Expression:
-//     CollectionPredicateExpr (
-//         {infer BinaryExpr.left=current}
-//         operator=('*'|'/')
-//         right=CollectionPredicateExpr
-//     )*;
-
-// AddSubExpr infers Expression:
-//     MultDivExpr (
-//         {infer BinaryExpr.left=current}
-//         operator=('+'|'-')
-//         right=MultDivExpr
-//     )*;
 
 InExpr infers Expression:
     CollectionPredicateExpr (
@@ -152,111 +139,141 @@ fragment ArgumentList:
 Argument:
     (name=RegularID ':')? value=Expression;
 
-// model data
-DataModel:
+// ---- Data Objects ----
+
+// object
+AcidicObject:
     (comments+=TRIPLE_SLASH_COMMENT)*
     (
-        (((isAbstract?='abstract')? 'model' name=RegularID |
-            (isExtend?='extend')? 'model' name=RegularID)
-            (('extends' superTypes+=[DataModel] (',' superTypes+=[DataModel])*)? |
-                ('implements' implements+=[DataModel] (',' implements+=[DataModel])*)?)) |
-        ((isView?='view') name=RegularID)
+        (
+            (isAbstract?='abstract')? 'type' name=RegularID |
+            (isExtend?='extend')? 'type' name=RegularID
+        )
+        ('extends' superTypes+=[AcidicObject] (',' superTypes+=[AcidicObject])*)?
     )
     '{' (
-        fields+=DataModelField
-            | attributes+=DataModelAttribute
+        fields+=AcidicObjectField
+            | attributes+=AcidicObjectAttribute
         )+
     '}';
 
-DataModelField:
+AcidicObjectField:
     (comments+=TRIPLE_SLASH_COMMENT)*
-    name=RegularID type=DataModelFieldType (attributes+=DataModelFieldAttribute)*;
+    name=RegularID type=AcidicObjectFieldType (attributes+=AcidicFieldAttribute)*;
 
-DataModelFieldType:
+AcidicObjectFieldType:
     (type=BuiltinType | unsupported=UnsupportedFieldType | reference=[TypeDeclaration:RegularID]) (array?='[' ']')? (optional?='?')?;
 
-// operation group
-OperationGroup:
+// model
+AcidicModel:
     (comments+=TRIPLE_SLASH_COMMENT)*
     (
-        ((isExtend?='extend')? 'type' name=OperationGroupName
-            ('extends' superTypes+=[Operation] (',' superTypes+=[Operation])*)?)
+        (
+            (
+                (isAbstract?='abstract')? 'model' name=RegularID |
+                (isExtend?='extend')? 'model' name=RegularID
+            ) |
+            (
+                (isView?='view') name=RegularID
+            )
+        )
+        ('extends' superTypes+=[AcidicObject] (',' superTypes+=[AcidicObject])*)?
     )
     '{' (
-        fields+=Operation
-            | attributes+=DataModelAttribute
+        fields+=AcidicObjectField
+            | attributes+=AcidicObjectAttribute
         )+
     '}';
 
-OperationGroupName returns string:
-    'Query' | 'Mutation' | 'Subscription';
-
-Operation:
-    (comments+=TRIPLE_SLASH_COMMENT)*
-    name=RegularID '(' (params+=OperationInputParam (',' params+=OperationInputParam)*)? ')' ':' (resultType=DataModelFieldType) (attributes+=DataModelFieldAttribute)*;
-
-OperationInputParam:
-    TRIPLE_SLASH_COMMENT* (default?='_')? name=RegularID ':' type=DataModelFieldType ('=' defaultValue=(LiteralExpr | ArrayExpr | ObjectExpr))?;
-
-// input data
-Input:
+// event
+AcidicEvent:
     (comments+=TRIPLE_SLASH_COMMENT)*
     (
-        ('input' name=RegularID
-            ('extends' superTypes+=[Input] (',' superTypes+=[Input])*)?)
+        (
+            (isAbstract?='abstract')? 'event' name=RegularID |
+            (isExtend?='extend')? 'event' name=RegularID
+        )
+        ('extends' superTypes+=[AcidicObject] (',' superTypes+=[AcidicObject])*)?
     )
     '{' (
-        fields+=DataModelField
-            | attributes+=DataModelAttribute
+        fields+=AcidicObjectField
+            | attributes+=AcidicObjectAttribute
         )+
     '}';
 
-// API model data
-ApiModel:
+// enum
+AcidicEnum:
     (comments+=TRIPLE_SLASH_COMMENT)*
-    (
-        ((isExtend?='extend')? 'type' name=RegularID
-            (('extends' superTypes+=[ApiModel] (',' superTypes+=[ApiModel])*)? |
-                ('implements' implements+=[ApiModel] (',' implements+=[ApiModel])*)?))
-    )
-    '{' (
-        fields+=DataModelField
-            | attributes+=DataModelAttribute
+    'enum' name=RegularID '{' (
+           fields+=AcidicEnumField
+           | attributes+=AcidicObjectAttribute
         )+
     '}';
 
-// interface model data
-Interface:
+AcidicEnumField:
+    (comments+=TRIPLE_SLASH_COMMENT)*
+    name=RegularID (attributes+=AcidicFieldAttribute)*;
+
+// ---- Operations ----
+
+AcidicQuery:
     (comments+=TRIPLE_SLASH_COMMENT)*
     (
-        ((isExtend?='extend')? 'interface' name=RegularID
-            ('extends' superTypes+=[Interface] (',' superTypes+=[Interface])*)?)
+        ((isExtend?='extend')? 'type' name=AcidicQueryName
+            ('extends' superTypes+=[AcidicQuery] (',' superTypes+=[AcidicQuery])*)?)
     )
     '{' (
-        fields+=DataModelField
-            | attributes+=DataModelAttribute
+        fields+=AcidicOperation
+            | attributes+=AcidicObjectAttribute
         )+
     '}';
+
+AcidicQueryName returns string:
+    'Query';
+
+AcidicOperation:
+    (comments+=TRIPLE_SLASH_COMMENT)*
+    name=RegularID '(' (params+=AcidicOperationInputParam (',' params+=AcidicOperationInputParam)*)? ')' ':' (result=AcidicObject) (attributes+=AcidicFieldAttribute)*;
+
+AcidicOperationInputParam:
+    (comments+=TRIPLE_SLASH_COMMENT)* (defaultValue?='_')? name=RegularID ':' type=AcidicObjectFieldType ('=' defaultValue=(LiteralExpr | ArrayExpr | ObjectExpr))?;
+
+AcidicMutation:
+    (comments+=TRIPLE_SLASH_COMMENT)*
+    (
+        ((isExtend?='extend')? 'type' name=AcidicMutationName
+            ('extends' superTypes+=[AcidicMutation] (',' superTypes+=[AcidicMutation])*)?)
+    )
+    '{' (
+        fields+=AcidicOperation
+            | attributes+=AcidicObjectAttribute
+        )+
+    '}';
+
+AcidicMutationName returns string:
+    'Mutation';
+
+AcidicSubscription:
+    (comments+=TRIPLE_SLASH_COMMENT)*
+    (
+        ((isExtend?='extend')? 'type' name=AcidicSubscriptionName
+            ('extends' superTypes+=[AcidicSubscription] (',' superTypes+=[AcidicSubscription])*)?)
+    )
+    '{' (
+        fields+=AcidicOperation
+            | attributes+=AcidicObjectAttribute
+        )+
+    '}';
+
+AcidicSubscriptionName returns string:
+    'Subscription';
 
 UnsupportedFieldType:
     'Unsupported' '(' (value=LiteralExpr) ')';
 
-// enum
-Enum:
-    (comments+=TRIPLE_SLASH_COMMENT)*
-    'enum' name=RegularID '{' (
-           fields+=EnumField
-           | attributes+=DataModelAttribute
-        )+
-    '}';
-
-EnumField:
-    (comments+=TRIPLE_SLASH_COMMENT)*
-    name=RegularID (attributes+=DataModelFieldAttribute)*;
-
 // function
 FunctionDecl:
-    TRIPLE_SLASH_COMMENT* 'function' name=RegularID '(' (params+=FunctionParam (',' params+=FunctionParam)*)? ')' ':' returnType=FunctionParamType '{' (expression=Expression)? '}' (attributes+=InternalAttribute)*;
+    TRIPLE_SLASH_COMMENT* 'function' name=RegularID '(' (params+=FunctionParam (',' params+=FunctionParam)*)? ')' ':' returnType=FunctionParamType '{' (expression=Expression)? '}' (attributes+=AcidicInternalAttribute)*;
 
 FunctionParam:
     TRIPLE_SLASH_COMMENT* name=RegularID ':' type=FunctionParamType (optional?='?')?;
@@ -271,45 +288,45 @@ QualifiedName returns string:
 // https://github.com/langium/langium/discussions/1012
 RegularID returns string:
     // include keywords that we'd like to work as ID in most places
-    ID | 'model' | 'type' | 'input' | 'interface' | 'enum' | 'attribute' | 'datasource' | 'plugin' | 'abstract' | 'in' | 'sort';
+    ID | 'model' | 'type' | 'event' | 'enum' | 'attribute' | 'service' | 'view' | 'datasource' | 'plugin' | 'abstract' | 'in' | 'sort';
 
 // internal attribute
-InternalAttributeName returns string:
+AcidicInternalAttributeName returns string:
     '@@@' QualifiedName;
 
 // model-level attribute
-DataModelAttributeName returns string:
+AcidicObjectAttributeName returns string:
     '@@' QualifiedName;
 
 // field-level attribute
-DataModelFieldAttributeName returns string:
+AcidicFieldAttributeName returns string:
     '@' QualifiedName;
 
-AttributeName returns string:
-    DataModelAttributeName | DataModelFieldAttributeName | InternalAttributeName;
+AcidicAttributeName returns string:
+    AcidicObjectAttributeName | AcidicFieldAttributeName | AcidicInternalAttributeName;
 
 // attribute
 Attribute:
-    TRIPLE_SLASH_COMMENT* 'attribute' name=AttributeName '(' (params+=AttributeParam (',' params+=AttributeParam)*)? ')' (attributes+=InternalAttribute)*;
+    TRIPLE_SLASH_COMMENT* 'attribute' name=AcidicAttributeName '(' (params+=AttributeParam (',' params+=AttributeParam)*)? ')' (attributes+=AcidicInternalAttribute)*;
 
 AttributeParam:
-    TRIPLE_SLASH_COMMENT* (default?='_')? name=RegularID ':' type=AttributeParamType;
+    TRIPLE_SLASH_COMMENT* (defaultValue?='_')? name=RegularID ':' type=AttributeParamType;
 
 // FieldReference refers to fields declared in the current model
 // TransitiveFieldReference refers to fields declared in the model type of the current field
 AttributeParamType:
     (type=(ExpressionType | 'FieldReference' | 'TransitiveFieldReference' | 'ContextType') | reference=[TypeDeclaration:RegularID]) (array?='[' ']')? (optional?='?')?;
 
-type TypeDeclaration = DataModel | Enum | OperationGroup | Input | Interface | ApiModel;
+type TypeDeclaration = AcidicModel | AcidicObject | AcidicEnum | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicEvent;
 
-DataModelFieldAttribute:
-    decl=[Attribute:DataModelFieldAttributeName] ('(' AttributeArgList? ')')?;
+AcidicFieldAttribute:
+    decl=[Attribute:AcidicFieldAttributeName] ('(' AttributeArgList? ')')?;
 
-DataModelAttribute:
-    TRIPLE_SLASH_COMMENT* decl=[Attribute:DataModelAttributeName] ('(' AttributeArgList? ')')?;
+AcidicObjectAttribute:
+    TRIPLE_SLASH_COMMENT* decl=[Attribute:AcidicObjectAttributeName] ('(' AttributeArgList? ')')?;
 
-InternalAttribute:
-    decl=[Attribute:InternalAttributeName] ('(' AttributeArgList? ')')?;
+AcidicInternalAttribute:
+    decl=[Attribute:AcidicInternalAttributeName] ('(' AttributeArgList? ')')?;
 
 fragment AttributeArgList:
     args+=AttributeArg (',' args+=AttributeArg)*;
@@ -318,10 +335,10 @@ AttributeArg:
     (name=RegularID ':')? value=Expression;
 
 ExpressionType returns string:
-    'String' | 'Int' | 'Float' | 'Boolean' | 'DateTime' | 'Null' | 'Object' | 'Any' | 'Unsupported';
+    'String' | 'Int' | 'Float' | 'Boolean' | 'DateTime' | 'Time' | 'Date' | 'Null' | 'Object' | 'Any' | 'Unsupported';
 
 BuiltinType returns string:
-    'String' | 'Boolean' | 'Int' | 'BigInt' | 'Float' | 'Decimal' | 'DateTime' | 'Json' | 'Bytes';
+    'String' | 'Boolean' | 'Int' | 'BigInt' | 'Float' | 'Decimal' | 'DateTime' | 'Time' | 'Date' | 'Json' | 'Bytes';
 
 Boolean returns boolean:
     'true' | 'false';

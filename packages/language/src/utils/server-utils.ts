@@ -1,15 +1,14 @@
 import { AstNode, Reference } from "langium";
 import {
-  ApiModel,
-  DataModel,
-  DataModelField,
+  AcidicEvent,
+  AcidicModel,
+  AcidicObject,
+  AcidicObjectField,
   FunctionDecl,
-  Input,
-  Interface,
   Model,
   ReferenceExpr,
+  isAcidicEnumField,
   isArrayExpr,
-  isEnumField,
   isModel,
   isReferenceExpr
 } from "../ast";
@@ -23,7 +22,7 @@ export function resolved<T extends AstNode>(ref: Reference<T>): T {
 }
 
 /**
- * Gets the toplevel Model containing the given node.
+ * Gets the toplevel Acidic Object containing the given node.
  */
 export function getContainingModel(node: AstNode | undefined): Model | null {
   if (!node) {
@@ -48,7 +47,7 @@ export function isFromStdlib(node: AstNode) {
  * Gets lists of unique fields declared at the data model level
  */
 export function getUniqueFields(
-  model: DataModel | ApiModel | Input | Interface
+  model: AcidicModel | AcidicObject | AcidicEvent
 ) {
   const uniqueAttrs = model.attributes.filter(
     attr => attr.decl.ref?.name === "@@unique" || attr.decl.ref?.name === "@@id"
@@ -63,14 +62,16 @@ export function getUniqueFields(
 
     return fieldsArg.value.items
       .filter((item): item is ReferenceExpr => isReferenceExpr(item))
-      .map(item => resolved(item.target) as DataModelField);
+      .map(item => resolved(item.target) as AcidicObjectField);
   });
 }
 
 /**
- * Gets `@@unique` fields declared at the data model level
+ * Gets `@@unique` fields declared at the acidic object level
  */
-export function getModelUniqueFields(model: DataModel) {
+export function getAcidicObjectUniqueFields(
+  model: AcidicModel | AcidicObject | AcidicEvent
+) {
   const uniqueAttr = model.attributes.find(
     attr => attr.decl.ref?.name === "@@unique"
   );
@@ -86,13 +87,15 @@ export function getModelUniqueFields(model: DataModel) {
 
   return fieldsArg.value.items
     .filter((item): item is ReferenceExpr => isReferenceExpr(item))
-    .map(item => resolved(item.target) as DataModelField);
+    .map(item => resolved(item.target) as AcidicObjectField);
 }
 
 /**
  * Gets `@@id` fields declared at the data model level
  */
-export function getModelIdFields(model: DataModel) {
+export function getModelIdFields(
+  model: AcidicModel | AcidicObject | AcidicEvent
+) {
   const idAttr = model.attributes.find(attr => attr.decl.ref?.name === "@@id");
   if (!idAttr) {
     return [];
@@ -104,11 +107,13 @@ export function getModelIdFields(model: DataModel) {
 
   return fieldsArg.value.items
     .filter((item): item is ReferenceExpr => isReferenceExpr(item))
-    .map(item => resolved(item.target) as DataModelField);
+    .map(item => resolved(item.target) as AcidicObjectField);
 }
 
-export function isEnumFieldReference(node: AstNode): node is ReferenceExpr {
-  return isReferenceExpr(node) && isEnumField(node.target.ref);
+export function isAcidicEnumFieldReference(
+  node: AstNode
+): node is ReferenceExpr {
+  return isReferenceExpr(node) && isAcidicEnumField(node.target.ref);
 }
 
 export function getFunctionExpressionContext(funcDecl: FunctionDecl) {
@@ -116,11 +121,11 @@ export function getFunctionExpressionContext(funcDecl: FunctionDecl) {
   const funcAttr = funcDecl.attributes.find(
     attr => attr.decl.$refText === "@@@expressionContext"
   );
-  if (funcAttr) {
-    const contextArg = funcAttr.args[0].value;
+  if (funcAttr && Array.isArray(funcAttr.args) && funcAttr.args.length > 0) {
+    const contextArg = funcAttr.args[0]!.value;
     if (isArrayExpr(contextArg)) {
       contextArg.items.forEach(item => {
-        if (isEnumFieldReference(item)) {
+        if (isAcidicEnumFieldReference(item)) {
           funcAllowedContext.push(item.target.$refText as ExpressionContext);
         }
       });

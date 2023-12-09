@@ -16,7 +16,7 @@ import { getLiteral } from "./utils";
 export default class AcidicWorkspaceManager extends DefaultWorkspaceManager {
   public pluginModels = new Set<string>();
 
-  protected async loadAdditionalDocuments(
+  protected override async loadAdditionalDocuments(
     _folders: WorkspaceFolder[],
     _collector: (document: LangiumDocument) => void
   ): Promise<void> {

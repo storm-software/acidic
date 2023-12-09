@@ -4,42 +4,17 @@
   "version": "0.0.1",
   "private": false,
   "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
-  "categories": [
-    "Programming Languages",
-    "Data Science"
-  ],
-  "keywords": [
-    "acidic",
-    "storm",
-    "stormstack",
-    "fullstack",
-    "react",
-    "typescript",
-    "data modeling",
-    "graphql",
-    "zenstack",
-    "prisma"
-  ],
-  "homepage": "https://acidic.io",
-  "bugs": {
-    "url": "https://stormsoftware.org/support",
-    "email": "support@stormsoftware.org"
-  },
   "repository": {
     "type": "github",
     "url": "https://github.com/storm-software/acidic.git",
     "directory": "packages/language"
   },
-  "license": "Apache License 2.0",
-  "author": {
-    "name": "Storm Software",
-    "email": "contact@stormsoftware.org",
-    "url": "https://stormsoftware.org"
-  },
-  "publisher": "storm-software",
   "dependencies": {
+    "chevrotain": "^11.0.3",
     "express": "^4.18.2",
-    "langium": "^2.1.2",
+    "langium": "^1.2.0",
+    "monaco-editor-workers": "^0.44.0",
+    "monaco-editor-wrapper": "^3.4.0",
     "ts-pattern": "^5.0.5",
     "vscode-jsonrpc": "^8.2.0",
     "vscode-languageclient": "^9.0.1",
@@ -50,8 +25,10 @@
   "devDependencies": {
     "@storm-software/testing-tools": "latest",
     "@storm-software/workspace-tools": "latest",
+    "@types/express": "^4.17.21",
     "@types/node": "20.9.0",
-    "langium-cli": "^2.1.0"
+    "@types/vscode": "^1.85.0",
+    "langium-cli": "^1.2.0"
   },
   "publishConfig": {
     "access": "public"

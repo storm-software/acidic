@@ -3,8 +3,7 @@ import {
   BinaryExpr,
   ExpressionType
 } from "./__generated__/ast";
-
-export { AstNode, Reference } from "langium";
+export type { AstNode, Reference } from "langium";
 export * from "./__generated__/ast";
 
 /**
@@ -51,47 +50,54 @@ declare module "./__generated__/ast" {
     $resolvedParam?: AttributeParam;
   }
 
-  interface DataModel {
+  interface AcidicObject {
     /**
      * Resolved fields, include inherited fields
      */
-    $resolvedFields: Array<DataModelField>;
+    $resolvedFields: Array<AcidicObjectField>;
   }
 
-  interface DataModelField {
+  interface AcidicModel {
+    /**
+     * Resolved fields, include inherited fields
+     */
+    $resolvedFields: Array<AcidicObjectField>;
+  }
+
+  interface AcidicEvent {
+    /**
+     * Resolved fields, include inherited fields
+     */
+    $resolvedFields: Array<AcidicObjectField>;
+  }
+
+  interface AcidicObjectField {
     $isInherited?: boolean;
   }
 
-  interface OperationGroup {
+  interface AcidicQuery {
     /**
      * Resolved fields, include inherited fields
      */
-    $resolvedFields: Array<Operation>;
+    $resolvedFields: Array<AcidicOperation>;
   }
 
-  interface Operation {
+  interface AcidicMutation {
+    /**
+     * Resolved fields, include inherited fields
+     */
+    $resolvedFields: Array<AcidicOperation>;
+  }
+
+  interface AcidicSubscription {
+    /**
+     * Resolved fields, include inherited fields
+     */
+    $resolvedFields: Array<AcidicOperation>;
+  }
+
+  interface AcidicOperation {
     $isInherited?: boolean;
-  }
-
-  interface Input {
-    /**
-     * Resolved fields, include inherited fields
-     */
-    $resolvedFields: Array<DataModelField>;
-  }
-
-  interface ApiModel {
-    /**
-     * Resolved fields, include inherited fields
-     */
-    $resolvedFields: Array<DataModelField>;
-  }
-
-  interface Interface {
-    /**
-     * Resolved fields, include inherited fields
-     */
-    $resolvedFields: Array<DataModelField>;
   }
 }
 

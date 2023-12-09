@@ -14,40 +14,44 @@ import {
 } from "langium";
 import { CancellationToken } from "vscode-jsonrpc";
 import {
-  ApiModel,
+  AcidicEnum,
+  AcidicEnumField,
+  AcidicEvent,
+  AcidicModel,
+  AcidicMutation,
+  AcidicObject,
+  AcidicObjectField,
+  AcidicObjectFieldType,
+  AcidicQuery,
+  AcidicSubscription,
   ArrayExpr,
   AttributeArg,
   AttributeParam,
   BinaryExpr,
-  DataModel,
-  DataModelField,
-  DataModelFieldType,
-  Enum,
-  EnumField,
   Expression,
   FunctionDecl,
   FunctionParam,
   FunctionParamType,
-  Input,
-  Interface,
   InvocationExpr,
   LiteralExpr,
   MemberAccessExpr,
   NullExpr,
   ObjectExpr,
-  OperationGroup,
   ReferenceExpr,
   ReferenceTarget,
   ResolvedShape,
   ThisExpr,
   UnaryExpr,
+  isAcidicEnum,
+  isAcidicEvent,
+  isAcidicModel,
+  isAcidicMutation,
+  isAcidicObject,
+  isAcidicObjectField,
+  isAcidicObjectFieldType,
+  isAcidicQuery,
+  isAcidicSubscription,
   isArrayExpr,
-  isDataModel,
-  isDataModelField,
-  isDataModelFieldType,
-  isEnum,
-  isInput,
-  isOperationGroup,
   isReferenceExpr
 } from "./ast";
 import {
@@ -77,7 +81,7 @@ export class AcidicLinker extends DefaultLinker {
 
   //#region Reference linking
 
-  async link(
+  override async link(
     document: LangiumDocument,
     cancelToken = CancellationToken.None
   ): Promise<void> {
@@ -181,7 +185,7 @@ export class AcidicLinker extends DefaultLinker {
         break;
 
       case ObjectExpr:
-        this.resolveObject(node as ObjectExpr, document, extraScopes);
+        this.resolveAcidicObjectExpr(node as ObjectExpr, document, extraScopes);
         break;
 
       case ThisExpr:
@@ -196,41 +200,45 @@ export class AcidicLinker extends DefaultLinker {
         this.resolveAttributeArg(node as AttributeArg, document, extraScopes);
         break;
 
-      case DataModel:
-        this.resolveDataModel(node as DataModel, document, extraScopes);
-        break;
-
-      case DataModelField:
-        this.resolveDataModelField(
-          node as DataModelField,
+      case AcidicObjectField:
+        this.resolveAcidicObjectField(
+          node as AcidicObjectField,
           document,
           extraScopes
         );
         break;
 
-      case ApiModel:
-        this.resolveApiModel(node as ApiModel, document, extraScopes);
+      case AcidicObject:
+        this.resolveAcidicObject(node as AcidicObject, document, extraScopes);
         break;
 
-      case Interface:
-        this.resolveInterface(node as Interface, document, extraScopes);
+      case AcidicModel:
+        this.resolveAcidicModel(node as AcidicModel, document, extraScopes);
         break;
 
-      case Input:
-        this.resolveInput(node as Input, document, extraScopes);
+      case AcidicQuery:
+        this.resolveAcidicQuery(node as AcidicQuery, document, extraScopes);
         break;
 
-      case OperationGroup:
-        this.resolveOperationGroup(
-          node as OperationGroup,
+      case AcidicMutation:
+        this.resolveAcidicMutation(
+          node as AcidicMutation,
           document,
           extraScopes
         );
         break;
 
-      /*case Operation:
-        this.resolveOperation(node as Operation, document, extraScopes);
-        break;*/
+      case AcidicSubscription:
+        this.resolveAcidicSubscription(
+          node as AcidicSubscription,
+          document,
+          extraScopes
+        );
+        break;
+
+      case AcidicEvent:
+        this.resolveAcidicEvent(node as AcidicEvent, document, extraScopes);
+        break;
 
       default:
         this.resolveDefault(node, document, extraScopes);
@@ -294,7 +302,7 @@ export class AcidicLinker extends DefaultLinker {
     }
   }
 
-  private resolveObject(
+  private resolveAcidicObjectExpr(
     node: ObjectExpr,
     document: LangiumDocument<AstNode>,
     extraScopes: ScopeProvider[]
@@ -315,12 +323,12 @@ export class AcidicLinker extends DefaultLinker {
 
     if (node.target.ref) {
       // resolve type
-      if (node.target.ref.$type === EnumField) {
+      if (node.target.ref.$type === AcidicEnumField) {
         this.resolveToBuiltinTypeOrDecl(node, node.target.ref.$container);
-      } else if ((node.target.ref as DataModelField | FunctionParam)?.type) {
+      } else if ((node.target.ref as AcidicObjectField | FunctionParam)?.type) {
         this.resolveToDeclaredType(
           node,
-          (node.target.ref as DataModelField | FunctionParam).type
+          (node.target.ref as AcidicObjectField | FunctionParam).type
         );
       }
     }
@@ -334,7 +342,7 @@ export class AcidicLinker extends DefaultLinker {
     node.items.forEach(item => this.resolve(item, document, extraScopes));
 
     if (node.items.length > 0) {
-      const itemType = node.items[0].$resolvedType;
+      const itemType = node.items[0]!.$resolvedType;
       if (itemType?.decl) {
         this.resolveToBuiltinTypeOrDecl(node, itemType.decl, true);
       }
@@ -351,47 +359,35 @@ export class AcidicLinker extends DefaultLinker {
     this.linkReference(node, "function", document, extraScopes);
     node.args.forEach(arg => this.resolve(arg, document, extraScopes));
     if (node.function.ref) {
-      // eslint-disable-next-line @typescript-eslint/ban-types
       const funcDecl = node.function.ref as FunctionDecl;
       if (funcDecl.name === "auth" && isFromStdlib(funcDecl)) {
         // auth() function is resolved to User model in the current document
-        const model = getContainingModel(node);
+        const acidicObject = getContainingModel(node);
 
-        if (model) {
-          const userModel = getAllDeclarationsFromImports(
+        if (acidicObject) {
+          const userAcidicObject = getAllDeclarationsFromImports(
             this.langiumDocuments(),
-            model
-          ).find(d => isDataModel(d) && d.name === "User");
-          if (userModel) {
-            node.$resolvedType = { decl: userModel, nullable: true };
+            acidicObject
+          ).find(d => isAcidicObject(d) && d.name === "User");
+          if (userAcidicObject) {
+            node.$resolvedType = { decl: userAcidicObject, nullable: true };
           }
         }
       } else if (funcDecl.name === "future" && isFromStdlib(funcDecl)) {
         // future() function is resolved to current model
-        node.$resolvedType = { decl: this.getContainingDataModel(node) };
+        node.$resolvedType = { decl: this.getContainingAcidicObject(node) };
       } else {
         this.resolveToDeclaredType(node, funcDecl.returnType);
       }
     }
   }
 
-  private getContainingDataModel(node: Expression): DataModel | undefined {
-    let curr: AstNode | undefined = node.$container;
-    while (curr) {
-      if (isDataModel(curr)) {
-        return curr;
-      }
-      curr = curr.$container;
-    }
-    return undefined;
-  }
-
-  private getContainingOperationGroup(
+  private getContainingAcidicObject(
     node: Expression
-  ): OperationGroup | undefined {
+  ): AcidicObject | undefined {
     let curr: AstNode | undefined = node.$container;
     while (curr) {
-      if (isOperationGroup(curr)) {
+      if (isAcidicObject(curr)) {
         return curr;
       }
       curr = curr.$container;
@@ -404,10 +400,10 @@ export class AcidicLinker extends DefaultLinker {
       typeof node.value === "string"
         ? "String"
         : typeof node.value === "boolean"
-        ? "Boolean"
-        : typeof node.value === "number"
-        ? "Int"
-        : undefined;
+          ? "Boolean"
+          : typeof node.value === "number"
+            ? "Int"
+            : undefined;
 
     if (type) {
       this.resolveToBuiltinTypeOrDecl(node, type);
@@ -425,24 +421,64 @@ export class AcidicLinker extends DefaultLinker {
     if (
       operandResolved &&
       !operandResolved.array &&
-      (isDataModel(operandResolved.decl) || isInput(operandResolved.decl))
+      isAcidicObject(operandResolved.decl)
     ) {
-      let modelDecl: any = operandResolved.decl as DataModel;
-      if (!modelDecl) {
-        modelDecl = operandResolved.decl as Input;
+      let objectDecl: any = operandResolved.decl as AcidicObject;
+      if (!objectDecl) {
+        objectDecl = operandResolved.decl as AcidicObject;
       }
 
       const provider = (name: string) =>
-        modelDecl.$resolvedFields.find(f => f.name === name);
+        objectDecl.fields.find(f => f.name === name);
       extraScopes = [provider, ...extraScopes];
     } else if (
       operandResolved &&
       !operandResolved.array &&
-      isOperationGroup(operandResolved.decl)
+      isAcidicModel(operandResolved.decl)
     ) {
-      const queryDecl = operandResolved.decl as OperationGroup;
+      let modelDecl: any = operandResolved.decl as AcidicModel;
+      if (!modelDecl) {
+        modelDecl = operandResolved.decl as AcidicModel;
+      }
+
       const provider = (name: string) =>
-        queryDecl.$resolvedFields.find(f => f.name === name);
+        modelDecl.fields.find(f => f.name === name);
+      extraScopes = [provider, ...extraScopes];
+    } else if (
+      operandResolved &&
+      !operandResolved.array &&
+      isAcidicQuery(operandResolved.decl)
+    ) {
+      const queryDecl = operandResolved.decl as AcidicQuery;
+      const provider = (name: string) =>
+        queryDecl.fields.find(f => f.name === name);
+      extraScopes = [provider, ...extraScopes];
+    } else if (
+      operandResolved &&
+      !operandResolved.array &&
+      isAcidicMutation(operandResolved.decl)
+    ) {
+      const mutationDecl = operandResolved.decl as AcidicMutation;
+      const provider = (name: string) =>
+        mutationDecl.fields.find(f => f.name === name);
+      extraScopes = [provider, ...extraScopes];
+    } else if (
+      operandResolved &&
+      !operandResolved.array &&
+      isAcidicSubscription(operandResolved.decl)
+    ) {
+      const subscriptionDecl = operandResolved.decl as AcidicSubscription;
+      const provider = (name: string) =>
+        subscriptionDecl.fields.find(f => f.name === name);
+      extraScopes = [provider, ...extraScopes];
+    } else if (
+      operandResolved &&
+      !operandResolved.array &&
+      isAcidicEvent(operandResolved.decl)
+    ) {
+      const eventDecl = operandResolved.decl as AcidicEvent;
+      const provider = (name: string) =>
+        eventDecl.fields.find(f => f.name === name);
       extraScopes = [provider, ...extraScopes];
     }
 
@@ -462,18 +498,12 @@ export class AcidicLinker extends DefaultLinker {
     const resolvedType = node.left.$resolvedType;
     if (
       resolvedType &&
-      (isDataModel(resolvedType.decl) || isInput(resolvedType.decl)) &&
-      resolvedType.array
-    ) {
-      const dataModelDecl = resolvedType.decl;
-      const provider = (name: string) =>
-        dataModelDecl.$resolvedFields.find(f => f.name === name);
-      extraScopes = [provider, ...extraScopes];
-      this.resolve(node.right, document, extraScopes);
-      this.resolveToBuiltinTypeOrDecl(node, "Boolean");
-    } else if (
-      resolvedType &&
-      isOperationGroup(resolvedType.decl) &&
+      (isAcidicObject(resolvedType.decl) ||
+        isAcidicModel(resolvedType.decl) ||
+        isAcidicQuery(resolvedType.decl) ||
+        isAcidicMutation(resolvedType.decl) ||
+        isAcidicSubscription(resolvedType.decl) ||
+        isAcidicEvent(resolvedType.decl)) &&
       resolvedType.array
     ) {
       const dataTypeDecl = resolvedType.decl;
@@ -496,15 +526,17 @@ export class AcidicLinker extends DefaultLinker {
   ) {
     let decl: AstNode | undefined = node.$container;
 
-    while (decl && !isDataModel(decl)) {
-      decl = decl.$container;
-    }
-
-    while (decl && !isInput(decl)) {
-      decl = decl.$container;
-    }
-
-    while (decl && !isOperationGroup(decl)) {
+    while (
+      decl &&
+      !(
+        isAcidicObject(decl) ||
+        isAcidicModel(decl) ||
+        isAcidicQuery(decl) ||
+        isAcidicMutation(decl) ||
+        isAcidicSubscription(decl) ||
+        isAcidicEvent(decl)
+      )
+    ) {
       decl = decl.$container;
     }
 
@@ -534,7 +566,7 @@ export class AcidicLinker extends DefaultLinker {
 
     if (
       attrParam?.type.type === "TransitiveFieldReference" &&
-      isDataModelField(attrAppliedOn)
+      isAcidicObjectField(attrAppliedOn)
     ) {
       // "TransitiveFieldReference" is resolved in the context of the containing model of the field
       // where the attribute is applied
@@ -552,11 +584,12 @@ export class AcidicLinker extends DefaultLinker {
       //
       // In model B, the attribute argument "myId" is resolved to the field "myId" in model A
 
-      const transtiveDataModel = attrAppliedOn.type.reference?.ref as DataModel;
-      if (transtiveDataModel) {
+      const transitiveAcidicModel = attrAppliedOn.type.reference
+        ?.ref as AcidicModel;
+      if (transitiveAcidicModel) {
         // resolve references in the context of the transitive data model
         const scopeProvider = (name: string) =>
-          transtiveDataModel.$resolvedFields.find(f => f.name === name);
+          transitiveAcidicModel.$resolvedFields.find(f => f.name === name);
         if (isArrayExpr(node.value)) {
           node.value.items.forEach(item => {
             if (isReferenceExpr(item)) {
@@ -569,7 +602,7 @@ export class AcidicLinker extends DefaultLinker {
               if (resolved) {
                 this.resolveToDeclaredType(
                   item,
-                  (resolved as DataModelField).type
+                  (resolved as AcidicObjectField).type
                 );
               } else {
                 // need to clear linked reference, because it's resolved in default scope by default
@@ -599,7 +632,7 @@ export class AcidicLinker extends DefaultLinker {
           if (resolved) {
             this.resolveToDeclaredType(
               node.value,
-              (resolved as DataModelField).type
+              (resolved as AcidicObjectField).type
             );
           } else {
             // need to clear linked reference, because it's resolved in default scope by default
@@ -709,8 +742,8 @@ export class AcidicLinker extends DefaultLinker {
     }
   }
 
-  private resolveDataModel(
-    node: DataModel,
+  private resolveAcidicObject(
+    node: AcidicObject,
     document: LangiumDocument<AstNode>,
     extraScopes: ScopeProvider[]
   ) {
@@ -725,8 +758,8 @@ export class AcidicLinker extends DefaultLinker {
     return this.resolveDefault(node, document, extraScopes);
   }
 
-  private resolveApiModel(
-    node: ApiModel,
+  private resolveAcidicModel(
+    node: AcidicModel,
     document: LangiumDocument<AstNode>,
     extraScopes: ScopeProvider[]
   ) {
@@ -741,40 +774,8 @@ export class AcidicLinker extends DefaultLinker {
     return this.resolveDefault(node, document, extraScopes);
   }
 
-  private resolveInterface(
-    node: Interface,
-    document: LangiumDocument<AstNode>,
-    extraScopes: ScopeProvider[]
-  ) {
-    if (node.superTypes.length > 0) {
-      const providers = node.superTypes.map(
-        superType => (name: string) =>
-          superType.ref?.fields.find(f => f.name === name)
-      );
-      extraScopes = [...providers, ...extraScopes];
-    }
-
-    return this.resolveDefault(node, document, extraScopes);
-  }
-
-  private resolveInput(
-    node: Input,
-    document: LangiumDocument<AstNode>,
-    extraScopes: ScopeProvider[]
-  ) {
-    if (node.superTypes.length > 0) {
-      const providers = node.superTypes.map(
-        superType => (name: string) =>
-          superType.ref?.fields.find(f => f.name === name)
-      );
-      extraScopes = [...providers, ...extraScopes];
-    }
-
-    return this.resolveDefault(node, document, extraScopes);
-  }
-
-  private resolveDataModelField(
-    node: DataModelField,
+  private resolveAcidicObjectField(
+    node: AcidicObjectField,
     document: LangiumDocument<AstNode>,
     extraScopes: ScopeProvider[]
   ) {
@@ -783,12 +784,12 @@ export class AcidicLinker extends DefaultLinker {
     // used as resolution target. The correct behavior is to resolve to the enum that's used
     // as the declaration type of the field:
     //
-    // enum FirstEnum {
+    // enum FirstAcidicEnum {
     //     E1
     //     E2
     // }
 
-    // enum SecondEnum  {
+    // enum SecondAcidicEnum  {
     //     E1
     //     E3
     //     E4
@@ -796,8 +797,8 @@ export class AcidicLinker extends DefaultLinker {
 
     // model M {
     //     id Int @id
-    //     first  SecondEnum @default(E1) <- should resolve to SecondEnum
-    //     second FirstEnum @default(E1) <- should resolve to FirstEnum
+    //     first  SecondAcidicEnum @default(E1) <- should resolve to SecondAcidicEnum
+    //     second FirstAcidicEnum @default(E1) <- should resolve to FirstAcidicEnum
     // }
     //
 
@@ -807,27 +808,75 @@ export class AcidicLinker extends DefaultLinker {
     let scopes = extraScopes;
 
     // if the field has enum declaration type, resolve the rest with that enum's fields on top of the scopes
-    if (node.type.reference?.ref && isEnum(node.type.reference.ref)) {
-      const contextEnum = node.type.reference.ref as Enum;
+    if (node.type.reference?.ref && isAcidicEnum(node.type.reference.ref)) {
+      const contextAcidicEnum = node.type.reference.ref as AcidicEnum;
       const enumScope: ScopeProvider = name =>
-        contextEnum.fields.find(f => f.name === name);
+        contextAcidicEnum.fields.find(f => f.name === name);
       scopes = [enumScope, ...scopes];
     }
 
     this.resolveDefault(node, document, scopes);
   }
 
-  private resolveOperationGroup(
-    node: OperationGroup,
+  private resolveAcidicQuery(
+    node: AcidicQuery,
     document: LangiumDocument<AstNode>,
     extraScopes: ScopeProvider[]
   ) {
     if (node.superTypes.length > 0) {
-      /*const providers = node.superTypes.map(
+      const providers = node.superTypes.map(
         superType => (name: string) =>
-          superType.ref..find(f => f.name === name)
-      );*/
-      extraScopes = [...extraScopes];
+          superType.ref?.fields.find(f => f.name === name)
+      );
+      extraScopes = [...providers, ...extraScopes];
+    }
+
+    return this.resolveDefault(node, document, extraScopes);
+  }
+
+  private resolveAcidicMutation(
+    node: AcidicMutation,
+    document: LangiumDocument<AstNode>,
+    extraScopes: ScopeProvider[]
+  ) {
+    if (node.superTypes.length > 0) {
+      const providers = node.superTypes.map(
+        superType => (name: string) =>
+          superType.ref?.fields.find(f => f.name === name)
+      );
+      extraScopes = [...providers, ...extraScopes];
+    }
+
+    return this.resolveDefault(node, document, extraScopes);
+  }
+
+  private resolveAcidicSubscription(
+    node: AcidicSubscription,
+    document: LangiumDocument<AstNode>,
+    extraScopes: ScopeProvider[]
+  ) {
+    if (node.superTypes.length > 0) {
+      const providers = node.superTypes.map(
+        superType => (name: string) =>
+          superType.ref?.fields.find(f => f.name === name)
+      );
+      extraScopes = [...providers, ...extraScopes];
+    }
+
+    return this.resolveDefault(node, document, extraScopes);
+  }
+
+  private resolveAcidicEvent(
+    node: AcidicEvent,
+    document: LangiumDocument<AstNode>,
+    extraScopes: ScopeProvider[]
+  ) {
+    if (node.superTypes.length > 0) {
+      const providers = node.superTypes.map(
+        superType => (name: string) =>
+          superType.ref?.fields.find(f => f.name === name)
+      );
+      extraScopes = [...providers, ...extraScopes];
     }
 
     return this.resolveDefault(node, document, extraScopes);
@@ -843,12 +892,12 @@ export class AcidicLinker extends DefaultLinker {
     // used as resolution target. The correct behavior is to resolve to the enum that's used
     // as the declaration type of the field:
     //
-    // enum FirstEnum {
+    // enum FirstAcidicEnum {
     //     E1
     //     E2
     // }
 
-    // enum SecondEnum  {
+    // enum SecondAcidicEnum  {
     //     E1
     //     E3
     //     E4
@@ -856,8 +905,8 @@ export class AcidicLinker extends DefaultLinker {
 
     // Type M {
     //     id Int @id
-    //     first  SecondEnum @default(E1) <- should resolve to SecondEnum
-    //     second FirstEnum @default(E1) <- should resolve to FirstEnum
+    //     first  SecondAcidicEnum @default(E1) <- should resolve to SecondAcidicEnum
+    //     second FirstAcidicEnum @default(E1) <- should resolve to FirstAcidicEnum
     // }
     //
 
@@ -867,10 +916,10 @@ export class AcidicLinker extends DefaultLinker {
     let scopes = extraScopes;
 
     // if the field has enum declaration type, resolve the rest with that enum's fields on top of the scopes
-    if (node.type.reference?.ref && isEnum(node.type.reference.ref)) {
-      const contextEnum = node.type.reference.ref as Enum;
+    if (node.type.reference?.ref && isAcidicEnum(node.type.reference.ref)) {
+      const contextAcidicEnum = node.type.reference.ref as AcidicEnum;
       const enumScope: ScopeProvider = name =>
-        contextEnum.fields.find(f => f.name === name);
+        contextAcidicEnum.fields.find(f => f.name === name);
       scopes = [enumScope, ...scopes];
     }
 
@@ -900,10 +949,10 @@ export class AcidicLinker extends DefaultLinker {
 
   private resolveToDeclaredType(
     node: AstNode,
-    type: FunctionParamType | DataModelFieldType
+    type: FunctionParamType | AcidicObjectFieldType
   ) {
     let nullable = false;
-    if (isDataModelFieldType(type)) {
+    if (isAcidicObjectFieldType(type)) {
       nullable = type.optional;
 
       // referencing a field of 'Unsupported' type

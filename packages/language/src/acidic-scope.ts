@@ -19,11 +19,14 @@ import {
 } from "langium";
 import { CancellationToken } from "vscode-jsonrpc";
 import {
-  DataModel,
-  Input,
+  AcidicEvent,
+  AcidicModel,
+  AcidicMutation,
+  AcidicObject,
+  AcidicQuery,
+  AcidicSubscription,
   Model,
-  OperationGroup,
-  isEnumField,
+  isAcidicEnumField,
   isModel
 } from "./__generated__/ast";
 import { PLUGIN_MODULE_NAME, STD_LIB_MODULE_NAME } from "./constants";
@@ -37,7 +40,7 @@ export class AcidicScopeComputation extends DefaultScopeComputation {
     super(services);
   }
 
-  async computeExports(
+  override async computeExports(
     document: LangiumDocument<AstNode>,
     cancelToken?: CancellationToken | undefined
   ): Promise<AstNodeDescription[]> {
@@ -48,7 +51,7 @@ export class AcidicScopeComputation extends DefaultScopeComputation {
       if (cancelToken) {
         await interruptAndCheck(cancelToken);
       }
-      if (isEnumField(node)) {
+      if (isAcidicEnumField(node)) {
         const desc =
           this.services.workspace.AstNodeDescriptionProvider.createDescription(
             node,
@@ -78,19 +81,11 @@ export class AcidicScopeComputation extends DefaultScopeComputation {
     const model = document.parseResult.value as Model;
 
     model.declarations.forEach(decl => {
-      if (
-        decl.$type === "DataModel" ||
-        decl.$type === "ApiModel" ||
-        decl.$type === "Input" ||
-        decl.$type === "Interface"
-      ) {
-        let dataModel: any = decl as DataModel;
-        if (!dataModel) {
-          dataModel = decl as Input;
-        }
+      if (decl.$type === "AcidicObject") {
+        let model: any = decl as AcidicObject;
 
-        dataModel.$resolvedFields = [...dataModel.fields];
-        dataModel.superTypes.forEach(superType => {
+        model.$resolvedFields = [...model.fields];
+        model.superTypes.forEach(superType => {
           const superTypeDecl = superType.ref;
           if (superTypeDecl) {
             superTypeDecl.fields.forEach(field => {
@@ -98,27 +93,93 @@ export class AcidicScopeComputation extends DefaultScopeComputation {
               cloneField.$isInherited = true;
               const mutable = cloneField as Mutable<AstNode>;
               // update container
-              mutable.$container = dataModel;
-              dataModel.$resolvedFields.push(cloneField);
+              mutable.$container = model;
+              model.$resolvedFields.push(cloneField);
             });
           }
         });
-      } else if (decl.$type === "OperationGroup") {
-        const operationGroup = decl as OperationGroup;
-        operationGroup.$resolvedFields = [...operationGroup.fields];
-        /*operationGroup.superTypes.forEach(superType => {
+      } else if (decl.$type === "AcidicModel") {
+        let model: any = decl as AcidicModel;
+
+        model.$resolvedFields = [...model.fields];
+        model.superTypes.forEach(superType => {
           const superTypeDecl = superType.ref;
           if (superTypeDecl) {
-            superTypeDecl.params.forEach(param => {
+            superTypeDecl.fields.forEach(field => {
+              const cloneField = Object.assign({}, field);
+              cloneField.$isInherited = true;
+              const mutable = cloneField as Mutable<AstNode>;
+              // update container
+              mutable.$container = model;
+              model.$resolvedFields.push(cloneField);
+            });
+          }
+        });
+      } else if (decl.$type === "AcidicEvent") {
+        let model: any = decl as AcidicEvent;
+
+        model.$resolvedFields = [...model.fields];
+        model.superTypes.forEach(superType => {
+          const superTypeDecl = superType.ref;
+          if (superTypeDecl) {
+            superTypeDecl.fields.forEach(field => {
+              const cloneField = Object.assign({}, field);
+              cloneField.$isInherited = true;
+              const mutable = cloneField as Mutable<AstNode>;
+              // update container
+              mutable.$container = model;
+              model.$resolvedFields.push(cloneField);
+            });
+          }
+        });
+      } else if (decl.$type === "AcidicQuery") {
+        const acidicQuery = decl as AcidicQuery;
+        acidicQuery.$resolvedFields = [...acidicQuery.fields];
+        acidicQuery.superTypes.forEach(superType => {
+          const superTypeDecl = superType.ref;
+          if (superTypeDecl) {
+            superTypeDecl.fields.forEach(param => {
               const cloneField = Object.assign({}, param);
               cloneField.$isInherited = true;
               const mutable = cloneField as Mutable<AstNode>;
               // update container
-              mutable.$container = operationGroup;
-              operationGroup.$resolvedFields.push(cloneField);
+              mutable.$container = acidicQuery;
+              acidicQuery.$resolvedFields!.push(cloneField);
             });
           }
-        });*/
+        });
+      } else if (decl.$type === "AcidicMutation") {
+        const acidicMutation = decl as AcidicMutation;
+        acidicMutation.$resolvedFields = [...acidicMutation.fields];
+        acidicMutation.superTypes.forEach(superType => {
+          const superTypeDecl = superType.ref;
+          if (superTypeDecl) {
+            superTypeDecl.fields.forEach(param => {
+              const cloneField = Object.assign({}, param);
+              cloneField.$isInherited = true;
+              const mutable = cloneField as Mutable<AstNode>;
+              // update container
+              mutable.$container = acidicMutation;
+              acidicMutation.$resolvedFields!.push(cloneField);
+            });
+          }
+        });
+      } else if (decl.$type === "AcidicSubscription") {
+        const acidicQuery = decl as AcidicSubscription;
+        acidicQuery.$resolvedFields = [...acidicQuery.fields];
+        acidicQuery.superTypes.forEach(superType => {
+          const superTypeDecl = superType.ref;
+          if (superTypeDecl) {
+            superTypeDecl.fields.forEach(param => {
+              const cloneField = Object.assign({}, param);
+              cloneField.$isInherited = true;
+              const mutable = cloneField as Mutable<AstNode>;
+              // update container
+              mutable.$container = acidicQuery;
+              acidicQuery.$resolvedFields!.push(cloneField);
+            });
+          }
+        });
       }
     });
   }
@@ -133,12 +194,12 @@ export class AcidicScopeProvider extends DefaultScopeProvider {
     referenceType: string,
     context: ReferenceInfo
   ): Scope {
-    const model = getContainerOfType(context.container, isModel);
-    if (!model) {
+    const acidicObject = getContainerOfType(context.container, isModel);
+    if (!acidicObject) {
       return EMPTY_SCOPE;
     }
 
-    const importedUris = stream(model.imports)
+    const importedUris = stream(acidicObject.imports)
       .map(resolveImportUri)
       .nonNullable();
     const importedElements = this.indexManager
@@ -146,7 +207,7 @@ export class AcidicScopeProvider extends DefaultScopeProvider {
       .filter(
         des =>
           // allow current document
-          equalURI(des.documentUri, model.$document?.uri) ||
+          equalURI(des.documentUri, acidicObject.$document?.uri) ||
           // allow stdlib
           des.documentUri.path.endsWith(STD_LIB_MODULE_NAME) ||
           // allow plugin models

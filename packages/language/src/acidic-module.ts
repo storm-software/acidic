@@ -1,3 +1,4 @@
+import { defaultParserErrorProvider } from "chevrotain";
 import {
   DefaultAstNodeDescriptionProvider,
   DefaultAstNodeLocator,
@@ -9,6 +10,7 @@ import {
   DefaultDocumentSymbolProvider,
   DefaultDocumentValidator,
   DefaultFoldingRangeProvider,
+  DefaultFuzzyMatcher,
   DefaultIndexManager,
   DefaultJsonSerializer,
   DefaultLangiumDocumentFactory,
@@ -18,6 +20,7 @@ import {
   DefaultLinker,
   DefaultModuleContext,
   DefaultNameProvider,
+  DefaultNodeKindProvider,
   DefaultReferenceDescriptionProvider,
   DefaultReferences,
   DefaultReferencesProvider,
@@ -42,8 +45,13 @@ import {
   createGrammarConfig,
   inject
 } from "langium";
-import { TextDocuments } from "vscode-languageserver";
+//import { DefaultCommentProvider } from "langium/src/documentation/comment-provider";
+import {
+  CommentProvider,
+  DefaultCommentProvider
+} from "langium/lib/documentation/comment-provider";
 import { TextDocument } from "vscode-languageserver-textdocument";
+import { TextDocuments } from "vscode-languageserver/lib/common/textDocuments";
 import {
   AcidicGeneratedModule,
   AcidicGeneratedSharedModule
@@ -108,14 +116,16 @@ export function createSharedModule(
     ServiceRegistry: () => new DefaultServiceRegistry(),
     lsp: {
       Connection: () => context.connection,
-      LanguageServer: services => new DefaultLanguageServer(services)
+      LanguageServer: services => new DefaultLanguageServer(services),
+      NodeKindProvider: new DefaultNodeKindProvider(),
+      FuzzyMatcher: new DefaultFuzzyMatcher()
     },
     workspace: {
       LangiumDocuments: services => new DefaultLangiumDocuments(services),
       LangiumDocumentFactory: services =>
         new DefaultLangiumDocumentFactory(services),
       DocumentBuilder: services => new DefaultDocumentBuilder(services),
-      TextDocuments: _services => new TextDocuments(TextDocument),
+      TextDocuments: _services => new TextDocuments(TextDocument) as any,
       IndexManager: services => new DefaultIndexManager(services),
       WorkspaceManager: services => new AcidicWorkspaceManager(services),
       FileSystemProvider: services => context.fileSystemProvider(services),
@@ -132,7 +142,9 @@ export function createDefaultModule(
   return {
     documentation: {
       DocumentationProvider: services =>
-        new JSDocDocumentationProvider(services)
+        new JSDocDocumentationProvider(services),
+      CommentProvider: services =>
+        new DefaultCommentProvider(services) as CommentProvider
     },
     parser: {
       GrammarConfig: services => createGrammarConfig(services),
@@ -140,7 +152,8 @@ export function createDefaultModule(
       CompletionParser: services => createCompletionParser(services),
       ValueConverter: () => new DefaultValueConverter(),
       TokenBuilder: () => new DefaultTokenBuilder(),
-      Lexer: services => new DefaultLexer(services)
+      Lexer: services => new DefaultLexer(services),
+      ParserErrorMessageProvider: defaultParserErrorProvider
     },
     lsp: {
       CompletionProvider: services => new DefaultCompletionProvider(services),

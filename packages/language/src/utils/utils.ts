@@ -1,22 +1,22 @@
 import { AstNode, ValidationAcceptor } from "langium";
 import {
+  AcidicFieldAttribute,
+  AcidicInternalAttribute,
+  AcidicObjectAttribute,
+  AcidicObjectField,
   ArrayExpr,
   Attribute,
   AttributeArg,
   AttributeParam,
   BuiltinType,
-  DataModelAttribute,
-  DataModelField,
-  DataModelFieldAttribute,
   Expression,
   ExpressionType,
-  InternalAttribute,
   ReferenceExpr,
+  isAcidicEnum,
+  isAcidicModel,
+  isAcidicObjectField,
   isArrayExpr,
   isAttribute,
-  isDataModel,
-  isDataModelField,
-  isEnum,
   isLiteralExpr,
   isObjectExpr,
   isReferenceExpr
@@ -41,18 +41,19 @@ export function validateDuplicatedDeclarations(
   for (const [name, decls] of Object.entries<AstNode[]>(groupByName)) {
     if (decls.length > 1) {
       let errorField = decls[1];
-      if (decls[0].$type === "DataModelField") {
+      if (decls[0]?.$type === "AcidicObjectField") {
         const nonInheritedFields = decls.filter(
-          x => !(x as DataModelField).$isInherited
+          x => !(x as AcidicObjectField).$isInherited
         );
         if (nonInheritedFields.length > 0) {
           errorField = nonInheritedFields.slice(-1)[0];
         }
       }
-
-      accept("error", `Duplicated declaration name "${name}"`, {
-        node: errorField
-      });
+      if (errorField) {
+        accept("error", `Duplicated declaration name "${name}"`, {
+          node: errorField
+        });
+      }
     }
   }
 }
@@ -185,6 +186,7 @@ export function mapBuiltinTypeToExpressionType(
     case "Object":
       return "Object";
     case "Unsupported":
+    default:
       return "Unsupported";
   }
 }
@@ -195,7 +197,7 @@ export function mapBuiltinTypeToExpressionType(
 export function assignableToAttributeParam(
   arg: AttributeArg,
   param: AttributeParam,
-  attr: DataModelAttribute | DataModelFieldAttribute | InternalAttribute
+  attr: AcidicObjectAttribute | AcidicFieldAttribute | AcidicInternalAttribute
 ): boolean {
   const argResolvedType = arg.$resolvedType;
   if (!argResolvedType) {
@@ -217,23 +219,24 @@ export function assignableToAttributeParam(
       return (
         isArrayExpr(arg.value) &&
         !arg.value.items.find(
-          item => !isReferenceExpr(item) || !isDataModelField(item.target.ref)
+          item =>
+            !isReferenceExpr(item) || !isAcidicObjectField(item.target.ref)
         )
       );
     } else {
       return (
-        isReferenceExpr(arg.value) && isDataModelField(arg.value.target.ref)
+        isReferenceExpr(arg.value) && isAcidicObjectField(arg.value.target.ref)
       );
     }
   }
 
-  if (isEnum(argResolvedType.decl)) {
+  if (isAcidicEnum(argResolvedType.decl)) {
     // enum type
 
     let attrArgDeclType = dstRef?.ref;
     if (
       dstType === "ContextType" &&
-      isDataModelField(attr.$container) &&
+      isAcidicObjectField(attr.$container) &&
       attr.$container?.type?.reference
     ) {
       // attribute parameter type is ContextType, need to infer type from
@@ -256,7 +259,7 @@ export function assignableToAttributeParam(
     if (dstType === "ContextType") {
       // attribute parameter type is ContextType, need to infer type from
       // the attribute's container
-      if (isDataModelField(attr.$container)) {
+      if (isAcidicObjectField(attr.$container)) {
         if (!attr.$container?.type?.type) {
           return false;
         }
@@ -281,7 +284,7 @@ export function assignableToAttributeParam(
 }
 
 export function validateAttributeApplication(
-  attr: DataModelAttribute | DataModelFieldAttribute | InternalAttribute,
+  attr: AcidicObjectAttribute | AcidicFieldAttribute | AcidicInternalAttribute,
   accept: ValidationAcceptor
 ) {
   const decl = attr.decl.ref;
@@ -300,7 +303,7 @@ export function validateAttributeApplication(
   }
 
   if (
-    isDataModelField(targetDecl) &&
+    isAcidicObjectField(targetDecl) &&
     !isValidAttributeTarget(decl, targetDecl)
   ) {
     accept(
@@ -315,7 +318,7 @@ export function validateAttributeApplication(
   for (const arg of attr.args) {
     let paramDecl: AttributeParam | undefined;
     if (!arg.name) {
-      paramDecl = decl.params.find(p => p.default && !filledParams.has(p));
+      paramDecl = decl.params.find(p => p.defaultValue && !filledParams.has(p));
       if (!paramDecl) {
         accept("error", `Unexpected unnamed argument`, {
           node: arg
@@ -372,7 +375,7 @@ export function validateAttributeApplication(
 
 function isValidAttributeTarget(
   attrDecl: Attribute,
-  targetDecl: DataModelField
+  targetDecl: AcidicObjectField
 ) {
   const targetField = attrDecl.attributes.find(
     attr => attr.decl.ref?.name === "@@@targetField"
@@ -382,7 +385,7 @@ function isValidAttributeTarget(
     return true;
   }
 
-  const fieldTypes = (targetField.args[0].value as ArrayExpr).items.map(
+  const fieldTypes = (targetField.args[0]?.value as ArrayExpr).items.map(
     item => (item as ReferenceExpr).target.ref?.name
   );
 
@@ -417,7 +420,7 @@ function isValidAttributeTarget(
         allowed = allowed || targetDecl.type.type === "Bytes";
         break;
       case "ModelField":
-        allowed = allowed || isDataModel(targetDecl.type.reference?.ref);
+        allowed = allowed || isAcidicModel(targetDecl.type.reference?.ref);
         break;
       default:
         break;
