@@ -150,9 +150,9 @@
       "@acidic/language": "workspace:*",
       "@acidic/engine": "workspace:*",
       "@acidic/cli": "workspace:*",
-      "@acidic/vscode-extension": "workspace:*",
       "@acidic/daemon": "workspace:*",
-      "@acidic/ui-webview": "workspace:*"
+      "@acidic/ui-webview": "workspace:*",
+      "acidic-workspace": "workspace:*"
     }
   },
   "triggerEmptyDevReleaseByIncrementingThisNumber": 0

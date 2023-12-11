@@ -1125,7 +1125,7 @@ export interface OperationSchema extends NodeSchema {
   /**
    * The event fields
    */
-  response: ObjectSchema | ObjectSchema[];
+  response: OperationResponseSchema;
 
   /**
    * The events emitted by the operation
@@ -1136,6 +1136,18 @@ export interface OperationSchema extends NodeSchema {
    * The attribute applied to the schema
    */
   attributes: AttributeSchema[];
+}
+
+export interface OperationResponseSchema {
+  /**
+   * The object reference
+   */
+  ref: ObjectSchema;
+
+  /**
+   * Is the field an array
+   */
+  isArray: boolean;
 }
 
 export interface QuerySchema extends OperationSchema {

@@ -38,16 +38,7 @@
         }
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "packages/daemon/**/*.ts",
-          "{projectRoot}/package.json"
-        ]
-      }
-    },
+    "lint": {},
     "test": {}
   }
 }

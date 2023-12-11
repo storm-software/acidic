@@ -40,14 +40,12 @@ import {
   AttributeArgSchema,
   AttributeFieldSchema,
   AttributeSchema,
-  BooleanAttributeFieldSchema,
   DataSourceSchema,
   EnumObjectFieldSchema,
   EnumSchema,
   EventSchema,
   ModelSchema,
   MutationSchema,
-  NumberAttributeFieldSchema,
   ObjectFieldSchema,
   ObjectRelationshipSchema,
   ObjectSchema,
@@ -56,7 +54,6 @@ import {
   QuerySchema,
   ReferenceObjectFieldSchema,
   ServiceSchema,
-  StringAttributeFieldSchema,
   StringEnumFieldSchema,
   SubscriptionSchema
 } from "../types";
@@ -334,29 +331,65 @@ export class AcidicSchema {
     const operationSchema = {
       name: acidicOperation.name,
       comments: acidicOperation.comments,
+      response: {},
       attributes: acidicOperation.attributes.map(
         this.mapAcidicAttributeToAttributeSchema
       )
     } as OperationSchema;
-
     if (acidicOperation.params && acidicOperation.params.length > 0) {
-      const input: ObjectSchema = {
-        __type: "Object",
+      const operationSchema = {
         name: `${acidicOperation.name}Input`,
-        comments: [`Input object for ${acidicOperation.name} operation`],
+        comments: `Input object for representing the request sent to the ${acidicOperation.name} response`,
+        fields: [] as ObjectFieldSchema[],
+        attributes: []
+      };
+
+      operationSchema.fields = acidicOperation.params.reduce(
+        (ret: ObjectFieldSchema[], param: AcidicOperationInputParam) => {
+          if (
+            isAcidicObject(param.type.reference?.ref) ||
+            isAcidicModel(param.type.reference?.ref) ||
+            isAcidicEvent(param.type.reference?.ref)
+          ) {
+            const inputObject = {
+              name: param.name,
+              type: "Object",
+              comments: param.comments,
+              ref: this.mapAcidicObjectToObjectSchema(
+                param.type.reference?.ref as AcidicObject
+              ),
+              isArray: param.type.array,
+              isRequired: !param.type.optional,
+              attributes: []
+            } satisfies ObjectFieldSchema;
+
+            ret.push(inputObject);
+          }
+
+          return ret;
+        },
+        []
+      );
+    }
+
+    /*if (isAcidicObject(acidicOperation.returns.type.reference?.ref) ||
+    isAcidicModel(acidicOperation.returns.type.reference?.ref) ||
+    isAcidicEvent(acidicOperation.returns.type.reference?.ref)) {
+      const response: OperationResponseSchema = {
+        __type: "Object",
+        name: `${acidicOperation.name}eRsponse`,
+        comments: [`Response object for ${acidicOperation.name} operation`],
         fields: [] as ObjectFieldSchema[],
         relationships: [],
         extends: [],
         isExtend: false,
         attributes: []
-      };
+      } satisfies ObjectSchema;
 
       if (
-        acidicOperation.params.length === 1 &&
-        acidicOperation.params[0] &&
-        (isAcidicObject(acidicOperation.params[0].type.reference?.ref) ||
-          isAcidicModel(acidicOperation.params[0].type.reference?.ref) ||
-          isAcidicEvent(acidicOperation.params[0].type.reference?.ref))
+        acidicOperation.returns.length === 1 &&
+        acidicOperation.returns[0] &&
+
       ) {
         const inputObject = acidicOperation.params[0].type.reference?.ref;
         if (inputObject) {
@@ -370,72 +403,8 @@ export class AcidicSchema {
           input.extends = objectSchema.extends;
           input.isExtend = objectSchema.isExtend;
         }
-      } else {
-        operationSchema.input = acidicOperation.params.reduce(
-          (ret: ObjectSchema, param: AcidicOperationInputParam) => {
-            if (
-              isAcidicObject(param.type.reference?.ref) ||
-              isAcidicModel(param.type.reference?.ref) ||
-              isAcidicEvent(param.type.reference?.ref)
-            ) {
-              const objectSchema = this.mapAcidicObjectToObjectSchema(
-                param.type.reference?.ref as AcidicObject
-              );
-
-              ret.fields.push({
-                name: param.name,
-                type: "Object",
-                comments: param.comments,
-                ref: objectSchema,
-                isArray: param.type.array,
-                isRequired: !param.type.optional,
-                attributes: objectSchema.attributes
-              });
-            } else if (isAcidicEnum(param.type.reference?.ref)) {
-              const objectSchema = this.mapAcidicEnumToEnumSchema(
-                param.type.reference?.ref as AcidicEnum
-              );
-
-              ret.fields.push({
-                name: param.name,
-                type: "Enum",
-                comments: param.comments,
-                ref: objectSchema,
-                isArray: param.type.array,
-                isRequired: !param.type.optional,
-                attributes: objectSchema.attributes
-              });
-            } else {
-              const fieldSchema = {
-                name: param.name,
-                type: param.type.type!,
-                comments: param.comments,
-                isArray: param.type.array,
-                isRequired: !param.type.optional,
-                attributes: []
-              } as ObjectFieldSchema;
-              if (
-                fieldSchema.type === "String" ||
-                fieldSchema.type === "Int" ||
-                fieldSchema.type === "Float" ||
-                fieldSchema.type === "Decimal" ||
-                fieldSchema.type === "BigInt" ||
-                fieldSchema.type === "Boolean"
-              ) {
-                fieldSchema.defaultValue = isLiteralExpr(param.defaultValue)
-                  ? param.defaultValue.value
-                  : undefined;
-              }
-
-              ret.fields.push(fieldSchema);
-            }
-
-            return ret;
-          },
-          input
-        );
       }
-    }
+    }*/
 
     return operationSchema;
   };
@@ -663,9 +632,9 @@ export class AcidicSchema {
 
           if (hasAttribute.args[0].fields.length > 1) {
             schemaField.has = hasAttribute.args[0].fields.reduce(
-              (ret: string[], field: StringAttributeFieldSchema) => {
+              (ret: string[], field: AttributeFieldSchema) => {
                 if (
-                  !ret.some((item: string) => item === String(field!.value))
+                  !ret.some((item: string) => item === String(field?.value))
                 ) {
                   ret.push(String(field!.value));
                 }
@@ -705,7 +674,7 @@ export class AcidicSchema {
 
           if (hasEveryAttribute.args[0].fields.length > 1) {
             schemaField.hasEvery = hasEveryAttribute.args[0].fields.reduce(
-              (ret: string[], field: StringAttributeFieldSchema) => {
+              (ret: string[], field: AttributeFieldSchema) => {
                 if (
                   !ret.some((item: string) => item === String(field!.value))
                 ) {
@@ -747,7 +716,7 @@ export class AcidicSchema {
 
           if (hasSomeAttribute.args[0].fields.length > 1) {
             schemaField.hasEvery = hasSomeAttribute.args[0].fields.reduce(
-              (ret: string[], field: StringAttributeFieldSchema) => {
+              (ret: string[], field: AttributeFieldSchema) => {
                 if (
                   !ret.some((item: string) => item === String(field!.value))
                 ) {
@@ -912,7 +881,7 @@ export class AcidicSchema {
 
           if (hasAttribute.args[0].fields.length > 1) {
             schemaField.has = hasAttribute.args[0].fields.reduce(
-              (ret: number[], field: NumberAttributeFieldSchema) => {
+              (ret: number[], field: AttributeFieldSchema) => {
                 if (
                   !ret.some((item: number) => item === Number(field!.value))
                 ) {
@@ -954,7 +923,7 @@ export class AcidicSchema {
 
           if (hasEveryAttribute.args[0].fields.length > 1) {
             schemaField.hasEvery = hasEveryAttribute.args[0].fields.reduce(
-              (ret: number[], field: NumberAttributeFieldSchema) => {
+              (ret: number[], field: AttributeFieldSchema) => {
                 if (
                   !ret.some((item: number) => item === Number(field!.value))
                 ) {
@@ -996,7 +965,7 @@ export class AcidicSchema {
 
           if (hasSomeAttribute.args[0].fields.length > 1) {
             schemaField.hasEvery = hasSomeAttribute.args[0].fields.reduce(
-              (ret: number[], field: NumberAttributeFieldSchema) => {
+              (ret: number[], field: AttributeFieldSchema) => {
                 if (
                   !ret.some((item: number) => item === Number(field!.value))
                 ) {
@@ -1039,7 +1008,7 @@ export class AcidicSchema {
 
           if (hasAttribute.args[0].fields.length > 1) {
             schemaField.has = hasAttribute.args[0].fields.reduce(
-              (ret: boolean[], field: BooleanAttributeFieldSchema) => {
+              (ret: boolean[], field: AttributeFieldSchema) => {
                 if (
                   !ret.some((item: boolean) => item === Boolean(field!.value))
                 ) {
@@ -1081,7 +1050,7 @@ export class AcidicSchema {
 
           if (hasEveryAttribute.args[0].fields.length > 1) {
             schemaField.hasEvery = hasEveryAttribute.args[0].fields.reduce(
-              (ret: boolean[], field: BooleanAttributeFieldSchema) => {
+              (ret: boolean[], field: AttributeFieldSchema) => {
                 if (
                   !ret.some((item: boolean) => item === Boolean(field!.value))
                 ) {
@@ -1123,7 +1092,7 @@ export class AcidicSchema {
 
           if (hasSomeAttribute.args[0].fields.length > 1) {
             schemaField.hasEvery = hasSomeAttribute.args[0].fields.reduce(
-              (ret: boolean[], field: BooleanAttributeFieldSchema) => {
+              (ret: boolean[], field: AttributeFieldSchema) => {
                 if (
                   !ret.some((item: boolean) => item === Boolean(field!.value))
                 ) {

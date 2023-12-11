@@ -187,18 +187,10 @@
           }
         },
         "input": {
-          "$ref": "#/definitions/Object"
+          "$ref": "#/definitions/OperationPayload"
         },
         "response": {
-          "oneOf": [
-            { "$ref": "#/definitions/Object" },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Object"
-              }
-            }
-          ]
+          "$ref": "#/definitions/OperationPayload"
         },
         "emits": {
           "type": "array",
@@ -210,6 +202,29 @@
       "required": ["name", "response", "emits"],
       "title": "Operation"
     },
+    "OperationPayload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ObjectField"
+          }
+        },
+        "isRequired": {
+          "type": "boolean"
+        },
+        "isArray": {
+          "type": "boolean"
+        }
+      },
+      "required": ["ref"],
+      "title": "OperationPayload"
+    },
     "Event": {
       "type": "object",
       "additionalProperties": false,
@@ -217,7 +232,7 @@
         "topic": {
           "type": "string"
         },
-        "ref": {
+        "fields": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/ObjectField"

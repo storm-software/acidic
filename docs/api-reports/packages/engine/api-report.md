@@ -994,13 +994,21 @@ export { ObjectSchema };
 export { ObjectSchema as ObjectSchema_alias_1 };
 
 // @public (undocumented)
+interface OperationResponseSchema {
+  isArray: boolean;
+  ref: ObjectSchema;
+}
+export { OperationResponseSchema };
+export { OperationResponseSchema as OperationResponseSchema_alias_1 };
+
+// @public (undocumented)
 interface OperationSchema extends NodeSchema {
   attributes: AttributeSchema[];
   comments?: string[];
   emits: EventSchema[];
   input?: ObjectSchema;
   name: string;
-  response: ObjectSchema | ObjectSchema[];
+  response: OperationResponseSchema;
 }
 export { OperationSchema };
 export { OperationSchema as OperationSchema_alias_1 };

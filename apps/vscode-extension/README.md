@@ -29,12 +29,44 @@
 
 <!-- END header -->
 
-# cli
+# vscode-extension
 
-Package containing the Acidic Engine command line interface
+An extension for Visual Studio Code to
+
+# Acidic Language Tools
+
+The 🧪 **Acidic language tools** extension is used to create schemas for your business models and generate static code based on those models Visual Studio Code. This package supports using Acidic in for local development. This language definition is used by the Acidic Language Server to provide support for other Acidic tools (CLI, Nx Plugins, etc.). Included is the specification of the syntax and semantics of Acidic.
+
+This extension provides the user with a great developer experience when working with Acidic models
 
 <!-- START doctoc -->
 <!-- END doctoc -->
+
+## Installing
+
+Using [pnpm](http://pnpm.io):
+
+```bash
+pnpm add -D @acidic/vscode-extension
+```
+
+<details>
+  <summary>Using npm</summary>
+
+```bash
+npm install -D @acidic/vscode-extension
+```
+
+</details>
+
+<details>
+  <summary>Using yarn</summary>
+
+```bash
+yarn add -D @acidic/vscode-extension
+```
+
+</details>
 
 ## Reduced Package Size
 
@@ -46,15 +78,15 @@ This project is built using [Nx](https://nx.dev). As a result, many of the usual
 
 ### Building
 
-Run `nx build cli` to build the library.
+Run `nx build vscode-extension` to build the library.
 
 ### Running unit tests
 
-Run `nx test cli` to execute the unit tests via [Jest](https://jestjs.io).
+Run `nx test vscode-extension` to execute the unit tests via [Jest](https://jestjs.io).
 
 ### Linting
 
-Run `nx lint cli` to run [ESLint](https://eslint.org/) on the package.
+Run `nx lint vscode-extension` to run [ESLint](https://eslint.org/) on the package.
 
 <!-- START footer -->
 <!-- prettier-ignore-start -->

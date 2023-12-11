@@ -14,7 +14,7 @@ module.exports = [
       "packages/cli/**/*.js",
       "packages/cli/**/*.jsx"
     ],
-    parserOptions: { project: ["packages/cli/tsconfig.*?.json"] },
+    parserOptions: { project: ["apps/cli/tsconfig.*?.json"] },
     rules: {}
   },
   {

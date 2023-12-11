@@ -1,0 +1,116 @@
+{
+  "name": "vscode-extension",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "apps/vscode-extension/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/vscode-extension",
+        "entry": "apps/vscode-extension/src/extension/main.ts",
+        "additionalEntryPoints": [
+          "apps/vscode-extension/src/language-server/main.ts"
+        ],
+        "project": "apps/vscode-extension/package.json",
+        "tsConfig": "apps/vscode-extension/tsconfig.json",
+        "external": ["vscode"],
+        "platform": "node",
+        "metafile": true,
+        "bundle": true,
+        "sourcemap": true,
+        "minify": false,
+        "skipTypeCheck": true,
+        "deleteOutputPath": true,
+        "assets": [
+          {
+            "input": "apps/vscode-extension",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          },
+          {
+            "input": "apps/vscode-extension/res",
+            "glob": "*.*",
+            "output": "res"
+          },
+          {
+            "input": "assets/icons/light",
+            "glob": "icon.png",
+            "output": "assets/light"
+          },
+          {
+            "input": "assets/icons/dark",
+            "glob": "icon.png",
+            "output": "assets/dark"
+          },
+          {
+            "input": "packages/language/syntaxes",
+            "glob": "*.*",
+            "output": "syntaxes"
+          },
+          {
+            "input": "packages/language",
+            "glob": "language-configuration.json",
+            "output": "."
+          },
+          {
+            "input": "packages/language/examples",
+            "glob": "*.*",
+            "output": "examples"
+          }
+        ]
+      }
+    },
+    "pack": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm nx run vscode-extension:build",
+          "pnpm pack \"./apps/vscode-extension\" --pack-destination \"./dist/apps/vscode-extension\""
+        ],
+        "parallel": false
+      }
+    },
+    "publish-dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm nx run vscode-extension:build",
+          "cd dist/apps/vscode-extension",
+          "pnpm publish --registry http://localhost:4873"
+        ],
+        "parallel": false
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "rimraf /S /Q \"package.json\" ",
+          "renamer --replace --find \"package.vsce.json\" --replace \"package.json\" *",
+          "npx vsce package --no-dependencies",
+          "npx vsce publish --no-dependencies"
+        ],
+        "parallel": false,
+        "cwd": "dist/apps/vscode-extension"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/vscode-extension/**/*.ts",
+          "apps/vscode-extension/package.json"
+        ]
+      }
+    },
+    "test": {}
+  }
+}

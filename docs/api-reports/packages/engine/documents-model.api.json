@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.4",
+    "toolVersion": "7.38.5",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -10080,6 +10080,79 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@acidic/engine!OperationResponseSchema:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OperationResponseSchema "
+            }
+          ],
+          "fileUrlPath": "packages/engine/src/types.ts",
+          "releaseTag": "Public",
+          "name": "OperationResponseSchema",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!OperationResponseSchema#isArray:member",
+              "docComment": "/**\n * Is the field an array\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "isArray: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "isArray",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!OperationResponseSchema#ref:member",
+              "docComment": "/**\n * The object reference\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ref: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectSchema",
+                  "canonicalReference": "@acidic/engine!ObjectSchema:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "ref",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@acidic/engine!OperationSchema:interface",
           "docComment": "",
           "excerptTokens": [
@@ -10259,21 +10332,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "ObjectSchema",
-                  "canonicalReference": "@acidic/engine!ObjectSchema:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectSchema",
-                  "canonicalReference": "@acidic/engine!ObjectSchema:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
+                  "text": "OperationResponseSchema",
+                  "canonicalReference": "@acidic/engine!OperationResponseSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -10286,7 +10346,7 @@
               "name": "response",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 5
+                "endIndex": 2
               }
             }
           ],
