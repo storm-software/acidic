@@ -8,5 +8,14 @@
     }
   },
   "main": "./index.js",
-  "types": "./index.d.ts"
+  "types": "./index.d.ts",
+  "dependencies": {
+    "@storm-stack/date-time": "latest",
+    "@storm-stack/errors": "latest",
+    "@storm-stack/logging": "latest",
+    "@storm-stack/serialization": "latest",
+    "@storm-stack/utilities": "latest",
+    "@vscode/webview-ui-toolkit": "^1.4.0",
+    "vscode": "^1.1.37"
+  }
 }

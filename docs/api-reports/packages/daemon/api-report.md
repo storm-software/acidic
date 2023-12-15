@@ -4,7 +4,12 @@
 
 ```ts
 // @public (undocumented)
-export const createWatcherProcess: (modelPath: string) => void;
+const createWatcherProcess: (modelPath: string) => void;
+export { createWatcherProcess };
+export { createWatcherProcess as createWatcherProcess_alias_1 };
+
+// @public (undocumented)
+export function default_alias(): string;
 
 // (No @packageDocumentation comment for this package)
 ```

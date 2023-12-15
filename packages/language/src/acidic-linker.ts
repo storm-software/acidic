@@ -423,7 +423,7 @@ export class AcidicLinker extends DefaultLinker {
       !operandResolved.array &&
       isAcidicObject(operandResolved.decl)
     ) {
-      let objectDecl: any = operandResolved.decl as AcidicObject;
+      let objectDecl: AcidicObject = operandResolved.decl as AcidicObject;
       if (!objectDecl) {
         objectDecl = operandResolved.decl as AcidicObject;
       }
@@ -436,7 +436,7 @@ export class AcidicLinker extends DefaultLinker {
       !operandResolved.array &&
       isAcidicModel(operandResolved.decl)
     ) {
-      let modelDecl: any = operandResolved.decl as AcidicModel;
+      let modelDecl: AcidicModel = operandResolved.decl as AcidicModel;
       if (!modelDecl) {
         modelDecl = operandResolved.decl as AcidicModel;
       }

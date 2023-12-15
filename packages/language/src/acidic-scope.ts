@@ -82,7 +82,7 @@ export class AcidicScopeComputation extends DefaultScopeComputation {
 
     model.declarations.forEach(decl => {
       if (decl.$type === "AcidicObject") {
-        let model: any = decl as AcidicObject;
+        let model: AcidicObject = decl as AcidicObject;
 
         model.$resolvedFields = [...model.fields];
         model.superTypes.forEach(superType => {
@@ -99,7 +99,7 @@ export class AcidicScopeComputation extends DefaultScopeComputation {
           }
         });
       } else if (decl.$type === "AcidicModel") {
-        let model: any = decl as AcidicModel;
+        let model: AcidicModel = decl as AcidicModel;
 
         model.$resolvedFields = [...model.fields];
         model.superTypes.forEach(superType => {
@@ -116,7 +116,7 @@ export class AcidicScopeComputation extends DefaultScopeComputation {
           }
         });
       } else if (decl.$type === "AcidicEvent") {
-        let model: any = decl as AcidicEvent;
+        let model: AcidicEvent = decl as AcidicEvent;
 
         model.$resolvedFields = [...model.fields];
         model.superTypes.forEach(superType => {

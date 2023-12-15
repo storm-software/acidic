@@ -5,16 +5,13 @@
   "projectType": "library",
   "tags": [],
   "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
     "build": {
       "executor": "@nx/vite:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/ui-webview"
+        "outputPath": "dist/packages/ui-webview",
+        "external": ["vscode", "typescript", "@swc/core"]
       },
       "configurations": {
         "development": {
@@ -24,6 +21,10 @@
           "mode": "production"
         }
       }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/vite:test",

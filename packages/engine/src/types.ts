@@ -7,7 +7,7 @@ import { ESLint } from "eslint";
 import { HelperOptions } from "handlebars/runtime";
 import prettier from "prettier";
 import { CompilerOptions } from "ts-morph";
-import { AcidicSchema } from "./schema/acidic-schema";
+import { AcidicSchemaWrapper } from "./schema/acidic-schema-wrapper";
 
 export type PluginContextMapKey = Pick<PluginInfo, "options" | "provider">;
 
@@ -37,7 +37,7 @@ export interface Context {
   /**
    * The schema to generate service code/artifacts from
    */
-  schema: AcidicSchema;
+  schema: AcidicSchemaWrapper;
 
   /**
    * The options used by acidic during generation

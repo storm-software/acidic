@@ -920,23 +920,23 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "@acidic/engine!AcidicSchema:class",
+          "canonicalReference": "@acidic/engine!AcidicSchemaWrapper:class",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare class AcidicSchema "
+              "text": "export declare class AcidicSchemaWrapper "
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/acidic-schema.ts",
+          "fileUrlPath": "packages/engine/src/schema/acidic-schema-wrapper.ts",
           "releaseTag": "Public",
           "isAbstract": false,
-          "name": "AcidicSchema",
+          "name": "AcidicSchemaWrapper",
           "preserveMemberOrder": false,
           "members": [
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema#addEnum:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#addEnum:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -975,7 +975,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema#addEvent:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#addEvent:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1014,7 +1014,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema#addModel:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#addModel:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1053,7 +1053,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema#addMutation:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#addMutation:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1092,7 +1092,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema#addObject:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#addObject:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1131,7 +1131,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema#addQuery:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#addQuery:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1170,7 +1170,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema#addSubscription:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#addSubscription:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1209,7 +1209,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema.loadSchema:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper.loadSchema:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1240,8 +1240,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicSchema",
-                  "canonicalReference": "@acidic/engine!AcidicSchema:class"
+                  "text": "AcidicSchemaWrapper",
+                  "canonicalReference": "@acidic/engine!AcidicSchemaWrapper:class"
                 },
                 {
                   "kind": "Content",
@@ -1262,7 +1262,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicSchema#service:member",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#service:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1302,429 +1302,6 @@
             }
           ],
           "implementsTokenRanges": []
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!addMissingInputObjectTypes:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function addMissingInputObjectTypes(inputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.InputType",
-              "canonicalReference": "!DMMF.InputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ", outputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.OutputType",
-              "canonicalReference": "!DMMF.OutputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ", models: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Model",
-              "canonicalReference": "!DMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "void"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/missing-types-helper.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 10,
-            "endIndex": 11
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "inputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "outputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 6
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "models",
-              "parameterTypeTokenRange": {
-                "startIndex": 7,
-                "endIndex": 9
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "addMissingInputObjectTypes"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!addMissingInputObjectTypesForAggregate:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function addMissingInputObjectTypesForAggregate(inputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.InputType",
-              "canonicalReference": "!DMMF.InputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ", outputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.OutputType",
-              "canonicalReference": "!DMMF.OutputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "void"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/aggregate-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 7,
-            "endIndex": 8
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "inputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "outputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 6
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "addMissingInputObjectTypesForAggregate"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!addMissingInputObjectTypesForInclude:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function addMissingInputObjectTypesForInclude(inputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.InputType",
-              "canonicalReference": "!DMMF.InputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ", models: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Model",
-              "canonicalReference": "!DMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "void"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/include-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 7,
-            "endIndex": 8
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "inputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "models",
-              "parameterTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 6
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "addMissingInputObjectTypesForInclude"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!addMissingInputObjectTypesForModelArgs:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function addMissingInputObjectTypesForModelArgs(inputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.InputType",
-              "canonicalReference": "!DMMF.InputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ", models: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Model",
-              "canonicalReference": "!DMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "void"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/model-args-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 7,
-            "endIndex": 8
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "inputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "models",
-              "parameterTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 6
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "addMissingInputObjectTypesForModelArgs"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!addMissingInputObjectTypesForSelect:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function addMissingInputObjectTypesForSelect(inputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.InputType",
-              "canonicalReference": "!DMMF.InputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ", outputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.OutputType",
-              "canonicalReference": "!DMMF.OutputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ", models: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Model",
-              "canonicalReference": "!DMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "void"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/select-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 10,
-            "endIndex": 11
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "inputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "outputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 6
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "models",
-              "parameterTypeTokenRange": {
-                "startIndex": 7,
-                "endIndex": 9
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "addMissingInputObjectTypesForSelect"
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!AggregateOperationSupport:type",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type AggregateOperationSupport = "
-            },
-            {
-              "kind": "Content",
-              "text": "{\n    [model: string]: {\n        count?: boolean;\n        min?: boolean;\n        max?: boolean;\n        sum?: boolean;\n        avg?: boolean;\n    };\n}"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/types.ts",
-          "releaseTag": "Public",
-          "name": "AggregateOperationSupport",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
         },
         {
           "kind": "Variable",
@@ -2567,190 +2144,6 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!checkIsManyModelRelationField:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function checkIsManyModelRelationField(modelField: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Field",
-              "canonicalReference": "!DMMF.Field:type"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "boolean"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/model-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 4
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "modelField",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "checkIsManyModelRelationField"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!checkIsModelRelationField:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function checkIsModelRelationField(modelField: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Field",
-              "canonicalReference": "!DMMF.Field:type"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "boolean"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/model-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 4
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "modelField",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "checkIsModelRelationField"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!checkModelHasManyModelRelation:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function checkModelHasManyModelRelation(model: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Model",
-              "canonicalReference": "!DMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "boolean"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/model-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 4
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "model",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "checkModelHasManyModelRelation"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!checkModelHasModelRelation:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function checkModelHasModelRelation(model: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Model",
-              "canonicalReference": "!DMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "boolean"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/model-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 4
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "model",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "checkModelHasModelRelation"
-        },
-        {
           "kind": "Variable",
           "canonicalReference": "@acidic/engine!config:var",
           "docComment": "",
@@ -3074,8 +2467,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicSchema",
-                  "canonicalReference": "@acidic/engine!AcidicSchema:class"
+                  "text": "AcidicSchemaWrapper",
+                  "canonicalReference": "@acidic/engine!AcidicSchemaWrapper:class"
                 },
                 {
                   "kind": "Content",
@@ -5088,77 +4481,6 @@
               "endIndex": 2
             }
           ]
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!findModelByName:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function findModelByName(models: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Model",
-              "canonicalReference": "!DMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": ", modelName: "
-            },
-            {
-              "kind": "Content",
-              "text": "string"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Model",
-              "canonicalReference": "!DMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": " | undefined"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/model-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 6,
-            "endIndex": 8
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "models",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "modelName",
-              "parameterTypeTokenRange": {
-                "startIndex": 4,
-                "endIndex": 5
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "findModelByName"
         },
         {
           "kind": "Class",
@@ -8063,29 +7385,6 @@
             }
           ],
           "name": "isAcidicEnumFieldReference"
-        },
-        {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/engine!isAggregateInputType:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "isAggregateInputType: "
-            },
-            {
-              "kind": "Content",
-              "text": "(name: string) => boolean"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/aggregate-helpers.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "isAggregateInputType",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
         },
         {
           "kind": "Function",
@@ -12120,57 +11419,6 @@
           "name": "requireOption"
         },
         {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!resolveAggregateOperationSupport:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function resolveAggregateOperationSupport(inputObjectTypes: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.InputType",
-              "canonicalReference": "!DMMF.InputType:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Reference",
-              "text": "AggregateOperationSupport",
-              "canonicalReference": "@acidic/engine!AggregateOperationSupport:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/aggregate-helpers.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 4,
-            "endIndex": 5
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "inputObjectTypes",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "resolveAggregateOperationSupport"
-        },
-        {
           "kind": "Interface",
           "canonicalReference": "@acidic/engine!ServiceSchema:interface",
           "docComment": "",
@@ -14479,77 +13727,6 @@
           "variableTypeTokenRange": {
             "startIndex": 0,
             "endIndex": 0
-          }
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!TransformerParams:type",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type TransformerParams = "
-            },
-            {
-              "kind": "Content",
-              "text": "{\n    enumTypes?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PrismaDMMF.SchemaEnum",
-              "canonicalReference": "!PrismaDMMF.SchemaEnum:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[];\n    fields?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PrismaDMMF.SchemaArg",
-              "canonicalReference": "!PrismaDMMF.SchemaArg:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[];\n    name?: string;\n    models?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PrismaDMMF.Model",
-              "canonicalReference": "!PrismaDMMF.Model:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[];\n    modelOperations?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PrismaDMMF.ModelMapping",
-              "canonicalReference": "!PrismaDMMF.ModelMapping:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[];\n    aggregateOperationSupport?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "AggregateOperationSupport",
-              "canonicalReference": "@acidic/engine!AggregateOperationSupport:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    isDefaultPrismaClientOutput?: boolean;\n    prismaClientOutputPath?: string;\n}"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/dmmf/types.ts",
-          "releaseTag": "Public",
-          "name": "TransformerParams",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 12
           }
         },
         {

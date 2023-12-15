@@ -1,5 +1,9 @@
 {
   "extends": "@storm-software/workspace-tools/config/nx.json",
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "packages"
+  },
   "targetDefaults": {
     "build": {
       "cache": true,
@@ -58,7 +62,8 @@
       }
     },
     "e2e": {
-      "cache": true
+      "cache": true,
+      "inputs": ["default", "^production"]
     },
     "@nx/vite:test": {
       "cache": true,
@@ -68,10 +73,18 @@
   "generators": {
     "@nx/react": {
       "application": {
+        "style": "css",
+        "linter": "eslint",
+        "bundler": "vite",
         "babel": true
       },
       "library": {
+        "style": "css",
+        "linter": "eslint",
         "unitTestRunner": "vitest"
+      },
+      "component": {
+        "style": "css"
       }
     }
   }

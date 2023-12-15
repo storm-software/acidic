@@ -7,4 +7,4 @@
  * @packageDocumentation
  */
 
-const variable = "daemon";
+export * from "./process";

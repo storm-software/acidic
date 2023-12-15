@@ -10,11 +10,9 @@
       "options": {
         "outputPath": "dist/packages/engine",
         "main": "packages/engine/src/index.ts",
-        "additionalEntryPoints": ["packages/engine/src/main-browser.ts"],
         "tsConfig": "packages/engine/tsconfig.json",
         "project": "packages/engine/package.json",
         "defaultConfiguration": "production",
-        "platform": "node",
         "assets": [
           {
             "input": "packages/engine",
@@ -42,16 +40,7 @@
         }
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "packages/engine/**/*.ts",
-          "packages/engine/package.json"
-        ]
-      }
-    },
+    "lint": {},
     "test": {}
   }
 }

@@ -1,10 +1,16 @@
+const { FlatCompat } = require("@eslint/eslintrc");
 const baseConfig = require("../../eslint.config.js");
+const js = require("@eslint/js");
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended
+});
 
 module.exports = [
   ...baseConfig,
   {
     files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-    parserOptions: { project: ["packages/ui-webview/tsconfig.*?.json"] },
     rules: {}
   },
   {
@@ -15,5 +21,11 @@ module.exports = [
     files: ["**/*.js", "**/*.jsx"],
     rules: {}
   },
-  ...compat.extends("plugin:@nx/react")
+  ...compat.config({ parser: "jsonc-eslint-parser" }).map(config => ({
+    ...config,
+    "files": ["packages/ui-webview/**/*.json"],
+    "rules": {
+      "@nx/dependency-checks": "error"
+    }
+  }))
 ];

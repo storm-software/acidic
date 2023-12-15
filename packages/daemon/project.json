@@ -13,6 +13,7 @@
         "tsConfig": "packages/daemon/tsconfig.json",
         "project": "packages/daemon/package.json",
         "defaultConfiguration": "production",
+        "platform": "node",
         "assets": [
           {
             "input": "packages/daemon",
@@ -25,16 +26,14 @@
             "output": "/"
           }
         ],
-        "platform": "node"
+        "external": ["pm2"]
       },
       "configurations": {
         "production": {
-          "debug": false,
-          "verbose": false
+          "debug": false
         },
         "development": {
-          "debug": true,
-          "verbose": true
+          "debug": true
         }
       }
     },

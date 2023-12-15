@@ -1,43 +1,51 @@
 {
   "name": "vscode-extension",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
   "sourceRoot": "apps/vscode-extension/src",
+  "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": ["{options.outputPath}"],
       "options": {
+        "main": "apps/vscode-extension/extension/main.ts",
+        "tsConfig": "apps/vscode-extension/tsconfig.app.json",
         "outputPath": "dist/apps/vscode-extension",
-        "entry": "apps/vscode-extension/src/extension/main.ts",
-        "additionalEntryPoints": [
-          "apps/vscode-extension/src/language-server/main.ts"
-        ],
-        "project": "apps/vscode-extension/package.json",
-        "tsConfig": "apps/vscode-extension/tsconfig.json",
-        "external": ["vscode"],
-        "platform": "node",
-        "metafile": true,
+        "external": ["vscode", "typescript", "@swc/core"],
         "bundle": true,
-        "sourcemap": true,
+        "thirdParty": true,
         "minify": false,
-        "skipTypeCheck": true,
-        "deleteOutputPath": true,
+        "sourcemap": true,
+        "format": ["cjs"],
+        "additionalEntryPoints": [
+          "apps/vscode-extension/src/main.tsx",
+          "apps/vscode-extension/language-server/main.ts"
+        ],
+        "generatePackageJson": false,
         "assets": [
           {
+            "glob": "package.json",
             "input": "apps/vscode-extension",
-            "glob": "README.md",
-            "output": "."
+            "output": "/"
           },
           {
-            "input": ".",
+            "glob": "CHANGELOG.md",
+            "input": "",
+            "output": "/"
+          },
+          {
             "glob": "LICENSE",
-            "output": "."
+            "input": "",
+            "output": "/"
           },
           {
-            "input": "apps/vscode-extension/res",
+            "glob": "README.md",
+            "input": "apps/vscode-extension",
+            "output": "/"
+          },
+          {
+            "input": "assets/icons/vscode",
             "glob": "*.*",
-            "output": "res"
+            "output": "assets/vscode"
           },
           {
             "input": "assets/icons/light",
@@ -64,8 +72,21 @@
             "glob": "*.*",
             "output": "examples"
           }
-        ]
-      }
+        ],
+        "deleteOutputPath": true,
+        "platform": "node",
+        "esbuildConfig": "apps/vscode-extension/esbuild.config.js"
+      },
+      "configurations": {
+        "ci": {
+          "optimization": false
+        },
+        "production": {
+          "skipTypeCheck": true,
+          "minify": false
+        }
+      },
+      "outputs": ["{options.outputPath}"]
     },
     "pack": {
       "executor": "nx:run-commands",
@@ -107,10 +128,12 @@
       "options": {
         "lintFilePatterns": [
           "apps/vscode-extension/**/*.ts",
+          "apps/vscode-extension/**/*.tsx",
           "apps/vscode-extension/package.json"
         ]
       }
-    },
-    "test": {}
-  }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["ui-webview"]
 }

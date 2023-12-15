@@ -1,1 +1,2 @@
-export * from "./lib/ui-webview";
+export * from "./schema-tree-item";
+export * from "./schema-tree-view";

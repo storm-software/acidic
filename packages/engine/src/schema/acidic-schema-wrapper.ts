@@ -73,7 +73,7 @@ import {
   getServiceId
 } from "../utils/utils";
 
-export class AcidicSchema {
+export class AcidicSchemaWrapper {
   #model: Model | undefined;
 
   #service: ServiceSchema;
@@ -86,8 +86,10 @@ export class AcidicSchema {
   #subscriptions: OperationSchema[] = [];
   #events: EventSchema[] = [];
 
-  public static loadSchema = (param: Model | ServiceSchema): AcidicSchema => {
-    return new AcidicSchema(param);
+  public static loadSchema = (
+    param: Model | ServiceSchema
+  ): AcidicSchemaWrapper => {
+    return new AcidicSchemaWrapper(param);
   };
 
   private constructor(param: Model | ServiceSchema) {

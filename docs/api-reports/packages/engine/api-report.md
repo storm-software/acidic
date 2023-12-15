@@ -7,7 +7,7 @@ import { AstNode } from "langium";
 import { AstNode as AstNode_2 } from "langium/lib/syntax-tree";
 import { CompilerOptions } from "ts-morph";
 import { ConnectorType as ConnectorType_2 } from "@prisma/generator-helper";
-import { DMMF } from "@prisma/generator-helper";
+import type { DMMF } from "@prisma/generator-helper";
 import { ErrorCode } from "@storm-stack/errors";
 import { ESLint } from "eslint";
 import * as Handlebars from "handlebars";
@@ -105,7 +105,7 @@ export { AcidicErrorCode };
 export { AcidicErrorCode as AcidicErrorCode_alias_1 };
 
 // @public (undocumented)
-export class AcidicSchema {
+export class AcidicSchemaWrapper {
   // (undocumented)
   addEnum: (schemaEnum: EnumSchema) => void;
   // (undocumented)
@@ -121,66 +121,11 @@ export class AcidicSchema {
   // (undocumented)
   addSubscription: (schemaSubscription: OperationSchema) => void;
   // (undocumented)
-  static loadSchema: (param: Model | ServiceSchema) => AcidicSchema;
+  static loadSchema: (param: Model | ServiceSchema) => AcidicSchemaWrapper;
   // (undocumented)
   get service(): ServiceSchema;
   set service(_service: ServiceSchema);
 }
-
-// @public (undocumented)
-function addMissingInputObjectTypes(
-  inputObjectTypes: DMMF.InputType[],
-  outputObjectTypes: DMMF.OutputType[],
-  models: DMMF.Model[]
-): void;
-export { addMissingInputObjectTypes };
-export { addMissingInputObjectTypes as addMissingInputObjectTypes_alias_1 };
-
-// @public (undocumented)
-function addMissingInputObjectTypesForAggregate(
-  inputObjectTypes: DMMF.InputType[],
-  outputObjectTypes: DMMF.OutputType[]
-): void;
-export { addMissingInputObjectTypesForAggregate };
-export { addMissingInputObjectTypesForAggregate as addMissingInputObjectTypesForAggregate_alias_1 };
-
-// @public (undocumented)
-function addMissingInputObjectTypesForInclude(
-  inputObjectTypes: DMMF.InputType[],
-  models: DMMF.Model[]
-): void;
-export { addMissingInputObjectTypesForInclude };
-export { addMissingInputObjectTypesForInclude as addMissingInputObjectTypesForInclude_alias_1 };
-
-// @public (undocumented)
-function addMissingInputObjectTypesForModelArgs(
-  inputObjectTypes: DMMF.InputType[],
-  models: DMMF.Model[]
-): void;
-export { addMissingInputObjectTypesForModelArgs };
-export { addMissingInputObjectTypesForModelArgs as addMissingInputObjectTypesForModelArgs_alias_1 };
-
-// @public (undocumented)
-function addMissingInputObjectTypesForSelect(
-  inputObjectTypes: DMMF.InputType[],
-  outputObjectTypes: DMMF.OutputType[],
-  models: DMMF.Model[]
-): void;
-export { addMissingInputObjectTypesForSelect };
-export { addMissingInputObjectTypesForSelect as addMissingInputObjectTypesForSelect_alias_1 };
-
-// @public (undocumented)
-type AggregateOperationSupport = {
-  [model: string]: {
-    count?: boolean;
-    min?: boolean;
-    max?: boolean;
-    sum?: boolean;
-    avg?: boolean;
-  };
-};
-export { AggregateOperationSupport };
-export { AggregateOperationSupport as AggregateOperationSupport_alias_1 };
 
 // @public (undocumented)
 const ALL_OPERATION_KINDS: string[];
@@ -260,26 +205,6 @@ export { BytesObjectFieldSchema };
 export { BytesObjectFieldSchema as BytesObjectFieldSchema_alias_1 };
 
 // @public (undocumented)
-function checkIsManyModelRelationField(modelField: DMMF.Field): boolean;
-export { checkIsManyModelRelationField };
-export { checkIsManyModelRelationField as checkIsManyModelRelationField_alias_1 };
-
-// @public (undocumented)
-function checkIsModelRelationField(modelField: DMMF.Field): boolean;
-export { checkIsModelRelationField };
-export { checkIsModelRelationField as checkIsModelRelationField_alias_1 };
-
-// @public (undocumented)
-function checkModelHasManyModelRelation(model: DMMF.Model): boolean;
-export { checkModelHasManyModelRelation };
-export { checkModelHasManyModelRelation as checkModelHasManyModelRelation_alias_1 };
-
-// @public (undocumented)
-function checkModelHasModelRelation(model: DMMF.Model): boolean;
-export { checkModelHasModelRelation };
-export { checkModelHasModelRelation as checkModelHasModelRelation_alias_1 };
-
-// @public (undocumented)
 export let config: ConfigType;
 
 // @public (undocumented)
@@ -306,7 +231,7 @@ interface Context {
   model?: Model;
   modelPath?: string;
   plugins: PluginContext;
-  schema: AcidicSchema;
+  schema: AcidicSchemaWrapper;
 }
 export { Context };
 export { Context as Context_alias_1 };
@@ -481,14 +406,6 @@ interface EventSchema extends NodeSchema {
 }
 export { EventSchema };
 export { EventSchema as EventSchema_alias_1 };
-
-// @public (undocumented)
-function findModelByName(
-  models: DMMF.Model[],
-  modelName: string
-): DMMF.Model | undefined;
-export { findModelByName };
-export { findModelByName as findModelByName_alias_1 };
 
 // @public
 abstract class Generator_2<TOptions extends PluginOptions = PluginOptions>
@@ -810,11 +727,6 @@ function isAcidicEnumFieldReference(node: AstNode): node is ReferenceExpr;
 export { isAcidicEnumFieldReference };
 export { isAcidicEnumFieldReference as isAcidicEnumFieldReference_alias_1 };
 export { isAcidicEnumFieldReference as isAcidicEnumFieldReference_alias_2 };
-
-// @public (undocumented)
-const isAggregateInputType: (name: string) => boolean;
-export { isAggregateInputType };
-export { isAggregateInputType as isAggregateInputType_alias_1 };
 
 // @public
 function isForeignKeyField(field: AcidicObjectField): boolean;
@@ -1189,13 +1101,6 @@ export { requireOption as requireOption_alias_1 };
 export { requireOption as requireOption_alias_2 };
 
 // @public (undocumented)
-function resolveAggregateOperationSupport(
-  inputObjectTypes: DMMF.InputType[]
-): AggregateOperationSupport;
-export { resolveAggregateOperationSupport };
-export { resolveAggregateOperationSupport as resolveAggregateOperationSupport_alias_1 };
-
-// @public (undocumented)
 interface ServiceSchema extends NodeSchema {
   __type: "Service";
   comments?: string[];
@@ -1388,20 +1293,6 @@ export { TimeObjectFieldSchema as TimeObjectFieldSchema_alias_1 };
 const TRANSACTION_FIELD_NAME = "acidic_transaction";
 export { TRANSACTION_FIELD_NAME };
 export { TRANSACTION_FIELD_NAME as TRANSACTION_FIELD_NAME_alias_1 };
-
-// @public (undocumented)
-type TransformerParams = {
-  enumTypes?: DMMF.SchemaEnum[];
-  fields?: DMMF.SchemaArg[];
-  name?: string;
-  models?: DMMF.Model[];
-  modelOperations?: DMMF.ModelMapping[];
-  aggregateOperationSupport?: AggregateOperationSupport;
-  isDefaultPrismaClientOutput?: boolean;
-  prismaClientOutputPath?: string;
-};
-export { TransformerParams };
-export { TransformerParams as TransformerParams_alias_1 };
 
 // @public
 abstract class TypescriptGenerator<

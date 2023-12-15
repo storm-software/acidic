@@ -47,7 +47,7 @@ import { NodeFileSystem } from "langium/node";
 import { dirname, extname, join, resolve } from "path";
 import { URI } from "vscode-uri";
 import { AcidicErrorCode } from "./errors";
-import { AcidicSchema } from "./schema/acidic-schema";
+import { AcidicSchemaWrapper } from "./schema/acidic-schema-wrapper";
 import {
   AcidicConfig,
   Context,
@@ -333,16 +333,16 @@ ${stringify(stdLibFile.toJSON())}`);
 
     let modelPath: string | undefined;
     let model: Model | undefined;
-    let schema!: AcidicSchema;
+    let schema!: AcidicSchemaWrapper;
     if (isString(options.model)) {
       model = await this.readModelFile(options.model);
       modelPath = options.model;
-      schema = AcidicSchema.loadSchema(model);
+      schema = AcidicSchemaWrapper.loadSchema(model);
     } else if (isModel(options.model)) {
       model = options.model;
-      schema = AcidicSchema.loadSchema(model);
+      schema = AcidicSchemaWrapper.loadSchema(model);
     } else {
-      schema = AcidicSchema.loadSchema(options.model);
+      schema = AcidicSchemaWrapper.loadSchema(options.model);
     }
 
     await Promise.all(

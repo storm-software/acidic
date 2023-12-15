@@ -9,25 +9,25 @@ module.exports = [
   ...baseConfig,
   {
     files: [
-      "packages/cli/**/*.ts",
-      "packages/cli/**/*.tsx",
-      "packages/cli/**/*.js",
-      "packages/cli/**/*.jsx"
+      "apps/cli/**/*.ts",
+      "apps/cli/**/*.tsx",
+      "apps/cli/**/*.js",
+      "apps/cli/**/*.jsx"
     ],
     parserOptions: { project: ["apps/cli/tsconfig.*?.json"] },
     rules: {}
   },
   {
-    files: ["packages/cli/**/*.ts", "packages/cli/**/*.tsx"],
+    files: ["apps/cli/**/*.ts", "apps/cli/**/*.tsx"],
     rules: {}
   },
   {
-    files: ["packages/cli/**/*.js", "packages/cli/**/*.jsx"],
+    files: ["apps/cli/**/*.js", "apps/cli/**/*.jsx"],
     rules: {}
   },
   ...compat.config({ parser: "jsonc-eslint-parser" }).map(config => ({
     ...config,
-    "files": ["packages/cli/**/*.json"],
+    "files": ["apps/cli/**/*.json"],
     "rules": {
       "@nx/dependency-checks": "error"
     }

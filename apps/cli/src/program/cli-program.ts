@@ -1,98 +1,86 @@
 import { createCLIProgram } from "@storm-stack/cli";
 
-export const createCLIAcidicProgram = async () => {
-  return await createCLIProgram({
+export const createCLIAcidicProgram = async (): Promise<number> => {
+  await createCLIProgram({
     name: "acidic",
     description: "Acidic is a Prisma power pack for building full-stack apps.",
-    version: "v1.0.0",
-    options: [
-      {
-        name: "schema",
-        description: "schema file (with extension .acid)",
-        defaultValue: "./schema.acid"
-      },
-      {
-        name: "config",
-        description: "config file"
-      },
-      {
-        name: "package-manager",
-        description: "package manager to use",
-        choices: ["npm", "yarn", "pnpm", "bun"]
-      },
-      {
-        name: "no-dependency-check",
-        description: "do not check if dependencies are installed"
-      }
-    ],
     commands: [
       {
         name: "info",
         description:
           "Get information of installed Acidic and related packages.",
-        arguments: [
+        argument: [
           {
-            name: "path",
+            flags: "path",
             description: "project path",
-            defaultValue: "."
+            default: "."
           }
-        ]
+        ],
+        action: () => {}
       },
       {
         name: "init",
         description: "Initialize an existing project for Acidic.",
         options: [
           {
-            name: "config",
+            flags: "config",
             description: "config file"
           },
           {
-            name: "package-manager",
+            flags: "package-manager",
             description: "package manager to use"
           },
           {
-            name: "prisma",
+            flags: "prisma",
             description: "location of Prisma schema file to bootstrap from"
           },
           {
-            name: "tag",
+            flags: "tag",
             description:
               "the NPM package tag to use when installing dependencies"
           }
         ],
-        arguments: [
+        argument: [
           {
-            name: "path",
+            flags: "path",
             description: "project path",
-            defaultValue: "."
+            default: "."
           }
-        ]
+        ],
+        action: () => {}
       },
       {
         name: "generate",
         description: "Run code generation.",
         options: [
           {
-            name: "schema",
+            flags: "schema",
             description: "schema file (with extension .acid)",
-            defaultValue: "./schema.acid"
+            default: {
+              value: "./schema.acid"
+            }
           },
           {
-            name: "config",
+            flags: "config",
             description: "config file"
           },
           {
-            name: "package-manager",
+            flags: "package-manager",
             description: "package manager to use"
           },
           {
-            name: "no-dependency-check",
+            flags: "no-dependency-check",
             description: "do not check if dependencies are installed"
           }
-        ]
+        ],
+        action: () => {}
       }
-    ]
+    ],
+    preAction: () => {},
+    postAction: () => {}
   });
+
+  return 0;
 };
 
 /*

@@ -1,8 +1,8 @@
 {
   "name": "acidic-workspace",
-  "displayName": "Acidic Language Tools",
+  "displayName": "Acidic Workspace",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
   "categories": [
     "Programming Languages",
@@ -23,7 +23,7 @@
     "zod",
     "valibot"
   ],
-  "homepage": "https://acidic.io",
+  "homepage": "https://acidic.io/acidic-workspace",
   "bugs": {
     "url": "https://stormsoftware.org/support",
     "email": "support@stormsoftware.org"
@@ -31,7 +31,7 @@
   "repository": {
     "type": "github",
     "url": "https://github.com/storm-software/acidic.git",
-    "directory": "packages/vscode-extension"
+    "directory": "apps/vscode-extension"
   },
   "license": "Apache License 2.0",
   "author": {
@@ -40,20 +40,14 @@
     "url": "https://stormsoftware.org"
   },
   "publisher": "storm-software",
+  "type": "commonjs",
   "main": "./extension/main.js",
   "contributes": {
     "commands": [
       {
-        "command": "acidic.restart",
-        "title": "Acidic Engine: Restart"
-      },
-      {
-        "command": "acidic.startEngine",
-        "title": "Acidic Engine: Start"
-      },
-      {
-        "command": "acidic.stopEngine",
-        "title": "Acidic Engine: Stop"
+        "command": "acidic-workspace.onStartupFinished",
+        "title": "Acidic Engine: Start Workspace",
+        "icon": "$(gist)"
       }
     ],
     "grammars": [
@@ -83,19 +77,46 @@
           "dark": "./assets/dark/icon.png"
         }
       }
-    ]
+    ],
+    "views": {
+      "acidic-workspace": [
+        {
+          "id": "acidicWorkspaceModels",
+          "type": "webview",
+          "name": "Schemas"
+        },
+        {
+          "id": "acidicWorkspaceHelp",
+          "name": "Help and Feedback"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "acidic-workspace",
+          "title": "Acidic Workspace",
+          "icon": "./assets/vscode/activity-bar.svg"
+        }
+      ]
+    }
   },
   "activationEvents": [
+    "onStartupFinished",
     "onLanguage:acidic"
   ],
   "dependencies": {
+    "@anatine/esbuild-decorators": "^0.2.19",
     "@storm-software/config-tools": "latest",
     "@storm-stack/errors": "latest",
     "@storm-stack/file-system": "latest",
     "@storm-stack/logging": "latest",
     "express": "^4.18.2",
     "langium": "^1.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "ts-pattern": "^5.0.5",
+    "vscode": "^1.1.37",
     "vscode-jsonrpc": "^8.2.0",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
@@ -106,13 +127,15 @@
     "@storm-software/testing-tools": "latest",
     "@storm-software/workspace-tools": "latest",
     "@types/node": "20.9.0",
-    "langium-cli": "^1.2.0"
+    "langium-cli": "^1.2.0",
+    "typescript": "~5.2.2",
+    "vscode-test": "^1.6.1"
   },
   "engines": {
     "vscode": "^1.67.0"
   },
   "publishConfig": {
-    "directory": "dist/packages/vscode-extension",
+    "directory": "dist/apps/vscode-extension",
     "linkDirectory": true
   },
   "icon": "./assets/light/icon.png",
