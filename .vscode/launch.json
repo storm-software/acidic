@@ -2,21 +2,25 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run VSCode Extension",
-      "type": "extensionHost",
-      "request": "launch",
-      "runtimeExecutable": "${execPath}",
       "args": [
+        "--disable-extensions",
         "--extensionDevelopmentPath=${workspaceFolder}/dist/apps/vscode-extension"
       ],
-      "preLaunchTask": "nx run vscode-extension:build"
-    },
-    {
-      "name": "Run Extension",
-      "type": "extensionHost",
+      "name": "Launch Extension",
+      "outFiles": [
+        "${workspaceFolder}/dist/apps/vscode-extension",
+        "${workspaceFolder}/node_modules"
+      ],
+      "sourceMaps": true,
       "request": "launch",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}/node_modules/@acidic/language"
+      "skipFiles": [
+        "<node_internals>/**",
+        "/Applications/Visual Studio Code.app/**"
+      ],
+      "type": "extensionHost",
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/**",
+        "!**/node_modules/**"
       ]
     },
     {
@@ -42,28 +46,6 @@
       "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,
       "outFiles": ["${workspaceFolder}/node_modules/@acidic/language/**/*.js"]
-    },
-    {
-      "args": [
-        "--disable-extensions",
-        "--extensionDevelopmentPath=${workspaceFolder}/dist/apps/vscode-extension"
-      ],
-      "name": "Launch Extension",
-      "outFiles": [
-        "${workspaceFolder}/dist/apps/vscode-extension",
-        "${workspaceFolder}/node_modules"
-      ],
-      "sourceMaps": true,
-      "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**",
-        "/Applications/Visual Studio Code.app/**"
-      ],
-      "type": "extensionHost",
-      "resolveSourceMapLocations": [
-        "${workspaceFolder}/**",
-        "!**/node_modules/**"
-      ]
     }
   ]
 }
