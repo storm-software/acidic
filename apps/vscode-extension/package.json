@@ -83,11 +83,11 @@
         {
           "id": "acidicWorkspaceModels",
           "type": "webview",
-          "name": "Schemas"
+          "name": "Workspace Schemas"
         },
         {
           "id": "acidicWorkspaceHelp",
-          "name": "Help and Feedback"
+          "name": "Support and Feedback"
         }
       ]
     },

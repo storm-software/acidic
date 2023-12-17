@@ -14,6 +14,8 @@
       "@acidic/engine/*": ["packages/engine/src/*"],
       "@acidic/language": ["packages/language/src/index.ts"],
       "@acidic/language/*": ["packages/language/src/*"],
+      "@acidic/static": ["packages/static/src/index.ts"],
+      "@acidic/static/*": ["packages/static/src/*"],
       "@acidic/ui-webview": ["packages/ui-webview/src/index.ts"],
       "@acidic/ui-webview/*": ["packages/ui-webview/src/*"]
     },

@@ -9,7 +9,7 @@ import {
   TransportKind
 } from "vscode-languageclient/node";
 import { createLogger } from "../src/config/create-logger";
-import { ReactPanel } from "../src/webview-ui/react-panel";
+import { ReactPanel } from "../src/webview/react-panel";
 
 let client: LanguageClient;
 

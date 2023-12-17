@@ -65,6 +65,7 @@ export interface AcidicEngineOptions {
   model: string | Model | ServiceSchema;
   packageManager: PackageManagers;
   outputPath: string;
+  watch?: boolean;
 }
 
 const PLUGIN_CACHE = new Map<string, PluginModule>();
@@ -127,7 +128,8 @@ ${stringify(stdLibFile.toJSON())}`);
     options: AcidicEngineOptions = {
       model: "./service.acid",
       packageManager: PackageManagers.NPM,
-      outputPath: "./node_modules/.storm"
+      outputPath: "./node_modules/.storm",
+      watch: false
     }
   ): Promise<StormError | null> => {
     this.#logger.start("Acidic Engine");
