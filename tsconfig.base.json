@@ -16,7 +16,8 @@
       "@acidic/language/*": ["packages/language/src/*"],
       "@acidic/ui-webview": ["packages/ui-webview/src/index.ts"],
       "@acidic/ui-webview/*": ["packages/ui-webview/src/*"]
-    }
+    },
+    "skipLibCheck": true
   },
   "references": []
 }

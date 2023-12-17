@@ -1,9 +1,14 @@
-export interface SchemaTreeViewProps {}
+export interface SchemaTreeViewProps {
+  /**
+   * The name of the repository.
+   */
+  repository: string;
+}
 
-export function SchemaTreeView(props: SchemaTreeViewProps) {
+export function SchemaTreeView({ repository }: SchemaTreeViewProps) {
   return (
     <div>
-      <h1>Welcome to UiWebview!</h1>
+      <h1>Welcome to {repository}!</h1>
     </div>
   );
 }
