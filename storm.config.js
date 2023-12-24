@@ -18,13 +18,5 @@ module.exports = {
     warning: "#fcc419",
     error: "#990000",
     fatal: "#7d1a1a"
-  },
-  extensions: {
-    logging: {
-      fileName: "storm",
-      fileExtension: "log",
-      path: "tmp/storm/logs",
-      stacktrace: true
-    }
   }
 };

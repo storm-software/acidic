@@ -49,7 +49,7 @@
       "executor": "@nx/storybook:build",
       "outputs": ["{options.outputDir}"],
       "options": {
-        "outputDir": "dist/storybook/ui-webview",
+        "outputDir": "dist/storybook/vscode/components",
         "configDir": "packages/vscode/components/.storybook"
       },
       "configurations": {
@@ -68,7 +68,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "vscode-components:build-storybook",
-        "staticFilePath": "dist/storybook/ui-webview"
+        "staticFilePath": "dist/storybook/vscode/components"
       },
       "configurations": {
         "ci": {

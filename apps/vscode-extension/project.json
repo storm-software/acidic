@@ -12,7 +12,7 @@
         "tsConfig": "apps/vscode-extension/tsconfig.extension.json",
         "outputPath": "dist/apps/vscode-extension",
         "project": "apps/vscode-extension/package.json",
-        "defaultConfiguration": "development",
+        "defaultConfiguration": "production",
         "external": ["vscode"],
         "bundle": true,
         "thirdParty": true,
@@ -97,7 +97,7 @@
         "tsConfig": "apps/vscode-extension/tsconfig.client.json",
         "outputPath": "dist/apps/vscode-extension/client",
         "project": "apps/vscode-extension/package.json",
-        "defaultConfiguration": "development",
+        "defaultConfiguration": "production",
         "external": ["vscode"],
         "bundle": true,
         "thirdParty": true,
@@ -126,7 +126,7 @@
       "executor": "nx:run-commands",
       "outputs": ["{options.outputPath}"],
       "outputPath": "dist/apps/vscode-extension",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "commands": [
           "pnpm nx run vscode-extension:build-backend",
@@ -169,7 +169,6 @@
       "executor": "nx:run-commands",
       "outputs": ["{options.outputPath}"],
       "outputPath": "dist/apps/vscode-extension",
-      "defaultConfiguration": "development",
       "options": {
         "commands": ["rimraf dist/packages/vscode-extension"]
       }
@@ -178,13 +177,13 @@
       "executor": "nx:run-commands",
       "outputs": ["{options.outputPath}"],
       "outputPath": "dist/apps/vscode-extension",
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "commands": [
           "pnpm nx run vscode-extension:clean",
           "pnpm nx run vscode-extension:build-all"
         ],
-        "parallel": true
+        "parallel": false
       },
       "configurations": {
         "ci": {
