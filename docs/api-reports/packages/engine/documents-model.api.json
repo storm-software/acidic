@@ -275,7 +275,7 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "static create(config?: "
+                  "text": "static create(config: "
                 },
                 {
                   "kind": "Reference",
@@ -297,7 +297,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", logger?: "
+                  "text": ", logger: "
                 },
                 {
                   "kind": "Reference",
@@ -333,7 +333,7 @@
                     "startIndex": 1,
                     "endIndex": 5
                   },
-                  "isOptional": true
+                  "isOptional": false
                 },
                 {
                   "parameterName": "logger",
@@ -341,7 +341,7 @@
                     "startIndex": 6,
                     "endIndex": 7
                   },
-                  "isOptional": true
+                  "isOptional": false
                 }
               ],
               "isOptional": false,
@@ -416,7 +416,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "(options?: "
+                  "text": "(options: "
                 },
                 {
                   "kind": "Reference",
@@ -542,12 +542,67 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/engine!AcidicEngineOptions#model:member",
+              "canonicalReference": "@acidic/engine!AcidicEngineOptions#outputPath:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "model: "
+                  "text": "outputPath?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "outputPath",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicEngineOptions#packageManager:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "packageManager?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PackageManagers",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "packageManager",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicEngineOptions#schema:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "schema: "
                 },
                 {
                   "kind": "Content",
@@ -575,65 +630,10 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "model",
+              "name": "schema",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 5
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/engine!AcidicEngineOptions#outputPath:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "outputPath: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "outputPath",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/engine!AcidicEngineOptions#packageManager:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "packageManager: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PackageManagers",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "packageManager",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
               }
             }
           ],
@@ -921,7 +921,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@acidic/engine!AcidicSchemaWrapper:class",
-          "docComment": "",
+          "docComment": "/**\n * A wrapper of the and Date class used by Storm Software to provide Date-Time values\n *\n * @decorator\n *\n * `@Serializable()`\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -934,6 +934,48 @@
           "name": "AcidicSchemaWrapper",
           "preserveMemberOrder": false,
           "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `AcidicSchemaWrapper` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(param: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Model",
+                  "canonicalReference": "@acidic/engine!~Model:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceSchema",
+                  "canonicalReference": "@acidic/engine!ServiceSchema:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "param",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ]
+            },
             {
               "kind": "Property",
               "canonicalReference": "@acidic/engine!AcidicSchemaWrapper#addEnum:member",
@@ -2375,61 +2417,6 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/engine!Context#model:member",
-              "docComment": "/**\n * The sdl model to create the schema from\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "model?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/engine!~Model:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "model",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/engine!Context#modelPath:member",
-              "docComment": "/**\n * The path to the sdl model file\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "modelPath?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "modelPath",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
               "canonicalReference": "@acidic/engine!Context#plugins:member",
               "docComment": "/**\n * The context of the plugins that are being used\n */\n",
               "excerptTokens": [
@@ -2459,11 +2446,66 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@acidic/engine!Context#schema:member",
+              "docComment": "/**\n * The sdl model to create the schema from\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "schema?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Model",
+                  "canonicalReference": "@acidic/engine!~Model:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "schema",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!Context#schemaPath:member",
+              "docComment": "/**\n * The path to the sdl model file\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "schemaPath?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "schemaPath",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!Context#wrapper:member",
               "docComment": "/**\n * The schema to generate service code/artifacts from\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "schema: "
+                  "text": "wrapper: "
                 },
                 {
                   "kind": "Reference",
@@ -2478,7 +2520,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "schema",
+              "name": "wrapper",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -3333,6 +3375,53 @@
             "startIndex": 0,
             "endIndex": 0
           }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/engine!deserializeAcidicSchemaWrapper:function(1)",
+          "docComment": "/**\n * Deserializes a string into a StormDateTime\n *\n * @param schemaString - The dateTime to deserialize\n *\n * @returns The deserialized dateTime\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function deserializeAcidicSchemaWrapper(schemaString: "
+            },
+            {
+              "kind": "Reference",
+              "text": "JsonValue",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicSchemaWrapper",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper:class"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "packages/engine/src/schema/acidic-schema-wrapper.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "schemaString",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "deserializeAcidicSchemaWrapper"
         },
         {
           "kind": "Variable",
@@ -11417,6 +11506,52 @@
             }
           ],
           "name": "requireOption"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/engine!serializeAcidicSchemaWrapper:function(1)",
+          "docComment": "/**\n * Serializes a StormDateTime into a string\n *\n * @param dateTime - The dateTime to serialize\n *\n * @returns The serialized dateTime\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function serializeAcidicSchemaWrapper(schemaWrapper: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicSchemaWrapper",
+              "canonicalReference": "@acidic/engine!AcidicSchemaWrapper:class"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "packages/engine/src/schema/acidic-schema-wrapper.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "schemaWrapper",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "serializeAcidicSchemaWrapper"
         },
         {
           "kind": "Interface",

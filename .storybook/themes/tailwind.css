@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  background: #1fb2a6; /* WebKit/Blink Browsers */
+  color: #fff; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #1fb2a6; /* Gecko Browsers */
+  color: #fff; /* Gecko Browsers */
+}
+
+:host {
+  background: #18181b;
+}

@@ -1,0 +1,45 @@
+{
+  "name": "vscode-state",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/vscode/state/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-node",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entry": "packages/vscode/state/src/index.ts",
+        "outputPath": "dist/packages/vscode/state",
+        "tsConfig": "packages/vscode/state/tsconfig.json",
+        "project": "packages/vscode/state/package.json",
+        "defaultConfiguration": "production",
+        "platform": "node",
+        "external": ["vscode"],
+        "assets": [
+          {
+            "input": "packages/vscode/state",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    },
+    "lint": {},
+    "test": {}
+  }
+}

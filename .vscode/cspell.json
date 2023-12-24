@@ -1,4 +1,4 @@
 {
   "import": ["@storm-software/linting-tools/cspell/config.json"],
-  "words": ["langium"]
+  "words": ["autodocs", "Dagre", "langium", "rankdir", "reactflow"]
 }

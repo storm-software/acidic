@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { AcidicConfig, PluginOptions } from "@acidic/config";
 import {
   AcidicServices,
   PLUGIN_MODULE_NAME,
@@ -18,7 +19,7 @@ import {
   resolveImport,
   resolveTransitiveImports
 } from "@acidic/language/utils";
-import { StormConfig, createStormConfig } from "@storm-software/config-tools";
+import { StormConfig } from "@storm-software/config-tools";
 import { StormError, getCauseFromUnknown } from "@storm-stack/errors";
 import {
   PackageManagers,
@@ -49,12 +50,10 @@ import { URI } from "vscode-uri";
 import { AcidicErrorCode } from "./errors";
 import { AcidicSchemaWrapper } from "./schema/acidic-schema-wrapper";
 import {
-  AcidicConfig,
   Context,
   PluginContextMapKey,
   PluginInfo,
   PluginModule,
-  PluginOptions,
   PluginSchema,
   ServiceSchema
 } from "./types";
@@ -62,10 +61,9 @@ import { ensureOutputFolder } from "./utils/plugin-utils";
 import { getVersion } from "./utils/version-utils";
 
 export interface AcidicEngineOptions {
-  model: string | Model | ServiceSchema;
-  packageManager: PackageManagers;
-  outputPath: string;
-  watch?: boolean;
+  schema: string | Model | ServiceSchema;
+  packageManager?: PackageManagers;
+  outputPath?: string;
 }
 
 const PLUGIN_CACHE = new Map<string, PluginModule>();
@@ -81,19 +79,19 @@ export class AcidicEngine {
   public readonly outputPath: string;
 
   public static create(
-    config?: StormConfig<"acidic", AcidicConfig>,
-    logger?: StormLog
+    config: StormConfig<"acidic", AcidicConfig>,
+    logger: StormLog
   ): AcidicEngine {
     return new AcidicEngine(config, logger);
   }
 
   private constructor(
-    config?: StormConfig<"acidic", AcidicConfig>,
-    logger?: StormLog
+    config: StormConfig<"acidic", AcidicConfig>,
+    logger: StormLog
   ) {
-    this.#config =
-      config ?? (createStormConfig() as StormConfig<"acidic", AcidicConfig>);
+    this.#config = config;
     this.#logger = logger ?? StormLog.create(this.#config, "Acidic Engine");
+
     this.version = getVersion();
 
     this.#logger.info(`Initializing the Acidic Engine v${this.version}`);
@@ -125,14 +123,12 @@ ${stringify(stdLibFile.toJSON())}`);
   }
 
   public execute = async (
-    options: AcidicEngineOptions = {
-      model: "./service.acid",
-      packageManager: PackageManagers.NPM,
-      outputPath: "./node_modules/.storm",
-      watch: false
-    }
+    options: AcidicEngineOptions
   ): Promise<StormError | null> => {
     this.#logger.start("Acidic Engine");
+
+    options.outputPath ??= "./node_modules/.storm";
+    options.packageManager ??= PackageManagers.NPM;
 
     try {
       this.#logger.info(`Running the 🧪 Acidic Engine v${this.version}`);
@@ -140,13 +136,13 @@ ${stringify(stdLibFile.toJSON())}`);
       this.#logger.start("Creating Context");
 
       let context = await this.createContext(options);
-      if (context.schema.service.plugins.length === 0) {
+      if (context.wrapper.service.plugins.length === 0) {
         this.#logger.warn(
-          "No plugins specified for this model. No processing will be performed (please ensure this is expected)."
+          "No plugins specified for this schema. No processing will be performed (please ensure this is expected)."
         );
       } else {
         const plugins: PluginInfo<PluginOptions>[] = Array.from(
-          context.schema.service.plugins.map(
+          context.wrapper.service.plugins.map(
             plugin =>
               context.plugins.table.get(this.getPluginSchemaHashKey(plugin))!
           )
@@ -169,7 +165,7 @@ ${stringify(stdLibFile.toJSON())}`);
         for (const plugin of plugins.filter(plugin =>
           isFunction(plugin.hooks?.extendSchema)
         )) {
-          context.schema.service = await Promise.resolve(
+          context.wrapper.service = await Promise.resolve(
             plugin.hooks!.extendSchema!(plugin.options, context)
           );
         }
@@ -186,42 +182,42 @@ ${stringify(stdLibFile.toJSON())}`);
 
         this.#logger.info(
           `🧪 The Acidic schema ${
-            context.schema.service.name
+            context.wrapper.service.name
           } contains: ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
             .bold(
-              `${context.schema.service.plugins?.length ?? 0} Plugins`
+              `${context.wrapper.service.plugins?.length ?? 0} Plugins`
             )} ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
             .bold(
-              `${context.schema.service.models?.length ?? 0} Models`
+              `${context.wrapper.service.models?.length ?? 0} Models`
             )} ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
             .bold(
-              `${context.schema.service.objects?.length ?? 0} Objects`
+              `${context.wrapper.service.objects?.length ?? 0} Objects`
             )} ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
             .bold(
-              `${context.schema.service.enums?.length ?? 0} Enums`
+              `${context.wrapper.service.enums?.length ?? 0} Enums`
             )} ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
             .bold(
-              `${context.schema.service.events?.length ?? 0} Events`
+              `${context.wrapper.service.events?.length ?? 0} Events`
             )} ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
             .bold(
-              `${context.schema.service.queries?.length ?? 0} Query Operations`
+              `${context.wrapper.service.queries?.length ?? 0} Query Operations`
             )} ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
             .bold(
               `${
-                context.schema.service.mutations?.length ?? 0
+                context.wrapper.service.mutations?.length ?? 0
               } Mutation Operations`
             )} ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
             .bold(
               `${
-                context.schema.service.subscriptions?.length ?? 0
+                context.wrapper.service.subscriptions?.length ?? 0
               } Subscriptions Operations`
             )} that will be used to generate code.${NEWLINE_STRING}`
         );
@@ -249,7 +245,10 @@ ${stringify(stdLibFile.toJSON())}`);
               }
             } catch (e) {
               this.#logger.error(e);
-              issues.push({ plugin: plugin.name, error: e });
+              issues.push({
+                plugin: plugin.name,
+                error: getCauseFromUnknown(e)
+              });
             }
 
             return Promise.resolve();
@@ -327,7 +326,7 @@ ${stringify(stdLibFile.toJSON())}`);
   public createContext = async (
     options: AcidicEngineOptions
   ): Promise<Context> => {
-    if (!options.model) {
+    if (!options.schema) {
       throw new StormError(AcidicErrorCode.missing_schema, {
         message: "A valid schema must be provided to the Acidic Engine"
       });
@@ -336,15 +335,15 @@ ${stringify(stdLibFile.toJSON())}`);
     let modelPath: string | undefined;
     let model: Model | undefined;
     let schema!: AcidicSchemaWrapper;
-    if (isString(options.model)) {
-      model = await this.readModelFile(options.model);
-      modelPath = options.model;
+    if (isString(options.schema)) {
+      model = await this.readModelFile(options.schema);
+      modelPath = options.schema;
       schema = AcidicSchemaWrapper.loadSchema(model);
-    } else if (isModel(options.model)) {
-      model = options.model;
+    } else if (isModel(options.schema)) {
+      model = options.schema;
       schema = AcidicSchemaWrapper.loadSchema(model);
     } else {
-      schema = AcidicSchemaWrapper.loadSchema(options.model);
+      schema = AcidicSchemaWrapper.loadSchema(options.schema);
     }
 
     await Promise.all(
@@ -357,9 +356,9 @@ ${stringify(stdLibFile.toJSON())}`);
     );
 
     return {
-      model,
-      modelPath,
-      schema,
+      schema: model,
+      schemaPath: modelPath,
+      wrapper: schema,
       config: this.#config.extensions.acidic,
       plugins: {
         table: this.#pluginTable

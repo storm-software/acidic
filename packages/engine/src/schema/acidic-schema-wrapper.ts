@@ -26,12 +26,13 @@ import {
   isReferenceExpr
 } from "@acidic/language/langium";
 import { StormError } from "@storm-stack/errors";
-import { stringify } from "@storm-stack/serialization";
+import { JsonValue, Serializable, stringify } from "@storm-stack/serialization";
 import {
   constantCase,
   isInt,
   isNumber,
   isSet,
+  isSetString,
   isString,
   upperCaseFirst
 } from "@storm-stack/utilities";
@@ -73,10 +74,45 @@ import {
   getServiceId
 } from "../utils/utils";
 
+/**
+ * Serializes a StormDateTime into a string
+ *
+ * @param dateTime - The dateTime to serialize
+ * @returns The serialized dateTime
+ */
+export function serializeAcidicSchemaWrapper(
+  schemaWrapper: AcidicSchemaWrapper
+): string {
+  return JSON.stringify(schemaWrapper.service);
+}
+
+/**
+ * Deserializes a string into a StormDateTime
+ *
+ * @param schemaString - The dateTime to deserialize
+ * @returns The deserialized dateTime
+ */
+export function deserializeAcidicSchemaWrapper(
+  schemaString: JsonValue
+): AcidicSchemaWrapper {
+  return isSetString(schemaString)
+    ? AcidicSchemaWrapper.loadSchema(JSON.parse(schemaString))
+    : AcidicSchemaWrapper.loadSchema(schemaString as unknown as ServiceSchema);
+}
+
+/**
+ * A wrapper of the and Date class used by Storm Software to provide Date-Time values
+ *
+ * @decorator `@Serializable()`
+ */
+@Serializable({
+  serialize: serializeAcidicSchemaWrapper,
+  deserialize: deserializeAcidicSchemaWrapper
+})
 export class AcidicSchemaWrapper {
   #model: Model | undefined;
 
-  #service: ServiceSchema;
+  #service!: ServiceSchema;
   #plugins: PluginSchema[] = [];
   #objects: ObjectSchema[] = [];
   #models: ModelSchema[] = [];
@@ -92,7 +128,7 @@ export class AcidicSchemaWrapper {
     return new AcidicSchemaWrapper(param);
   };
 
-  private constructor(param: Model | ServiceSchema) {
+  public constructor(param: Model | ServiceSchema) {
     if (isModel(param)) {
       this.#model = param;
       this.service = this.mapModelToSchema(param);

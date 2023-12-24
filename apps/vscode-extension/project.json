@@ -4,23 +4,27 @@
   "sourceRoot": "apps/vscode-extension/src",
   "projectType": "application",
   "targets": {
-    "build": {
+    "build-backend": {
       "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "main": "apps/vscode-extension/extension/main.ts",
-        "tsConfig": "apps/vscode-extension/tsconfig.app.json",
+        "tsConfig": "apps/vscode-extension/tsconfig.extension.json",
         "outputPath": "dist/apps/vscode-extension",
-        "external": ["vscode", "typescript", "@swc/core"],
+        "project": "apps/vscode-extension/package.json",
+        "defaultConfiguration": "development",
+        "external": ["vscode"],
         "bundle": true,
         "thirdParty": true,
         "minify": false,
         "sourcemap": true,
         "format": ["cjs"],
         "additionalEntryPoints": [
-          "apps/vscode-extension/src/main.tsx",
-          "apps/vscode-extension/language-server/main.ts"
+          "apps/vscode-extension/extension/language-server/main.ts"
         ],
         "generatePackageJson": false,
+        "deleteOutputPath": false,
+        "esbuildConfig": "apps/vscode-extension/esbuild.extension.config.js",
         "assets": [
           {
             "glob": "package.json",
@@ -43,19 +47,14 @@
             "output": "/"
           },
           {
-            "input": "assets/icons/vscode",
-            "glob": "*.*",
-            "output": "assets/vscode"
+            "input": "assets/icons",
+            "glob": "{light,dark}/**/icon.png",
+            "output": "assets"
           },
           {
-            "input": "assets/icons/light",
-            "glob": "icon.png",
-            "output": "assets/light"
-          },
-          {
-            "input": "assets/icons/dark",
-            "glob": "icon.png",
-            "output": "assets/dark"
+            "input": "assets/icons",
+            "glob": "{light,dark,vscode}/**/*.svg",
+            "output": "assets"
           },
           {
             "input": "packages/language/syntaxes",
@@ -72,21 +71,151 @@
             "glob": "*.*",
             "output": "examples"
           }
-        ],
-        "deleteOutputPath": true,
-        "platform": "node",
-        "esbuildConfig": "apps/vscode-extension/esbuild.config.js"
+        ]
       },
       "configurations": {
         "ci": {
           "optimization": false
         },
+        "development": {
+          "optimization": false,
+          "minify": false,
+          "sourcemap": true
+        },
+        "production": {
+          "optimization": true,
+          "skipTypeCheck": true,
+          "minify": false
+        }
+      }
+    },
+    "build-frontend": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "main": "apps/vscode-extension/client/main.tsx",
+        "tsConfig": "apps/vscode-extension/tsconfig.client.json",
+        "outputPath": "dist/apps/vscode-extension/client",
+        "project": "apps/vscode-extension/package.json",
+        "defaultConfiguration": "development",
+        "external": ["vscode"],
+        "bundle": true,
+        "thirdParty": true,
+        "minify": false,
+        "sourcemap": true,
+        "deleteOutputPath": false,
+        "esbuildConfig": "apps/vscode-extension/esbuild.client.config.js",
+        "format": ["cjs"]
+      },
+      "configurations": {
+        "ci": {
+          "optimization": false
+        },
+        "development": {
+          "optimization": false,
+          "minify": false,
+          "sourcemap": true
+        },
         "production": {
           "skipTypeCheck": true,
           "minify": false
         }
+      }
+    },
+    "build-all": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "outputPath": "dist/apps/vscode-extension",
+      "defaultConfiguration": "development",
+      "options": {
+        "commands": [
+          "pnpm nx run vscode-extension:build-backend",
+          "pnpm nx run vscode-extension:build-frontend"
+        ],
+        "parallel": true
       },
-      "outputs": ["{options.outputPath}"]
+      "configurations": {
+        "ci": {
+          "options": {
+            "commands": [
+              "pnpm nx run vscode-extension:build-backend:ci",
+              "pnpm nx run vscode-extension:build-frontend:ci"
+            ],
+            "parallel": true
+          }
+        },
+        "development": {
+          "options": {
+            "commands": [
+              "pnpm nx run vscode-extension:build-backend:development",
+              "pnpm nx run vscode-extension:build-frontend:development"
+            ],
+            "parallel": true,
+            "sourcemap": true
+          }
+        },
+        "production": {
+          "options": {
+            "commands": [
+              "pnpm nx run vscode-extension:build-backend:production",
+              "pnpm nx run vscode-extension:build-frontend:production"
+            ],
+            "parallel": true
+          }
+        }
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "outputPath": "dist/apps/vscode-extension",
+      "defaultConfiguration": "development",
+      "options": {
+        "commands": ["rimraf dist/packages/vscode-extension"]
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "outputPath": "dist/apps/vscode-extension",
+      "defaultConfiguration": "development",
+      "options": {
+        "commands": [
+          "pnpm nx run vscode-extension:clean",
+          "pnpm nx run vscode-extension:build-all"
+        ],
+        "parallel": true
+      },
+      "configurations": {
+        "ci": {
+          "options": {
+            "commands": [
+              "pnpm nx run vscode-extension:clean",
+              "pnpm nx run vscode-extension:build-all:ci"
+            ],
+            "parallel": false
+          }
+        },
+        "development": {
+          "options": {
+            "commands": [
+              "pnpm nx run vscode-extension:clean",
+              "pnpm nx run vscode-extension:build-all:development"
+            ],
+            "parallel": false,
+            "sourcemap": true
+          }
+        },
+        "production": {
+          "options": {
+            "commands": [
+              "pnpm nx run vscode-extension:clean",
+              "pnpm nx run vscode-extension:build-all:production"
+            ],
+            "parallel": false
+          }
+        }
+      }
     },
     "pack": {
       "executor": "nx:run-commands",
@@ -135,5 +264,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["ui-webview"]
+  "implicitDependencies": []
 }

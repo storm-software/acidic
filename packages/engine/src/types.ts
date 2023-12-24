@@ -1,6 +1,5 @@
+import { AcidicConfig, PluginOptions } from "@acidic/config";
 import { Model } from "@acidic/language/ast";
-import { ConnectorType as PrismaConnectorType } from "@prisma/generator-helper";
-import { PackageManagers } from "@storm-stack/file-system";
 import { StormLog } from "@storm-stack/logging";
 import { MaybePromise } from "@storm-stack/utilities";
 import { ESLint } from "eslint";
@@ -27,17 +26,17 @@ export interface Context {
   /**
    * The sdl model to create the schema from
    */
-  model?: Model;
+  schema?: Model;
 
   /**
    * The path to the sdl model file
    */
-  modelPath?: string;
+  schemaPath?: string;
 
   /**
    * The schema to generate service code/artifacts from
    */
-  schema: AcidicSchemaWrapper;
+  wrapper: AcidicSchemaWrapper;
 
   /**
    * The options used by acidic during generation
@@ -118,27 +117,6 @@ export type PluginHookPreGenerate<
 > = (options: TOptions, context: Context) => MaybePromise<void>;
 
 export const PLUGIN_RUNNER_SYMBOL = Symbol("PluginRunner");
-
-/**
- * Plugin configuration option value type
- */
-export type OptionValue = string | number | boolean;
-
-/**
- * Plugin configuration options
- */
-export type PluginOptions = {
-  /**
-   * The name of the provider
-   */
-  provider: string;
-
-  /**
-   * The output directory
-   */
-  output?: string;
-} & GeneratorOptions &
-  Record<string, OptionValue | OptionValue[]>;
 
 export type PluginInfo<TOptions extends PluginOptions = PluginOptions> = {
   pluginId: string;
@@ -343,35 +321,24 @@ export type PluginModule<TOptions extends PluginOptions = PluginOptions> = {
   resolvedPath: string;
 };
 
-/**
- * Acidic configuration options
- */
-export type AcidicConfig = {
-  /**
-   * The default options for all plugins
-   */
-  defaultOptions?: Omit<PluginOptions, "provider">;
-
-  /**
-   * The base output directory where the generated code/artifacts will be written to
-   */
-  outputPath: string;
-
-  /**
-   * The package manager to use
-   */
-  packageManager: PackageManagers;
-} & Record<string, OptionValue | OptionValue[]>;
-
+export type ConnectorType =
+  | "mysql"
+  | "mongodb"
+  | "sqlite"
+  | "postgresql"
+  | "postgres"
+  | "sqlserver"
+  | "cockroachdb"
+  | "jdbc:sqlserver";
 export const ConnectorType = {
-  MYSQL: "mysql" as PrismaConnectorType,
-  MONGO_DB: "mongodb" as PrismaConnectorType,
-  SQLITE: "sqlite" as PrismaConnectorType,
-  POSTGRESQL: "postgresql" as PrismaConnectorType,
-  POSTGRES: "postgres" as PrismaConnectorType,
-  SQL_SERVER: "sqlserver" as PrismaConnectorType,
-  COCKROACH_DB: "cockroachdb" as PrismaConnectorType,
-  JDBC_SQL_SERVER: "jdbc:sqlserver" as PrismaConnectorType
+  MYSQL: "mysql" as ConnectorType,
+  MONGO_DB: "mongodb" as ConnectorType,
+  SQLITE: "sqlite" as ConnectorType,
+  POSTGRESQL: "postgresql" as ConnectorType,
+  POSTGRES: "postgres" as ConnectorType,
+  SQL_SERVER: "sqlserver" as ConnectorType,
+  COCKROACH_DB: "cockroachdb" as ConnectorType,
+  JDBC_SQL_SERVER: "jdbc:sqlserver" as ConnectorType
 };
 
 export const TEMPLATE_EXTENSIONS = [
@@ -382,30 +349,6 @@ export const TEMPLATE_EXTENSIONS = [
   "template",
   "mustache"
 ];
-
-/**
- * Generator Write function options
- */
-export type GeneratorOptions = {
-  /**
-   * The display name of the file being written. This will be added in the file's header
-   */
-  headerName?: string;
-
-  /**
-   * The header string to add to the file. If set to `true` the default header will be used. If set to `false` no header will be added.
-   *
-   * @default true
-   */
-  header?: string | boolean;
-
-  /**
-   * The footer string to add to the file. If set to `false` no header will be added.
-   *
-   * @default false
-   */
-  footer?: string | boolean;
-} & Record<string, any>;
 
 export interface NodeSchema {
   /**
@@ -438,7 +381,7 @@ export interface DataSourceSchema extends NodeSchema {
   /**
    * The connector type
    */
-  provider: PrismaConnectorType;
+  provider: ConnectorType;
 
   /**
    * The url to the data source
@@ -465,7 +408,7 @@ export interface PluginSchema extends NodeSchema {
   /**
    * The connector type
    */
-  provider: PrismaConnectorType;
+  provider: ConnectorType;
 
   /**
    * The url to the data source

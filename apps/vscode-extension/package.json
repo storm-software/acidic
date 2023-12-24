@@ -41,13 +41,47 @@
   },
   "publisher": "storm-software",
   "type": "commonjs",
-  "main": "./extension/main.js",
+  "main": "./main.js",
   "contributes": {
     "commands": [
       {
-        "command": "acidic-workspace.onStartupFinished",
+        "command": "acidicWorkspace.onStartupFinished",
         "title": "Acidic Engine: Start Workspace",
-        "icon": "$(gist)"
+        "icon": "$(beaker)"
+      },
+      {
+        "command": "acidicWorkspace.selectWorkspaceManually",
+        "title": "Acidic Engine: Select Workspace",
+        "icon": "$(symbol-folder)"
+      },
+      {
+        "command": "acidicWorkspace.refresh",
+        "title": "Acidic Engine: Refresh Workspace",
+        "icon": "$(sync~spin)"
+      },
+      {
+        "command": "acidicWorkspace.openSchemaExplorer",
+        "title": "Acidic Engine: Open Schema Explorer",
+        "icon": {
+          "light": "assets/vscode/test-tube.svg",
+          "dark": "assets/vscode/test-tube.svg"
+        }
+      },
+      {
+        "command": "acidicWorkspace.refreshSchemaStart",
+        "title": "Acidic Engine: Refresh Schema",
+        "icon": "$(sync~spin)"
+      },
+      {
+        "command": "acidicWorkspace.refreshSchemaEnd",
+        "title": "Acidic Engine: Refresh Schema End",
+        "icon": "$(sync-ignored)"
+      }
+    ],
+    "editor/title": [
+      {
+        "command": "acidicWorkspace.refresh",
+        "group": "navigation"
       }
     ],
     "grammars": [
@@ -78,16 +112,49 @@
         }
       }
     ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "acidicWorkspace.refreshSchemaStart",
+          "when": "view == acidic-workspace",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "acidicWorkspace.refreshSchemaStart",
+          "when": "viewItem == schema_active"
+        }
+      ]
+    },
     "views": {
       "acidic-workspace": [
         {
-          "id": "acidicWorkspaceModels",
-          "type": "webview",
-          "name": "Workspace Schemas"
+          "id": "acidicWorkspace.views.welcome",
+          "name": "Getting Started",
+          "when": "!hasWorkspaceRoot",
+          "contextualTitle": "Acidic Workspace - Getting Started",
+          "icon": "./assets/vscode/test-tube.svg",
+          "visibility": "visible"
         },
         {
-          "id": "acidicWorkspaceHelp",
-          "name": "Support and Feedback"
+          "id": "acidicWorkspace.views.services",
+          "type": "tree",
+          "name": "Service Explorer",
+          "contextualTitle": "Service Explorer",
+          "icon": "./assets/vscode/test-tube.svg",
+          "when": "hasWorkspaceRoot",
+          "visibility": "visible"
+        },
+        {
+          "id": "acidicWorkspace.views.actions",
+          "name": "Actions",
+          "when": "hasWorkspaceRoot"
+        },
+        {
+          "id": "acidicWorkspace.views.support",
+          "name": "Support and Feedback",
+          "visibility": "visible"
         }
       ]
     },
@@ -96,10 +163,30 @@
         {
           "id": "acidic-workspace",
           "title": "Acidic Workspace",
-          "icon": "./assets/vscode/activity-bar.svg"
+          "icon": "./assets/vscode/test-tube.svg"
         }
       ]
-    }
+    },
+    "viewsWelcome": [
+      {
+        "view": "acidicWorkspace.views.welcome",
+        "contents": "Acidic Workspace - A visual modeling tool for fullstack development."
+      },
+      {
+        "view": "acidicWorkspace.views.welcome",
+        "contents": "[$(rocket) Getting Started](https://acidic.io/acidic-workspace)"
+      },
+      {
+        "view": "acidicWorkspace.views.welcome",
+        "contents": "Visual Studio Code does not seem to be open in a valid workspace folder. \n Acidic Workspace either expects the current directory to be the root of the repository or for the user to select the workspace manually. \n [$(symbol-folder) Select Workspace](command:acidicWorkspace.selectWorkspaceManually)",
+        "when": "!hasWorkspaceRoot"
+      },
+      {
+        "view": "acidicWorkspace.views.welcome",
+        "contents": "We couldn't find any projects in this workspace. \n Make sure that the proper dependencies are installed locally and refresh the workspace. \n [$(sync) Refresh Workspace](command:acidicWorkspace.refresh)\n If you're just getting started with Acidic, you can learn more by reading our [documentation](https://acidic.io/getting-started).",
+        "when": "hasWorkspaceRoot"
+      }
+    ]
   },
   "activationEvents": [
     "onStartupFinished",
@@ -111,8 +198,11 @@
     "@storm-stack/errors": "latest",
     "@storm-stack/file-system": "latest",
     "@storm-stack/logging": "latest",
+    "@storm-stack/serialization": "latest",
+    "esbuild-plugin-pino": "^2.1.0",
     "express": "^4.18.2",
     "langium": "^1.2.0",
+    "pino-pretty": "^10.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "ts-pattern": "^5.0.5",

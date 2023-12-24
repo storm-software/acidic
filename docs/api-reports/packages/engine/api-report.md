@@ -12,6 +12,7 @@ import { ErrorCode } from "@storm-stack/errors";
 import { ESLint } from "eslint";
 import * as Handlebars from "handlebars";
 import { HelperOptions } from "handlebars/runtime";
+import { JsonValue } from "@storm-stack/serialization";
 import { MaybePromise } from "@storm-stack/utilities";
 import { PackageManagers } from "@storm-stack/file-system";
 import prettier from "prettier";
@@ -35,12 +36,12 @@ export { AcidicConfig as AcidicConfig_alias_1 };
 class AcidicEngine {
   // (undocumented)
   static create(
-    config?: StormConfig<"acidic", AcidicConfig>,
-    logger?: StormLog
+    config: StormConfig<"acidic", AcidicConfig>,
+    logger: StormLog
   ): AcidicEngine;
   createContext: (options: AcidicEngineOptions) => Promise<Context>;
   // (undocumented)
-  execute: (options?: AcidicEngineOptions) => Promise<StormError | null>;
+  execute: (options: AcidicEngineOptions) => Promise<StormError | null>;
   // (undocumented)
   readonly outputPath: string;
   // (undocumented)
@@ -52,11 +53,11 @@ export { AcidicEngine as AcidicEngine_alias_1 };
 // @public (undocumented)
 interface AcidicEngineOptions {
   // (undocumented)
-  model: string | Model | ServiceSchema;
+  outputPath?: string;
   // (undocumented)
-  outputPath: string;
+  packageManager?: PackageManagers;
   // (undocumented)
-  packageManager: PackageManagers;
+  schema: string | Model | ServiceSchema;
 }
 export { AcidicEngineOptions };
 export { AcidicEngineOptions as AcidicEngineOptions_alias_1 };
@@ -104,8 +105,9 @@ const AcidicErrorCode: {
 export { AcidicErrorCode };
 export { AcidicErrorCode as AcidicErrorCode_alias_1 };
 
-// @public (undocumented)
-export class AcidicSchemaWrapper {
+// @public
+class AcidicSchemaWrapper {
+  constructor(param: Model | ServiceSchema);
   // (undocumented)
   addEnum: (schemaEnum: EnumSchema) => void;
   // (undocumented)
@@ -126,6 +128,8 @@ export class AcidicSchemaWrapper {
   get service(): ServiceSchema;
   set service(_service: ServiceSchema);
 }
+export { AcidicSchemaWrapper };
+export { AcidicSchemaWrapper as AcidicSchemaWrapper_alias_1 };
 
 // @public (undocumented)
 const ALL_OPERATION_KINDS: string[];
@@ -228,10 +232,10 @@ export { ConnectorType as ConnectorType_alias_1 };
 interface Context {
   config: AcidicConfig;
   logger: StormLog;
-  model?: Model;
-  modelPath?: string;
   plugins: PluginContext;
-  schema: AcidicSchemaWrapper;
+  schema?: Model;
+  schemaPath?: string;
+  wrapper: AcidicSchemaWrapper;
 }
 export { Context };
 export { Context as Context_alias_1 };
@@ -316,6 +320,13 @@ export function default_alias(string: string, count?: number): string;
 const DEFAULT_PASSWORD_SALT_LENGTH = 12;
 export { DEFAULT_PASSWORD_SALT_LENGTH };
 export { DEFAULT_PASSWORD_SALT_LENGTH as DEFAULT_PASSWORD_SALT_LENGTH_alias_1 };
+
+// @public
+function deserializeAcidicSchemaWrapper(
+  schemaString: JsonValue
+): AcidicSchemaWrapper;
+export { deserializeAcidicSchemaWrapper };
+export { deserializeAcidicSchemaWrapper as deserializeAcidicSchemaWrapper_alias_1 };
 
 // @public (undocumented)
 const DIRECTORY_TRACKER_SYMBOL: unique symbol;
@@ -1099,6 +1110,13 @@ function requireOption<T>(options: PluginOptions, name: string): T;
 export { requireOption };
 export { requireOption as requireOption_alias_1 };
 export { requireOption as requireOption_alias_2 };
+
+// @public
+function serializeAcidicSchemaWrapper(
+  schemaWrapper: AcidicSchemaWrapper
+): string;
+export { serializeAcidicSchemaWrapper };
+export { serializeAcidicSchemaWrapper as serializeAcidicSchemaWrapper_alias_1 };
 
 // @public (undocumented)
 interface ServiceSchema extends NodeSchema {

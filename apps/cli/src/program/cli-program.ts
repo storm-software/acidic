@@ -1,9 +1,21 @@
+import { createAcidicConfig } from "@acidic/config";
+import { AcidicEngine } from "@acidic/engine";
 import { createCLIProgram } from "@storm-stack/cli";
+import { StormLog } from "@storm-stack/logging";
 
 export const createCLIAcidicProgram = async (): Promise<number> => {
   await createCLIProgram({
     name: "acidic",
-    description: "Acidic is a Prisma power pack for building full-stack apps.",
+    description:
+      "The Acidic Engine CLI is an application used to build full-stack apps with a design-first approach.",
+    documentationUrl: "https://acidic.io/docs",
+    licenseUrl: "https://acidic.io/license",
+    title: {
+      name: "Acidic CLI"
+    },
+    by: {
+      name: "Storm"
+    },
     commands: [
       {
         name: "info",
@@ -73,7 +85,17 @@ export const createCLIAcidicProgram = async (): Promise<number> => {
             description: "do not check if dependencies are installed"
           }
         ],
-        action: () => {}
+        action: async () => {
+          const Config = createAcidicConfig();
+          const Logger = StormLog.create(Config, "Acidic Daemon");
+          const Engine = AcidicEngine.create(Config, Logger);
+
+          const schema = await Engine.execute({
+            schema: Config.schemaPath,
+            packageManager: Config.extensions.acidic.packageManager,
+            outputPath: Config.extensions.acidic.outputPath
+          });
+        }
       }
     ],
     preAction: () => {},

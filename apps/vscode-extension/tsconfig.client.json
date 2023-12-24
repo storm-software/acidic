@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "jsx": "react-jsx",
+    "types": [
+      "node",
+      "@nx/react/typings/cssmodule.d.ts",
+      "@nx/react/typings/image.d.ts"
+    ]
+  },
+  "exclude": [
+    "client/**/*.spec.ts",
+    "client/**/*.test.ts",
+    "client/**/*.spec.tsx",
+    "client/**/*.test.tsx",
+    "client/**/*.spec.js",
+    "client/**/*.test.js",
+    "client/**/*.spec.jsx",
+    "client/**/*.test.jsx",
+    "extension/**/*.*"
+  ],
+  "include": [
+    "client/**/*.js",
+    "client/**/*.jsx",
+    "client/**/*.ts",
+    "client/**/*.tsx",
+    "../../tailwind.config.js"
+  ]
+}

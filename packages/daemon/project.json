@@ -9,6 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "entry": "packages/daemon/src/index.ts",
+        "additionalEntryPoints": ["packages/daemon/src/process/index.ts"],
         "outputPath": "dist/packages/daemon",
         "tsConfig": "packages/daemon/tsconfig.json",
         "project": "packages/daemon/package.json",
@@ -25,8 +26,7 @@
             "glob": "LICENSE",
             "output": "/"
           }
-        ],
-        "external": ["pm2"]
+        ]
       },
       "configurations": {
         "production": {

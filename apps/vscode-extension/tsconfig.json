@@ -1,26 +1,31 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
     "module": "commonjs",
     "target": "esnext",
     "lib": ["esnext", "dom"],
     "moduleResolution": "node",
+    "sourceMap": true,
+    "noEmit": true,
     "allowJs": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "experimentalDecorators": true,
+    "strict": false,
     "types": ["node"]
   },
   "files": [],
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.extension.json"
+    },
+    {
+      "path": "./tsconfig.client.json"
     },
     {
       "path": "./tsconfig.spec.json"
     }
-  ],
-  "extends": "../../tsconfig.base.json"
+  ]
 }

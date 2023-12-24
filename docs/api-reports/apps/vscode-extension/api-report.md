@@ -34,14 +34,12 @@ export function deactivate(): Promise<void> | undefined;
 export function getOutputChannel(): OutputChannel;
 
 // @public (undocumented)
-function NxWelcome({ title }: { title: string }): JSX_2.Element;
-export { NxWelcome };
-export { NxWelcome as default_alias_1 };
+export const importMetaUrl: any;
 
 // @public
 export class ReactPanel {
   // (undocumented)
-  static createOrShow(context: AcidicWorkspaceContext): void;
+  static createOrShow(context: AcidicWorkspaceContext, title: string): void;
   static currentPanel: ReactPanel | undefined;
   // (undocumented)
   dispose(): void;

@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "noEmit": true,
+    "lib": ["esnext", "dom"]
+  },
+  "files": [],
+  "include": ["extension/**/*.ts", "extension/**/*.js", "declarations.d.ts"],
+  "exclude": [
+    "jest.config.ts",
+    "extension/**/*.spec.ts",
+    "extension/**/*.test.ts",
+    "client/**/*.*"
+  ]
+}

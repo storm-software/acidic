@@ -173,26 +173,156 @@
       "preserveMemberOrder": false,
       "members": [
         {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/static!Commands:var",
+          "kind": "TypeAlias",
+          "canonicalReference": "@acidic/static!CommandName:type",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "Commands: "
+              "text": "export type CommandName = "
             },
             {
               "kind": "Content",
-              "text": "{\n    START: string;\n    STOP: string;\n    REFRESH: string;\n    ON_STARTUP_FINISHED: string;\n    INIT_SCHEMA_START: string;\n    INIT_SCHEMA_END: string;\n    REFRESH_SCHEMA_START: string;\n    REFRESH_SCHEMA_END: string;\n}"
+              "text": "\"start\" | \"stop\" | \"refresh\" | \"onStartupFinished\" | \"initSchemaStart\" | \"initSchemaEnd\" | \"refreshSchemaStart\" | \"refreshSchemaEnd\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "packages/static/src/commands/commands.ts",
+          "releaseTag": "Public",
+          "name": "CommandName",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/static!CommandName:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "CommandName: "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    START: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    STOP: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    REFRESH: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    ON_STARTUP_FINISHED: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    INIT_SCHEMA_START: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    INIT_SCHEMA_END: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    REFRESH_SCHEMA_START: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    REFRESH_SCHEMA_END: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
             }
           ],
           "fileUrlPath": "packages/static/src/commands/commands.ts",
           "isReadonly": true,
           "releaseTag": "Public",
-          "name": "Commands",
+          "name": "CommandName",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 2
+            "endIndex": 18
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/static!getCommandId:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "getCommandId: "
+            },
+            {
+              "kind": "Content",
+              "text": "(commandName: "
+            },
+            {
+              "kind": "Reference",
+              "text": "CommandName",
+              "canonicalReference": "@acidic/static!CommandName:type"
+            },
+            {
+              "kind": "Content",
+              "text": ") => string"
+            }
+          ],
+          "fileUrlPath": "packages/static/src/commands/get-command-id.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "getCommandId",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
           }
         }
       ]

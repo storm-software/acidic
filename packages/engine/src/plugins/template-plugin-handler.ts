@@ -69,7 +69,7 @@ ${stringify(options)}`
       (template: TemplateDetails) => !template.name.includes("__name__")
     );
 
-    const service = context.schema.service;
+    const service = context.wrapper.service;
     let generated = await Promise.all(
       templates.map(template =>
         getGeneratedContent(options, context, service, generator, template)

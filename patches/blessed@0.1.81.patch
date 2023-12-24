@@ -1,0 +1,17 @@
+diff --git a/.npmignore b/.npmignore
+deleted file mode 100644
+index 17e536a5fe0c70e148fd132d3b274fdea6897b32..0000000000000000000000000000000000000000
+diff --git a/lib/widget.js b/lib/widget.js
+index 6d1444dea1d8d0bb32145fdfe7654c637b0c5d5e..02321427aa14e16bfe6e291f9eba056dad0e22bf 100644
+--- a/lib/widget.js
++++ b/lib/widget.js
+@@ -4,6 +4,9 @@
+  * https://github.com/chjj/blessed
+  */
+ 
++this.term = {};
++this.pty = {};
++
+ var widget = exports;
+ 
+ widget.classes = [

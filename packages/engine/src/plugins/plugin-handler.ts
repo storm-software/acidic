@@ -19,7 +19,7 @@ export const createPluginHandler =
   ) => {
     const fileContent = await generator.generate(
       options,
-      context.schema.service,
+      context.wrapper.service,
       context,
       {}
     );

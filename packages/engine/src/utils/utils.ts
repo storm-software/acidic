@@ -1,3 +1,4 @@
+import { PluginOptions } from "@acidic/config";
 import {
   AcidicEnum,
   AcidicEnumField,
@@ -34,7 +35,6 @@ import {
 } from "@acidic/language/ast";
 import { ExpressionContext } from "@acidic/language/constants";
 import { getLiteral, getLiteralArray, resolved } from "@acidic/language/utils";
-import { PluginOptions } from "../types";
 
 /**
  * Gets data types that are not ignored

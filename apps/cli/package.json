@@ -16,6 +16,7 @@
     "@storm-stack/cli": "latest",
     "@storm-stack/errors": "latest",
     "@storm-stack/file-system": "latest",
+    "@storm-stack/logging": "latest",
     "@storm-stack/utilities": "latest",
     "commander": "^11.1.0"
   },

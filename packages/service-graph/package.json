@@ -1,0 +1,26 @@
+{
+  "name": "@acidic/service-graph",
+  "version": "0.0.1",
+  "private": false,
+  "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/service-graph"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "^1.0.4",
+    "clsx": "^2.0.0",
+    "reactflow": "^11.10.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "react": "18.2.0"
+  },
+  "peerDependencies": {
+    "react": "18.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

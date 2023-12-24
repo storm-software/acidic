@@ -10,6 +10,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@storm-software/config-tools": "latest",
     "@storm-stack/cli": "latest",
     "@storm-stack/date-time": "latest",
     "@storm-stack/errors": "latest",
@@ -17,6 +18,7 @@
     "@storm-stack/logging": "latest",
     "@storm-stack/serialization": "latest",
     "@storm-stack/utilities": "latest",
+    "chokidar": "^3.5.3",
     "pm2": "^5.3.0"
   },
   "publishConfig": {

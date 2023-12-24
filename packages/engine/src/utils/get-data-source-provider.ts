@@ -1,6 +1,6 @@
 import { DataSource, Model, isDataSource } from "@acidic/language/ast";
 import { getLiteral } from "@acidic/language/utils";
-import { ConnectorType } from "@prisma/generator-helper";
+import { ConnectorType } from "../types";
 
 export const getDataSource = (model: Model): DataSource | undefined => {
   return model.declarations.find((declaration): declaration is DataSource =>

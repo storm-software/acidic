@@ -1,0 +1,26 @@
+{
+  "name": "@acidic/vscode-components",
+  "version": "0.0.1",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "dependencies": {
+    "@storm-software/config-tools": "latest",
+    "@storm-stack/date-time": "latest",
+    "@storm-stack/errors": "latest",
+    "@storm-stack/logging": "latest",
+    "@storm-stack/serialization": "latest",
+    "@storm-stack/utilities": "latest",
+    "@vscode/webview-ui-toolkit": "^1.4.0",
+    "jotai": "^2.6.0",
+    "vscode": "^1.1.37"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^7.6.5"
+  }
+}
