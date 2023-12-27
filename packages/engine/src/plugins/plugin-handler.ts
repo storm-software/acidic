@@ -1,9 +1,5 @@
-import {
-  PluginHandler,
-  type Context,
-  type IGenerator,
-  type PluginOptions
-} from "../types";
+import { PluginOptions } from "@acidic/config";
+import { PluginHandler, type Context, type IGenerator } from "../types";
 
 /**
  * Runs the core functionality of a plugin generator

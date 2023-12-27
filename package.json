@@ -175,9 +175,6 @@
       "@acidic/config": "workspace:*",
       "@acidic/vscode-components": "workspace:*",
       "@acidic/vscode-state": "workspace:*"
-    },
-    "patchedDependencies": {
-      "blessed@0.1.81": "patches/blessed@0.1.81.patch"
     }
   },
   "triggerEmptyDevReleaseByIncrementingThisNumber": 0

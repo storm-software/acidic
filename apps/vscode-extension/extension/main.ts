@@ -2,10 +2,11 @@ import { createAcidicConfig } from "@acidic/config";
 import {
   CommandName,
   LOCATE_YOUR_WORKSPACE,
-  ServiceTreeProvider,
   SupportTreeProvider,
   WorkspaceConfigStore,
-  getCommandId
+  createLogger,
+  getCommandId,
+  initServiceTree
 } from "@acidic/vscode-state";
 import {
   findWorkspaceRootSafe,
@@ -18,7 +19,6 @@ import {
   ExtensionContext,
   FileSystemWatcher,
   RelativePattern,
-  WebviewPanel,
   commands,
   window,
   workspace
@@ -38,17 +38,18 @@ let logger: StormLog;
 let hasWorkspaceRoot = false;
 let workspaceFileWatcher: FileSystemWatcher | undefined;
 
-export function activate(_context: ExtensionContext) {
+export async function activate(_context: ExtensionContext) {
   try {
     window.setStatusBarMessage("Starting Acidic Workspace");
     commands.executeCommand("setContext", "hasWorkspaceRoot", false);
+    commands.executeCommand("setContext", "isWorkspaceLoading", true);
 
     context = _context;
 
     context.subscriptions.push(
       commands.registerCommand(
         LOCATE_YOUR_WORKSPACE.command?.command || "",
-        () => manuallySelectWorkspaceDefinition()
+        async () => manuallySelectWorkspaceDefinition()
       )
     );
 
@@ -64,7 +65,7 @@ export function activate(_context: ExtensionContext) {
         : undefined
     );
     if (workspaceRoot) {
-      loadAcidicWorkspace(workspaceRoot);
+      await loadAcidicWorkspace(workspaceRoot);
     } else {
       writeStatusBarMessage("Acidic Workspace is ready");
     }
@@ -174,6 +175,15 @@ async function loadAcidicWorkspace(workspaceRoot: string) {
   }
 }
 
+function handleWorkspaceReady() {
+  commands.executeCommand("setContext", "isWorkspaceLoading", false);
+  ReactPanel.createOrShow(context, "Acidic Workspace");
+
+  window.showInformationMessage(
+    "Acidic Workspace successfully loaded services"
+  );
+}
+
 async function loadWorkspaceRoot(workspacePath: string): Promise<boolean> {
   try {
     if (
@@ -191,37 +201,27 @@ async function loadWorkspaceRoot(workspacePath: string): Promise<boolean> {
     const workspaceRoot = findWorkspaceRootSafe(workspacePath);
     if (workspaceRoot) {
       process.env.STORM_WORKSPACE_ROOT = workspaceRoot;
+
       hasWorkspaceRoot = true;
+      commands.executeCommand("setContext", "hasWorkspaceRoot", true);
 
       await loadStormConfig(workspaceRoot);
       const config = createAcidicConfig(workspaceRoot);
-      // logger = createLogger(config);
+      logger = createLogger(config);
 
       WorkspaceConfigStore.fromContext(context, logger);
       WorkspaceConfigStore.instance.setWorkspaceRoot(workspaceRoot);
 
-      client = startLanguageClient(context);
+      // client = startLanguageClient(context);
 
-      const serviceExplorerProvider = new ServiceTreeProvider(workspaceRoot);
-      window.registerTreeDataProvider(
-        "acidicWorkspace.views.services",
-        serviceExplorerProvider
-      );
-      commands.registerCommand(
-        getCommandId(CommandName.REFRESH_SCHEMA_START),
-        () => serviceExplorerProvider.refresh()
-      );
-
-      let panel: WebviewPanel | undefined = undefined;
       context.subscriptions.push(
         commands.registerCommand(
-          getCommandId(CommandName.OPEN_SCHEMA_EXPLORER),
-          () => {
-            ReactPanel.createOrShow({ ...context, logger }, "Acidic Workspace");
-          }
+          getCommandId(CommandName.SET_WORKSPACE_READY),
+          handleWorkspaceReady
         )
       );
 
+      initServiceTree(context, config, logger, handleWorkspaceReady);
       if (workspaceFileWatcher) {
         workspaceFileWatcher.dispose();
       }
@@ -243,9 +243,7 @@ async function loadWorkspaceRoot(workspacePath: string): Promise<boolean> {
       );
 
       if (workspaceRoot === workspacePath) {
-        window.showInformationMessage(
-          `Acidic Workspace successfully initialized from ${workspaceRoot}`
-        );
+        writeStatusBarMessage("Acidic Workspace successfully initialized");
       } else {
         window.showWarningMessage(
           `Acidic Workspace could not use "${workspacePath}" as a workspace root directory; however, parent folder "${workspaceRoot}" was successfully use to initialize.`
@@ -256,8 +254,6 @@ async function loadWorkspaceRoot(workspacePath: string): Promise<boolean> {
     } else {
       window.showErrorMessage(`Unable to load workspace from ${workspacePath}`);
     }
-
-    commands.executeCommand("setContext", "hasWorkspaceRoot", hasWorkspaceRoot);
   } catch (error) {
     console.error(error);
     window.showErrorMessage(

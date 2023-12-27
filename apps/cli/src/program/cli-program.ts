@@ -10,7 +10,7 @@ export const createCLIAcidicProgram = async (): Promise<number> => {
       "The Acidic Engine CLI is an application used to build full-stack apps with a design-first approach.",
     documentationUrl: "https://acidic.io/docs",
     licenseUrl: "https://acidic.io/license",
-    title: {
+    banner: {
       name: "Acidic CLI"
     },
     by: {

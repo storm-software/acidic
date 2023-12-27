@@ -5,21 +5,20 @@
 ```ts
 import type { AstNode } from "langium";
 import { ErrorCode } from "@storm-stack/errors";
-import { PackageManagers } from "@storm-stack/file-system";
 import type { Reference } from "langium";
 import { StormConfig } from "@storm-software/config-tools";
 import { StormError } from "@storm-stack/errors";
 import { StormLog } from "@storm-stack/logging";
 
 // @public (undocumented)
-export type AcidicDaemonErrorCode =
+type AcidicDaemonErrorCode =
   | ErrorCode
   | "missing_name"
   | "missing_schema"
   | "invalid_bus_payload";
 
 // @public (undocumented)
-export const AcidicDaemonErrorCode: {
+const AcidicDaemonErrorCode: {
   missing_name: AcidicDaemonErrorCode;
   missing_schema: AcidicDaemonErrorCode;
   invalid_bus_payload: AcidicDaemonErrorCode;
@@ -41,29 +40,34 @@ export const AcidicDaemonErrorCode: {
   user_not_logged_in: ErrorCode;
   unknown_cause: ErrorCode;
 };
+export { AcidicDaemonErrorCode };
+export { AcidicDaemonErrorCode as AcidicDaemonErrorCode_alias_1 };
 
 // @public (undocumented)
-export type ActiveMessage = Message<
+type ActiveMessage = Message<
   {
     schema: AcidicSchemaWrapper;
   } & BaseMessagePayload
 > & {
   messageId: "active";
 };
+export { ActiveMessage };
+export { ActiveMessage as ActiveMessage_alias_1 };
 
 // @public (undocumented)
-export interface BaseMessagePayload {
+interface BaseMessagePayload {
   // (undocumented)
-  name: string | "all";
+  path: string | "all";
 }
+export { BaseMessagePayload };
+export { BaseMessagePayload as BaseMessagePayload_alias_1 };
 
 // @public (undocumented)
 type DaemonProcess = {
-  name: string;
+  path: string;
   status: ProcessStatus;
-  schemaPath: string;
-  schemaWrapper?: AcidicSchemaWrapper;
-  error?: StormError;
+  schema?: AcidicSchemaWrapper;
+  error: StormError | null;
 };
 export { DaemonProcess };
 export { DaemonProcess as DaemonProcess_alias_1 };
@@ -72,76 +76,90 @@ export { DaemonProcess as DaemonProcess_alias_2 };
 // @public (undocumented)
 class DaemonProcessManager {
   // (undocumented)
-  static create: (
-    config?: StormConfig<"acidic", AcidicConfig>,
-    logger?: StormLog
-  ) => DaemonProcessManager;
+  getProcess(schemaPath: string): DaemonProcess | undefined;
   // (undocumented)
-  getProcess(name: string): DaemonProcess | undefined;
+  onChange: (handler: (name: string) => void) => void;
   // (undocumented)
-  initialize: () => void;
+  onReady: (handler: () => void) => void;
   // (undocumented)
   get processes(): Map<string, DaemonProcess>;
   // (undocumented)
-  start: (schemaPaths?: string[]) => void;
+  static start: (
+    config: AcidicConfig,
+    logger: StormLog,
+    onReadyFn: () => void
+  ) => DaemonProcessManager;
+  // (undocumented)
+  start: () => Promise<void>;
+  // (undocumented)
+  stop: () => void;
 }
 export { DaemonProcessManager };
 export { DaemonProcessManager as DaemonProcessManager_alias_1 };
 export { DaemonProcessManager as DaemonProcessManager_alias_2 };
 
 // @public (undocumented)
-export type ErrorMessage = Message<
+type ErrorMessage = Message<
   {
     error: StormError;
   } & BaseMessagePayload
 > & {
   messageId: "error";
 };
+export { ErrorMessage };
+export { ErrorMessage as ErrorMessage_alias_1 };
 
 // @public (undocumented)
-export type LoadingMessage = Message<BaseMessagePayload> & {
+type LoadingMessage = Message<BaseMessagePayload> & {
   messageId: "loading";
 };
+export { LoadingMessage };
+export { LoadingMessage as LoadingMessage_alias_1 };
 
 // @public (undocumented)
-export interface Message<
-  TPayload extends BaseMessagePayload = BaseMessagePayload
-> {
+interface Message<TPayload extends BaseMessagePayload = BaseMessagePayload> {
   // (undocumented)
   messageId: MessageIdType;
   // (undocumented)
   payload?: TPayload;
 }
+export { Message };
+export { Message as Message_alias_1 };
 
 // @public (undocumented)
-export const messageBusDecorator: (
+const messageBusDecorator: (
   logger: StormLog,
   getMessageFn: (message: Message) => PromiseLike<any>
 ) => (packet: MessageBusPacket) => PromiseLike<any>;
+export { messageBusDecorator };
+export { messageBusDecorator as messageBusDecorator_alias_1 };
 
 // @public (undocumented)
-export type MessageBusPacket = {
+type MessageBusPacket = {
   id: string;
-  type: "process:msg";
+  type: "message";
   topic: true;
   data?: string;
 };
+export { MessageBusPacket };
+export { MessageBusPacket as MessageBusPacket_alias_1 };
 
 // @public (undocumented)
-export type MessageIdType = "active" | "error" | "loading";
+type MessageIdType = "active" | "error" | "loading";
 
 // @public (undocumented)
-export const MessageIdType: {
+const MessageIdType: {
   ACTIVE: MessageIdType;
   ERROR: MessageIdType;
   LOADING: MessageIdType;
 };
+export { MessageIdType };
+export { MessageIdType as MessageIdType_alias_1 };
 
 // @public (undocumented)
 const startDaemonProcess: () => Promise<void>;
 export { startDaemonProcess };
 export { startDaemonProcess as startDaemonProcess_alias_1 };
-export { startDaemonProcess as startDaemonProcess_alias_2 };
 
 // (No @packageDocumentation comment for this package)
 ```

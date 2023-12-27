@@ -1,6 +1,7 @@
-export type ServiceTreeItemType = "schema" | "plugin";
+export type ServiceTreeItemType = "workspace" | "service" | "plugin";
 export const ServiceTreeItemType = {
-  SCHEMA: "schema" as ServiceTreeItemType,
+  WORKSPACE: "workspace" as ServiceTreeItemType,
+  SERVICE: "service" as ServiceTreeItemType,
   PLUGIN: "plugin" as ServiceTreeItemType
 };
 
@@ -17,16 +18,22 @@ export const ServiceTreeItemStatus = {
 };
 
 export type ServiceTreeItemContextValue =
-  | "schema_active"
-  | "schema_refreshing"
-  | "schema_loading"
+  | "workspace_active"
+  | "workspace_refreshing"
+  | "workspace_loading"
+  | "service_active"
+  | "service_refreshing"
+  | "service_loading"
   | "plugin_active"
   | "plugin_refreshing"
   | "plugin_loading";
 export const ServiceTreeItemContextValue = {
-  SCHEMA_ACTIVE: "schema_active" as ServiceTreeItemContextValue,
-  SCHEMA_REFRESHING: "schema_refreshing" as ServiceTreeItemContextValue,
-  SCHEMA_LOADING: "schema_loading" as ServiceTreeItemContextValue,
+  WORKSPACE_ACTIVE: "workspace_active" as ServiceTreeItemContextValue,
+  WORKSPACE_REFRESHING: "workspace_refreshing" as ServiceTreeItemContextValue,
+  WORKSPACE_LOADING: "workspace_loading" as ServiceTreeItemContextValue,
+  SERVICE_ACTIVE: "service_active" as ServiceTreeItemContextValue,
+  SERVICE_REFRESHING: "service_refreshing" as ServiceTreeItemContextValue,
+  SERVICE_LOADING: "service_loading" as ServiceTreeItemContextValue,
   PLUGIN_ACTIVE: "plugin_active" as ServiceTreeItemContextValue,
   PLUGIN_REFRESHING: "plugin_refreshing" as ServiceTreeItemContextValue,
   PLUGIN_LOADING: "plugin_loading" as ServiceTreeItemContextValue

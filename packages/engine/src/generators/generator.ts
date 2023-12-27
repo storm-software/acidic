@@ -1,5 +1,6 @@
+import { PluginOptions } from "@acidic/config";
 import { EMPTY_STRING, isString } from "@storm-stack/utilities";
-import { Context, IGenerator, NodeSchema, PluginOptions } from "../types";
+import { Context, IGenerator, NodeSchema } from "../types";
 
 /**
  * Acidic base Code Generator

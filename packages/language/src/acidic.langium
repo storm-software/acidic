@@ -1,12 +1,12 @@
 grammar Acidic
 
 entry Model:
-    imports+=ModelImport*
+    imports+=AcidicImport*
     (
         declarations+=AbstractDeclaration
     )*;
 
-ModelImport:
+AcidicImport:
     'import' path=STRING  ';'?;
 
 AbstractDeclaration:

@@ -472,12 +472,12 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/daemon!BaseMessagePayload#name:member",
+              "canonicalReference": "@acidic/daemon!BaseMessagePayload#path:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "name: "
+                  "text": "path: "
                 },
                 {
                   "kind": "Content",
@@ -491,7 +491,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "name",
+              "name": "path",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -511,7 +511,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    name: string;\n    status: "
+              "text": "{\n    path: string;\n    status: "
             },
             {
               "kind": "Reference",
@@ -520,7 +520,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    schemaPath: string;\n    schemaWrapper?: "
+              "text": ";\n    schema?: "
             },
             {
               "kind": "Reference",
@@ -529,7 +529,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    error?: "
+              "text": ";\n    error: "
             },
             {
               "kind": "Reference",
@@ -538,7 +538,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n}"
+              "text": " | null;\n}"
             },
             {
               "kind": "Content",
@@ -570,75 +570,13 @@
           "preserveMemberOrder": false,
           "members": [
             {
-              "kind": "Property",
-              "canonicalReference": "@acidic/daemon!DaemonProcessManager.create:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "static create: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "(config?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StormConfig",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<\"acidic\", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicConfig",
-                  "canonicalReference": "@acidic/daemon!~AcidicConfig:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">, logger?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "StormLog",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": ") => "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "DaemonProcessManager",
-                  "canonicalReference": "@acidic/daemon!DaemonProcessManager:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "create",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 9
-              },
-              "isStatic": true,
-              "isProtected": false,
-              "isAbstract": false
-            },
-            {
               "kind": "Method",
               "canonicalReference": "@acidic/daemon!DaemonProcessManager#getProcess:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "getProcess(name: "
+                  "text": "getProcess(schemaPath: "
                 },
                 {
                   "kind": "Content",
@@ -672,7 +610,7 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "name",
+                  "parameterName": "schemaPath",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
@@ -686,16 +624,16 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@acidic/daemon!DaemonProcessManager#initialize:member",
+              "canonicalReference": "@acidic/daemon!DaemonProcessManager#onChange:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "initialize: "
+                  "text": "onChange: "
                 },
                 {
                   "kind": "Content",
-                  "text": "() => void"
+                  "text": "(handler: (name: string) => void) => void"
                 },
                 {
                   "kind": "Content",
@@ -705,7 +643,37 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "initialize",
+              "name": "onChange",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/daemon!DaemonProcessManager#onReady:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "onReady: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(handler: () => void) => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "onReady",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -769,7 +737,16 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "(schemaPaths?: string[]) => void"
+                  "text": "() => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -780,6 +757,89 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "start",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/daemon!DaemonProcessManager.start:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static start: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(config: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicConfig",
+                  "canonicalReference": "@acidic/daemon!~AcidicConfig:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", logger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormLog",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", onReadyFn: () => void) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DaemonProcessManager",
+                  "canonicalReference": "@acidic/daemon!DaemonProcessManager:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "start",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 7
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/daemon!DaemonProcessManager#stop:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "stop: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "() => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "stop",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -1063,7 +1123,7 @@
             },
             {
               "kind": "Content",
-              "text": "{\n    id: string;\n    type: \"process:msg\";\n    topic: true;\n    data?: string;\n}"
+              "text": "{\n    id: string;\n    type: \"message\";\n    topic: true;\n    data?: string;\n}"
             },
             {
               "kind": "Content",

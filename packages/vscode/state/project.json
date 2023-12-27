@@ -41,5 +41,7 @@
     },
     "lint": {},
     "test": {}
-  }
+  },
+  "tags": [],
+  "implicitDependencies": ["daemon"]
 }

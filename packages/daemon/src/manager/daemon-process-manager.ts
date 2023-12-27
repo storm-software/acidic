@@ -1,20 +1,11 @@
-import { AcidicConfig, createAcidicConfig } from "@acidic/config";
-import { AcidicSchemaWrapper } from "@acidic/engine";
-import { StormError } from "@storm-stack/errors";
+import { AcidicConfig } from "@acidic/config";
+import { AcidicEngine, AcidicSchemaWrapper } from "@acidic/engine";
+import { StormError, getCauseFromUnknown } from "@storm-stack/errors";
 import { joinPaths } from "@storm-stack/file-system";
 import { StormLog } from "@storm-stack/logging";
-import { MaybePromise } from "@storm-stack/utilities";
-import { ChildProcess, execFile } from "child_process";
-import chokidar from "chokidar";
-import { AcidicDaemonErrorCode } from "../errors";
-import {
-  ActiveMessage,
-  BaseMessagePayload,
-  ErrorMessage,
-  Message,
-  MessageIdType
-} from "../types";
-import { messageBusDecorator } from "../utilities/message-bus-helpers";
+import { MaybePromise, isError } from "@storm-stack/utilities";
+import chokidar, { FSWatcher } from "chokidar";
+import { globSync } from "glob";
 
 type ProcessEventType = "add" | "change" | "remove";
 const ProcessEventType = {
@@ -25,171 +16,164 @@ const ProcessEventType = {
 
 type ProcessStatus = "active" | "error" | "loading";
 export type DaemonProcess = {
-  name: string;
+  path: string;
   status: ProcessStatus;
-  schemaPath: string;
-  schemaWrapper?: AcidicSchemaWrapper;
-  error?: StormError;
-  process: ChildProcess;
+  schema?: AcidicSchemaWrapper;
+  error: StormError | null;
 };
 
 export class DaemonProcessManager {
   #config: AcidicConfig;
   #logger: StormLog;
-  #watcher: any;
+
+  #watcher: FSWatcher;
+  #engine: AcidicEngine;
+
   #processes: Map<string, DaemonProcess> = new Map<string, DaemonProcess>();
 
   #changedHandlers: Array<(name: string) => MaybePromise<any>> = [];
+  #readyHandlers: Array<() => MaybePromise<any>> = [];
 
-  public static start = (config?: AcidicConfig, logger?: StormLog) => {
+  public static start = (
+    config: AcidicConfig,
+    logger: StormLog,
+    onReadyFn: () => void
+  ) => {
     const daemon = new DaemonProcessManager(config, logger);
+
+    daemon.onReady(onReadyFn);
     daemon.start();
 
     return daemon;
   };
 
-  private constructor(config?: AcidicConfig, logger?: StormLog) {
-    this.#config = config ?? (createAcidicConfig() as AcidicConfig);
+  private constructor(config: AcidicConfig, logger: StormLog) {
+    this.#config = config;
 
     this.#logger = logger ?? StormLog.create(this.#config, "Acidic Engine");
     this.#logger.info(`Initializing the Acidic Daemon Manager`);
 
-    this.#watcher = chokidar.watch("**/{*.acid,*.acidic}", {
-      persistent: true,
-      followSymlinks: true,
-      cwd: this.#config.storm.workspaceRoot,
-      depth: 99,
-      interval: 100,
-      awaitWriteFinish: {
-        stabilityThreshold: 2000,
-        pollInterval: 100
-      }
+    this.#watcher = chokidar.watch(this.#config.extensions.acidic.input, {
+      cwd: this.#config.workspaceRoot,
+      ignoreInitial: true,
+      usePolling: true,
+      interval: 1000,
+      ignored: this.#config.extensions.acidic.ignored
     });
+    this.#engine = AcidicEngine.create(this.#config, this.#logger);
   }
 
   public get processes(): Map<string, DaemonProcess> {
     return this.#processes;
   }
 
-  public getProcess(name: string): DaemonProcess | undefined {
-    return Array.from(this.processes.values()).find(proc => proc.name === name);
+  public getProcess(schemaPath: string): DaemonProcess | undefined {
+    return Array.from(this.processes.values()).find(
+      proc => proc.path === schemaPath
+    );
   }
 
-  public start = () => {
+  public start = async () => {
     this.#watcher
-      .on("add", this.startChildProcess)
-      .on("change", this.changeChildProcess)
-      .on("unlink", this.stopChildProcess);
+      .on("ready", this.handleReady)
+      .on("add", this.handleStart)
+      .on("change", this.handleChange)
+      .on("unlink", this.handleStop);
   };
 
   public stop = () => {
     this.#watcher.close();
     this.#processes.forEach(process => {
-      this.stopChildProcess(process.schemaPath);
+      this.handleStop(process.path);
     });
   };
 
-  public onChange = (handler: (name: string) => MaybePromise<any>) => {
+  public onChange = (handler: (name: string) => void) => {
     this.#changedHandlers.push(handler);
   };
 
-  private startChildProcess = (schemaPath: string) => {
-    const name = this.formatChildProcessName(schemaPath);
-    if (!this.#processes.has(name)) {
-      const child = execFile(joinPaths(__dirname, "process.js"), [
-        name,
-        schemaPath
-      ]);
+  public onReady = (handler: () => void) => {
+    this.#readyHandlers.push(handler);
+  };
 
-      child.on("error", (error: any) => {
-        this.#logger.error(error);
-      });
-      child.on("exit", (code: any, signal: any) => {
-        this.#logger.info(
-          `child process exited with code ${code} and signal ${signal}`
-        );
-      });
-      child.on(
-        "message",
-        messageBusDecorator(
-          this.#logger,
-          (message: Message<BaseMessagePayload>) => {
-            if (message.payload?.name) {
-              const process = this.getProcess(message.payload.name);
-              if (process) {
-                process.status = message.messageId;
-                if (message.messageId === MessageIdType.ACTIVE) {
-                  const activeMessage = message as ActiveMessage;
-
-                  if (activeMessage.payload?.schema) {
-                    process.status = MessageIdType.ACTIVE;
-                    process.schemaWrapper = activeMessage.payload?.schema;
-                  }
-                } else if (message.messageId === MessageIdType.ERROR) {
-                  const errorMessage = message as ErrorMessage;
-
-                  process.status = MessageIdType.ERROR;
-                  process.error =
-                    errorMessage.payload?.error ??
-                    new StormError(AcidicDaemonErrorCode.invalid_bus_payload, {
-                      message:
-                        "No error was provided in the payload of the error message"
-                    });
-                } else if (message.messageId === MessageIdType.LOADING) {
-                  process.status = MessageIdType.LOADING;
-                }
-              }
-            }
-
-            return Promise.resolve(
-              this.#changedHandlers.map(handler =>
-                handler(message.payload?.name ?? name)
-              )
-            );
-          }
-        )
-      );
-
-      this.#processes.set(name, {
-        name,
+  private handleStart = async (schemaPath: string) => {
+    if (!this.#processes.has(schemaPath)) {
+      this.#processes.set(schemaPath, {
+        path: schemaPath,
         status: "loading",
-        schemaPath,
-        process: child
+        error: null
+      });
+      this.handleChange(schemaPath);
+
+      this.executeEngine(schemaPath).then(() => {
+        this.handleChange(schemaPath);
       });
     }
   };
 
-  private stopChildProcess = (schemaPath: string) => {
-    const name = this.formatChildProcessName(schemaPath);
-    if (this.#processes.has(name)) {
-      this.#processes.get(name)?.process.unref();
-      this.#processes.delete(name);
+  private handleStop = (schemaPath: string) => {
+    if (this.#processes.has(schemaPath)) {
+      this.#processes.delete(schemaPath);
     }
   };
 
-  private changeChildProcess = (schemaPath: string) => {
-    this.stopChildProcess(schemaPath);
-    this.startChildProcess(schemaPath);
+  private handleChange = (schemaPath: string) => {
+    this.handleStop(schemaPath);
+    this.handleStart(schemaPath);
   };
 
-  private formatChildProcessName = (schemaPath: string) => {
-    return schemaPath.replaceAll(/\\/g, "-").replaceAll("/", "-");
+  private handleReady = () => {
+    const watched = globSync(
+      joinPaths(
+        this.#config.workspaceRoot,
+        this.#config.extensions.acidic.input
+      ),
+      {
+        ignore: this.#config.extensions.acidic.ignored,
+        absolute: true,
+        allowWindowsEscape: true,
+        follow: true
+      }
+    );
+
+    return Promise.all(
+      watched.map(schemaPath => this.executeEngine(schemaPath))
+    ).then(() => {
+      return this.#readyHandlers.forEach(handler => handler());
+    });
+  };
+
+  private executeEngine = async (schemaPath: string) => {
+    return this.#engine
+      .execute({
+        schema: schemaPath,
+        packageManager: this.#config.packageManager,
+        outputPath: this.#config.runtimePath
+      })
+      .then(result => {
+        if (isError(result)) {
+          this.#processes.set(schemaPath, {
+            path: schemaPath,
+            status: "error",
+            error: getCauseFromUnknown(result)
+          });
+        } else {
+          this.#processes.set(schemaPath, {
+            path: schemaPath,
+            schema: result,
+            status: "active",
+            error: null
+          });
+        }
+      })
+      .catch(e => {
+        this.#logger.error(e);
+
+        this.#processes.set(schemaPath, {
+          path: schemaPath,
+          status: "error",
+          error: getCauseFromUnknown(e)
+        });
+      });
   };
 }
-
-/*const log = (msg: string) => {
-  console.log(msg);
-
-  child.stdout.on("data", (data: any) => {
-    console.log(`child stdout:\n${data}`);
-  });
-  child.stderr.on("data", (data: any) => {
-    console.error(`child stderr:\n${data}`);
-  });
-  child.on("error", (error: any) => {
-    console.error(`child error:\n${error}`);
-  });
-  child.on("exit", (code: any, signal: any) => {
-    console.log(`child process exited with code ${code} and signal ${signal}`);
-  });
-};*/

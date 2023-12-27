@@ -6,8 +6,6 @@
 import { AstNode } from "langium";
 import { AstNode as AstNode_2 } from "langium/lib/syntax-tree";
 import { CompilerOptions } from "ts-morph";
-import { ConnectorType as ConnectorType_2 } from "@prisma/generator-helper";
-import type { DMMF } from "@prisma/generator-helper";
 import { ErrorCode } from "@storm-stack/errors";
 import { ESLint } from "eslint";
 import * as Handlebars from "handlebars";
@@ -21,16 +19,6 @@ import type { Reference } from "langium";
 import { StormConfig } from "@storm-software/config-tools";
 import { StormError } from "@storm-stack/errors";
 import { StormLog } from "@storm-stack/logging";
-import z from "zod";
-
-// @public
-type AcidicConfig = {
-  defaultOptions?: Omit<PluginOptions, "provider">;
-  outputPath: string;
-  packageManager: PackageManagers;
-} & Record<string, OptionValue | OptionValue[]>;
-export { AcidicConfig };
-export { AcidicConfig as AcidicConfig_alias_1 };
 
 // @public (undocumented)
 class AcidicEngine {
@@ -41,7 +29,9 @@ class AcidicEngine {
   ): AcidicEngine;
   createContext: (options: AcidicEngineOptions) => Promise<Context>;
   // (undocumented)
-  execute: (options: AcidicEngineOptions) => Promise<StormError | null>;
+  execute: (
+    options: AcidicEngineOptions
+  ) => Promise<StormError | AcidicSchemaWrapper>;
   // (undocumented)
   readonly outputPath: string;
   // (undocumented)
@@ -209,21 +199,26 @@ export { BytesObjectFieldSchema };
 export { BytesObjectFieldSchema as BytesObjectFieldSchema_alias_1 };
 
 // @public (undocumented)
-export let config: ConfigType;
-
-// @public (undocumented)
-export type ConfigType = z.infer<typeof schema>;
+type ConnectorType =
+  | "mysql"
+  | "mongodb"
+  | "sqlite"
+  | "postgresql"
+  | "postgres"
+  | "sqlserver"
+  | "cockroachdb"
+  | "jdbc:sqlserver";
 
 // @public (undocumented)
 const ConnectorType: {
-  MYSQL: ConnectorType_2;
-  MONGO_DB: ConnectorType_2;
-  SQLITE: ConnectorType_2;
-  POSTGRESQL: ConnectorType_2;
-  POSTGRES: ConnectorType_2;
-  SQL_SERVER: ConnectorType_2;
-  COCKROACH_DB: ConnectorType_2;
-  JDBC_SQL_SERVER: ConnectorType_2;
+  MYSQL: ConnectorType;
+  MONGO_DB: ConnectorType;
+  SQLITE: ConnectorType;
+  POSTGRESQL: ConnectorType;
+  POSTGRES: ConnectorType;
+  SQL_SERVER: ConnectorType;
+  COCKROACH_DB: ConnectorType;
+  JDBC_SQL_SERVER: ConnectorType;
 };
 export { ConnectorType };
 export { ConnectorType as ConnectorType_alias_1 };
@@ -278,7 +273,7 @@ interface DataSourceSchema extends NodeSchema {
   __type: "DataSource";
   comments?: string[];
   name: string;
-  provider: ConnectorType_2;
+  provider: ConnectorType;
   url: string;
 }
 export { DataSourceSchema };
@@ -472,15 +467,6 @@ export { GENERATOR_SYMBOL };
 export { GENERATOR_SYMBOL as GENERATOR_SYMBOL_alias_1 };
 
 // @public
-type GeneratorOptions = {
-  headerName?: string;
-  header?: string | boolean;
-  footer?: string | boolean;
-} & Record<string, any>;
-export { GeneratorOptions };
-export { GeneratorOptions as GeneratorOptions_alias_1 };
-
-// @public
 function getAcidicEnums(model: Model): AcidicEnum[];
 export { getAcidicEnums };
 export { getAcidicEnums as getAcidicEnums_alias_1 };
@@ -561,7 +547,7 @@ export { getDataSourceName as getDataSourceName_alias_1 };
 export { getDataSourceName as getDataSourceName_alias_2 };
 
 // @public (undocumented)
-const getDataSourceProvider: (model: Model) => ConnectorType_2;
+const getDataSourceProvider: (model: Model) => ConnectorType;
 export { getDataSourceProvider };
 export { getDataSourceProvider as getDataSourceProvider_alias_1 };
 export { getDataSourceProvider as getDataSourceProvider_alias_2 };
@@ -577,19 +563,6 @@ function getDefaultOutputFolder(): string | undefined;
 export { getDefaultOutputFolder };
 export { getDefaultOutputFolder as getDefaultOutputFolder_alias_1 };
 export { getDefaultOutputFolder as getDefaultOutputFolder_alias_2 };
-
-// @public
-export function getDMMF(options: GetDMMFOptions): Promise<DMMF.Document>;
-
-// @public (undocumented)
-export type GetDMMFOptions = {
-  datamodel?: string;
-  cwd?: string;
-  prismaPath?: string;
-  datamodelPath?: string;
-  retry?: number;
-  previewFeatures?: string[];
-};
 
 // @public (undocumented)
 function getFunctionExpressionContext(
@@ -638,12 +611,6 @@ function getObjectLiteral<T>(expr: Expression | undefined): T | undefined;
 export { getObjectLiteral };
 export { getObjectLiteral as getObjectLiteral_alias_1 };
 export { getObjectLiteral as getObjectLiteral_alias_2 };
-
-// @public
-export function getPrismaClientImportSpec(
-  model: Model,
-  importingFromDir: string
-): any;
 
 // @public
 function getServiceId(model: Model): string;
@@ -774,9 +741,6 @@ interface JsonObjectFieldSchema {
 }
 export { JsonObjectFieldSchema };
 export { JsonObjectFieldSchema as JsonObjectFieldSchema_alias_1 };
-
-// @public
-export function loadConfig(filename: string): void;
 
 // @public (undocumented)
 interface ModelSchema extends NodeSchema {
@@ -936,11 +900,6 @@ interface OperationSchema extends NodeSchema {
 export { OperationSchema };
 export { OperationSchema as OperationSchema_alias_1 };
 
-// @public
-type OptionValue = string | number | boolean;
-export { OptionValue };
-export { OptionValue as OptionValue_alias_1 };
-
 // @public (undocumented)
 const PLUGIN_RUNNER_SYMBOL: unique symbol;
 export { PLUGIN_RUNNER_SYMBOL };
@@ -1038,22 +997,13 @@ type PluginModule<TOptions extends PluginOptions = PluginOptions> = {
 export { PluginModule };
 export { PluginModule as PluginModule_alias_1 };
 
-// @public
-type PluginOptions = {
-  provider: string;
-  output?: string;
-} & GeneratorOptions &
-  Record<string, OptionValue | OptionValue[]>;
-export { PluginOptions };
-export { PluginOptions as PluginOptions_alias_1 };
-
 // @public (undocumented)
 interface PluginSchema extends NodeSchema {
   __type: "Plugin";
   comments?: string[];
   name: string;
   output: string;
-  provider: ConnectorType_2;
+  provider: ConnectorType;
   url: string;
 }
 export { PluginSchema };
@@ -1125,6 +1075,7 @@ interface ServiceSchema extends NodeSchema {
   dataSource?: DataSourceSchema;
   enums: EnumSchema[];
   events: EventSchema[];
+  imports: string[];
   models: ModelSchema[];
   mutations: OperationSchema[];
   objects: ObjectSchema[];

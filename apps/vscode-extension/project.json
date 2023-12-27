@@ -32,6 +32,11 @@
             "output": "/"
           },
           {
+            "input": "apps/vscode-extension/docs",
+            "glob": "**/*.*",
+            "output": "docs"
+          },
+          {
             "glob": "CHANGELOG.md",
             "input": "",
             "output": "/"
@@ -57,9 +62,19 @@
             "output": "assets"
           },
           {
+            "input": "assets/logos",
+            "glob": "test-tube.png",
+            "output": "assets/logos"
+          },
+          {
             "input": "packages/language/syntaxes",
             "glob": "*.*",
             "output": "syntaxes"
+          },
+          {
+            "input": "packages/language/res",
+            "glob": "*.*",
+            "output": "res"
           },
           {
             "input": "packages/language",
@@ -98,6 +113,7 @@
         "outputPath": "dist/apps/vscode-extension/client",
         "project": "apps/vscode-extension/package.json",
         "defaultConfiguration": "production",
+        "platform": "browser",
         "external": ["vscode"],
         "bundle": true,
         "thirdParty": true,
@@ -263,5 +279,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": []
+  "implicitDependencies": ["vscode-state", "service-graph"]
 }

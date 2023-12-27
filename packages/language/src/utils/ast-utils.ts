@@ -2,6 +2,7 @@ import { AstNode, LangiumDocuments, Mutable, getDocument } from "langium";
 import { URI, Utils } from "vscode-uri";
 import {
   AcidicEvent,
+  AcidicImport,
   AcidicModel,
   AcidicMutation,
   AcidicObject,
@@ -11,7 +12,6 @@ import {
   AcidicSubscription,
   Expression,
   Model,
-  ModelImport,
   ReferenceExpr,
   isAcidicEvent,
   isAcidicModel,
@@ -201,7 +201,7 @@ export function getAcidicEventReference(
   }
 }
 
-export function resolveImportUri(imp: ModelImport): URI | undefined {
+export function resolveImportUri(imp: AcidicImport): URI | undefined {
   if (imp.path === undefined || imp.path.length === 0) {
     return undefined;
   }
@@ -251,7 +251,7 @@ function resolveTransitiveImportsInternal(
 
 export function resolveImport(
   documents: LangiumDocuments,
-  imp: ModelImport
+  imp: AcidicImport
 ): Model | undefined {
   const resolvedUri = resolveImportUri(imp);
   try {

@@ -1,15 +1,13 @@
 //import { SchemaTreeView } from "@acidic/vscode-components";
 import { ServiceGraph } from "@acidic/service-graph";
+import { MemoExoticComponent, memo } from "react";
 import "../style/global.css";
 
-export function App() {
+export const App: MemoExoticComponent<() => JSX.Element> = memo(() => {
   return (
-    <div>
-      {/*<SchemaTreeView repository="Acidic Repository" />*/}
+    <div className="h-full w-full">
       <h1>Acidic Service Graph</h1>
-      <ServiceGraph />
+      <ServiceGraph className="h-full w-full" />
     </div>
   );
-}
-
-export default App;
+});

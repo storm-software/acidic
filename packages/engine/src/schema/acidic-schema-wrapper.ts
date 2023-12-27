@@ -311,6 +311,7 @@ export class AcidicSchemaWrapper {
     this.#service = {
       __type: "Service",
       name: getServiceId(model),
+      imports: model.imports.map(acidicImport => acidicImport.path),
       dataSource: dataSourceSchema,
       plugins: this.#plugins,
       enums: this.#enums,

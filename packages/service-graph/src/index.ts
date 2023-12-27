@@ -7,5 +7,6 @@
  * @packageDocumentation
  */
 
+export * from "./object-node";
 export * from "./service-graph";
-export * from "./service-graph-layout";
+export * from "./service-node";

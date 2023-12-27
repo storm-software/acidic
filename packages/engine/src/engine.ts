@@ -98,13 +98,7 @@ export class AcidicEngine {
     this.#services = createAcidicServices(NodeFileSystem).Acidic;
 
     const stdLibFile = URI.file(
-      resolve(
-        join(
-          __dirname,
-          "../../../../../acidic/language/res",
-          STD_LIB_MODULE_NAME
-        )
-      )
+      resolve(join(__dirname, "res", STD_LIB_MODULE_NAME))
     );
 
     this.#logger
@@ -124,7 +118,7 @@ ${stringify(stdLibFile.toJSON())}`);
 
   public execute = async (
     options: AcidicEngineOptions
-  ): Promise<StormError | null> => {
+  ): Promise<StormError | AcidicSchemaWrapper> => {
     this.#logger.start("Acidic Engine");
 
     options.outputPath ??= "./node_modules/.storm";
@@ -307,7 +301,7 @@ ${stringify(stdLibFile.toJSON())}`);
         `${NEWLINE_STRING}🎉 The Acidic Engine has successfully completed processing!${NEWLINE_STRING}`
       );
 
-      return null;
+      return context.wrapper;
     } catch (error) {
       this.#logger.error(error);
 

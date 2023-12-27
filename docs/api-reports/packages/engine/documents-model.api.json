@@ -173,86 +173,6 @@
       "preserveMemberOrder": false,
       "members": [
         {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!AcidicConfig:type",
-          "docComment": "/**\n * Acidic configuration options\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type AcidicConfig = "
-            },
-            {
-              "kind": "Content",
-              "text": "{\n    defaultOptions?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Omit",
-              "canonicalReference": "!Omit:type"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
-            },
-            {
-              "kind": "Content",
-              "text": ", \"provider\">;\n    outputPath: string;\n    packageManager: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PackageManagers",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n} & "
-            },
-            {
-              "kind": "Reference",
-              "text": "Record",
-              "canonicalReference": "!Record:type"
-            },
-            {
-              "kind": "Content",
-              "text": "<string, "
-            },
-            {
-              "kind": "Reference",
-              "text": "OptionValue",
-              "canonicalReference": "@acidic/engine!OptionValue:type"
-            },
-            {
-              "kind": "Content",
-              "text": " | "
-            },
-            {
-              "kind": "Reference",
-              "text": "OptionValue",
-              "canonicalReference": "@acidic/engine!OptionValue:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]>"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/types.ts",
-          "releaseTag": "Public",
-          "name": "AcidicConfig",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 14
-          }
-        },
-        {
           "kind": "Class",
           "canonicalReference": "@acidic/engine!AcidicEngine:class",
           "docComment": "",
@@ -289,7 +209,7 @@
                 {
                   "kind": "Reference",
                   "text": "AcidicConfig",
-                  "canonicalReference": "@acidic/engine!AcidicConfig:type"
+                  "canonicalReference": "@acidic/engine!~AcidicConfig:type"
                 },
                 {
                   "kind": "Content",
@@ -443,7 +363,16 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | null>"
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicSchemaWrapper",
+                  "canonicalReference": "@acidic/engine!AcidicSchemaWrapper:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -456,7 +385,7 @@
               "name": "execute",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 8
+                "endIndex": 10
               },
               "isStatic": false,
               "isProtected": false,
@@ -2186,67 +2115,29 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/engine!config:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "config: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ConfigType",
-              "canonicalReference": "@acidic/engine!ConfigType:type"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/config.ts",
-          "isReadonly": false,
-          "releaseTag": "Public",
-          "name": "config",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
-        },
-        {
           "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!ConfigType:type",
+          "canonicalReference": "@acidic/engine!ConnectorType:type",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export type ConfigType = "
-            },
-            {
-              "kind": "Reference",
-              "text": "z.infer",
-              "canonicalReference": "!z.infer:type"
+              "text": "export type ConnectorType = "
             },
             {
               "kind": "Content",
-              "text": "<typeof "
-            },
-            {
-              "kind": "Reference",
-              "text": "schema",
-              "canonicalReference": "@acidic/engine!~schema:var"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
+              "text": "\"mysql\" | \"mongodb\" | \"sqlite\" | \"postgresql\" | \"postgres\" | \"sqlserver\" | \"cockroachdb\" | \"jdbc:sqlserver\""
             },
             {
               "kind": "Content",
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/config.ts",
+          "fileUrlPath": "packages/engine/src/types.ts",
           "releaseTag": "Public",
-          "name": "ConfigType",
+          "name": "ConnectorType",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 5
+            "endIndex": 2
           }
         },
         {
@@ -2264,8 +2155,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PrismaConnectorType",
-              "canonicalReference": "!unknown"
+              "text": "ConnectorType",
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             },
             {
               "kind": "Content",
@@ -2273,8 +2164,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PrismaConnectorType",
-              "canonicalReference": "!unknown"
+              "text": "ConnectorType",
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             },
             {
               "kind": "Content",
@@ -2282,8 +2173,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PrismaConnectorType",
-              "canonicalReference": "!unknown"
+              "text": "ConnectorType",
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             },
             {
               "kind": "Content",
@@ -2291,8 +2182,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PrismaConnectorType",
-              "canonicalReference": "!unknown"
+              "text": "ConnectorType",
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             },
             {
               "kind": "Content",
@@ -2300,8 +2191,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PrismaConnectorType",
-              "canonicalReference": "!unknown"
+              "text": "ConnectorType",
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             },
             {
               "kind": "Content",
@@ -2309,8 +2200,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PrismaConnectorType",
-              "canonicalReference": "!unknown"
+              "text": "ConnectorType",
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             },
             {
               "kind": "Content",
@@ -2318,8 +2209,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PrismaConnectorType",
-              "canonicalReference": "!unknown"
+              "text": "ConnectorType",
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             },
             {
               "kind": "Content",
@@ -2327,8 +2218,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PrismaConnectorType",
-              "canonicalReference": "!unknown"
+              "text": "ConnectorType",
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             },
             {
               "kind": "Content",
@@ -2371,7 +2262,7 @@
                 {
                   "kind": "Reference",
                   "text": "AcidicConfig",
-                  "canonicalReference": "@acidic/engine!AcidicConfig:type"
+                  "canonicalReference": "@acidic/engine!~AcidicConfig:type"
                 },
                 {
                   "kind": "Content",
@@ -2545,7 +2436,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -2554,7 +2445,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -2876,8 +2767,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "PrismaConnectorType",
-                  "canonicalReference": "!unknown"
+                  "text": "ConnectorType",
+                  "canonicalReference": "@acidic/engine!ConnectorType:type"
                 },
                 {
                   "kind": "Content",
@@ -4583,7 +4474,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -4592,7 +4483,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -5361,41 +5252,6 @@
           }
         },
         {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!GeneratorOptions:type",
-          "docComment": "/**\n * Generator Write function options\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type GeneratorOptions = "
-            },
-            {
-              "kind": "Content",
-              "text": "{\n    headerName?: string;\n    header?: string | boolean;\n    footer?: string | boolean;\n} & "
-            },
-            {
-              "kind": "Reference",
-              "text": "Record",
-              "canonicalReference": "!Record:type"
-            },
-            {
-              "kind": "Content",
-              "text": "<string, any>"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/types.ts",
-          "releaseTag": "Public",
-          "name": "GeneratorOptions",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 4
-          }
-        },
-        {
           "kind": "Function",
           "canonicalReference": "@acidic/engine!getAcidicEnums:function(1)",
           "docComment": "/**\n * Gets data models that are not ignored\n */\n",
@@ -6105,7 +5961,7 @@
             {
               "kind": "Reference",
               "text": "ConnectorType",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "@acidic/engine!ConnectorType:type"
             }
           ],
           "fileUrlPath": "packages/engine/src/utils/get-data-source-provider.ts",
@@ -6176,92 +6032,6 @@
           "overloadIndex": 1,
           "parameters": [],
           "name": "getDefaultOutputFolder"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!getDMMF:function(1)",
-          "docComment": "/**\n * Loads Prisma DMMF with appropriate version\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function getDMMF(options: "
-            },
-            {
-              "kind": "Reference",
-              "text": "GetDMMFOptions",
-              "canonicalReference": "@acidic/engine!GetDMMFOptions:type"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Reference",
-              "text": "Promise",
-              "canonicalReference": "!Promise:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "DMMF.Document",
-              "canonicalReference": "!DMMF.Document:type"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/prisma.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 7
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "options",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "getDMMF"
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!GetDMMFOptions:type",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type GetDMMFOptions = "
-            },
-            {
-              "kind": "Content",
-              "text": "{\n    datamodel?: string;\n    cwd?: string;\n    prismaPath?: string;\n    datamodelPath?: string;\n    retry?: number;\n    previewFeatures?: string[];\n}"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/prisma.ts",
-          "releaseTag": "Public",
-          "name": "GetDMMFOptions",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
         },
         {
           "kind": "Function",
@@ -6612,68 +6382,6 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@acidic/engine!getPrismaClientImportSpec:function(1)",
-          "docComment": "/**\n * Given a Storm and an import context directory, compute the import spec for the Prisma Client.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function getPrismaClientImportSpec(model: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/engine!~Model:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ", importingFromDir: "
-            },
-            {
-              "kind": "Content",
-              "text": "string"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "any"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/prisma.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 5,
-            "endIndex": 6
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "model",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            },
-            {
-              "parameterName": "importingFromDir",
-              "parameterTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "getPrismaClientImportSpec"
-        },
-        {
-          "kind": "Function",
           "canonicalReference": "@acidic/engine!getServiceId:function(1)",
           "docComment": "/**\n * Gets data types that are not ignored\n */\n",
           "excerptTokens": [
@@ -6978,7 +6686,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -6987,7 +6695,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -7843,51 +7551,6 @@
             }
           ],
           "extendsTokenRanges": []
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/engine!loadConfig:function(1)",
-          "docComment": "/**\n * Loads and validates CLI configuration file.\n *\n * @returns \n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function loadConfig(filename: "
-            },
-            {
-              "kind": "Content",
-              "text": "string"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Content",
-              "text": "void"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/config.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 4
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "filename",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "loadConfig"
         },
         {
           "kind": "Interface",
@@ -9746,32 +9409,6 @@
           ]
         },
         {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!OptionValue:type",
-          "docComment": "/**\n * Plugin configuration option value type\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type OptionValue = "
-            },
-            {
-              "kind": "Content",
-              "text": "string | number | boolean"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/types.ts",
-          "releaseTag": "Public",
-          "name": "OptionValue",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
-        },
-        {
           "kind": "Variable",
           "canonicalReference": "@acidic/engine!PLUGIN_RUNNER_SYMBOL:var",
           "docComment": "",
@@ -9941,7 +9578,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -9950,7 +9587,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10025,7 +9662,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10034,7 +9671,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10109,7 +9746,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10118,7 +9755,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10184,7 +9821,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10193,7 +9830,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10259,7 +9896,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10268,7 +9905,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10343,7 +9980,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10352,7 +9989,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10520,7 +10157,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10529,7 +10166,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10622,7 +10259,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10631,7 +10268,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -10692,68 +10329,6 @@
           "typeTokenRange": {
             "startIndex": 5,
             "endIndex": 12
-          }
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!PluginOptions:type",
-          "docComment": "/**\n * Plugin configuration options\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type PluginOptions = "
-            },
-            {
-              "kind": "Content",
-              "text": "{\n    provider: string;\n    output?: string;\n} & "
-            },
-            {
-              "kind": "Reference",
-              "text": "GeneratorOptions",
-              "canonicalReference": "@acidic/engine!GeneratorOptions:type"
-            },
-            {
-              "kind": "Content",
-              "text": " & "
-            },
-            {
-              "kind": "Reference",
-              "text": "Record",
-              "canonicalReference": "!Record:type"
-            },
-            {
-              "kind": "Content",
-              "text": "<string, "
-            },
-            {
-              "kind": "Reference",
-              "text": "OptionValue",
-              "canonicalReference": "@acidic/engine!OptionValue:type"
-            },
-            {
-              "kind": "Content",
-              "text": " | "
-            },
-            {
-              "kind": "Reference",
-              "text": "OptionValue",
-              "canonicalReference": "@acidic/engine!OptionValue:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]>"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/types.ts",
-          "releaseTag": "Public",
-          "name": "PluginOptions",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 10
           }
         },
         {
@@ -10899,8 +10474,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "PrismaConnectorType",
-                  "canonicalReference": "!unknown"
+                  "text": "ConnectorType",
+                  "canonicalReference": "@acidic/engine!ConnectorType:type"
                 },
                 {
                   "kind": "Content",
@@ -11444,7 +11019,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -11721,6 +11296,33 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!ServiceSchema#imports:member",
+              "docComment": "/**\n * The external service schema definitions imported into the current service\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "imports: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "imports",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
               }
             },
             {
@@ -13734,7 +13336,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",
@@ -14467,7 +14069,7 @@
             {
               "kind": "Reference",
               "text": "PluginOptions",
-              "canonicalReference": "@acidic/engine!PluginOptions:type"
+              "canonicalReference": "@acidic/engine!~PluginOptions:type"
             },
             {
               "kind": "Content",

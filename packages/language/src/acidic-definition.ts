@@ -6,7 +6,7 @@ import {
   MaybePromise
 } from "langium";
 import { DefinitionParams, LocationLink, Range } from "vscode-languageserver";
-import { isModelImport } from "./ast";
+import { isAcidicImport } from "./ast";
 import { resolveImport } from "./utils/ast-utils";
 
 export class AcidicDefinitionProvider extends DefaultDefinitionProvider {
@@ -20,7 +20,7 @@ export class AcidicDefinitionProvider extends DefaultDefinitionProvider {
     sourceCstNode: LeafCstNode,
     _params: DefinitionParams
   ): MaybePromise<LocationLink[] | undefined> {
-    if (isModelImport(sourceCstNode.element)) {
+    if (isAcidicImport(sourceCstNode.element)) {
       const importedModel = resolveImport(
         this.documents,
         sourceCstNode.element

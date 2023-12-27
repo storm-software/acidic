@@ -1240,6 +1240,11 @@ export interface ServiceSchema extends NodeSchema {
   __type: "Service";
 
   /**
+   * The external service schema definitions imported into the current service
+   */
+  imports: string[];
+
+  /**
    * Comments associated with the service
    */
   comments?: string[];

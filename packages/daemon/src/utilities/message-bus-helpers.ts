@@ -17,11 +17,11 @@ export const messageBusDecorator =
 
     if (packet.data) {
       const data = parse<Message>(packet.data);
-      if (data?.messageId && data?.payload?.name) {
+      if (data?.messageId && data?.payload?.path) {
         let { messageId, payload } = data;
 
         let error: StormError | undefined;
-        if (!payload?.name) {
+        if (!payload?.path) {
           messageId = MessageIdType.ERROR;
           error = new StormError(AcidicDaemonErrorCode.invalid_bus_payload, {
             message:

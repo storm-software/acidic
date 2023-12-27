@@ -9,7 +9,7 @@ export const MessageIdType = {
 };
 
 export interface BaseMessagePayload {
-  name: string | "all";
+  path: string | "all";
 }
 
 export interface Message<
@@ -37,7 +37,7 @@ export type LoadingMessage = Message<BaseMessagePayload> & {
 
 export type MessageBusPacket = {
   id: string;
-  type: "process:msg";
+  type: "message";
   topic: true;
   data?: string;
 };

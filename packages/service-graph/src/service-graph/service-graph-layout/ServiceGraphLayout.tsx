@@ -6,13 +6,15 @@ import ReactFlow, {
   Connection,
   Controls,
   Edge,
+  MiniMap,
   addEdge,
   useEdgesState,
   useNodesState,
   useReactFlow
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { getLayout } from "./get-layout";
+import { getLayout } from "../../utilities/get-layout";
+import { getNodeColor } from "../../utilities/get-node-color";
 
 const initialNodes = [
   { id: "1", position: { x: 0, y: 0 }, data: { label: "1" } },
@@ -46,7 +48,7 @@ export const ServiceGraphLayout = ({ className }: ServiceGraphLayoutProps) => {
   );
 
   return (
-    <div className={clsx("h-[75rem] w-[75rem]", className)}>
+    <div className={clsx("h-[30rem] w-full", className)}>
       <ReactFlow
         fitView={true}
         nodes={nodes}
@@ -54,8 +56,17 @@ export const ServiceGraphLayout = ({ className }: ServiceGraphLayoutProps) => {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}>
-        <Background color="#333" variant={BackgroundVariant.Dots} />
+        <Background
+          className="bg-gradient-to-br from-zinc-800 to-zinc-700 stroke-zinc-700/5"
+          variant={BackgroundVariant.Dots}
+        />
         <Controls />
+        <MiniMap
+          nodeColor={getNodeColor}
+          nodeStrokeWidth={3}
+          zoomable={true}
+          pannable={true}
+        />
       </ReactFlow>
     </div>
   );

@@ -6,6 +6,7 @@
 import { AsyncStringStorage } from "jotai/vanilla/utils/atomWithStorage";
 import { Event as Event_2 } from "vscode";
 import { ExtensionContext } from "vscode";
+import { LoggerWrapper } from "@storm-stack/logging";
 import { Memento } from "vscode";
 import { OutputChannel } from "vscode";
 import { StormConfig } from "@storm-software/config-tools";
@@ -14,6 +15,7 @@ import { SyncStringStorage } from "jotai/vanilla/utils/atomWithStorage";
 import { ThemeIcon } from "vscode";
 import { TreeDataProvider } from "vscode";
 import { TreeItem } from "vscode";
+import { TreeItemCollapsibleState } from "vscode";
 import { TreeView } from "vscode";
 import { Uri } from "vscode";
 
@@ -76,7 +78,8 @@ const CommandName: {
   STOP: CommandName;
   REFRESH: CommandName;
   ON_STARTUP_FINISHED: CommandName;
-  OPEN_SCHEMA_EXPLORER: CommandName;
+  OPEN_SERVICE_GRAPH: CommandName;
+  SET_WORKSPACE_READY: CommandName;
   INIT_SCHEMA_START: CommandName;
   INIT_SCHEMA_END: CommandName;
   REFRESH_SCHEMA_START: CommandName;
@@ -101,6 +104,12 @@ export { createLogger as createLogger_alias_1 };
 export { createLogger as createLogger_alias_2 };
 
 // @public (undocumented)
+const createVsCodeLogger: (config: AcidicConfig) => LoggerWrapper;
+export { createVsCodeLogger };
+export { createVsCodeLogger as createVsCodeLogger_alias_1 };
+export { createVsCodeLogger as createVsCodeLogger_alias_2 };
+
+// @public (undocumented)
 const createVsCodeStorage: () => AsyncStringStorage | SyncStringStorage;
 export { createVsCodeStorage };
 export { createVsCodeStorage as createVsCodeStorage_alias_1 };
@@ -117,6 +126,28 @@ function getOutputChannel(): OutputChannel;
 export { getOutputChannel };
 export { getOutputChannel as getOutputChannel_alias_1 };
 export { getOutputChannel as getOutputChannel_alias_2 };
+
+// @public (undocumented)
+export function getStoredCollapsibleState(
+  treeItemId: string
+): TreeItemCollapsibleState | undefined;
+
+// @public (undocumented)
+function initServiceTree(
+  context: ExtensionContext,
+  config: any,
+  logger: StormLog,
+  onReadyFn: () => void
+): ServiceTreeProvider;
+export { initServiceTree };
+export { initServiceTree as initServiceTree_alias_1 };
+export { initServiceTree as initServiceTree_alias_2 };
+
+// @public (undocumented)
+export function listenForAndStoreCollapsibleChanges(
+  serviceTreeView: TreeView<TreeItem>,
+  context: ExtensionContext
+): void;
 
 // @public (undocumented)
 const LOCATE_YOUR_WORKSPACE: TreeItem;
@@ -146,17 +177,20 @@ export interface ReloadMessage extends Message_2 {
 class ServiceTreeItem extends TreeItem {
   constructor(
     resourceUri: Uri,
-    name: string,
+    id: string,
+    label: string,
     type: ServiceTreeItemType,
-    status?: ServiceTreeItemStatus
+    status?: ServiceTreeItemStatus,
+    description?: string
   );
   // (undocumented)
   getIconPath():
     | "$(loading~spin)"
+    | "$(error)"
+    | "$(folder)"
     | "$(bracket-error)"
     | "$(bracket)"
     | "$(pass-filled)"
-    | "$(error)"
     | "$(plug)";
   // (undocumented)
   get name(): string;
@@ -173,18 +207,24 @@ export { ServiceTreeItem as ServiceTreeItem_alias_2 };
 
 // @public (undocumented)
 export type ServiceTreeItemContextValue =
-  | "schema_active"
-  | "schema_refreshing"
-  | "schema_loading"
+  | "workspace_active"
+  | "workspace_refreshing"
+  | "workspace_loading"
+  | "service_active"
+  | "service_refreshing"
+  | "service_loading"
   | "plugin_active"
   | "plugin_refreshing"
   | "plugin_loading";
 
 // @public (undocumented)
 export const ServiceTreeItemContextValue: {
-  SCHEMA_ACTIVE: ServiceTreeItemContextValue;
-  SCHEMA_REFRESHING: ServiceTreeItemContextValue;
-  SCHEMA_LOADING: ServiceTreeItemContextValue;
+  WORKSPACE_ACTIVE: ServiceTreeItemContextValue;
+  WORKSPACE_REFRESHING: ServiceTreeItemContextValue;
+  WORKSPACE_LOADING: ServiceTreeItemContextValue;
+  SERVICE_ACTIVE: ServiceTreeItemContextValue;
+  SERVICE_REFRESHING: ServiceTreeItemContextValue;
+  SERVICE_LOADING: ServiceTreeItemContextValue;
   PLUGIN_ACTIVE: ServiceTreeItemContextValue;
   PLUGIN_REFRESHING: ServiceTreeItemContextValue;
   PLUGIN_LOADING: ServiceTreeItemContextValue;
@@ -206,19 +246,22 @@ export const ServiceTreeItemStatus: {
 };
 
 // @public (undocumented)
-export type ServiceTreeItemType = "schema" | "plugin";
+export type ServiceTreeItemType = "workspace" | "service" | "plugin";
 
 // @public (undocumented)
 export const ServiceTreeItemType: {
-  SCHEMA: ServiceTreeItemType;
+  WORKSPACE: ServiceTreeItemType;
+  SERVICE: ServiceTreeItemType;
   PLUGIN: ServiceTreeItemType;
 };
 
 // @public (undocumented)
 class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
-  constructor(workspaceRoot: string);
+  constructor(config: AcidicConfig, logger: StormLog, onReadyFn: () => void);
   // (undocumented)
   getChildren(element?: ServiceTreeItem): Promise<ServiceTreeItem[]>;
+  // (undocumented)
+  getParent(): null;
   // (undocumented)
   getTreeItem(element: ServiceTreeItem): TreeItem;
   // (undocumented)

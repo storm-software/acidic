@@ -1,7 +1,6 @@
-import React from "react";
 import { ReactFlowProvider } from "reactflow";
 import "reactflow/dist/style.css";
-import { ServiceGraphLayout } from "../service-graph-layout";
+import { ServiceGraphLayout } from "./service-graph-layout";
 
 export interface ServiceGraphProps {
   className?: string;
@@ -9,8 +8,10 @@ export interface ServiceGraphProps {
 
 export const ServiceGraph = ({ className }: ServiceGraphProps) => {
   return (
-    <ReactFlowProvider>
-      <ServiceGraphLayout className={className} />
-    </ReactFlowProvider>
+    <div className="border-slate-600/500 border-2 w-full h-full">
+      <ReactFlowProvider>
+        <ServiceGraphLayout className={className} />
+      </ReactFlowProvider>
+    </div>
   );
 };
