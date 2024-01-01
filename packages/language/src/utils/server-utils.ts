@@ -1,3 +1,4 @@
+import { StormError } from "@storm-stack/errors";
 import { AstNode, Reference } from "langium";
 import {
   AcidicEvent,
@@ -16,7 +17,7 @@ import { ExpressionContext, STD_LIB_MODULE_NAME } from "../constants";
 
 export function resolved<T extends AstNode>(ref: Reference<T>): T {
   if (!ref.ref) {
-    throw new Error(`Reference not resolved: ${ref.$refText}`);
+    throw new StormError(`Reference not resolved: ${ref.$refText}`);
   }
   return ref.ref;
 }

@@ -10,9 +10,14 @@
   },
   "dependencies": {
     "@dagrejs/dagre": "^1.0.4",
+    "@storm-stack/jotai": "latest",
+    "@storm-stack/serialization": "latest",
     "@storm-stack/utilities": "latest",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "reactflow": "^11.10.1"
+    "jotai": "^2.6.0",
+    "reactflow": "^11.10.1",
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.45",

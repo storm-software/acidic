@@ -40,7 +40,7 @@ let workspaceFileWatcher: FileSystemWatcher | undefined;
 
 export async function activate(_context: ExtensionContext) {
   try {
-    window.setStatusBarMessage("Starting Acidic Workspace");
+    window.setStatusBarMessage("$(sync~spin) Starting Acidic Workspace");
     commands.executeCommand("setContext", "hasWorkspaceRoot", false);
     commands.executeCommand("setContext", "isWorkspaceLoading", true);
 
@@ -242,9 +242,7 @@ async function loadWorkspaceRoot(workspacePath: string): Promise<boolean> {
         })
       );
 
-      if (workspaceRoot === workspacePath) {
-        writeStatusBarMessage("Acidic Workspace successfully initialized");
-      } else {
+      if (workspaceRoot !== workspacePath) {
         window.showWarningMessage(
           `Acidic Workspace could not use "${workspacePath}" as a workspace root directory; however, parent folder "${workspaceRoot}" was successfully use to initialize.`
         );

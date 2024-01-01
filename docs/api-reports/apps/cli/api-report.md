@@ -4,12 +4,10 @@
 
 ```ts
 // @public (undocumented)
-const createWatcherProcess: (modelPath: string) => void;
-export { createWatcherProcess };
-export { createWatcherProcess as createWatcherProcess_alias_1 };
-
-// @public (undocumented)
-export function default_alias(): string;
+const createCLIAcidicProgram: () => Promise<number>;
+export { createCLIAcidicProgram };
+export { createCLIAcidicProgram as createCLIAcidicProgram_alias_1 };
+export { createCLIAcidicProgram as createCLIAcidicProgram_alias_2 };
 
 // (No @packageDocumentation comment for this package)
 ```

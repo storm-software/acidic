@@ -5,6 +5,7 @@
 ```ts
 import type { AstNode } from "langium";
 import { ErrorCode } from "@storm-stack/errors";
+import { MaybePromise } from "@storm-stack/utilities";
 import type { Reference } from "langium";
 import { StormConfig } from "@storm-software/config-tools";
 import { StormError } from "@storm-stack/errors";
@@ -66,7 +67,7 @@ export { BaseMessagePayload as BaseMessagePayload_alias_1 };
 type DaemonProcess = {
   path: string;
   status: ProcessStatus;
-  schema?: AcidicSchemaWrapper;
+  context?: Context;
   error: StormError | null;
 };
 export { DaemonProcess };

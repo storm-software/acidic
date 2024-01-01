@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.5",
+    "toolVersion": "7.39.0",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -520,12 +520,12 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    schema?: "
+              "text": ";\n    context?: "
             },
             {
               "kind": "Reference",
-              "text": "AcidicSchemaWrapper",
-              "canonicalReference": "@acidic/daemon!~AcidicSchemaWrapper:class"
+              "text": "Context",
+              "canonicalReference": "@acidic/daemon!~Context:interface"
             },
             {
               "kind": "Content",

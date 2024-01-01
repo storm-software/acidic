@@ -7,6 +7,12 @@
  * @packageDocumentation
  */
 
+export * from "./base-node";
+export * from "./enum-node";
+export * from "./model-node";
 export * from "./object-node";
+export * from "./plugin-node";
 export * from "./service-graph";
 export * from "./service-node";
+export * from "./types";
+export * from "./utilities";

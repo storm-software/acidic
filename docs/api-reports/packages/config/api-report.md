@@ -11,7 +11,12 @@ type AcidicConfig = StormConfig<
   {
     defaultOptions?: Omit<PluginOptions, "provider">;
     outputPath?: string;
-  } & Record<string, OptionValue | OptionValue[]>
+    input: string | readonly string[];
+    ignored?: string | readonly string[];
+  } & Record<
+    string,
+    OptionValue | OptionValue[] | Record<string, OptionValue | OptionValue[]>
+  >
 >;
 export { AcidicConfig };
 export { AcidicConfig as AcidicConfig_alias_1 };
@@ -21,29 +26,6 @@ const createAcidicConfig: (workspaceRoot?: string) => AcidicConfig;
 export { createAcidicConfig };
 export { createAcidicConfig as createAcidicConfig_alias_1 };
 export { createAcidicConfig as createAcidicConfig_alias_2 };
-
-// @public
-type GeneratorOptions = {
-  headerName?: string;
-  header?: string | boolean;
-  footer?: string | boolean;
-} & Record<string, any>;
-export { GeneratorOptions };
-export { GeneratorOptions as GeneratorOptions_alias_1 };
-
-// @public
-type OptionValue = string | number | boolean;
-export { OptionValue };
-export { OptionValue as OptionValue_alias_1 };
-
-// @public
-type PluginOptions = {
-  provider: string;
-  output?: string;
-} & GeneratorOptions &
-  Record<string, OptionValue | OptionValue[]>;
-export { PluginOptions };
-export { PluginOptions as PluginOptions_alias_1 };
 
 // (No @packageDocumentation comment for this package)
 ```

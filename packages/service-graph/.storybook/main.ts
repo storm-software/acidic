@@ -15,7 +15,13 @@ const config: StorybookConfig = {
   },
   viteFinal: async config =>
     mergeConfig(config, {
-      plugins: [nxViteTsPaths()]
+      plugins: [nxViteTsPaths()],
+      define: {
+        "process.env": {}
+      },
+      esbuild: {
+        jsxInject: `import React from 'react'`
+      }
     })
 };
 

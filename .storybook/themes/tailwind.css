@@ -14,3 +14,18 @@
 :host {
   background: #18181b;
 }
+
+@font-face {
+  font-family: "Mona-Sans-ExtraBold";
+  src: url("../../assets/fonts/Mona-Sans-ExtraBold.otf");
+}
+
+@font-face {
+  font-family: "Mona-Sans-Light";
+  src: url("../../assets/fonts/Mona-Sans-Light.otf");
+}
+
+@font-face {
+  font-family: "Antique-Olive-Black";
+  src: url("../../assets/fonts/Antique-Olive-Black.ttf");
+}

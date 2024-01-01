@@ -1,7 +1,6 @@
 import { AcidicConfig } from "@acidic/config";
-import { AcidicEngine, AcidicSchemaWrapper } from "@acidic/engine";
+import { AcidicEngine, Context } from "@acidic/engine";
 import { StormError, getCauseFromUnknown } from "@storm-stack/errors";
-import { joinPaths } from "@storm-stack/file-system";
 import { StormLog } from "@storm-stack/logging";
 import { MaybePromise, isError } from "@storm-stack/utilities";
 import chokidar, { FSWatcher } from "chokidar";
@@ -18,7 +17,7 @@ type ProcessStatus = "active" | "error" | "loading";
 export type DaemonProcess = {
   path: string;
   status: ProcessStatus;
-  schema?: AcidicSchemaWrapper;
+  context?: Context;
   error: StormError | null;
 };
 
@@ -98,16 +97,25 @@ export class DaemonProcessManager {
 
   private handleStart = async (schemaPath: string) => {
     if (!this.#processes.has(schemaPath)) {
-      this.#processes.set(schemaPath, {
+      this.setProcess(schemaPath, {
         path: schemaPath,
         status: "loading",
         error: null
       });
-      this.handleChange(schemaPath);
 
-      this.executeEngine(schemaPath).then(() => {
-        this.handleChange(schemaPath);
-      });
+      this.executeEngine(schemaPath)
+        .then(() => {
+          this.setProcess(schemaPath, {
+            status: "active",
+            error: null
+          });
+        })
+        .then(() => {
+          this.setProcess(schemaPath, {
+            status: "error",
+            error: null
+          });
+        });
     }
   };
 
@@ -123,44 +131,35 @@ export class DaemonProcessManager {
   };
 
   private handleReady = () => {
-    const watched = globSync(
-      joinPaths(
-        this.#config.workspaceRoot,
-        this.#config.extensions.acidic.input
-      ),
-      {
-        ignore: this.#config.extensions.acidic.ignored,
-        absolute: true,
-        allowWindowsEscape: true,
-        follow: true
-      }
-    );
+    const watched = globSync(this.#config.extensions.acidic.input, {
+      cwd: this.#config.workspaceRoot,
+      ignore: this.#config.extensions.acidic.ignored,
+      absolute: true
+    });
 
     return Promise.all(
-      watched.map(schemaPath => this.executeEngine(schemaPath))
+      watched.map(watch => this.prepareEngine(watch.replaceAll("\\", "/")))
     ).then(() => {
       return this.#readyHandlers.forEach(handler => handler());
     });
   };
 
-  private executeEngine = async (schemaPath: string) => {
+  private prepareEngine = (schemaPath: string) => {
     return this.#engine
-      .execute({
+      .prepare({
         schema: schemaPath,
         packageManager: this.#config.packageManager,
         outputPath: this.#config.runtimePath
       })
       .then(result => {
         if (isError(result)) {
-          this.#processes.set(schemaPath, {
-            path: schemaPath,
+          this.setProcess(schemaPath, {
             status: "error",
             error: getCauseFromUnknown(result)
           });
         } else {
-          this.#processes.set(schemaPath, {
-            path: schemaPath,
-            schema: result,
+          this.setProcess(schemaPath, {
+            context: result,
             status: "active",
             error: null
           });
@@ -169,11 +168,56 @@ export class DaemonProcessManager {
       .catch(e => {
         this.#logger.error(e);
 
-        this.#processes.set(schemaPath, {
-          path: schemaPath,
+        this.setProcess(schemaPath, {
           status: "error",
           error: getCauseFromUnknown(e)
         });
       });
+  };
+
+  private executeEngine = (schemaPath: string) => {
+    return this.#engine
+      .execute({
+        schema: schemaPath,
+        packageManager: this.#config.packageManager,
+        outputPath: this.#config.runtimePath
+      })
+      .then(result => {
+        if (isError(result)) {
+          this.setProcess(schemaPath, {
+            status: "error",
+            error: getCauseFromUnknown(result)
+          });
+        } else {
+          this.setProcess(schemaPath, {
+            context: result,
+            status: "active",
+            error: null
+          });
+        }
+      })
+      .catch(e => {
+        this.#logger.error(e);
+
+        this.setProcess(schemaPath, {
+          status: "error",
+          error: getCauseFromUnknown(e)
+        });
+      });
+  };
+
+  private setProcess = async (
+    schemaPath: string,
+    daemonProcess: Partial<DaemonProcess>
+  ) => {
+    this.#processes.set(schemaPath, {
+      path: schemaPath,
+      status: "loading",
+      error: null,
+      ...this.#processes.get(schemaPath),
+      ...daemonProcess
+    });
+
+    this.#readyHandlers.forEach(handler => handler());
   };
 }

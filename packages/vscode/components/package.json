@@ -16,11 +16,12 @@
     "@storm-stack/logging": "latest",
     "@storm-stack/serialization": "latest",
     "@storm-stack/utilities": "latest",
+    "@vscode/vsce": "2.21.1",
     "@vscode/webview-ui-toolkit": "^1.4.0",
     "jotai": "^2.6.0",
-    "vscode": "^1.1.37"
+    "vscode-webview": "1.0.1-beta.1"
   },
   "devDependencies": {
-    "@storybook/react-vite": "^7.6.5"
+    "@storybook/react-vite": "^7.6.6"
   }
 }

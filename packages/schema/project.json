@@ -1,0 +1,51 @@
+{
+  "name": "schema",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/schema/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/schema",
+        "main": "packages/schema/src/index.ts",
+        "project": "packages/schema/package.json",
+        "tsConfig": "packages/schema/tsconfig.json",
+        "platform": "neutral",
+        "deleteOutputPath": true,
+        "metafile": true,
+        "bundle": true,
+        "sourcemap": true,
+        "minify": false,
+        "skipTypeCheck": false,
+        "format": ["esm", "cjs"],
+        "assets": [
+          {
+            "input": "packages/schema",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    },
+    "lint": {},
+    "test": {}
+  },
+  "implicitDependencies": ["language"]
+}

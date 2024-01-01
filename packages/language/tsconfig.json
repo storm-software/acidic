@@ -6,11 +6,16 @@
     "strict": false,
     "noImplicitAny": false,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "resolveJsonModule": true,
-    "lib": ["esnext", "dom", "webworker"]
+    "lib": ["esnext", "dom"]
   },
   "files": [],
-  "include": ["src/**/*.ts", "src/**/*.js", "examples/**/*", "res/**/*"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "examples/**/*",
+    "res/**/*",
+    "syntaxes/acidic.monarch.ts"
+  ],
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
 }

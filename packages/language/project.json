@@ -10,10 +10,9 @@
       "options": {
         "outputPath": "dist/packages/language",
         "main": "packages/language/src/index.ts",
-        "additionalEntryPoints": ["packages/language/src/main-browser.ts"],
         "project": "packages/language/package.json",
         "tsConfig": "packages/language/tsconfig.json",
-        "platform": "node",
+        "platform": "neutral",
         "deleteOutputPath": true,
         "metafile": true,
         "bundle": true,
@@ -59,6 +58,16 @@
             "output": "examples"
           }
         ]
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
       }
     },
     "langium": {
@@ -93,6 +102,7 @@
       "outputPath": "packages/language",
       "defaultConfiguration": "default",
       "options": {
+        "project": "packages/language/package.json",
         "commands": [
           "pnpm nx run language:langium",
           "pnpm nx run language:compile"

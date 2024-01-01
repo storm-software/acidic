@@ -1,3 +1,4 @@
+import { NodeSchema } from "@acidic/schema";
 import { isFile } from "@storm-stack/file-system";
 import { stringify } from "@storm-stack/serialization";
 import { EMPTY_STRING } from "@storm-stack/utilities";
@@ -7,7 +8,6 @@ import { join } from "path";
 import { TemplateGenerator } from "../generators/template-generator";
 import {
   Context,
-  NodeSchema,
   PluginHandler,
   TEMPLATE_EXTENSIONS,
   TemplatePluginOptions,

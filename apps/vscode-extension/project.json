@@ -4,7 +4,7 @@
   "sourceRoot": "apps/vscode-extension/src",
   "projectType": "application",
   "targets": {
-    "build-backend": {
+    "build-extension": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -104,7 +104,7 @@
         }
       }
     },
-    "build-frontend": {
+    "build-client": {
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -145,8 +145,8 @@
       "defaultConfiguration": "production",
       "options": {
         "commands": [
-          "pnpm nx run vscode-extension:build-backend",
-          "pnpm nx run vscode-extension:build-frontend"
+          "pnpm nx run vscode-extension:build-extension",
+          "pnpm nx run vscode-extension:build-client"
         ],
         "parallel": true
       },
@@ -154,8 +154,8 @@
         "ci": {
           "options": {
             "commands": [
-              "pnpm nx run vscode-extension:build-backend:ci",
-              "pnpm nx run vscode-extension:build-frontend:ci"
+              "pnpm nx run vscode-extension:build-extension:ci",
+              "pnpm nx run vscode-extension:build-client:ci"
             ],
             "parallel": true
           }
@@ -163,8 +163,8 @@
         "development": {
           "options": {
             "commands": [
-              "pnpm nx run vscode-extension:build-backend:development",
-              "pnpm nx run vscode-extension:build-frontend:development"
+              "pnpm nx run vscode-extension:build-extension:development",
+              "pnpm nx run vscode-extension:build-client:development"
             ],
             "parallel": true,
             "sourcemap": true
@@ -173,8 +173,8 @@
         "production": {
           "options": {
             "commands": [
-              "pnpm nx run vscode-extension:build-backend:production",
-              "pnpm nx run vscode-extension:build-frontend:production"
+              "pnpm nx run vscode-extension:build-extension:production",
+              "pnpm nx run vscode-extension:build-client:production"
             ],
             "parallel": true
           }

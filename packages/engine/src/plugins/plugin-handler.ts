@@ -1,4 +1,4 @@
-import { PluginOptions } from "@acidic/config";
+import { PluginOptions } from "@acidic/schema";
 import { PluginHandler, type Context, type IGenerator } from "../types";
 
 /**

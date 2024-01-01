@@ -1,4 +1,3 @@
-import { join } from "path";
 import {
   Disposable,
   ExtensionContext,
@@ -7,6 +6,7 @@ import {
   WebviewPanel,
   window
 } from "vscode";
+import { getUri } from "./get-uri";
 
 /**
  * Manages react webview panels
@@ -66,6 +66,18 @@ export class ReactPanel {
     );
 
     this.#panel.webview.html = this.getHtmlForWebview();
+    this.#panel.iconPath = {
+      light: getUri(
+        this.#panel.webview,
+        this.#extensionPath,
+        "assets/logos/test-tube.png"
+      ),
+      dark: getUri(
+        this.#panel.webview,
+        this.#extensionPath,
+        "assets/logos/test-tube.png"
+      )
+    };
 
     this.#panel.onDidDispose(() => this.dispose(), null, this.#disposables);
     this.#panel.webview.onDidReceiveMessage(
@@ -101,57 +113,45 @@ export class ReactPanel {
   }
 
   private getHtmlForWebview() {
-    const scriptUri = Uri.file(
-      join(this.#extensionPath, "client/main.js")
-    ).with({ scheme: "vscode-resource" });
-    const styleUri = Uri.file(
-      join(this.#extensionPath, "client/main.css")
-    ).with({ scheme: "vscode-resource" });
     const nonce = getNonce();
 
-    return `<!doctype html>
+    /*const scriptUri = webview.asWebviewUri(
+			Uri.joinPath(this.extensionPath, "script", "left-webview-provider.js")
+		);
+		const constantUri = webview.asWebviewUri(
+			Uri.joinPath(this.extensionPath, "script", "constant.js")
+		);*/
+
+    const htmlResult = `<!doctype html>
 			<html lang="en">
 			<head>
 				<meta charset="utf-8">
 				<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-				<meta name="theme-color" content="${process.env.THEME_PRIMARY_COLOR}">
+				<meta name="theme-color" content="#000000">
         <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src vscode-resource: https:; script-src 'nonce-${nonce}';style-src vscode-resource: 'unsafe-inline' http: https: data:;">
         <title>Acidic Workspace</title>
-        <link rel="icon" type="image/x-icon" href="${Uri.file(
-          join(this.#extensionPath, "assets/dark/favicon.ico")
-        ).with({
-          scheme: "vscode-resource"
-        })}">
-        <link rel="icon" type="image/png" href="${Uri.file(
-          join(this.#extensionPath, "assets/dark/favicon-16x16.png")
-        ).with({
-          scheme: "vscode-resource"
-        })}" sizes="16x16">
-        <link rel="icon" type="image/png" href="${Uri.file(
-          join(this.#extensionPath, "assets/dark/favicon-32x32.png")
-        ).with({
-          scheme: "vscode-resource"
-        })}" sizes="32x32">
-				<link rel="stylesheet" type="text/css" href="${styleUri}">
-				<base href="${Uri.file(this.#extensionPath).with({
-          scheme: "vscode-resource"
-        })}/">
+
+				<link rel="stylesheet" type="text/css" href="${getUri(
+          this.#panel.webview,
+          this.#extensionPath,
+          "client/main.css"
+        )}">
+
 			</head>
 
 			<body className="w-full h-full min-h-[300px]">
 				<noscript>You need to enable JavaScript to run this extension.</noscript>
-				<div id="root"></div>
+        <div id="root"></div>
 
-        <script>
-          const vscode = acquireVsCodeApi();
-          window.onload = function() {
-            vscode.postMessage({ command: 'startup' });
-            console.log('HTML started up.');
-          };
-        </script>
-				<script nonce="${nonce}" src="${scriptUri}"></script>
+				<script nonce="${nonce}" src="${getUri(
+          this.#panel.webview,
+          this.#extensionPath,
+          "client/main.js"
+        )}"></script>
 			</body>
 			</html>`;
+
+    return htmlResult;
   }
 
   /*private loadingSpinner() {

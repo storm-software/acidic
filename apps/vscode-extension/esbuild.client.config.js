@@ -1,9 +1,15 @@
 const { esbuildDecorators } = require("@anatine/esbuild-decorators");
+const postCssPlugin = require("esbuild-style-plugin");
 
 module.exports = {
   mainFields: ["module", "main"],
   outExtension: {
     ".js": ".js"
+  },
+  loader: {
+    ".png": "dataurl",
+    ".jpeg": "dataurl",
+    ".svg": "dataurl"
   },
   sourcemap: "both",
   sourcesContent: true,
@@ -13,10 +19,18 @@ module.exports = {
   define: {
     "import.meta.url": "importMetaUrl"
   },
-  inject: ["./apps/vscode-extension/esbuild.shim.js"],
+  inject: [
+    "./apps/vscode-extension/esbuild.shim.js",
+    "./apps/vscode-extension/react.shim.js"
+  ],
   plugins: [
     esbuildDecorators({
       tsconfig: "apps/vscode-extension/tsconfig.client.json"
+    }),
+    postCssPlugin({
+      postcss: {
+        plugins: [require("tailwindcss"), require("autoprefixer")]
+      }
     })
   ]
 };

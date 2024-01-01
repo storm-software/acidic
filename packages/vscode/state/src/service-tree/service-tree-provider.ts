@@ -79,14 +79,14 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
               new ServiceTreeItem(
                 Uri.file(process.path),
                 process.path,
-                process.schema?.service?.name
-                  ? process.schema?.service?.name
+                process.context?.wrapper?.service?.name
+                  ? process.context?.wrapper?.service?.name
                   : process.path,
                 ServiceTreeItemType.SERVICE,
                 process.status,
                 process.error
                   ? process.error.print()
-                  : process.schema?.service?.name
+                  : process.context?.wrapper?.service?.name
                     ? process.path
                     : EMPTY_STRING
               )
@@ -95,7 +95,7 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
       } else if (element?.type === ServiceTreeItemType.SERVICE) {
         const process = this.#daemon.getProcess(element.name);
 
-        const plugins = process?.schema?.service?.plugins;
+        const plugins = process?.context?.wrapper?.service?.plugins;
         if (process && Array.isArray(plugins)) {
           return Promise.resolve(
             plugins.map(
@@ -115,8 +115,4 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
 
     return Promise.resolve([]);
   }
-
-  private getDaemon = () => {
-    return this.#daemon;
-  };
 }

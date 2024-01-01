@@ -1,9 +1,9 @@
+import { NodeSchema } from "@acidic/schema";
 import { findFileName } from "@storm-stack/file-system";
 import * as Handlebars from "handlebars";
 import { TemplateDetails } from "../plugins/template-plugin-handler";
 import {
   Context,
-  NodeSchema,
   TemplateGeneratorHelper,
   TemplatePluginOptions,
   TypeScriptGeneratorConfig,

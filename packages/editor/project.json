@@ -1,0 +1,53 @@
+{
+  "name": "editor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/editor/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-node",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entry": "packages/editor/src/index.ts",
+        "outputPath": "dist/packages/editor",
+        "tsConfig": "packages/editor/tsconfig.json",
+        "project": "packages/editor/package.json",
+        "defaultConfiguration": "production",
+        "assets": [
+          {
+            "input": "packages/editor",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/editor/**/*.ts",
+          "{projectRoot}/package.json"
+        ]
+      }
+    },
+    "test": {}
+  }
+}

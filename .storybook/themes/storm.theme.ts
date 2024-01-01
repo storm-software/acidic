@@ -1,6 +1,7 @@
-import { create } from "@storybook/theming";
+import { ThemeVars, create } from "@storybook/theming";
+import brandImage from "../../assets/logos/logo.png";
 
-const theme: any = create({
+const theme: ThemeVars = create({
   base: "dark",
 
   colorPrimary: "#1fb2a6",
@@ -29,7 +30,7 @@ const theme: any = create({
 
   brandTitle: "Acidic",
   brandUrl: "https://acidic.io",
-  brandImage: require("../../assets/logos/logo.png")
+  brandImage
 });
 
 export default theme;

@@ -1,6 +1,15 @@
 import { AcidicConfig } from "@acidic/config";
 import { LoggerWrapper } from "@storm-stack/logging";
-import { getOutputChannel } from "./create-logger";
+import { OutputChannel, window } from "vscode";
+
+let _channel: OutputChannel;
+export function getOutputChannel(): OutputChannel {
+  if (!_channel) {
+    _channel = window.createOutputChannel("Acidic Workspace");
+  }
+
+  return _channel;
+}
 
 export const createVsCodeLogger = (config: AcidicConfig) =>
   LoggerWrapper.wrap(
