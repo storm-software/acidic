@@ -1,9 +1,10 @@
-import clsx from "clsx";
+import { NodeKind } from "@acidic/schema";
 import React from "react";
 import "reactflow/dist/style.css";
 import { BaseNode } from "../base-node";
+import { NodeFieldTable } from "../node-field-table";
 import { eventAtoms, useGraphStore } from "../state";
-import { BaseNodeProps, NodeType } from "../types";
+import { BaseNodeProps } from "../types";
 
 export const EventNode = ({ id, ...props }: BaseNodeProps) => {
   const schema = useGraphStore().get.atom(eventAtoms(id));
@@ -13,8 +14,10 @@ export const EventNode = ({ id, ...props }: BaseNodeProps) => {
 
   return (
     <BaseNode
+      id={id}
+      {...props}
       name={schema.name}
-      type={NodeType.EVENT}
+      kind={NodeKind.EVENT}
       comments={
         schema.comments &&
         Array.isArray(schema.comments) &&
@@ -23,44 +26,14 @@ export const EventNode = ({ id, ...props }: BaseNodeProps) => {
           : schema.ref.comments
       }>
       <div className="flex flex-col gap-2">
-        <div className="flex flex-row gap-1 bg-slate-200/10 px-2 pb-1">
-          <p className="font-bold text-slate-100">Topic: </p>
-          <p className="text-slate-300">{schema.topic}</p>
+        <div className="flex flex-row gap-1 bg-slate-200/10 px-2 py-0.5">
+          <p className="font-mona-sans font-bold text-slate-100">Topic: </p>
+          <p className="overflow-hidden font-mona-sans-light text-slate-300">
+            {schema.topic}
+          </p>
         </div>
         <div className="bg-slate-200/10 px-2 pb-1">
-          <table className="w-full table-auto border-collapse border-spacing-2">
-            <thead className="border-b-[1px] border-b-slate-400 text-left text-slate-100">
-              <tr>
-                <th>Field Name</th>
-                <th>Field Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              {schema.ref.fields.map(field => {
-                return (
-                  <tr className="cursor-pointer text-slate-300 hover:bg-slate-200/30 hover:font-semibold hover:text-orange-500">
-                    <td className="flex flex-row gap-0.5">
-                      <p
-                        className={clsx({
-                          "font-bold": field.isRequired
-                        })}>
-                        {field.name}
-                      </p>
-                      {field.isRequired && (
-                        <p className="font-extrabold text-red-500">*</p>
-                      )}
-                    </td>
-                    <td>
-                      <p>
-                        {field.type}
-                        {field.isArray ? "[ ]" : ""}
-                      </p>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <NodeFieldTable node={schema.ref} kind={NodeKind.EVENT} />
         </div>
       </div>
     </BaseNode>

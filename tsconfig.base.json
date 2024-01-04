@@ -26,6 +26,8 @@
       "@acidic/service-graph/*": ["packages/service-graph/src/*"],
       "@acidic/vscode-components": ["packages/vscode/components/src/index.ts"],
       "@acidic/vscode-components/*": ["packages/vscode-components/src/*"],
+      "@acidic/vscode-rpc": ["packages/vscode/rpc/src/index.ts"],
+      "@acidic/vscode-rpc/*": ["packages/vscode/rpc/src/*"],
       "@acidic/vscode-state": ["packages/vscode/state/src/index.ts"],
       "@acidic/vscode-state/*": ["packages/vscode/state/src/*"]
     },

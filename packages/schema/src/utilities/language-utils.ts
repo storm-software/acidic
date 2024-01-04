@@ -17,6 +17,7 @@ import {
   ExpressionContext,
   FunctionDecl,
   Model,
+  Plugin,
   ReferenceExpr,
   ServiceID,
   getLiteral,
@@ -32,6 +33,7 @@ import {
   isArrayExpr,
   isLiteralExpr,
   isObjectExpr,
+  isPlugin,
   isReferenceExpr,
   isServiceID,
   resolved
@@ -59,6 +61,13 @@ export function getAcidicModels(model: Model): AcidicModel[] {
   return model.declarations.filter(
     (d): d is AcidicModel => isAcidicModel(d) && !hasAttribute(d, "@@ignore")
   );
+}
+
+/**
+ * Gets plugins that are not ignored
+ */
+export function getAcidicPlugins(model: Model): Plugin[] {
+  return model.declarations.filter((d): d is Plugin => isPlugin(d));
 }
 
 /**

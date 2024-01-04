@@ -13,7 +13,6 @@ import {
   isAcidicEnumField,
   isModel
 } from "@acidic/language/definition";
-import { CancellationToken } from "@acidic/language/utils";
 import {
   AstNode,
   AstNodeDescription,
@@ -33,6 +32,7 @@ import {
   stream,
   streamAllContents
 } from "langium";
+import { CancellationToken } from "vscode-jsonrpc";
 import { resolveImportUri } from "./utilities";
 
 /**

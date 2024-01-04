@@ -1,18 +1,17 @@
 import { createAcidicConfig } from "@acidic/config";
+import { CommandName, getCommandId } from "@acidic/vscode-rpc";
 import {
-  CommandName,
   LOCATE_YOUR_WORKSPACE,
   SupportTreeProvider,
   WorkspaceConfigStore,
   createLogger,
-  getCommandId,
   initServiceTree
 } from "@acidic/vscode-state";
 import {
   findWorkspaceRootSafe,
   loadStormConfig
 } from "@storm-software/config-tools";
-import { getCauseFromUnknown } from "@storm-stack/errors";
+import { StormError } from "@storm-stack/errors";
 import { StormLog } from "@storm-stack/logging";
 import { dirname } from "path";
 import {
@@ -24,9 +23,8 @@ import {
   workspace
 } from "vscode";
 import {
+  CancellationStrategy,
   LanguageClient,
-  LanguageClientOptions,
-  ServerOptions,
   TransportKind
 } from "vscode-languageclient/node";
 import { ReactPanel } from "./webview/react-panel";
@@ -70,7 +68,7 @@ export async function activate(_context: ExtensionContext) {
       writeStatusBarMessage("Acidic Workspace is ready");
     }
   } catch (error) {
-    const stormError = getCauseFromUnknown(error);
+    const stormError = StormError.create(error);
     window.showErrorMessage(stormError.print());
   }
 }
@@ -90,56 +88,57 @@ function writeStatusBarMessage(message: string) {
   }, 3000);
 }
 
-function startLanguageClient(context: ExtensionContext): LanguageClient {
-  const serverModule = context.asAbsolutePath("langauge-server/main.js");
-
+async function startLanguageClient(
+  context: ExtensionContext,
+  workspaceRoot: string
+): Promise<LanguageClient> {
   // The debug options for the server
   // --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging.
   // By setting `process.env.DEBUG_BREAK` to a truthy value, the language server will wait until a debugger is attached.
-  const debugOptions = {
-    execArgv: [
-      "--nolazy",
-      `--inspect${process.env.DEBUG_BREAK ? "-brk" : ""}=${
-        process.env.DEBUG_SOCKET || "6009"
-      }`
-    ]
-  };
 
-  // If the extension is launched in debug mode then the debug server options are used
-  // Otherwise the run options are used
-  const serverOptions: ServerOptions = {
-    run: { module: serverModule, transport: TransportKind.ipc },
-    debug: {
-      module: serverModule,
-      transport: TransportKind.ipc,
-      options: debugOptions
-    }
-  };
-
-  const fileSystemWatcher = workspace.createFileSystemWatcher(
-    "**/{*.acid,*.acidic}"
-  );
+  const fileSystemWatcher = workspace.createFileSystemWatcher("**/*.acid");
   context.subscriptions.push(fileSystemWatcher);
-
-  // Options to control the language client
-  const clientOptions: LanguageClientOptions = {
-    documentSelector: [{ scheme: "file", language: "acidic" }],
-    synchronize: {
-      // Notify the server about file changes to files contained in the workspace
-      fileEvents: fileSystemWatcher
-    }
-  };
 
   // Create the language client and start the client.
   const client = new LanguageClient(
-    "AcidicLanguageClient",
-    "Acidic Language Client",
-    serverOptions,
-    clientOptions
+    "acidic",
+    "Acidic Language Server",
+    {
+      run: {
+        module: context.asAbsolutePath("language-server/main.js"),
+        transport: TransportKind.ipc
+      },
+      debug: {
+        module: context.asAbsolutePath("language-server/main.js"),
+        transport: TransportKind.ipc,
+        options: {
+          execArgv: [
+            "--nolazy",
+            `--inspect${process.env.DEBUG_BREAK ? "-brk" : ""}=${
+              process.env.DEBUG_SOCKET || "6009"
+            }`
+          ],
+          cwd: workspaceRoot
+        }
+      }
+    },
+    {
+      documentSelector: [{ scheme: "file", language: "acidic" }],
+      synchronize: {
+        // Notify the server about file changes to files contained in the workspace
+        fileEvents: fileSystemWatcher
+      },
+      connectionOptions: {
+        cancellationStrategy: CancellationStrategy.Message,
+        maxRestartCount: 5
+      },
+      progressOnInitialization: true
+    },
+    true
   );
 
   // Start the client. This will also launch the server
-  client.start();
+  await client.start();
   return client;
 }
 
@@ -212,11 +211,11 @@ async function loadWorkspaceRoot(workspacePath: string): Promise<boolean> {
       WorkspaceConfigStore.fromContext(context, logger);
       WorkspaceConfigStore.instance.setWorkspaceRoot(workspaceRoot);
 
-      // client = startLanguageClient(context);
+      client = await startLanguageClient(context, workspaceRoot);
 
       context.subscriptions.push(
         commands.registerCommand(
-          getCommandId(CommandName.SET_WORKSPACE_READY),
+          getCommandId(CommandName.ON_WORKSPACE_READY),
           handleWorkspaceReady
         )
       );
@@ -255,7 +254,9 @@ async function loadWorkspaceRoot(workspacePath: string): Promise<boolean> {
   } catch (error) {
     console.error(error);
     window.showErrorMessage(
-      `Error occured while loading workspace from ${workspacePath}`
+      `Error occured while loading workspace from ${workspacePath} \n${StormError.create(
+        error
+      )}`
     );
 
     if (logger) {

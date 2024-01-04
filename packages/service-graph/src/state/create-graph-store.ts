@@ -2,7 +2,10 @@ import {
   EnumSchema,
   EventSchema,
   ModelSchema,
+  NodeKind,
   ObjectSchema,
+  OperationSchema,
+  PluginSchema,
   ServiceSchema
 } from "@acidic/schema";
 import {
@@ -13,6 +16,7 @@ import {
 import { atom } from "jotai";
 import { RESET, atomWithDefault } from "jotai/utils";
 import {
+  BackgroundVariant,
   Edge,
   EdgeChange,
   MarkerType,
@@ -23,98 +27,231 @@ import {
   isEdge,
   isNode
 } from "reactflow";
-import { NodeType } from "../types";
-import { getNodeTypeColor } from "../utilities";
+import { getNodeType, getNodeTypeColor } from "../utilities";
 import { getNodeId } from "../utilities/get-node-id";
+import { NodeType } from "../utilities/node-types";
 
 const getWorkspaceNodes = (schemas: ServiceSchema[]): Node<any>[] => {
   return schemas.reduce((nodes: Node<any>[], schema: ServiceSchema) => {
+    let serviceNodes: Node<any>[] = [];
+    serviceNodes = getServiceNodes(schema, nodes, serviceNodes);
+
     if (!nodes.some(node => node.id === schema.name)) {
-      nodes.push({
+      serviceNodes.unshift({
         id: schema.name,
-        type: "serviceNode",
+        type: NodeType.SERVICE_NODE,
         data: {
           name: schema.name
         },
-        position: { x: 0, y: 0 }
+        position: { x: 0, y: 0 },
+        dragHandle: "acidic-drag",
+        draggable: true,
+        focusable: true,
+        style: {
+          width: 1400,
+          height: 800 + serviceNodes.length * 150
+        }
       });
     }
 
-    return getServiceNodes(schema, nodes);
+    nodes.push(...serviceNodes);
+    return nodes;
   }, []);
 };
 
+const calculateNodeYPosition = (count: number) => {};
+
 const getServiceNodes = (
   schema: ServiceSchema,
-  nodes: Node<any>[]
+  existingNodes: Node<any>[],
+  serviceNodes: Node<any>[]
 ): Node<any>[] => {
-  schema.enums.reduce((ret: Node<any>[], enumSchema: EnumSchema) => {
-    const node: Node<any> = {
-      id: getNodeId(enumSchema.name, schema.name),
-      type: "enumNode",
-      data: {
-        name: enumSchema.name
-      },
-      position: { x: 0, y: 0 },
-      dragHandle: "acidic-drag",
-      parentNode: schema.name,
-      extent: "parent"
-    };
-    ret.push(node);
-
-    return ret;
-  }, nodes);
-  schema.models.reduce((ret: Node<any>[], modelSchema: ModelSchema) => {
-    const node: Node<any> = {
-      id: getNodeId(modelSchema.name, schema.name),
-      type: "modelNode",
-      data: {
-        name: modelSchema.name
-      },
-      position: { x: 0, y: 0 },
-      parentNode: schema.name,
-      extent: "parent"
-    };
-    ret.push(node);
-
-    return ret;
-  }, nodes);
-  schema.events.reduce((ret: Node<any>[], eventSchema: EventSchema) => {
-    if (!ret.some(existing => existing.id === eventSchema.name)) {
+  serviceNodes = schema.enums.reduce(
+    (ret: Node<any>[], enumSchema: EnumSchema) => {
       const node: Node<any> = {
-        id: getNodeId(eventSchema.name, schema.name),
-        type: "eventNode",
+        id: getNodeId(enumSchema.name, schema.name),
+        type: NodeType.ENUM_NODE,
         data: {
-          name: eventSchema.name
+          name: enumSchema.name
         },
-        position: { x: 0, y: 0 },
+        position: { x: 50, y: serviceNodes.length * 100 },
+        dragHandle: "acidic-drag",
+        draggable: true,
+        focusable: true,
         parentNode: schema.name,
         extent: "parent"
       };
       ret.push(node);
-    }
 
-    return ret;
-  }, nodes);
-  schema.objects.reduce((ret: Node<any>[], objectSchema: ObjectSchema) => {
-    if (!ret.some(existing => existing.id === objectSchema.name)) {
+      return ret;
+    },
+    serviceNodes
+  );
+
+  serviceNodes = schema.models.reduce(
+    (ret: Node<any>[], modelSchema: ModelSchema) => {
       const node: Node<any> = {
-        id: getNodeId(objectSchema.name, schema.name),
-        type: "objectNode",
+        id: getNodeId(modelSchema.name, schema.name),
+        type: NodeType.MODEL_NODE,
         data: {
-          name: objectSchema.name
+          name: modelSchema.name
         },
-        position: { x: 0, y: 0 },
+        position: { x: 200, y: serviceNodes.length * 100 },
+        dragHandle: "acidic-drag",
+        draggable: true,
+        focusable: true,
         parentNode: schema.name,
         extent: "parent"
       };
       ret.push(node);
-    }
 
-    return ret;
-  }, nodes);
+      return ret;
+    },
+    serviceNodes
+  );
+  serviceNodes = schema.objects.reduce(
+    (ret: Node<any>[], objectSchema: ObjectSchema) => {
+      if (!ret.some(existing => existing.id === objectSchema.name)) {
+        const node: Node<any> = {
+          id: getNodeId(objectSchema.name, schema.name),
+          type: NodeType.OBJECT_NODE,
+          data: {
+            name: objectSchema.name
+          },
+          position: { x: 600, y: serviceNodes.length * 100 },
+          dragHandle: "acidic-drag",
+          draggable: true,
+          focusable: true,
+          parentNode: schema.name,
+          extent: "parent"
+        };
+        ret.push(node);
+      }
 
-  return nodes;
+      return ret;
+    },
+    serviceNodes
+  );
+
+  serviceNodes = schema.events.reduce(
+    (ret: Node<any>[], eventSchema: EventSchema) => {
+      if (!ret.some(existing => existing.id === eventSchema.name)) {
+        const node: Node<any> = {
+          id: getNodeId(eventSchema.name, schema.name),
+          type: NodeType.EVENT_NODE,
+          data: {
+            name: eventSchema.name
+          },
+          position: { x: 400, y: serviceNodes.length * 100 },
+          dragHandle: "acidic-drag",
+          draggable: true,
+          focusable: true,
+          expandParent: true,
+          parentNode: schema.name,
+          extent: "parent"
+        };
+        ret.push(node);
+      }
+
+      return ret;
+    },
+    serviceNodes
+  );
+  serviceNodes = schema.queries.reduce(
+    (ret: Node<any>[], operationSchema: OperationSchema) => {
+      if (!ret.some(existing => existing.id === operationSchema.name)) {
+        const node: Node<any> = {
+          id: getNodeId(operationSchema.name, schema.name),
+          type: NodeType.OPERATION_NODE,
+          data: {
+            name: operationSchema.name
+          },
+          position: { x: 600, y: serviceNodes.length * 100 },
+          dragHandle: "acidic-drag",
+          draggable: true,
+          focusable: true,
+          parentNode: schema.name,
+          extent: "parent"
+        };
+        ret.push(node);
+      }
+
+      return ret;
+    },
+    serviceNodes
+  );
+  serviceNodes = schema.mutations.reduce(
+    (ret: Node<any>[], operationSchema: OperationSchema) => {
+      if (!ret.some(existing => existing.id === operationSchema.name)) {
+        const node: Node<any> = {
+          id: getNodeId(operationSchema.name, schema.name),
+          type: NodeType.OPERATION_NODE,
+          data: {
+            name: operationSchema.name
+          },
+          position: { x: 600, y: serviceNodes.length * 100 },
+          dragHandle: "acidic-drag",
+          draggable: true,
+          focusable: true,
+          parentNode: schema.name,
+          extent: "parent"
+        };
+        ret.push(node);
+      }
+
+      return ret;
+    },
+    serviceNodes
+  );
+  serviceNodes = schema.subscriptions.reduce(
+    (ret: Node<any>[], operationSchema: OperationSchema) => {
+      if (!ret.some(existing => existing.id === operationSchema.name)) {
+        const node: Node<any> = {
+          id: getNodeId(operationSchema.name, schema.name),
+          type: NodeType.OPERATION_NODE,
+          data: {
+            name: operationSchema.name
+          },
+          position: { x: 600, y: serviceNodes.length * 100 },
+          dragHandle: "acidic-drag",
+          draggable: true,
+          focusable: true,
+          parentNode: schema.name,
+          extent: "parent"
+        };
+        ret.push(node);
+      }
+
+      return ret;
+    },
+    serviceNodes
+  );
+
+  serviceNodes = schema.plugins.reduce(
+    (ret: Node<any>[], pluginSchema: PluginSchema) => {
+      if (!ret.some(existing => existing.id === pluginSchema.name)) {
+        const node: Node<any> = {
+          id: getNodeId(pluginSchema.name, schema.name),
+          type: NodeType.PLUGIN_NODE,
+          data: {
+            name: pluginSchema.name
+          },
+          position: { x: 600, y: serviceNodes.length * 100 },
+          dragHandle: "acidic-drag",
+          draggable: true,
+          focusable: true,
+          parentNode: schema.name,
+          extent: "parent"
+        };
+        ret.push(node);
+      }
+
+      return ret;
+    },
+    serviceNodes
+  );
+
+  return serviceNodes;
 };
 
 const getWorkspaceEdges = (schemas: ServiceSchema[]): Edge<any>[] => {
@@ -150,14 +287,14 @@ const getServiceEdges = (
       modelSchema.ref.relationships.forEach(relationship => {
         const foreignId = getNodeId(relationship.ref.name, schema.name);
         const edge: Edge<any> = {
-          id: `${modelId}->${foreignId}`,
+          id: `${modelId}-${foreignId}`,
           source: modelId,
           target: foreignId,
           markerEnd: {
             type: MarkerType.ArrowClosed,
             width: 20,
             height: 20,
-            color: getNodeTypeColor(NodeType.MODEL)
+            color: getNodeTypeColor(getNodeType(NodeKind.MODEL))
           }
         };
         ret.push(edge);
@@ -172,7 +309,7 @@ const getServiceEdges = (
       objectSchema.relationships.forEach(relationship => {
         const foreignId = getNodeId(relationship.ref.name, schema.name);
         const edge: Edge<any> = {
-          id: `${objectId}->${foreignId}`,
+          id: `${objectId}-${foreignId}`,
           source: objectId,
           target: foreignId,
           label: "Child Type",
@@ -180,7 +317,7 @@ const getServiceEdges = (
             type: MarkerType.ArrowClosed,
             width: 20,
             height: 20,
-            color: getNodeTypeColor(NodeType.OBJECT)
+            color: getNodeTypeColor(getNodeType(NodeKind.OBJECT))
           }
         };
         ret.push(edge);
@@ -194,6 +331,9 @@ const getServiceEdges = (
 
 export interface GraphStore {
   schemas: ServiceSchema[];
+  isShowingMinimap: boolean;
+  isShowingOptions: boolean;
+  backgroundVariant: BackgroundVariant | null;
 }
 
 export interface ExtendedGraphStore {
@@ -261,7 +401,10 @@ const atomWithEdges = (atoms: SimpleWritableAtom<ServiceSchema[]>) => {
 
 export const { useGraphStore, graphStore, GraphProvider } = createAtomStore(
   {
-    schemas: []
+    schemas: [],
+    isShowingMinimap: true,
+    isShowingOptions: true,
+    backgroundVariant: null
   } as GraphStore,
   {
     name: "graph",

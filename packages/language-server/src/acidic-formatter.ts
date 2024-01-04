@@ -1,4 +1,12 @@
-import * as ast from "@acidic/language/ast";
+import {
+  Model,
+  isAbstractDeclaration,
+  isAcidicFieldAttribute,
+  isAcidicObjectField,
+  isAcidicOperation,
+  isAttributeArg,
+  isModel
+} from "@acidic/language";
 import {
   AbstractFormatter,
   AstNode,
@@ -11,22 +19,22 @@ export class AcidicFormatter extends AbstractFormatter {
   private formatOptions?: FormattingOptions;
   protected format(node: AstNode): void {
     const formatter = this.getNodeFormatter(node);
-    if (ast.isAcidicObjectField(node)) {
+    if (isAcidicObjectField(node)) {
       formatter.property("type").prepend(Formatting.oneSpace());
       if (node.attributes.length > 0) {
         formatter.properties("attributes").prepend(Formatting.oneSpace());
       }
-    } else if (ast.isAcidicFieldAttribute(node)) {
+    } else if (isAcidicFieldAttribute(node)) {
       formatter.keyword("(").surround(Formatting.noSpace());
       formatter.keyword(")").prepend(Formatting.noSpace());
       formatter.keyword(",").append(Formatting.oneSpace());
       if (node.args.length > 1) {
         formatter.nodes(...node.args.slice(1)).prepend(Formatting.oneSpace());
       }
-    } else if (ast.isAttributeArg(node)) {
+    } else if (isAttributeArg(node)) {
       formatter.keyword(":").prepend(Formatting.noSpace());
       formatter.keyword(":").append(Formatting.oneSpace());
-    } else if (ast.isAbstractDeclaration(node)) {
+    } else if (isAbstractDeclaration(node)) {
       const bracesOpen = formatter.keyword("{");
       const bracesClose = formatter.keyword("}");
       // allow extra blank lines between declarations
@@ -35,11 +43,11 @@ export class AcidicFormatter extends AbstractFormatter {
         .prepend(Formatting.indent({ allowMore: true }));
       bracesOpen.prepend(Formatting.oneSpace());
       bracesClose.prepend(Formatting.newLine());
-    } else if (ast.isModel(node)) {
-      const model = node as ast.Model;
+    } else if (isModel(node)) {
+      const model = node as Model;
       const nodes = formatter.nodes(...model.declarations);
       nodes.prepend(Formatting.noIndent());
-    } else if (ast.isAcidicOperation(node)) {
+    } else if (isAcidicOperation(node)) {
       formatter.property("name").prepend(Formatting.oneSpace());
       formatter.property("resultType").prepend(Formatting.oneSpace());
       if (node.attributes.length > 0) {

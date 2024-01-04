@@ -9,7 +9,7 @@ module.exports = {
   runtimeDirectory: "node_modules/.storm",
   timezone: "America/New_York",
   locale: "en-US",
-  logLevel: "info",
+  logLevel: "debug",
   colors: {
     primary: "#1fb2a6",
     background: "#1d232a",
@@ -18,5 +18,10 @@ module.exports = {
     warning: "#fcc419",
     error: "#990000",
     fatal: "#7d1a1a"
+  },
+  extensions: {
+    logging: {
+      stacktrace: true
+    }
   }
 };

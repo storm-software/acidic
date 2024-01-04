@@ -15,3 +15,31 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.background-gradient::before {
+  background: radial-gradient(
+    35% 40% at 44% 50%,
+    rgba(99, 102, 241, 0.476) 0%,
+    rgba(37, 38, 44, 0) 100%
+  );
+  z-index: 1;
+  content: "";
+  position: absolute;
+  inset: 0px;
+  transform: scale(1);
+  pointer-events: none;
+}
+
+.background-gradient::after {
+  background: radial-gradient(
+    30% 35% at 64% 60%,
+    rgba(16, 185, 129, 0.376) 0%,
+    rgba(37, 38, 44, 0) 100%
+  );
+  z-index: 1;
+  content: "";
+  position: absolute;
+  inset: 0px;
+  transform: scale(1);
+  pointer-events: none;
+}

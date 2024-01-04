@@ -1003,7 +1003,7 @@
                 {
                   "kind": "Reference",
                   "text": "CancellationToken",
-                  "canonicalReference": "@acidic/language-server!~CancellationToken"
+                  "canonicalReference": "!unknown"
                 },
                 {
                   "kind": "Content",
@@ -1207,7 +1207,7 @@
                 {
                   "kind": "Reference",
                   "text": "CancellationToken",
-                  "canonicalReference": "@acidic/language-server!~CancellationToken"
+                  "canonicalReference": "!unknown"
                 },
                 {
                   "kind": "Content",
@@ -1304,7 +1304,7 @@
                 {
                   "kind": "Reference",
                   "text": "CancellationToken",
-                  "canonicalReference": "@acidic/language-server!~CancellationToken"
+                  "canonicalReference": "!unknown"
                 },
                 {
                   "kind": "Content",
@@ -4687,7 +4687,7 @@
             },
             {
               "kind": "Content",
-              "text": "import(\"@acidic/language/ast\")."
+              "text": "import(\"@acidic/language\")."
             },
             {
               "kind": "Reference",

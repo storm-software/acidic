@@ -1,19 +1,20 @@
+import { ServiceSchema } from "@acidic/schema";
 import React, { ReactNode } from "react";
 import { ReactFlowProvider } from "reactflow";
-import { GraphProvider, GraphStore } from "./create-graph-store";
+import { GraphProvider } from "./create-graph-store";
 
 export interface GraphStoreProviderProps {
-  initialValues?: GraphStore;
+  schemas: ServiceSchema[];
   children: ReactNode;
 }
 
 export const GraphStoreProvider = ({
   children,
-  initialValues = { schemas: [] }
+  schemas = []
 }: GraphStoreProviderProps) => {
   return (
     <ReactFlowProvider>
-      <GraphProvider initialValues={initialValues}>{children}</GraphProvider>
+      <GraphProvider initialValues={{ schemas }}>{children}</GraphProvider>
     </ReactFlowProvider>
   );
 };

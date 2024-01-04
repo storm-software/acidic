@@ -9,18 +9,6 @@ const compat = new FlatCompat({
 
 module.exports = [
   ...baseConfig,
-  {
-    files: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
-    rules: {}
-  },
-  {
-    files: ["**/*.ts", "**/*.tsx"],
-    rules: {}
-  },
-  {
-    files: ["**/*.js", "**/*.jsx"],
-    rules: {}
-  },
   ...compat.config({ parser: "jsonc-eslint-parser" }).map(config => ({
     ...config,
     "files": ["packages/service-graph/**/*.json"],

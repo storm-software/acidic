@@ -6,13 +6,13 @@ import { ServiceGraphLayout } from "./service-graph-layout";
 
 export interface ServiceGraphProps {
   className?: string;
-  schema?: ServiceSchema;
+  schemas?: ServiceSchema[];
 }
 
-export const ServiceGraph = ({ className, schema }: ServiceGraphProps) => {
+export const ServiceGraph = ({ className, schemas }: ServiceGraphProps) => {
   return (
-    <div className="h-full w-full border-[1px] border-slate-600/50">
-      <GraphStoreProvider initialValues={{ schemas: schema ? [schema] : [] }}>
+    <div className="h-full w-full border-[1px] border-gray-600/50">
+      <GraphStoreProvider schemas={schemas ? schemas : []}>
         <ServiceGraphLayout className={className} />
       </GraphStoreProvider>
     </div>

@@ -1,13 +1,13 @@
+import { NodeKind } from "@acidic/schema";
 import clsx from "clsx";
 import React, { ReactNode } from "react";
 import "reactflow/dist/style.css";
-import { NodeType } from "../types";
 
 export interface ModalProps {
   className?: string;
   children: ReactNode;
   title: string;
-  type: NodeType;
+  type: NodeKind;
 }
 
 export const Modal = ({ children, title, type }: ModalProps) => {
@@ -45,20 +45,20 @@ export const Modal = ({ children, title, type }: ModalProps) => {
                 type="button"
                 className={clsx(
                   "mt-3 inline-flex w-full justify-center rounded-md bg-slate-700 px-3 py-2 text-sm font-semibold shadow-sm ring-2 ring-inset hover:bg-slate-600 sm:mt-0 sm:w-auto",
-                  { "text-[#a855f7] ring-[#a855f7]": type === NodeType.ENUM },
+                  { "text-[#a855f7] ring-[#a855f7]": type === NodeKind.ENUM },
                   {
-                    "text-[#0d9488] ring-[#0d9488]": type === NodeType.MODEL
+                    "text-[#0d9488] ring-[#0d9488]": type === NodeKind.MODEL
                   },
                   {
-                    "text-[#ec4899] ring-[#ec4899]": type === NodeType.PLUGIN
+                    "text-[#ec4899] ring-[#ec4899]": type === NodeKind.PLUGIN
                   },
                   {
-                    "text-[#0891b2] ring-[#0891b2]": type === NodeType.REQUEST
+                    "text-[#0891b2] ring-[#0891b2]": type === NodeKind.OPERATION
                   },
                   {
-                    "text-[#b91c1c] ring-[#b91c1c]": type === NodeType.OBJECT
+                    "text-[#b91c1c] ring-[#b91c1c]": type === NodeKind.OBJECT
                   },
-                  { "text-[#c2410c] ring-[#c2410c]": type === NodeType.EVENT }
+                  { "text-[#c2410c] ring-[#c2410c]": type === NodeKind.EVENT }
                 )}>
                 Close
               </button>

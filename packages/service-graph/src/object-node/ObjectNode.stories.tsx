@@ -4,6 +4,7 @@ import { getNodeId } from "../utilities/get-node-id";
 import { ObjectNode } from "./ObjectNode";
 
 const meta: Meta<typeof ObjectNode> = {
+  title: "Nodes/ObjectNode",
   component: ObjectNode,
   tags: ["autodocs"]
 };

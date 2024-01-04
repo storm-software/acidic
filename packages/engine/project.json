@@ -42,5 +42,7 @@
     },
     "lint": {},
     "test": {}
-  }
+  },
+  "tags": [],
+  "implicitDependencies": ["schema"]
 }

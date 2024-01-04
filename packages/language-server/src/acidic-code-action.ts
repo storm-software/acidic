@@ -1,9 +1,10 @@
 import {
   AcidicModel,
   AcidicObjectField,
+  IssueCodes,
   Model,
   isAcidicModel
-} from "@acidic/language/ast";
+} from "@acidic/language";
 import {
   AstReflection,
   CodeActionProvider,
@@ -14,8 +15,6 @@ import {
   MaybePromise,
   getDocument
 } from "langium";
-
-import { IssueCodes } from "@acidic/language/constants";
 import {
   CodeAction,
   CodeActionKind,

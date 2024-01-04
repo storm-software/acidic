@@ -1,20 +1,31 @@
-import { NodeSchema, ObjectFieldSchema } from "@acidic/schema";
+import { NodeKind, NodeSchema, ObjectSchema } from "@acidic/schema";
 import React from "react";
 import "reactflow/dist/style.css";
 import { NodeFieldTableRow } from "../node-field-table-row";
 import { Table, TableProps } from "../table";
 
 export type NodeFieldTableProps = Partial<TableProps> & {
+  headers?: string[];
+  kind: NodeKind;
   node: NodeSchema;
-  fields: ObjectFieldSchema[];
 };
 
-export const NodeFieldTable = ({ fields, node }: NodeFieldTableProps) => {
+export const NodeFieldTable = ({
+  headers,
+  node,
+  kind
+}: NodeFieldTableProps) => {
   return (
-    <Table headers={["Field Name", "Field Type"]}>
-      {fields.map(field => (
-        <NodeFieldTableRow field={field} node={node} />
-      ))}
+    <Table headers={headers ? headers : ["Field Name", "Field Type"]}>
+      {(node as ObjectSchema)?.fields &&
+        (node as ObjectSchema)?.fields?.map(field => (
+          <NodeFieldTableRow
+            key={field.name}
+            field={field}
+            node={node}
+            kind={kind}
+          />
+        ))}
     </Table>
   );
 };

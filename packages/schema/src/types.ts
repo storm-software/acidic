@@ -18,6 +18,34 @@ export const ConnectorType = {
   JDBC_SQL_SERVER: "jdbc:sqlserver" as ConnectorType
 };
 
+export type NodeKind =
+  | "event"
+  | "plugin"
+  | "model"
+  | "object"
+  | "operation"
+  | "enum"
+  | "data_source"
+  | "relationship"
+  | "query"
+  | "mutation"
+  | "subscription"
+  | "service";
+export const NodeKind = {
+  EVENT: "event" as NodeKind,
+  PLUGIN: "plugin" as NodeKind,
+  MODEL: "model" as NodeKind,
+  OBJECT: "object" as NodeKind,
+  OPERATION: "operation" as NodeKind,
+  ENUM: "enum" as NodeKind,
+  DATA_SOURCE: "data_source" as NodeKind,
+  RELATIONSHIP: "relationship" as NodeKind,
+  QUERY: "query" as NodeKind,
+  MUTATION: "mutation" as NodeKind,
+  SUBSCRIPTION: "subscription" as NodeKind,
+  SERVICE: "service" as NodeKind
+};
+
 /**
  * Generator Write function options
  */
@@ -70,7 +98,7 @@ export interface NodeSchema {
   /**
    * The type of the schema
    */
-  kind: string;
+  kind: NodeKind;
 
   /**
    * The name of the schema
@@ -87,7 +115,7 @@ export interface DataSourceSchema extends NodeSchema {
   /**
    * The name of the schema
    */
-  kind: "DataSource";
+  kind: "data_source";
 
   /**
    * The connector type
@@ -98,13 +126,23 @@ export interface DataSourceSchema extends NodeSchema {
    * The url to the data source
    */
   url: string;
+
+  /**
+   * The direct url to the data source
+   */
+  directUrl?: string;
+
+  /**
+   * The proxy url to the data source
+   */
+  proxyUrl?: string;
 }
 
 export interface PluginSchema extends NodeSchema {
   /**
    * The name of the schema
    */
-  kind: "Plugin";
+  kind: "plugin";
 
   /**
    * The connector type
@@ -171,7 +209,7 @@ export interface EnumSchema extends NodeSchema {
   /**
    * The name of the schema
    */
-  kind: "Enum";
+  kind: "enum";
 
   /**
    * The enum fields
@@ -285,6 +323,12 @@ export interface StringObjectFieldSchema extends BaseObjectFieldSchema {
   isMacAddress?: boolean;
 
   isDatetime?: boolean;
+
+  isUuid?: boolean;
+
+  isCuid?: boolean;
+
+  isSnowflake?: boolean;
 
   has?: string[];
 
@@ -493,7 +537,7 @@ export interface ObjectRelationshipSchema extends NodeSchema {
   /**
    * The name of the schema
    */
-  kind: "Relationship";
+  kind: "relationship";
 
   /**
    * A list of foreign keys that exist on the current object
@@ -515,7 +559,7 @@ export interface ObjectSchema extends NodeSchema {
   /**
    * The name of the schema
    */
-  kind: "Object";
+  kind: "object";
 
   /**
    * The object fields
@@ -538,7 +582,7 @@ export interface ModelSchema extends NodeSchema {
   /**
    * The name of the schema
    */
-  kind: "Model";
+  kind: "model";
 
   /**
    * The name of the object
@@ -555,7 +599,7 @@ export interface EventSchema extends NodeSchema {
   /**
    * The name of the schema
    */
-  kind: "Event";
+  kind: "event";
 
   /**
    * The name of the event
@@ -572,12 +616,17 @@ export interface OperationSchema extends NodeSchema {
   /**
    * The input/request of the operation
    */
-  request?: ObjectSchema;
+  requestRef?: ObjectSchema;
 
   /**
    * The event fields
    */
-  response: OperationResponseSchema;
+  responseRef: OperationResponseSchema;
+
+  /**
+   * The url end point of the operation
+   */
+  url?: string;
 
   /**
    * The events emitted by the operation
@@ -606,7 +655,7 @@ export interface QuerySchema extends OperationSchema {
   /**
    * The name of the schema
    */
-  kind: "Query";
+  kind: "query";
 
   /**
    * An indicator of whether the query is live
@@ -618,21 +667,21 @@ export interface MutationSchema extends OperationSchema {
   /**
    * The name of the schema
    */
-  kind: "Mutation";
+  kind: "mutation";
 }
 
 export interface SubscriptionSchema extends OperationSchema {
   /**
    * The name of the schema
    */
-  kind: "Subscription";
+  kind: "subscription";
 }
 
 export interface StringAttributeFieldSchema {
   /**
    * The name of the object
    */
-  name: string;
+  name?: string;
 
   /**
    * The value type
@@ -649,7 +698,7 @@ export interface NumberAttributeFieldSchema {
   /**
    * The name of the object
    */
-  name: string;
+  name?: string;
 
   /**
    * The value type
@@ -711,12 +760,30 @@ export interface EnumAttributeFieldSchema {
   value: StringEnumFieldSchema | IntegerEnumFieldSchema;
 }
 
+export interface FieldAttributeFieldSchema {
+  /**
+   * The name of the object
+   */
+  name?: string;
+
+  /**
+   * The value type
+   */
+  type: "Field";
+
+  /**
+   * The default value
+   */
+  value: string;
+}
+
 export type AttributeFieldSchema =
   | StringAttributeFieldSchema
   | NumberAttributeFieldSchema
   | IntegerAttributeFieldSchema
   | BooleanAttributeFieldSchema
-  | EnumAttributeFieldSchema;
+  | EnumAttributeFieldSchema
+  | FieldAttributeFieldSchema;
 
 export interface AttributeArgSchema {
   /**
@@ -746,7 +813,7 @@ export interface ServiceSchema extends NodeSchema {
   /**
    * The name of the schema
    */
-  kind: "Service";
+  kind: "service";
 
   /**
    * The external service schema definitions imported into the current service

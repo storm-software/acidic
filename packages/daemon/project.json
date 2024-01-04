@@ -39,5 +39,7 @@
     },
     "lint": {},
     "test": {}
-  }
+  },
+  "tags": [],
+  "implicitDependencies": ["engine"]
 }

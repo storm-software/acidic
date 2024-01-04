@@ -4,6 +4,7 @@ import { getNodeId } from "../utilities/get-node-id";
 import { EventNode } from "./EventNode";
 
 const meta: Meta<typeof EventNode> = {
+  title: "Nodes/EventNode",
   component: EventNode,
   tags: ["autodocs"]
 };

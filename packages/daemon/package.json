@@ -19,7 +19,8 @@
     "@storm-stack/serialization": "latest",
     "@storm-stack/utilities": "latest",
     "chokidar": "^3.5.3",
-    "glob": "^10.3.10"
+    "glob": "^10.3.10",
+    "proper-lockfile": "^4.1.2"
   },
   "publishConfig": {
     "access": "public"

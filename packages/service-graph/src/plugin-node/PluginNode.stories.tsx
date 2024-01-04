@@ -4,6 +4,7 @@ import { getNodeId } from "../utilities/get-node-id";
 import { PluginNode } from "./PluginNode";
 
 const meta: Meta<typeof PluginNode> = {
+  title: "Nodes/PluginNode",
   component: PluginNode,
   tags: ["autodocs"]
 };

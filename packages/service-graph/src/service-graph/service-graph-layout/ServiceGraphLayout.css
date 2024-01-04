@@ -1,0 +1,193 @@
+.react-flow::before {
+  background: radial-gradient(
+    35% 40% at 44% 50%,
+    rgba(99, 102, 241, 0.476) 0%,
+    #1a202c 100%
+  );
+  z-index: 1;
+  content: "";
+  position: absolute;
+  inset: 0px;
+  transform: scale(1);
+  pointer-events: none;
+}
+
+.react-flow::after {
+  background: radial-gradient(
+    30% 35% at 64% 60%,
+    #04c8bb 0%,
+    #1a202c 100%
+  );
+  z-index: 1;
+  content: "";
+  position: absolute;
+  inset: 0px;
+  transform: scale(1);
+  pointer-events: none;
+}
+
+.react-flow {
+  --bg-color: rgb(17, 17, 17);
+  --text-color: rgb(243, 244, 246);
+  --node-border-radius: 8px;
+  --node-box-shadow: 10px 0 15px rgba(42, 138, 246, 0.3), -10px 0 15px rgba(233, 42, 103, 0.3);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+
+.react-flow__controls button {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid rgba(156, 163, 175, 0.5);
+  border-bottom: none;
+}
+
+.react-flow__controls button:hover {
+  background-color: rgb(37, 37, 37);
+}
+
+.react-flow__controls button:first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+.react-flow__controls button:last-child {
+  border-bottom: 1px solid rgba(156, 163, 175, 0.5);
+  border-radius: 0 0 5px 5px;
+}
+
+.react-flow__controls button path {
+  fill: var(--text-color);
+}
+
+
+.react-flow__minimap {
+  border-radius: 5px;
+  border: 1px solid rgba(156, 163, 175, 0.5);
+  background-color: var(--bg-color);
+}
+
+.gradient:before {
+  content: '';
+  position: absolute;
+  padding-bottom: calc(100% * 1.8);
+  width: calc(100% * 1.8);
+  /*background: conic-gradient(
+    from -160deg at 50% 50%,
+    #e92a67 0deg,
+    #a853ba 120deg,
+    #2a8af6 240deg,
+    #e92a67 360deg
+  );*/
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+}
+
+.react-flow__node-event,
+.react-flow__node-event,
+.react-flow__node-enum,
+.react-flow__node-model,
+.react-flow__node-object,
+.react-flow__node-operation,
+.react-flow__node-plugin,
+.react-flow__node-service {
+  border-radius: var(--node-border-radius);
+  display: flex;
+}
+
+.react-flow__node-event .wrapper,
+.react-flow__node-event .wrapper,
+.react-flow__node-enum .wrapper,
+.react-flow__node-model .wrapper,
+.react-flow__node-object .wrapper,
+.react-flow__node-operation .wrapper,
+.react-flow__node-plugin .wrapper,
+.react-flow__node-service .wrapper {
+  overflow: hidden;
+  display: flex;
+  padding: 2px;
+  position: relative;
+  border-radius: var(--node-border-radius);
+  /*box-shadow: var(--node-box-shadow);*/
+  flex-grow: 1;
+}
+
+.react-flow__node-event.selected .wrapper.gradient:before,
+.react-flow__node-object.selected .wrapper.gradient:before,
+.react-flow__node-enum.selected .wrapper.gradient:before,
+.react-flow__node-model.selected .wrapper.gradient:before,
+.react-flow__node-operation.selected .wrapper.gradient:before,
+.react-flow__node-plugin.selected .wrapper.gradient:before {
+  content: '';
+  animation: spinner 4s linear infinite;
+  transform: translate(-50%, -50%) rotate(0deg);
+  z-index: 1;
+}
+
+.react-flow__node-event.selected .wrapper.gradient:before {
+  background: conic-gradient(
+    from -160deg at 50% 50%,
+    #f97316 0deg,
+    #c2410c 120deg,
+    #7c2d12 240deg,
+    rgba(42, 138, 246, 0) 360deg
+  );
+}
+
+.react-flow__node-object.selected .wrapper.gradient:before {
+  background: conic-gradient(
+    from -160deg at 50% 50%,
+    #dc2626 0deg,
+    #991b1b 120deg,
+    #450a0a 240deg,
+    rgba(42, 138, 246, 0) 360deg
+  );
+}
+
+.react-flow__node-model.selected .wrapper.gradient:before {
+  background: conic-gradient(
+    from -160deg at 50% 50%,
+    #2dd4bf 0deg,
+    #0d9488 120deg,
+    #115e59 240deg,
+    rgba(42, 138, 246, 0) 360deg
+  );
+}
+
+.react-flow__node-enum.selected .wrapper.gradient:before {
+  background: conic-gradient(
+    from -160deg at 50% 50%,
+    #8b5cf6 0deg,
+    #6d28d9 120deg,
+    #4c1d95 240deg,
+    rgba(42, 138, 246, 0) 360deg
+  );
+}
+
+.react-flow__node-operation.selected .wrapper.gradient:before {
+  background: conic-gradient(
+    from -160deg at 50% 50%,
+    #0ea5e9 0deg,
+    #0369a1 120deg,
+    #0c4a6e 240deg,
+    rgba(42, 138, 246, 0) 360deg
+  );
+}
+
+.react-flow__node-plugin.selected .wrapper.gradient:before {
+  background: conic-gradient(
+    from -160deg at 50% 50%,
+    #ec4899 0deg,
+    #be185d 120deg,
+    #831843 240deg,
+    rgba(42, 138, 246, 0) 360deg
+  );
+}
+
+@keyframes spinner {
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}

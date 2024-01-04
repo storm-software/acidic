@@ -2,8 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "noEmit": true,
-    "skipLibCheck": true
+    "noEmit": true
   },
   "files": [],
   "include": ["src/**/*.ts", "src/**/*.js", "bin/**/*"],

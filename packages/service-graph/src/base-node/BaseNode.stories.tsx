@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { NodeType } from "../types";
+import { NodeKind } from "@acidic/schema";
 import { BaseNode } from "./BaseNode";
 
 const meta: Meta<typeof BaseNode> = {
+  title: "Support/BaseNode",
   component: BaseNode,
   tags: ["autodocs"]
 };
@@ -17,7 +18,7 @@ export const Object: Story = {
     comments: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    type: NodeType.OBJECT
+    kind: NodeKind.OBJECT
   }
 };
 
@@ -27,17 +28,17 @@ export const Enum: Story = {
     comments: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    type: NodeType.ENUM
+    kind: NodeKind.ENUM
   }
 };
 
-export const Request: Story = {
+export const Operation: Story = {
   args: {
     name: "BaseNode Title",
     comments: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    type: NodeType.REQUEST
+    kind: NodeKind.OPERATION
   }
 };
 
@@ -47,7 +48,7 @@ export const event: Story = {
     comments: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    type: NodeType.EVENT
+    kind: NodeKind.EVENT
   }
 };
 
@@ -57,6 +58,6 @@ export const Model: Story = {
     comments: [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     ],
-    type: NodeType.MODEL
+    kind: NodeKind.MODEL
   }
 };

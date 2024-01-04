@@ -4,6 +4,7 @@ import { getNodeId } from "../utilities/get-node-id";
 import { ModelNode } from "./ModelNode";
 
 const meta: Meta<typeof ModelNode> = {
+  title: "Nodes/ModelNode",
   component: ModelNode,
   tags: ["autodocs"]
 };

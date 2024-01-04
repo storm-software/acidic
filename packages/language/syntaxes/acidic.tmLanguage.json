@@ -1,7 +1,10 @@
 {
   "name": "acidic",
   "scopeName": "source.acidic",
-  "fileTypes": [".acid", ".acidic"],
+  "fileTypes": [
+    ".acid",
+    ".acidic"
+  ],
   "patterns": [
     {
       "include": "#comments"

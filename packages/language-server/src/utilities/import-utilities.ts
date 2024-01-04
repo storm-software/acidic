@@ -1,4 +1,4 @@
-import { AcidicImport, Model, isModel } from "@acidic/language/ast";
+import { AcidicImport, Model, isModel } from "@acidic/language";
 import { LangiumDocuments, getDocument } from "langium";
 import { URI, Utils } from "vscode-uri";
 

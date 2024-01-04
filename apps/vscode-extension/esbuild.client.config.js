@@ -16,6 +16,7 @@ module.exports = {
   treeShaking: true,
   jsx: "automatic",
   logLevel: "error",
+  outdir: "dist/apps/vscode-extension/client",
   define: {
     "import.meta.url": "importMetaUrl"
   },

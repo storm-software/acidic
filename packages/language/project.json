@@ -14,13 +14,13 @@
         "tsConfig": "packages/language/tsconfig.json",
         "platform": "neutral",
         "deleteOutputPath": true,
-        "metafile": true,
+        "metafile": false,
         "bundle": true,
         "sourcemap": true,
         "minify": false,
         "skipTypeCheck": false,
         "format": ["esm", "cjs"],
-        "external": [".prisma/client/index", "vscode"],
+        "external": ["vscode"],
         "assets": [
           {
             "input": "packages/language",

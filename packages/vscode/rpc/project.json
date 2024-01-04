@@ -1,0 +1,44 @@
+{
+  "name": "vscode-rpc",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/vscode/rpc/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-neutral",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entry": "packages/vscode/rpc/src/index.ts",
+        "outputPath": "dist/packages/vscode/rpc",
+        "tsConfig": "packages/vscode/rpc/tsconfig.json",
+        "project": "packages/vscode/rpc/package.json",
+        "defaultConfiguration": "production",
+        "assets": [
+          {
+            "input": "packages/vscode/rpc",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ],
+        "platform": "neutral"
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    },
+    "lint": {},
+    "test": {}
+  }
+}

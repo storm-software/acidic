@@ -1,8 +1,9 @@
-import { ObjectSchema } from "@acidic/engine";
+import { ObjectSchema } from "@acidic/schema";
 import type { Meta, StoryObj } from "@storybook/react";
 import { NodeFieldTableRow } from "./NodeFieldTableRow";
 
 const meta: Meta<typeof NodeFieldTableRow> = {
+  title: "Support/NodeFieldTableRow",
   component: NodeFieldTableRow,
   tags: ["autodocs"]
 };
@@ -12,8 +13,9 @@ type Story = StoryObj<typeof NodeFieldTableRow>;
 
 export const Primary: Story = {
   args: {
+    kind: NodeKind.MODEL,
     node: {
-      kind: "Object",
+      kind: "object",
       name: "ExampleObject",
       comments: [
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -49,7 +51,6 @@ export const Primary: Story = {
           attributes: []
         }
       ],
-
       relationships: [],
       extends: [],
       isExtend: false,

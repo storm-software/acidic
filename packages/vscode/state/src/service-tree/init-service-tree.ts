@@ -1,6 +1,6 @@
+import { CommandName, getCommandId } from "@acidic/vscode-rpc";
 import { StormLog } from "@storm-stack/logging";
 import { ExtensionContext, commands, window } from "vscode";
-import { CommandName, getCommandId } from "../commands";
 import { listenForAndStoreCollapsibleChanges } from "../utilities/tree-item-collapsible-store";
 import { ServiceTreeProvider } from "./service-tree-provider";
 
@@ -20,7 +20,7 @@ export function initServiceTree(
   );
   context.subscriptions.push(
     commands.registerCommand(
-      getCommandId(CommandName.REFRESH_SCHEMA_START),
+      getCommandId(CommandName.ON_REFRESH),
       serviceExplorer.refresh
     )
   );

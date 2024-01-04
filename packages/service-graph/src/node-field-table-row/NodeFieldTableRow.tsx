@@ -1,4 +1,5 @@
 import {
+  NodeKind,
   NodeSchema,
   ObjectFieldSchema,
   ObjectRelationshipSchema,
@@ -8,14 +9,18 @@ import clsx from "clsx";
 import React from "react";
 import { Handle, Position } from "reactflow";
 import "reactflow/dist/style.css";
-import { NodeType } from "../types";
 
 export interface NodeFieldTableRowProps {
+  kind: NodeKind;
   node?: NodeSchema;
   field: ObjectFieldSchema;
 }
 
-export const NodeFieldTableRow = ({ field, node }: NodeFieldTableRowProps) => {
+export const NodeFieldTableRow = ({
+  field,
+  node,
+  kind
+}: NodeFieldTableRowProps) => {
   let relationship: ObjectRelationshipSchema | undefined;
   if (isObjectSchema(node) && node.relationships.length > 0) {
     relationship = node.relationships.find(rel =>
@@ -24,35 +29,75 @@ export const NodeFieldTableRow = ({ field, node }: NodeFieldTableRowProps) => {
   }
 
   return (
-    <tr
-      className={clsx(
-        "relative cursor-pointer text-slate-300 hover:bg-slate-200/30 hover:font-semibold",
-        { "hover:text-[#a855f7]": node?.kind === NodeType.ENUM },
-        {
-          "hover:text-[#0d9488]": node?.kind === NodeType.MODEL
-        },
-        {
-          "hover:text-[#ec4899]": node?.kind === NodeType.PLUGIN
-        },
-        {
-          "hover:text-[#0891b2]": node?.kind === NodeType.REQUEST
-        },
-        {
-          "hover:text-[#b91c1c]": node?.kind === NodeType.OBJECT
-        },
-        { "hover:text-[#c2410c]": node?.kind === NodeType.EVENT }
-      )}>
-      <td className="flex flex-row gap-0.5 font-mona-sans">
+    <tr className="text-md group/node-field-row relative cursor-pointer font-mona-sans-light text-slate-300 transition-all hover:bg-slate-200/30 hover:font-semibold">
+      <td className="flex flex-row gap-0.5">
         <p
-          className={clsx({
-            "font-bold": field.isRequired
-          })}>
+          className={clsx(
+            "overflow-hidden text-slate-300 transition-all group-hover/node-field-row:font-mona-sans",
+            {
+              "font-mona-sans font-bold": field.isRequired
+            },
+            {
+              "font-mona-sans-light font-light": !field.isRequired
+            },
+            {
+              "group-hover/node-field-row:text-[#4c1d95]":
+                kind === NodeKind.ENUM
+            },
+            {
+              "group-hover/node-field-row:text-[#2dd4bf]":
+                kind === NodeKind.MODEL
+            },
+            {
+              "group-hover/node-field-row:text-[#ec4899]":
+                kind === NodeKind.PLUGIN
+            },
+            {
+              "group-hover/node-field-row:text-[#0369a1]":
+                kind === NodeKind.OPERATION
+            },
+            {
+              "group-hover/node-field-row:text-[#f87171]":
+                kind === NodeKind.OBJECT
+            },
+            {
+              "group-hover/node-field-row:text-[#fb923c]":
+                kind === NodeKind.EVENT
+            }
+          )}>
           {field.name}
         </p>
         {field.isRequired && <p className="font-extrabold text-red-500">*</p>}
       </td>
       <td>
-        <p>
+        <p
+          className={clsx(
+            "text-slate-300 transition-all group-hover/node-field-row:font-mona-sans",
+            {
+              "group-hover/node-field-row:text-[#4c1d95]":
+                kind === NodeKind.ENUM
+            },
+            {
+              "group-hover/node-field-row:text-[#2dd4bf]":
+                kind === NodeKind.MODEL
+            },
+            {
+              "group-hover/node-field-row:text-[#ec4899]":
+                kind === NodeKind.PLUGIN
+            },
+            {
+              "group-hover/node-field-row:text-[#0369a1]":
+                kind === NodeKind.OPERATION
+            },
+            {
+              "group-hover/node-field-row:text-[#f87171]":
+                kind === NodeKind.OBJECT
+            },
+            {
+              "group-hover/node-field-row:text-[#fb923c]":
+                kind === NodeKind.EVENT
+            }
+          )}>
           {field.type}
           {field.isArray ? "[ ]" : ""}
         </p>

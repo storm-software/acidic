@@ -17,7 +17,6 @@ import { getLiteral, mergeBaseModel } from "@acidic/language/utils";
 import { PluginOptions, PluginSchema, ServiceSchema } from "@acidic/schema";
 import {
   StormError,
-  getCauseFromUnknown,
   isStormError
 } from "@storm-stack/errors";
 import {
@@ -86,7 +85,9 @@ export class AcidicEngine {
 
     this.version = getVersion();
 
-    this.#logger.info(`Initializing the Acidic Engine v${this.version}`);
+    this.#logger.info(
+      `Initializing the Acidic Engine v${this.version ? this.version : "1.0.0"}`
+    );
     this.#services = createAcidicServices(NodeFileSystem).Acidic;
 
     const stdLibFile = URI.file(
@@ -186,7 +187,7 @@ ${stringify(stdLibFile.toJSON())}`);
     } catch (error) {
       this.#logger.error(error);
 
-      return getCauseFromUnknown(error);
+      return StormError.create(error);
     } finally {
       this.#logger.stopwatch("Acidic Engine");
     }
@@ -297,7 +298,7 @@ ${stringify(stdLibFile.toJSON())}`);
     } catch (error) {
       this.#logger.error(error);
 
-      return getCauseFromUnknown(error);
+      return StormError.create(error);
     } finally {
       this.#logger.stopwatch("Acidic Engine - Prepare");
     }
@@ -340,7 +341,7 @@ ${stringify(stdLibFile.toJSON())}`);
             this.#logger.error(e);
             issues.push({
               plugin: plugin.name,
-              error: getCauseFromUnknown(e)
+              error: StormError.create(e)
             });
           }
 
@@ -354,7 +355,7 @@ ${stringify(stdLibFile.toJSON())}`);
     } catch (error) {
       this.#logger.error(error);
 
-      return getCauseFromUnknown(error);
+      return StormError.create(error);
     } finally {
       this.#logger.stopwatch("Acidic Engine - Generate");
     }
@@ -697,7 +698,7 @@ ${JSON.stringify(file.toJSON())}`);
 
           // The plugin might use $container to access the model
           // need to make sure it is always resolved to the main model
-          mutable.$container = model;
+          mutable.$container = model as AstNode;
 
           return decl;
         })

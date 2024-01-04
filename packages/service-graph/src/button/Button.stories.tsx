@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { NodeType } from "../types";
 import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
@@ -18,45 +17,52 @@ export const Primary: Story = {
   }
 };
 
+export const Secondary: Story = {
+  args: {
+    children: "Button Text",
+    kind: "secondary"
+  }
+};
+
 export const Enum: Story = {
   args: {
     children: "Button Text",
-    nodeType: NodeType.ENUM
+    kind: "enum"
   }
 };
 
 export const Object: Story = {
   args: {
     children: "Button Text",
-    nodeType: NodeType.OBJECT
+    kind: "object"
   }
 };
 
 export const Model: Story = {
   args: {
     children: "Button Text",
-    nodeType: NodeType.MODEL
+    kind: "model"
   }
 };
 
 export const Event: Story = {
   args: {
     children: "Button Text",
-    nodeType: NodeType.EVENT
+    kind: "event"
   }
 };
 
 export const Plugin: Story = {
   args: {
     children: "Button Text",
-    nodeType: NodeType.PLUGIN
+    kind: "plugin"
   }
 };
 
 export const Request: Story = {
   args: {
     children: "Button Text",
-    nodeType: NodeType.REQUEST
+    kind: "request"
   }
 };
 
@@ -127,7 +133,7 @@ export const FilledEnum: Story = {
   args: {
     children: "Button Text",
     fill: "filled",
-    nodeType: NodeType.ENUM
+    kind: "enum"
   }
 };
 
@@ -135,7 +141,7 @@ export const FilledObject: Story = {
   args: {
     children: "Button Text",
     fill: "filled",
-    nodeType: NodeType.OBJECT
+    kind: "object"
   }
 };
 
@@ -143,7 +149,7 @@ export const FilledModel: Story = {
   args: {
     children: "Button Text",
     fill: "filled",
-    nodeType: NodeType.MODEL
+    kind: "model"
   }
 };
 
@@ -151,7 +157,7 @@ export const FilledEvent: Story = {
   args: {
     children: "Button Text",
     fill: "filled",
-    nodeType: NodeType.EVENT
+    kind: "event"
   }
 };
 
@@ -159,7 +165,7 @@ export const FilledPlugin: Story = {
   args: {
     children: "Button Text",
     fill: "filled",
-    nodeType: NodeType.PLUGIN
+    kind: "plugin"
   }
 };
 
@@ -167,7 +173,7 @@ export const FilledRequest: Story = {
   args: {
     children: "Button Text",
     fill: "filled",
-    nodeType: NodeType.REQUEST
+    kind: "request"
   }
 };
 

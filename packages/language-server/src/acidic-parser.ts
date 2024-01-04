@@ -1,5 +1,4 @@
-import { LangiumParser, LangiumServices } from "langium";
-import { createParser } from "langium/lib/parser/parser-builder-base";
+import { LangiumParser, LangiumServices, prepareLangiumParser } from "langium";
 
 /**
  * Create and finalize a Langium parser. The parser rules are derived from the grammar, which is
@@ -17,11 +16,6 @@ export function createAcidicParser(services: LangiumServices): LangiumParser {
  * information when the parser is initially validated.
  */
 export function prepareAcidicParser(services: LangiumServices): LangiumParser {
-  const grammar = services.Grammar;
-  const lexer = services.parser.Lexer;
-
   services.parser.ParserConfig = { maxLookahead: 3 };
-  const parser = new LangiumParser(services);
-
-  return createParser(grammar, parser, lexer.definition) as LangiumParser;
+  return prepareLangiumParser(services);
 }

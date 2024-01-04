@@ -3,6 +3,7 @@ import {
   EventSchema,
   ModelSchema,
   ObjectSchema,
+  OperationSchema,
   PluginSchema,
   ServiceSchema
 } from "@acidic/schema";
@@ -31,6 +32,41 @@ export const pluginAtoms = atomFamily<string, Atom<PluginSchema | undefined>>(
         pluginSchema => getNodeId(pluginSchema.name, serviceSchema.name) === id
       );
     })
+);
+
+export const operationAtoms = atomFamily<
+  string,
+  Atom<OperationSchema | undefined>
+>((id: string) =>
+  atom(get => {
+    const serviceSchema = get(graphStore.atom.schemas).find(
+      schema =>
+        schema.queries.some(
+          operationSchema => getNodeId(operationSchema.name, schema.name) === id
+        ) ||
+        schema.mutations.some(
+          operationSchema => getNodeId(operationSchema.name, schema.name) === id
+        ) ||
+        schema.subscriptions.some(
+          operationSchema => getNodeId(operationSchema.name, schema.name) === id
+        )
+    );
+
+    return (
+      serviceSchema?.queries.find(
+        operationSchema =>
+          getNodeId(operationSchema.name, serviceSchema.name) === id
+      ) ??
+      serviceSchema?.mutations.find(
+        operationSchema =>
+          getNodeId(operationSchema.name, serviceSchema.name) === id
+      ) ??
+      serviceSchema?.subscriptions.find(
+        operationSchema =>
+          getNodeId(operationSchema.name, serviceSchema.name) === id
+      )
+    );
+  })
 );
 
 export const modelAtoms = atomFamily<string, Atom<ModelSchema | undefined>>(

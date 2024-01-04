@@ -29,6 +29,10 @@ export default defineConfig({
   build: {
     outDir: "../../../dist/packages/vscode/components",
     reportCompressedSize: true,
+    emptyOutDir: true,
+    sourcemap: true,
+    minify: false,
+
     commonjsOptions: {
       transformMixedEsModules: true
     },

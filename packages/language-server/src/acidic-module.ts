@@ -1,7 +1,11 @@
-import { defaultParserErrorProvider } from "chevrotain";
+import {
+  AcidicGeneratedModule,
+  AcidicGeneratedSharedModule
+} from "@acidic/language";
 import {
   DefaultAstNodeDescriptionProvider,
   DefaultAstNodeLocator,
+  DefaultCommentProvider,
   DefaultCompletionProvider,
   DefaultConfigurationProvider,
   DefaultDefinitionProvider,
@@ -34,6 +38,7 @@ import {
   JSDocDocumentationProvider,
   LangiumDefaultServices,
   LangiumDefaultSharedServices,
+  LangiumParserErrorMessageProvider,
   LangiumServices,
   LangiumSharedServices,
   Module,
@@ -45,15 +50,6 @@ import {
   createGrammarConfig,
   inject
 } from "langium";
-//import { DefaultCommentProvider } from "langium/src/documentation/comment-provider";
-import {
-  AcidicGeneratedModule,
-  AcidicGeneratedSharedModule
-} from "@acidic/language";
-import {
-  CommentProvider,
-  DefaultCommentProvider
-} from "langium/lib/documentation/comment-provider";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import { TextDocuments } from "vscode-languageserver/lib/common/textDocuments";
 import { AcidicCodeActionProvider } from "./acidic-code-action";
@@ -141,10 +137,9 @@ export function createDefaultModule(
 ): Module<LangiumServices, LangiumDefaultServices> {
   return {
     documentation: {
+      CommentProvider: services => new DefaultCommentProvider(services),
       DocumentationProvider: services =>
-        new JSDocDocumentationProvider(services),
-      CommentProvider: services =>
-        new DefaultCommentProvider(services) as CommentProvider
+        new JSDocDocumentationProvider(services)
     },
     parser: {
       GrammarConfig: services => createGrammarConfig(services),
@@ -153,7 +148,7 @@ export function createDefaultModule(
       ValueConverter: () => new DefaultValueConverter(),
       TokenBuilder: () => new DefaultTokenBuilder(),
       Lexer: services => new DefaultLexer(services),
-      ParserErrorMessageProvider: defaultParserErrorProvider
+      ParserErrorMessageProvider: () => new LangiumParserErrorMessageProvider()
     },
     lsp: {
       CompletionProvider: services => new DefaultCompletionProvider(services),

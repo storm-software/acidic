@@ -5,6 +5,7 @@ import { StormLog } from "@storm-stack/logging";
 import { MaybePromise, isError } from "@storm-stack/utilities";
 import chokidar, { FSWatcher } from "chokidar";
 import { globSync } from "glob";
+import lockfile from "proper-lockfile";
 
 type ProcessEventType = "add" | "change" | "remove";
 const ProcessEventType = {
@@ -110,7 +111,7 @@ export class DaemonProcessManager {
             error: null
           });
         })
-        .then(() => {
+        .catch(() => {
           this.setProcess(schemaPath, {
             status: "error",
             error: null
@@ -145,65 +146,71 @@ export class DaemonProcessManager {
   };
 
   private prepareEngine = (schemaPath: string) => {
-    return this.#engine
-      .prepare({
-        schema: schemaPath,
-        packageManager: this.#config.packageManager,
-        outputPath: this.#config.runtimePath
-      })
-      .then(result => {
-        if (isError(result)) {
+    return lockfile.lock(schemaPath).then(release =>
+      this.#engine
+        .prepare({
+          schema: schemaPath,
+          packageManager: this.#config.packageManager,
+          outputPath: this.#config.runtimePath
+        })
+        .then(result => {
+          if (isError(result)) {
+            this.setProcess(schemaPath, {
+              status: "error",
+              error: getCauseFromUnknown(result)
+            });
+          } else {
+            this.setProcess(schemaPath, {
+              context: result,
+              status: "active",
+              error: null
+            });
+          }
+        })
+        .catch(e => {
+          this.#logger.error(e);
+
           this.setProcess(schemaPath, {
             status: "error",
-            error: getCauseFromUnknown(result)
+            error: getCauseFromUnknown(e)
           });
-        } else {
-          this.setProcess(schemaPath, {
-            context: result,
-            status: "active",
-            error: null
-          });
-        }
-      })
-      .catch(e => {
-        this.#logger.error(e);
-
-        this.setProcess(schemaPath, {
-          status: "error",
-          error: getCauseFromUnknown(e)
-        });
-      });
+        })
+        .finally(() => release())
+    );
   };
 
   private executeEngine = (schemaPath: string) => {
-    return this.#engine
-      .execute({
-        schema: schemaPath,
-        packageManager: this.#config.packageManager,
-        outputPath: this.#config.runtimePath
-      })
-      .then(result => {
-        if (isError(result)) {
+    return lockfile.lock(schemaPath).then(release =>
+      this.#engine
+        .execute({
+          schema: schemaPath,
+          packageManager: this.#config.packageManager,
+          outputPath: this.#config.runtimePath
+        })
+        .then(result => {
+          if (isError(result)) {
+            this.setProcess(schemaPath, {
+              status: "error",
+              error: getCauseFromUnknown(result)
+            });
+          } else {
+            this.setProcess(schemaPath, {
+              context: result,
+              status: "active",
+              error: null
+            });
+          }
+        })
+        .catch(e => {
+          this.#logger.error(e);
+
           this.setProcess(schemaPath, {
             status: "error",
-            error: getCauseFromUnknown(result)
+            error: getCauseFromUnknown(e)
           });
-        } else {
-          this.setProcess(schemaPath, {
-            context: result,
-            status: "active",
-            error: null
-          });
-        }
-      })
-      .catch(e => {
-        this.#logger.error(e);
-
-        this.setProcess(schemaPath, {
-          status: "error",
-          error: getCauseFromUnknown(e)
-        });
-      });
+        })
+        .finally(() => release())
+    );
   };
 
   private setProcess = async (

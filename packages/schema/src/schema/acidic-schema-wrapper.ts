@@ -15,18 +15,21 @@ import {
   AttributeArg,
   Expression,
   Model,
+  Plugin,
+  PluginField,
   isAcidicEnum,
   isAcidicEnumField,
   isAcidicEvent,
   isAcidicModel,
   isAcidicObject,
   isArrayExpr,
+  isInvocationExpr,
   isLiteralExpr,
   isModel,
   isReferenceExpr
 } from "@acidic/language";
 import { StormError } from "@storm-stack/errors";
-import { JsonValue, Serializable, stringify } from "@storm-stack/serialization";
+import { JsonValue } from "@storm-stack/serialization";
 import {
   constantCase,
   isInt,
@@ -64,6 +67,7 @@ import {
   getAcidicModels,
   getAcidicMutations,
   getAcidicObjects,
+  getAcidicPlugins,
   getAcidicQueries,
   getAcidicSubscriptions,
   getDataSource,
@@ -98,17 +102,35 @@ export function deserializeAcidicSchemaWrapper(
     : AcidicSchemaWrapper.loadSchema(schemaString as unknown as ServiceSchema);
 }
 
+const stringifyObject = (record: Record<string, any>) => {
+  const cache: string[] = [];
+  const innerStringify = (obj: Record<string, any>) =>
+    JSON.stringify(obj, (key, value) => {
+      if (typeof value === "object" && value !== null) {
+        // Duplicate reference found, discard key
+        if (cache.includes(value)) return;
+
+        // Store value in our collection
+        cache.push(value);
+      }
+      return value;
+    });
+
+  return innerStringify(record);
+};
+
+/*@Serializable({
+  serialize: serializeAcidicSchemaWrapper,
+  deserialize: deserializeAcidicSchemaWrapper
+})*/
+
 /**
  * A wrapper of the and Date class used by Storm Software to provide Date-Time values
  *
  * @decorator `@Serializable()`
  */
-@Serializable({
-  serialize: serializeAcidicSchemaWrapper,
-  deserialize: deserializeAcidicSchemaWrapper
-})
 export class AcidicSchemaWrapper {
-  #model: Model | undefined;
+  #schema: Model | undefined;
 
   #service!: ServiceSchema;
   #plugins: PluginSchema[] = [];
@@ -128,7 +150,7 @@ export class AcidicSchemaWrapper {
 
   public constructor(param: Model | ServiceSchema) {
     if (isModel(param)) {
-      this.#model = param;
+      this.#schema = param;
       this.service = this.mapModelToSchema(param);
     } else {
       this.service = param;
@@ -151,6 +173,17 @@ export class AcidicSchemaWrapper {
     this.#subscriptions = this.#service.subscriptions;
     this.#events = this.#service.events;
   }
+
+  public addPlugin = (pluginSchema: PluginSchema) => {
+    if (
+      !this.#plugins.some(
+        existing =>
+          existing.name?.toUpperCase() === pluginSchema.name?.toUpperCase()
+      )
+    ) {
+      this.#plugins.push(pluginSchema);
+    }
+  };
 
   public addObject = (schemaObject: ObjectSchema) => {
     if (
@@ -240,11 +273,18 @@ export class AcidicSchemaWrapper {
     let dataSourceSchema: DataSourceSchema | undefined;
     if (dataSource?.name) {
       dataSourceSchema = {
-        kind: "DataSource",
+        kind: "data_source",
         name: dataSource?.name,
         provider: getDataSourceProvider(model),
         url: getDataSourceUrl(model)
       };
+    }
+
+    const acidicPlugins = getAcidicPlugins(model);
+    if (acidicPlugins.length > 0) {
+      acidicPlugins.forEach((acidicPlugin: Plugin) => {
+        this.addPlugin(this.mapAcidicPluginToPluginSchema(acidicPlugin));
+      });
     }
 
     const acidicEnums = getAcidicEnums(model);
@@ -307,7 +347,7 @@ export class AcidicSchemaWrapper {
     }
 
     this.#service = {
-      kind: "Service",
+      kind: "service",
       name: getServiceId(model),
       imports: model.imports.map(acidicImport => acidicImport.path),
       dataSource: dataSourceSchema,
@@ -329,7 +369,7 @@ export class AcidicSchemaWrapper {
   ): QuerySchema => {
     const operationSchema: QuerySchema = {
       ...this.mapAcidicOperationToOperationSchema(acidicOperation),
-      kind: "Query",
+      kind: "query",
       isLive: false
     };
 
@@ -345,7 +385,7 @@ export class AcidicSchemaWrapper {
   ): MutationSchema => {
     const operationSchema: MutationSchema = {
       ...this.mapAcidicOperationToOperationSchema(acidicOperation),
-      kind: "Mutation"
+      kind: "mutation"
     };
 
     return operationSchema;
@@ -356,7 +396,7 @@ export class AcidicSchemaWrapper {
   ): SubscriptionSchema => {
     const operationSchema: SubscriptionSchema = {
       ...this.mapAcidicOperationToOperationSchema(acidicOperation),
-      kind: "Subscription"
+      kind: "subscription"
     };
 
     return operationSchema;
@@ -368,7 +408,7 @@ export class AcidicSchemaWrapper {
     const operationSchema = {
       name: acidicOperation.name,
       comments: acidicOperation.comments,
-      response: {},
+      responseRef: {},
       attributes: acidicOperation.attributes.map(
         this.mapAcidicAttributeToAttributeSchema
       )
@@ -409,12 +449,24 @@ export class AcidicSchemaWrapper {
       );
     }
 
+    const urlAttribute = operationSchema.attributes.find(
+      (attr: AttributeSchema) => attr.name === "url"
+    );
+    if (
+      urlAttribute &&
+      urlAttribute.args.length > 0 &&
+      urlAttribute.args[0]!.fields.length > 0 &&
+      urlAttribute.args[0]!.fields[0]?.value
+    ) {
+      operationSchema.url = String(urlAttribute.args[0]?.fields[0]?.value);
+    }
+
     /*if (isAcidicObject(acidicOperation.returns.type.reference?.ref) ||
     isAcidicModel(acidicOperation.returns.type.reference?.ref) ||
     isAcidicEvent(acidicOperation.returns.type.reference?.ref)) {
       const response: OperationResponseSchema = {
         __type: "Object",
-        name: `${acidicOperation.name}eRsponse`,
+        name: `${acidicOperation.name}Response`,
         comments: [`Response object for ${acidicOperation.name} operation`],
         fields: [] as ObjectFieldSchema[],
         relationships: [],
@@ -449,6 +501,23 @@ export class AcidicSchemaWrapper {
   private mapAcidicObjectFieldToObjectFieldSchema = (
     acidicField: AcidicObjectField
   ): ObjectFieldSchema => {
+    if (isAcidicObject(acidicField.$container)) {
+      const objectSchema = this.#objects.find(
+        existing =>
+          existing.name?.toUpperCase() ===
+          acidicField.$container.name?.toUpperCase()
+      );
+      if (objectSchema) {
+        const field = objectSchema.fields.find(
+          existing =>
+            existing.name?.toUpperCase() === acidicField.name?.toUpperCase()
+        );
+        if (field) {
+          return field;
+        }
+      }
+    }
+
     const schemaField = {
       name: acidicField.name,
       type:
@@ -487,7 +556,7 @@ export class AcidicSchemaWrapper {
       );
 
       // Add child enum if it has not been added yet
-      this.#enums.push(enumSchemaField.ref);
+      this.addEnum(enumSchemaField.ref);
     } else if (schemaField.type === "String") {
       const includesAttribute = schemaField.attributes.find(
         (attr: AttributeSchema) => attr.name === "includes"
@@ -654,12 +723,14 @@ export class AcidicSchemaWrapper {
           schemaField.has = hasAttribute.args.reduce(
             (ret: string[], arg: AttributeArgSchema) => {
               if (
-                arg.fields[0]!.value &&
+                arg.fields &&
+                arg.fields.length > 0 &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: string) => item === String(arg.fields[0]!.value)
+                  (item: string) => item === String(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(String(arg.fields[0]!.value));
+                ret.push(String(arg.fields[0]?.value));
               }
 
               return ret;
@@ -696,12 +767,12 @@ export class AcidicSchemaWrapper {
             (ret: string[], arg: AttributeArgSchema) => {
               if (
                 arg.fields.length > 0 &&
-                arg.fields[0]!.value &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: string) => item === String(arg.fields[0]!.value)
+                  (item: string) => item === String(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(String(arg.fields[0]!.value));
+                ret.push(String(arg.fields[0]?.value));
               }
 
               return ret;
@@ -738,12 +809,12 @@ export class AcidicSchemaWrapper {
             (ret: string[], arg: AttributeArgSchema) => {
               if (
                 arg.fields.length > 0 &&
-                arg.fields[0]!.value &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: string) => item === String(arg.fields[0]!.value)
+                  (item: string) => item === String(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(String(arg.fields[0]!.value));
+                ret.push(String(arg.fields[0]?.value));
               }
 
               return ret;
@@ -903,12 +974,12 @@ export class AcidicSchemaWrapper {
           schemaField.has = hasAttribute.args.reduce(
             (ret: number[], arg: AttributeArgSchema) => {
               if (
-                arg.fields[0]!.value &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: number) => item === Number(arg.fields[0]!.value)
+                  (item: number) => item === Number(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(Number(arg.fields[0]!.value));
+                ret.push(Number(arg.fields[0]?.value));
               }
 
               return ret;
@@ -945,12 +1016,12 @@ export class AcidicSchemaWrapper {
             (ret: number[], arg: AttributeArgSchema) => {
               if (
                 arg.fields.length > 0 &&
-                arg.fields[0]!.value &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: number) => item === Number(arg.fields[0]!.value)
+                  (item: number) => item === Number(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(Number(arg.fields[0]!.value));
+                ret.push(Number(arg.fields[0]?.value));
               }
 
               return ret;
@@ -987,12 +1058,12 @@ export class AcidicSchemaWrapper {
             (ret: number[], arg: AttributeArgSchema) => {
               if (
                 arg.fields.length > 0 &&
-                arg.fields[0]!.value &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: number) => item === Number(arg.fields[0]!.value)
+                  (item: number) => item === Number(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(Number(arg.fields[0]!.value));
+                ret.push(Number(arg.fields[0]?.value));
               }
 
               return ret;
@@ -1030,12 +1101,12 @@ export class AcidicSchemaWrapper {
           schemaField.has = hasAttribute.args.reduce(
             (ret: boolean[], arg: AttributeArgSchema) => {
               if (
-                arg.fields[0]!.value &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: boolean) => item === Boolean(arg.fields[0]!.value)
+                  (item: boolean) => item === Boolean(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(Boolean(arg.fields[0]!.value));
+                ret.push(Boolean(arg.fields[0]?.value));
               }
 
               return ret;
@@ -1072,12 +1143,12 @@ export class AcidicSchemaWrapper {
             (ret: boolean[], arg: AttributeArgSchema) => {
               if (
                 arg.fields.length > 0 &&
-                arg.fields[0]!.value &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: boolean) => item === Boolean(arg.fields[0]!.value)
+                  (item: boolean) => item === Boolean(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(Boolean(arg.fields[0]!.value));
+                ret.push(Boolean(arg.fields[0]?.value));
               }
 
               return ret;
@@ -1114,12 +1185,12 @@ export class AcidicSchemaWrapper {
             (ret: boolean[], arg: AttributeArgSchema) => {
               if (
                 arg.fields.length > 0 &&
-                arg.fields[0]!.value &&
+                arg.fields[0]?.value &&
                 !ret.some(
-                  (item: boolean) => item === Boolean(arg.fields[0]!.value)
+                  (item: boolean) => item === Boolean(arg.fields[0]?.value)
                 )
               ) {
-                ret.push(Boolean(arg.fields[0]!.value));
+                ret.push(Boolean(arg.fields[0]?.value));
               }
 
               return ret;
@@ -1167,9 +1238,6 @@ export class AcidicSchemaWrapper {
     ) {
       if (
         schemaField.type === "Object" ||
-        schemaField.type === "DateTime" ||
-        schemaField.type === "Date" ||
-        schemaField.type === "Time" ||
         schemaField.type === "Bytes" ||
         schemaField.type === "Json"
       ) {
@@ -1178,7 +1246,30 @@ export class AcidicSchemaWrapper {
         });
       }
 
-      schemaField.defaultValue = defaultAttribute.args[0]!.fields[0]!.value;
+      if (
+        schemaField.type === "DateTime" ||
+        schemaField.type === "Date" ||
+        schemaField.type === "Time"
+      ) {
+        if (defaultAttribute.args[0]!.fields[0]!.value === "now") {
+          schemaField.isNow = true;
+        }
+      } else if (
+        schemaField.type === "String" &&
+        (defaultAttribute.args[0]!.fields[0]!.value === "uuid" ||
+          defaultAttribute.args[0]!.fields[0]!.value === "cuid" ||
+          defaultAttribute.args[0]!.fields[0]!.value === "snowflake")
+      ) {
+        if (defaultAttribute.args[0]!.fields[0]!.value === "uuid") {
+          schemaField.isUuid = true;
+        } else if (defaultAttribute.args[0]!.fields[0]!.value === "cuid") {
+          schemaField.isCuid = true;
+        } else if (defaultAttribute.args[0]!.fields[0]!.value === "snowflake") {
+          schemaField.isSnowflake = true;
+        }
+      } else {
+        schemaField.defaultValue = defaultAttribute.args[0]!.fields[0]!.value;
+      }
     }
 
     return schemaField;
@@ -1259,7 +1350,7 @@ export class AcidicSchemaWrapper {
                       }
 
                       const relationship: ObjectRelationshipSchema = {
-                        kind: "Relationship",
+                        kind: "relationship",
                         name: `${upperCaseFirst(
                           objectSchema.name
                         )}To${upperCaseFirst(relationshipObject.name)}`,
@@ -1306,7 +1397,7 @@ export class AcidicSchemaWrapper {
     }
 
     return {
-      kind: "Model",
+      kind: "model",
       name: objectSchema.name,
       tableName,
       ref: objectSchema
@@ -1335,7 +1426,7 @@ export class AcidicSchemaWrapper {
 
     return {
       name: objectSchema.name,
-      kind: "Event",
+      kind: "event",
       topic,
       ref: objectSchema
     };
@@ -1346,19 +1437,27 @@ export class AcidicSchemaWrapper {
   ): ObjectSchema => {
     let objectSchema: ObjectSchema | undefined = this.#objects.find(
       existing =>
-        existing.name?.toLowerCase() === acidicObject.name?.toLowerCase()
+        existing.name?.toUpperCase() === acidicObject.name?.toUpperCase()
     );
     if (objectSchema) {
       return objectSchema;
     }
 
     objectSchema = {
-      kind: "Object",
+      kind: "object",
       name: acidicObject.name,
       comments: acidicObject.comments,
-      fields: acidicObject.fields.map(
-        this.mapAcidicObjectFieldToObjectFieldSchema
-      ),
+      fields: acidicObject.fields
+        .filter(
+          field =>
+            !field.attributes.some(
+              fieldAttribute =>
+                fieldAttribute.decl?.ref?.name
+                  ?.replaceAll("@", "")
+                  ?.toLowerCase() === "relation"
+            )
+        )
+        .map(this.mapAcidicObjectFieldToObjectFieldSchema),
       relationships: [],
       extends: [],
       isExtend: acidicObject.isExtend,
@@ -1371,17 +1470,53 @@ export class AcidicSchemaWrapper {
     return objectSchema;
   };
 
+  private mapAcidicPluginToPluginSchema = (
+    acidicPlugin: Plugin
+  ): PluginSchema => {
+    let pluginSchema: PluginSchema | undefined = this.#plugins.find(
+      existing =>
+        existing.name?.toUpperCase() === acidicPlugin.name?.toUpperCase()
+    );
+    if (pluginSchema) {
+      return pluginSchema;
+    }
+
+    const options = acidicPlugin.fields.reduce(
+      (ret: Record<string, any>, field: PluginField) => {
+        if (isLiteralExpr(field.value)) {
+          ret[field.name] = field.value.value;
+        }
+
+        return ret;
+      },
+      {}
+    );
+
+    pluginSchema = {
+      kind: "plugin",
+      name: acidicPlugin.name,
+      options,
+      provider: options.provider,
+      output: options.output,
+      dependencyOf: null,
+      dependencies: []
+    };
+    this.addPlugin(pluginSchema);
+
+    return pluginSchema;
+  };
+
   private mapAcidicEnumToEnumSchema = (acidicEnum: AcidicEnum): EnumSchema => {
     let enumSchema: EnumSchema | undefined = this.#enums.find(
       existing =>
-        existing.name?.toLowerCase() === acidicEnum.name?.toLowerCase()
+        existing.name?.toUpperCase() === acidicEnum.name?.toUpperCase()
     );
     if (enumSchema) {
       return enumSchema;
     }
 
     enumSchema = {
-      kind: "Enum",
+      kind: "enum",
       name: acidicEnum.name,
       comments: acidicEnum.comments,
       fields: acidicEnum.fields.map(this.mapAcidicEnumFieldToEnumFieldSchema),
@@ -1438,29 +1573,59 @@ export class AcidicSchemaWrapper {
       } as AttributeFieldSchema;
     } else if (isReferenceExpr(acidicAttributeField)) {
       if (
-        !acidicAttributeField.target.ref ||
-        !isAcidicEnumField(acidicAttributeField.target.ref)
+        (!acidicAttributeField.target.ref ||
+          !isAcidicEnumField(acidicAttributeField.target.ref)) &&
+        (!acidicAttributeField.target.ref ||
+          !acidicAttributeField.target.ref.name ||
+          !acidicAttributeField.target.ref.$containerProperty)
       ) {
         throw new StormError(AcidicSchemaErrorCode.invalid_attr_arg, {
-          message: `Unable to map reference to enum attribute field: \n${stringify(
+          message: `Unable to map reference to enum attribute field: \n${stringifyObject(
+            acidicAttributeField
+          )}`
+        });
+      }
+
+      if (isAcidicEnumField(acidicAttributeField.target.ref)) {
+        const ref = this.mapAcidicEnumToEnumSchema(
+          acidicAttributeField.target.ref.$container as AcidicEnum
+        );
+        const value = ref.fields.find(
+          field => field.name === acidicAttributeField.target.ref?.name
+        );
+
+        return {
+          type: "Enum",
+          name: acidicAttributeField.target.ref.name,
+          ref,
+          value: value!
+        };
+      } else {
+        return {
+          type: "Field",
+          name: (acidicAttributeField.$container.$container as AttributeArg)
+            ?.name,
+          value: acidicAttributeField.target.ref.name
+        };
+      }
+    } else if (isInvocationExpr(acidicAttributeField)) {
+      if (!acidicAttributeField.function.$refText) {
+        throw new StormError(AcidicSchemaErrorCode.invalid_attr_arg, {
+          message: `Unable to map attribute field: \n${stringifyObject(
             acidicAttributeField
           )}`
         });
       }
 
       return {
-        type: "Enum",
-        ref: this.mapAcidicEnumToEnumSchema(
-          acidicAttributeField.target.ref.$container as AcidicEnum
-        ),
-        value: this.mapAcidicEnumFieldToEnumFieldSchema(
-          acidicAttributeField.target.ref
-        )
+        type: "String",
+        name: acidicAttributeField.function.$refText,
+        value: acidicAttributeField.function.$refText
       };
     }
 
     throw new StormError(AcidicSchemaErrorCode.invalid_attr_arg, {
-      message: `Could not determine attribute field type: \n${stringify(
+      message: `Could not determine attribute field type: \n${stringifyObject(
         acidicAttributeField
       )}`
     });

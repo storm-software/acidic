@@ -7,4 +7,4 @@
  * @packageDocumentation
  */
 
-const packageString = "package";
+export * from "./service-graph-container";

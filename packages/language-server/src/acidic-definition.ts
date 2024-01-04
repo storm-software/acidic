@@ -1,4 +1,4 @@
-import { isAcidicImport } from "@acidic/language/ast";
+import { isAcidicImport } from "@acidic/language";
 import {
   DefaultDefinitionProvider,
   LangiumDocuments,

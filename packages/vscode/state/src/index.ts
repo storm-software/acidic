@@ -8,7 +8,6 @@
  */
 
 export * from "./actions-tree";
-export * from "./commands";
 export * from "./logger";
 export * from "./service-tree";
 export * from "./support-tree";

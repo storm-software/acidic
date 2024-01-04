@@ -3,6 +3,7 @@ import {
   EventSchema,
   ModelSchema,
   MutationSchema,
+  NodeKind,
   ObjectSchema,
   QuerySchema,
   ServiceSchema,
@@ -16,7 +17,7 @@ import {
  * @returns An indicator specifying if the value is of type `EnumSchema`
  */
 export const isEnumSchema = (value: unknown): value is EnumSchema => {
-  return (value as EnumSchema)?.kind === "Enum";
+  return (value as EnumSchema)?.kind === NodeKind.ENUM;
 };
 
 /**
@@ -26,7 +27,7 @@ export const isEnumSchema = (value: unknown): value is EnumSchema => {
  * @returns An indicator specifying if the value is of type `ModelSchema`
  */
 export const isModelSchema = (value: unknown): value is ModelSchema => {
-  return (value as ModelSchema)?.kind === "Model";
+  return (value as ModelSchema)?.kind === NodeKind.MODEL;
 };
 
 /**
@@ -36,7 +37,7 @@ export const isModelSchema = (value: unknown): value is ModelSchema => {
  * @returns An indicator specifying if the value is of type `ObjectSchema`
  */
 export const isObjectSchema = (value: unknown): value is ObjectSchema => {
-  return (value as ObjectSchema)?.kind === "Object";
+  return (value as ObjectSchema)?.kind === NodeKind.OBJECT;
 };
 
 /**
@@ -46,7 +47,7 @@ export const isObjectSchema = (value: unknown): value is ObjectSchema => {
  * @returns An indicator specifying if the value is of type `EventSchema`
  */
 export const isEventSchema = (value: unknown): value is EventSchema => {
-  return (value as EventSchema)?.kind === "Event";
+  return (value as EventSchema)?.kind === NodeKind.EVENT;
 };
 
 /**
@@ -56,7 +57,7 @@ export const isEventSchema = (value: unknown): value is EventSchema => {
  * @returns An indicator specifying if the value is of type `QuerySchema`
  */
 export const isQuerySchema = (value: unknown): value is QuerySchema => {
-  return (value as QuerySchema)?.kind === "Query";
+  return (value as QuerySchema)?.kind === NodeKind.QUERY;
 };
 
 /**
@@ -66,7 +67,7 @@ export const isQuerySchema = (value: unknown): value is QuerySchema => {
  * @returns An indicator specifying if the value is of type `MutationSchema`
  */
 export const isMutationSchema = (value: unknown): value is MutationSchema => {
-  return (value as MutationSchema)?.kind === "Mutation";
+  return (value as MutationSchema)?.kind === NodeKind.MUTATION;
 };
 
 /**
@@ -78,7 +79,7 @@ export const isMutationSchema = (value: unknown): value is MutationSchema => {
 export const isSubscriptionSchema = (
   value: unknown
 ): value is SubscriptionSchema => {
-  return (value as SubscriptionSchema)?.kind === "Subscription";
+  return (value as SubscriptionSchema)?.kind === NodeKind.SUBSCRIPTION;
 };
 
 /**
@@ -88,5 +89,5 @@ export const isSubscriptionSchema = (
  * @returns An indicator specifying if the value is of type `ServiceSchema`
  */
 export const isServiceSchema = (value: unknown): value is ServiceSchema => {
-  return (value as ServiceSchema)?.kind === "Service";
+  return (value as ServiceSchema)?.kind === NodeKind.SERVICE;
 };

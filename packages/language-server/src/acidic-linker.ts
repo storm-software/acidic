@@ -27,6 +27,7 @@ import {
   ResolvedShape,
   ThisExpr,
   UnaryExpr,
+  getContainingModel,
   isAcidicEnum,
   isAcidicEvent,
   isAcidicModel,
@@ -37,14 +38,10 @@ import {
   isAcidicQuery,
   isAcidicSubscription,
   isArrayExpr,
-  isReferenceExpr
-} from "@acidic/language/ast";
-import {
-  CancellationToken,
-  getContainingModel,
   isFromStdlib,
+  isReferenceExpr,
   mapBuiltinTypeToExpressionType
-} from "@acidic/language/utils";
+} from "@acidic/language";
 import {
   AstNode,
   AstNodeDescription,
@@ -59,6 +56,7 @@ import {
   isReference,
   streamContents
 } from "langium";
+import { CancellationToken } from "vscode-jsonrpc";
 import { getAllDeclarationsFromImports } from "./utilities";
 
 interface DefaultReference extends Reference {
@@ -78,8 +76,6 @@ export class AcidicLinker extends DefaultLinker {
     super(services);
     this.descriptions = services.workspace.AstNodeDescriptionProvider;
   }
-
-  //#region Reference linking
 
   override async link(
     document: LangiumDocument,
@@ -118,10 +114,6 @@ export class AcidicLinker extends DefaultLinker {
       this.doLink({ reference, container, property }, document);
     }
   }
-
-  //#endregion
-
-  //#region Expression type resolving
 
   private resolveFromScopeProviders(
     node: AstNode,
@@ -252,7 +244,6 @@ export class AcidicLinker extends DefaultLinker {
     extraScopes: ScopeProvider[]
   ) {
     switch (node.operator) {
-      // TODO: support arithmetics?
       // case '+':
       // case '-':
       // case '*':
@@ -943,10 +934,6 @@ export class AcidicLinker extends DefaultLinker {
     }
   }
 
-  //#endregion
-
-  //#region Utils
-
   private resolveToDeclaredType(
     node: AstNode,
     type: FunctionParamType | AcidicObjectFieldType
@@ -1002,6 +989,4 @@ export class AcidicLinker extends DefaultLinker {
   ) {
     node.$resolvedType = { decl: type, array, nullable };
   }
-
-  //#endregion
 }

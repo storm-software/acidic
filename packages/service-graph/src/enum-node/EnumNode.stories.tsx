@@ -4,6 +4,7 @@ import { getNodeId } from "../utilities/get-node-id";
 import { EnumNode } from "./EnumNode";
 
 const meta: Meta<typeof EnumNode> = {
+  title: "Nodes/EnumNode",
   component: EnumNode,
   tags: ["autodocs"]
 };

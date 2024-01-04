@@ -14,7 +14,7 @@
         "tsConfig": "packages/schema/tsconfig.json",
         "platform": "neutral",
         "deleteOutputPath": true,
-        "metafile": true,
+        "metafile": false,
         "bundle": true,
         "sourcemap": true,
         "minify": false,
