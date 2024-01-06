@@ -4,9 +4,7 @@
     "outDir": "../../dist/out-tsc",
     "module": "esnext",
     "strict": false,
-    "noImplicitAny": false,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
+    "moduleResolution": "Bundler",
     "lib": ["esnext", "dom"]
   },
   "files": [],

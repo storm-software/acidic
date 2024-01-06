@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "noEmit": true,
+    "moduleResolution": "Bundler",
     "lib": ["esnext", "dom"]
   },
   "files": [],

@@ -1,4 +1,4 @@
-.react-flow::before {
+/*.react-flow::before {
   background: radial-gradient(
     35% 40% at 44% 50%,
     rgba(99, 102, 241, 0.476) 0%,
@@ -10,12 +10,12 @@
   inset: 0px;
   transform: scale(1);
   pointer-events: none;
-}
+}*/
 
 .react-flow::after {
   background: radial-gradient(
-    30% 35% at 64% 60%,
-    #04c8bb 0%,
+    50% 65% at 50% 58%,
+    rgba(4, 200, 187, 0.15) 0%,
     #1a202c 100%
   );
   z-index: 1;
@@ -27,14 +27,14 @@
 }
 
 .react-flow {
-  --bg-color: rgb(17, 17, 17);
+  --bg-color: #1a202c;
   --text-color: rgb(243, 244, 246);
   --node-border-radius: 8px;
-  --node-box-shadow: 10px 0 15px rgba(42, 138, 246, 0.3), -10px 0 15px rgba(233, 42, 103, 0.3);
+  --node-box-shadow: 10px 0 15px rgba(42, 138, 246, 0.3),
+    -10px 0 15px rgba(233, 42, 103, 0.3);
   background-color: var(--bg-color);
   color: var(--text-color);
 }
-
 
 .react-flow__controls button {
   background-color: var(--bg-color);
@@ -44,7 +44,7 @@
 }
 
 .react-flow__controls button:hover {
-  background-color: rgb(37, 37, 37);
+  background-color: rgba(60, 69, 86, 0.5);
 }
 
 .react-flow__controls button:first-child {
@@ -60,7 +60,6 @@
   fill: var(--text-color);
 }
 
-
 .react-flow__minimap {
   border-radius: 5px;
   border: 1px solid rgba(156, 163, 175, 0.5);
@@ -68,7 +67,7 @@
 }
 
 .gradient:before {
-  content: '';
+  content: "";
   position: absolute;
   padding-bottom: calc(100% * 1.8);
   width: calc(100% * 1.8);
@@ -120,7 +119,7 @@
 .react-flow__node-model.selected .wrapper.gradient:before,
 .react-flow__node-operation.selected .wrapper.gradient:before,
 .react-flow__node-plugin.selected .wrapper.gradient:before {
-  content: '';
+  content: "";
   animation: spinner 4s linear infinite;
   transform: translate(-50%, -50%) rotate(0deg);
   z-index: 1;
@@ -184,6 +183,13 @@
     #831843 240deg,
     rgba(42, 138, 246, 0) 360deg
   );
+}
+
+.react-flow__node-service.selected {
+  -webkit-box-shadow: 1px -1px 93px -74px rgba(221, 221, 221, 1);
+  -moz-box-shadow: 1px -1px 93px -74px rgba(221, 221, 221, 1);
+  box-shadow: 1px -1px 93px -74px rgba(221, 221, 221, 1);
+  border-color: #ffffff;
 }
 
 @keyframes spinner {

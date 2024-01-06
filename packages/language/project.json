@@ -5,22 +5,14 @@
   "sourceRoot": "packages/language/src",
   "targets": {
     "compile": {
-      "executor": "@nx/esbuild:esbuild",
+      "executor": "@storm-software/workspace-tools:tsup-node",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "entry": "packages/language/src/index.ts",
         "outputPath": "dist/packages/language",
-        "main": "packages/language/src/index.ts",
-        "project": "packages/language/package.json",
         "tsConfig": "packages/language/tsconfig.json",
-        "platform": "neutral",
-        "deleteOutputPath": true,
-        "metafile": false,
-        "bundle": true,
-        "sourcemap": true,
-        "minify": false,
-        "skipTypeCheck": false,
-        "format": ["esm", "cjs"],
-        "external": ["vscode"],
+        "project": "packages/language/package.json",
+        "defaultConfiguration": "production",
         "assets": [
           {
             "input": "packages/language",
@@ -100,31 +92,30 @@
       "executor": "nx:run-commands",
       "outputs": ["{options.outputPath}"],
       "outputPath": "packages/language",
-      "defaultConfiguration": "default",
+      "defaultConfiguration": "production",
       "options": {
         "project": "packages/language/package.json",
         "commands": [
-          "pnpm nx run language:langium",
-          "pnpm nx run language:compile"
+          "pnpm nx run language:langium:default",
+          "pnpm nx run language:compile:development"
         ],
         "parallel": false
       },
       "configurations": {
-        "default": {
+        "production": {
           "options": {
             "commands": [
               "pnpm nx run language:langium:default",
-              "pnpm nx run language:compile"
+              "pnpm nx run language:compile:production"
             ]
           }
         },
-        "watch": {
+        "development": {
           "options": {
             "commands": [
-              "pnpm nx run language:langium:watch",
-              "pnpm nx run language:compile"
-            ],
-            "watch": true
+              "pnpm nx run language:langium:default",
+              "pnpm nx run language:compile:development"
+            ]
           }
         }
       }

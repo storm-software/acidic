@@ -3,7 +3,6 @@
     "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": true,
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

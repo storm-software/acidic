@@ -28,19 +28,8 @@ import {
   isModel,
   isReferenceExpr
 } from "@acidic/language";
-import { StormError } from "@storm-stack/errors";
-import { JsonValue } from "@storm-stack/serialization";
 import {
-  constantCase,
-  isInt,
-  isNumber,
-  isSet,
-  isSetString,
-  isString,
-  upperCaseFirst
-} from "@storm-stack/utilities";
-import { AcidicSchemaErrorCode } from "../errors";
-import {
+  AcidicSchemaErrorCode,
   AttributeArgSchema,
   AttributeFieldSchema,
   AttributeSchema,
@@ -60,7 +49,24 @@ import {
   ServiceSchema,
   StringEnumFieldSchema,
   SubscriptionSchema
-} from "../types";
+} from "@acidic/schema";
+import { StormError } from "@storm-stack/errors";
+import type { JsonValue } from "@storm-stack/serialization";
+import { Serializable, StormParser } from "@storm-stack/serialization";
+import {
+  constantCase,
+  isInt,
+  isNumber,
+  isSet,
+  isSetString,
+  isString,
+  upperCaseFirst
+} from "@storm-stack/utilities";
+import {
+  getDataSource,
+  getDataSourceProvider,
+  getDataSourceUrl
+} from "./get-data-source-provider";
 import {
   getAcidicEnums,
   getAcidicEvents,
@@ -70,11 +76,8 @@ import {
   getAcidicPlugins,
   getAcidicQueries,
   getAcidicSubscriptions,
-  getDataSource,
-  getDataSourceProvider,
-  getDataSourceUrl,
   getServiceId
-} from "../utilities";
+} from "./language-utils";
 
 /**
  * Serializes a StormDateTime into a string
@@ -85,7 +88,7 @@ import {
 export function serializeAcidicSchemaWrapper(
   schemaWrapper: AcidicSchemaWrapper
 ): string {
-  return JSON.stringify(schemaWrapper.service);
+  return StormParser.stringify(schemaWrapper.service);
 }
 
 /**
@@ -98,7 +101,7 @@ export function deserializeAcidicSchemaWrapper(
   schemaString: JsonValue
 ): AcidicSchemaWrapper {
   return isSetString(schemaString)
-    ? AcidicSchemaWrapper.loadSchema(JSON.parse(schemaString))
+    ? AcidicSchemaWrapper.loadSchema(StormParser.parse(schemaString))
     : AcidicSchemaWrapper.loadSchema(schemaString as unknown as ServiceSchema);
 }
 
@@ -129,6 +132,7 @@ const stringifyObject = (record: Record<string, any>) => {
  *
  * @decorator `@Serializable()`
  */
+@Serializable()
 export class AcidicSchemaWrapper {
   #schema: Model | undefined;
 

@@ -1,5 +1,5 @@
 import { DataSource, Model, getLiteral, isDataSource } from "@acidic/language";
-import { ConnectorType } from "../types";
+import { ConnectorType } from "@acidic/schema";
 
 export const getDataSource = (model: Model): DataSource | undefined => {
   return model.declarations.find((declaration): declaration is DataSource =>

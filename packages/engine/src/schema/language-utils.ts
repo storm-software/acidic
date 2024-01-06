@@ -38,7 +38,7 @@ import {
   isServiceID,
   resolved
 } from "@acidic/language";
-import { PluginOptions } from "../types";
+import { PluginOptions } from "@acidic/schema";
 
 /**
  * Gets data types that are not ignored

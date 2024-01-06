@@ -15,10 +15,7 @@ import {
 } from "@acidic/language/definition";
 import { getLiteral, mergeBaseModel } from "@acidic/language/utils";
 import { PluginOptions, PluginSchema, ServiceSchema } from "@acidic/schema";
-import {
-  StormError,
-  isStormError
-} from "@storm-stack/errors";
+import { StormError, isStormError } from "@storm-stack/errors";
 import {
   PackageManagers,
   exists,
@@ -26,7 +23,7 @@ import {
   joinPaths
 } from "@storm-stack/file-system";
 import { StormLog } from "@storm-stack/logging";
-import { stringify } from "@storm-stack/serialization";
+import { StormParser } from "@storm-stack/serialization";
 import { hash } from "@storm-stack/unique-identifier";
 import {
   NEWLINE_STRING,
@@ -41,13 +38,14 @@ import {
   LangiumDocument,
   LangiumDocuments,
   Mutable,
+  ValidationCategory,
   getDocument
 } from "langium";
 import { NodeFileSystem } from "langium/node";
 import { dirname, extname, join, resolve } from "path";
 import { URI } from "vscode-uri";
-import { AcidicSchemaWrapper } from "../../schema/src/schema/acidic-schema-wrapper";
 import { AcidicErrorCode } from "./errors";
+import { AcidicSchemaWrapper } from "./schema/acidic-schema-wrapper";
 import {
   Context,
   PluginContextMapKey,
@@ -97,7 +95,7 @@ export class AcidicEngine {
     this.#logger
       .info(`Loading standard library file from '${stdLibFile.toString()}'
 JSON File:
-${stringify(stdLibFile.toJSON())}`);
+${StormParser.stringify(stdLibFile.toJSON())}`);
 
     this.#stdLib =
       this.#services.shared.workspace.LangiumDocuments.getOrCreateDocument(
@@ -456,7 +454,7 @@ ${stringify(stdLibFile.toJSON())}`);
 
         throw new StormError(AcidicErrorCode.plugin_not_found, {
           message: isSet(origError)
-            ? `Error: ${stringify(origError)}`
+            ? `Error: ${StormParser.stringify(origError)}`
             : undefined
         });
       }
@@ -663,7 +661,9 @@ ${JSON.stringify(file.toJSON())}`);
         )
       ],
       {
-        validationChecks: "all"
+        validation: {
+          categories: ValidationCategory.all as ValidationCategory[]
+        }
       }
     );
 

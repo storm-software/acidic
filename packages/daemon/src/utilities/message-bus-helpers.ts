@@ -1,6 +1,6 @@
 import { StormError } from "@storm-stack/errors";
 import { StormLog } from "@storm-stack/logging";
-import { parse } from "@storm-stack/serialization";
+import { StormParser } from "@storm-stack/serialization";
 import { AcidicDaemonErrorCode } from "../errors";
 import {
   ActiveMessage,
@@ -16,7 +16,7 @@ export const messageBusDecorator =
     logger.log(packet);
 
     if (packet.data) {
-      const data = parse<Message>(packet.data);
+      const data = StormParser.parse<Message>(packet.data);
       if (data?.messageId && data?.payload?.path) {
         let { messageId, payload } = data;
 

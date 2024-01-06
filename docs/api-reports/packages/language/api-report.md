@@ -125,7 +125,7 @@ export { AcidicAttributeName as AcidicAttributeName_alias_3 };
 // @public (undocumented)
 interface AcidicEnum extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "AcidicEnum";
   // (undocumented)
@@ -148,15 +148,7 @@ export { AcidicEnum as AcidicEnum_alias_3 };
 // @public (undocumented)
 interface AcidicEnumField extends AstNode {
   // (undocumented)
-  readonly $container:
-    | AcidicEnum
-    | AcidicEvent
-    | AcidicModel
-    | AcidicMutation
-    | AcidicObject
-    | AcidicQuery
-    | AcidicSubscription
-    | FunctionDecl;
+  readonly $container: AcidicEnum;
   // (undocumented)
   readonly $type: "AcidicEnumField";
   // (undocumented)
@@ -177,7 +169,7 @@ export { AcidicEnumField as AcidicEnumField_alias_3 };
 // @public (undocumented)
 interface AcidicEvent extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "AcidicEvent";
   // (undocumented)
@@ -306,7 +298,7 @@ export { AcidicLanguageMetaData as AcidicLanguageMetaData_alias_2 };
 // @public (undocumented)
 interface AcidicModel extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "AcidicModel";
   // (undocumented)
@@ -337,7 +329,7 @@ export { AcidicModel as AcidicModel_alias_3 };
 // @public (undocumented)
 interface AcidicMutation extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "AcidicMutation";
   // (undocumented)
@@ -433,15 +425,7 @@ export { AcidicObjectAttributeName as AcidicObjectAttributeName_alias_3 };
 // @public (undocumented)
 interface AcidicObjectField extends AstNode {
   // (undocumented)
-  readonly $container:
-    | AcidicEnum
-    | AcidicEvent
-    | AcidicModel
-    | AcidicMutation
-    | AcidicObject
-    | AcidicQuery
-    | AcidicSubscription
-    | FunctionDecl;
+  readonly $container: AcidicEvent | AcidicModel | AcidicObject;
   // (undocumented)
   readonly $type: "AcidicObjectField";
   // (undocumented)
@@ -489,15 +473,7 @@ export { AcidicObjectFieldType as AcidicObjectFieldType_alias_3 };
 // @public (undocumented)
 interface AcidicOperation extends AstNode {
   // (undocumented)
-  readonly $container:
-    | AcidicEnum
-    | AcidicEvent
-    | AcidicModel
-    | AcidicMutation
-    | AcidicObject
-    | AcidicQuery
-    | AcidicSubscription
-    | FunctionDecl;
+  readonly $container: AcidicMutation | AcidicQuery | AcidicSubscription;
   // (undocumented)
   readonly $type: "AcidicOperation";
   // (undocumented)
@@ -545,7 +521,7 @@ export { AcidicOperationInputParam as AcidicOperationInputParam_alias_3 };
 // @public (undocumented)
 interface AcidicQuery extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "AcidicQuery";
   // (undocumented)
@@ -579,7 +555,7 @@ export { AcidicQueryName as AcidicQueryName_alias_3 };
 // @public (undocumented)
 interface AcidicSubscription extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "AcidicSubscription";
   // (undocumented)
@@ -677,8 +653,7 @@ interface ArrayExpr extends AstNode {
     | GeneratorField
     | MemberAccessExpr
     | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "ArrayExpr";
   // (undocumented)
@@ -715,7 +690,7 @@ export { AstValidator as AstValidator_alias_1 };
 // @public (undocumented)
 interface Attribute extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "Attribute";
   // (undocumented)
@@ -807,19 +782,14 @@ export { AttributeParamType as AttributeParamType_alias_3 };
 interface BinaryExpr extends AstNode {
   // (undocumented)
   readonly $container:
-    | AcidicOperationInputParam
     | Argument
     | ArrayExpr
     | AttributeArg
     | BinaryExpr
-    | DataSourceField
     | FieldInitializer
     | FunctionDecl
-    | GeneratorField
     | MemberAccessExpr
-    | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "BinaryExpr";
   // (undocumented)
@@ -879,29 +849,10 @@ export { BuiltinType as BuiltinType_alias_1 };
 export { BuiltinType as BuiltinType_alias_2 };
 export { BuiltinType as BuiltinType_alias_3 };
 
-// @public
-interface CancellationToken {
-  readonly isCancellationRequested: boolean;
-  readonly onCancellationRequested: Event_2<any>;
-}
-
-// @public (undocumented)
-namespace CancellationToken {
-  const // (undocumented)
-    None: CancellationToken;
-  const // (undocumented)
-    Cancelled: CancellationToken;
-  // (undocumented)
-  function is(value: any): value is CancellationToken;
-}
-export { CancellationToken };
-export { CancellationToken as CancellationToken_alias_1 };
-export { CancellationToken as CancellationToken_alias_2 };
-
 // @public (undocumented)
 interface DataSource extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "DataSource";
   // (undocumented)
@@ -1025,39 +976,6 @@ export const default_alias: {
 };
 
 // @public (undocumented)
-interface Disposable_2 {
-  dispose(): void;
-}
-
-// @public (undocumented)
-namespace Disposable_2 {
-  // (undocumented)
-  function create(func: () => void): Disposable_2;
-}
-export { Disposable_2 as Disposable };
-export { Disposable_2 as Disposable_alias_1 };
-export { Disposable_2 as Disposable_alias_2 };
-
-// @public
-interface Event_2<T> {
-  // (undocumented)
-  (
-    listener: (e: T) => any,
-    thisArgs?: any,
-    disposables?: Disposable_2[]
-  ): Disposable_2;
-}
-
-// @public (undocumented)
-namespace Event_2 {
-  const // (undocumented)
-    None: Event_2<any>;
-}
-export { Event_2 as Event };
-export { Event_2 as Event_alias_1 };
-export { Event_2 as Event_alias_2 };
-
-// @public (undocumented)
 type Expression =
   | ArrayExpr
   | BinaryExpr
@@ -1135,7 +1053,7 @@ export { FieldInitializer as FieldInitializer_alias_3 };
 // @public (undocumented)
 interface FunctionDecl extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "FunctionDecl";
   // (undocumented)
@@ -1160,15 +1078,7 @@ export { FunctionDecl as FunctionDecl_alias_3 };
 // @public (undocumented)
 interface FunctionParam extends AstNode {
   // (undocumented)
-  readonly $container:
-    | AcidicEnum
-    | AcidicEvent
-    | AcidicModel
-    | AcidicMutation
-    | AcidicObject
-    | AcidicQuery
-    | AcidicSubscription
-    | FunctionDecl;
+  readonly $container: FunctionDecl;
   // (undocumented)
   readonly $type: "FunctionParam";
   // (undocumented)
@@ -1210,7 +1120,7 @@ export { FunctionParamType as FunctionParamType_alias_3 };
 // @public (undocumented)
 interface GeneratorDecl extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "GeneratorDecl";
   // (undocumented)
@@ -1383,7 +1293,6 @@ export { hasValidationAttributes as hasValidationAttributes_alias_2 };
 interface InvocationExpr extends AstNode {
   // (undocumented)
   readonly $container:
-    | AcidicOperationInputParam
     | Argument
     | ArrayExpr
     | AttributeArg
@@ -1391,11 +1300,8 @@ interface InvocationExpr extends AstNode {
     | DataSourceField
     | FieldInitializer
     | FunctionDecl
-    | GeneratorField
     | MemberAccessExpr
-    | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "InvocationExpr";
   // (undocumented)
@@ -1918,19 +1824,14 @@ export { mapBuiltinTypeToExpressionType as mapBuiltinTypeToExpressionType_alias_
 interface MemberAccessExpr extends AstNode {
   // (undocumented)
   readonly $container:
-    | AcidicOperationInputParam
     | Argument
     | ArrayExpr
     | AttributeArg
     | BinaryExpr
-    | DataSourceField
     | FieldInitializer
     | FunctionDecl
-    | GeneratorField
     | MemberAccessExpr
-    | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "MemberAccessExpr";
   // (undocumented)
@@ -1973,19 +1874,14 @@ export { Model as Model_alias_3 };
 interface NullExpr extends AstNode {
   // (undocumented)
   readonly $container:
-    | AcidicOperationInputParam
     | Argument
     | ArrayExpr
     | AttributeArg
     | BinaryExpr
-    | DataSourceField
     | FieldInitializer
     | FunctionDecl
-    | GeneratorField
     | MemberAccessExpr
-    | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "NullExpr";
   // (undocumented)
@@ -2008,14 +1904,11 @@ interface ObjectExpr extends AstNode {
     | ArrayExpr
     | AttributeArg
     | BinaryExpr
-    | DataSourceField
     | FieldInitializer
     | FunctionDecl
-    | GeneratorField
     | MemberAccessExpr
     | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "ObjectExpr";
   // (undocumented)
@@ -2032,7 +1925,7 @@ export { ObjectExpr as ObjectExpr_alias_3 };
 // @public (undocumented)
 interface Plugin_2 extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "Plugin";
   // (undocumented)
@@ -2105,19 +1998,14 @@ export { ReferenceArg as ReferenceArg_alias_3 };
 interface ReferenceExpr extends AstNode {
   // (undocumented)
   readonly $container:
-    | AcidicOperationInputParam
     | Argument
     | ArrayExpr
     | AttributeArg
     | BinaryExpr
-    | DataSourceField
     | FieldInitializer
     | FunctionDecl
-    | GeneratorField
     | MemberAccessExpr
-    | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "ReferenceExpr";
   // (undocumented)
@@ -2202,7 +2090,7 @@ export { SCALAR_TYPES as SCALAR_TYPES_alias_1 };
 // @public (undocumented)
 interface ServiceID extends AstNode {
   // (undocumented)
-  readonly $container: AcidicOperation | Model;
+  readonly $container: Model;
   // (undocumented)
   readonly $type: "ServiceID";
   // (undocumented)
@@ -2230,19 +2118,14 @@ export { SUPPORTED_PROVIDERS as SUPPORTED_PROVIDERS_alias_1 };
 interface ThisExpr extends AstNode {
   // (undocumented)
   readonly $container:
-    | AcidicOperationInputParam
     | Argument
     | ArrayExpr
     | AttributeArg
     | BinaryExpr
-    | DataSourceField
     | FieldInitializer
     | FunctionDecl
-    | GeneratorField
     | MemberAccessExpr
-    | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "ThisExpr";
   // (undocumented)
@@ -2287,19 +2170,14 @@ export { TypeDeclaration as TypeDeclaration_alias_3 };
 interface UnaryExpr extends AstNode {
   // (undocumented)
   readonly $container:
-    | AcidicOperationInputParam
     | Argument
     | ArrayExpr
     | AttributeArg
     | BinaryExpr
-    | DataSourceField
     | FieldInitializer
     | FunctionDecl
-    | GeneratorField
     | MemberAccessExpr
-    | PluginField
-    | UnaryExpr
-    | UnsupportedFieldType;
+    | UnaryExpr;
   // (undocumented)
   readonly $type: "UnaryExpr";
   // (undocumented)

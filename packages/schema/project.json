@@ -5,47 +5,26 @@
   "sourceRoot": "packages/schema/src",
   "targets": {
     "build": {
-      "executor": "@nx/esbuild:esbuild",
+      "executor": "@storm-software/workspace-tools:tsup-neutral",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/schema",
         "main": "packages/schema/src/index.ts",
-        "project": "packages/schema/package.json",
+        "additionalEntries": ["packages/schema/src/schema"],
+        "outputPath": "dist/packages/schema",
         "tsConfig": "packages/schema/tsconfig.json",
-        "platform": "neutral",
-        "deleteOutputPath": true,
-        "metafile": false,
-        "bundle": true,
-        "sourcemap": true,
-        "minify": false,
-        "skipTypeCheck": false,
-        "format": ["esm", "cjs"],
-        "assets": [
-          {
-            "input": "packages/schema",
-            "glob": "*.md",
-            "output": "/"
-          },
-          {
-            "input": "",
-            "glob": "LICENSE",
-            "output": "/"
-          }
-        ]
+        "project": "packages/schema/package.json",
+        "defaultConfiguration": "production"
       },
       "configurations": {
         "production": {
-          "debug": false,
-          "verbose": false
+          "debug": false
         },
         "development": {
-          "debug": true,
-          "verbose": true
+          "debug": true
         }
       }
     },
     "lint": {},
     "test": {}
-  },
-  "implicitDependencies": ["language"]
+  }
 }

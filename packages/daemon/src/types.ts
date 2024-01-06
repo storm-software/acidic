@@ -1,4 +1,4 @@
-import { AcidicSchemaWrapper } from "@acidic/schema";
+import { AcidicSchemaWrapper } from "@acidic/engine";
 import { StormError } from "@storm-stack/errors";
 
 export type MessageIdType = "active" | "error" | "loading";

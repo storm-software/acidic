@@ -40,7 +40,7 @@ const variants = cva(
         filled: ["text-slate-100"]
       },
       status: {
-        disabled: ["opacity-80 cursor-not-allowed"],
+        disabled: ["opacity-80 pointer-events-none"],
         enabled: ["opacity-100 cursor-pointer active:scale-95"]
       }
     },
@@ -149,6 +149,11 @@ const variants = cva(
         rounded: "full",
         size: "large",
         className: "px-5 py-5"
+      },
+      {
+        kind: "ghost",
+        status: "enabled",
+        className: "active:scale-75"
       }
     ],
     defaultVariants: {
@@ -163,7 +168,15 @@ const variants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof variants> {}
+    VariantProps<typeof variants> {
+  /**
+   * The content of the button for screen readers.
+   *
+   * @remarks
+   * This value is hidden visually but read aloud by screen readers.
+   **/
+  screenReader?: string;
+}
 
 export const Button: React.FC<ButtonProps> = ({
   className,
@@ -171,12 +184,16 @@ export const Button: React.FC<ButtonProps> = ({
   size,
   rounded,
   fill,
+  children,
+  screenReader,
   ...props
 }: ButtonProps) => (
   <button
     className={twMerge(
       variants({ kind: nodeType, size, className, rounded, fill })
     )}
-    {...props}
-  />
+    {...props}>
+    <span className="sr-only">{screenReader ? screenReader : children}</span>
+    {children}
+  </button>
 );

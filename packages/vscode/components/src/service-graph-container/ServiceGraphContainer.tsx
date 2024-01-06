@@ -1,7 +1,7 @@
 import { ServiceSchema } from "@acidic/schema";
 import { ServiceGraph } from "@acidic/service-graph";
 import { CommandName, getCommandId } from "@acidic/vscode-rpc";
-import { parse } from "@storm-stack/serialization";
+import { StormParser } from "@storm-stack/serialization";
 import React, { useEffect, useState } from "react";
 
 export interface ServiceGraphContainerProps {
@@ -31,7 +31,9 @@ export function ServiceGraphContainer({
       switch (message.type) {
         case getCommandId(CommandName.SET_SERVICES): {
           if (message.value) {
-            const nextSchemas = parse<ServiceSchema[]>(message.value);
+            const nextSchemas = StormParser.parse<ServiceSchema[]>(
+              message.value
+            );
             if (nextSchemas) {
               setSchemas(nextSchemas);
             }

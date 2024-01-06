@@ -1,8 +1,8 @@
 import { createAcidicConfig } from "@acidic/config";
 import { AcidicEngine } from "@acidic/engine";
-import { StormError, getCauseFromUnknown } from "@storm-stack/errors";
+import { StormError } from "@storm-stack/errors";
 import { StormLog } from "@storm-stack/logging";
-import { stringify } from "@storm-stack/serialization";
+import { StormParser } from "@storm-stack/serialization";
 import { isSetString } from "@storm-stack/utilities";
 import { AcidicDaemonErrorCode } from "../errors";
 import { MessageIdType } from "../types";
@@ -55,7 +55,7 @@ export const startDaemonProcess = async () => {
         messageId: MessageIdType.ERROR,
         payload: {
           path: schemaPath,
-          error: stringify(getCauseFromUnknown(e))
+          error: StormParser.stringify(StormError.create(e))
         }
       }
     });

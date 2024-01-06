@@ -1,6 +1,6 @@
 // import { isFromStdlib } from "@acidic/language";
-import { isInvocationExpr } from "@acidic/language/ast";
-import { AstNode } from "langium/lib/syntax-tree";
+import { isInvocationExpr } from "@acidic/language";
+import { AstNode } from "langium";
 
 /**
  * Returns if the given expression is a "future()" method call.

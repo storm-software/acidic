@@ -1,1 +1,1 @@
-export * from "./acidic-schema-wrapper";
+export = "./acidic.schema.json";

@@ -38,7 +38,7 @@ export const BaseNode = ({
           <div
             draggable={true}
             onDragStart={onDragStart}
-            className="acidic-drag z-20 translate-y-12 cursor-grab rounded-t-md border-black bg-gray-700 px-2 transition-transform duration-700 active:cursor-grabbing group-hover:translate-y-0">
+            className="acidic-drag z-20 translate-y-12 cursor-grab rounded-t-md border-black bg-gray-700 px-2 transition-transform duration-700 active:cursor-grabbing group-hover:translate-y-1">
             <svg viewBox="0 0 24 24" fill="none" className="h-10">
               <g strokeWidth="0"></g>
               <g strokeLinecap="round" strokeLinejoin="round"></g>

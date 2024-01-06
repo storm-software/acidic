@@ -1106,15 +1106,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -1129,7 +1120,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -1376,69 +1367,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicEvent",
-                  "canonicalReference": "@acidic/language!~AcidicEvent:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicModel",
-                  "canonicalReference": "@acidic/language!~AcidicModel:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicMutation",
-                  "canonicalReference": "@acidic/language!~AcidicMutation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicObject",
-                  "canonicalReference": "@acidic/language!~AcidicObject:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicQuery",
-                  "canonicalReference": "@acidic/language!~AcidicQuery:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicSubscription",
-                  "canonicalReference": "@acidic/language!~AcidicSubscription:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "FunctionDecl",
-                  "canonicalReference": "@acidic/language!FunctionDecl:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -1448,7 +1376,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 16
+                "endIndex": 2
               }
             },
             {
@@ -1649,15 +1577,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -1672,7 +1591,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -2773,15 +2692,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -2796,7 +2706,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -3169,15 +3079,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -3192,7 +3093,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -4182,15 +4083,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicEnum",
-                  "canonicalReference": "@acidic/language!AcidicEnum:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "AcidicEvent",
                   "canonicalReference": "@acidic/language!~AcidicEvent:interface"
                 },
@@ -4209,44 +4101,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicMutation",
-                  "canonicalReference": "@acidic/language!~AcidicMutation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "AcidicObject",
                   "canonicalReference": "@acidic/language!~AcidicObject:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicQuery",
-                  "canonicalReference": "@acidic/language!~AcidicQuery:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicSubscription",
-                  "canonicalReference": "@acidic/language!~AcidicSubscription:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "FunctionDecl",
-                  "canonicalReference": "@acidic/language!FunctionDecl:interface"
                 },
                 {
                   "kind": "Content",
@@ -4259,7 +4115,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 16
+                "endIndex": 6
               }
             },
             {
@@ -4762,44 +4618,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicEnum",
-                  "canonicalReference": "@acidic/language!AcidicEnum:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicEvent",
-                  "canonicalReference": "@acidic/language!~AcidicEvent:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicModel",
-                  "canonicalReference": "@acidic/language!~AcidicModel:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "AcidicMutation",
                   "canonicalReference": "@acidic/language!~AcidicMutation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicObject",
-                  "canonicalReference": "@acidic/language!~AcidicObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -4821,15 +4641,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "FunctionDecl",
-                  "canonicalReference": "@acidic/language!FunctionDecl:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -4839,7 +4650,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 16
+                "endIndex": 6
               }
             },
             {
@@ -5361,15 +5172,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -5384,7 +5186,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -5729,15 +5531,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -5752,7 +5545,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -6539,15 +6332,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -6557,7 +6341,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 24
               }
             },
             {
@@ -6898,15 +6682,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -6921,7 +6696,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -7757,15 +7532,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperationInputParam",
-                  "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -7802,15 +7568,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -7829,26 +7586,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "GeneratorField",
-                  "canonicalReference": "@acidic/language!GeneratorField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -7861,15 +7600,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -7879,7 +7609,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 16
               }
             },
             {
@@ -8118,200 +7848,6 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "@acidic/language!CancellationToken:interface",
-          "docComment": "/**\n * Defines a CancellationToken. This interface is not intended to be implemented. A CancellationToken must be created via a CancellationTokenSource.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface CancellationToken "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/utils/cancellation-token.ts",
-          "releaseTag": "Public",
-          "name": "CancellationToken",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!CancellationToken#isCancellationRequested:member",
-              "docComment": "/**\n * Is `true` when the token has been cancelled, `false` otherwise.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly isCancellationRequested: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "boolean"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "isCancellationRequested",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!CancellationToken#onCancellationRequested:member",
-              "docComment": "/**\n * An {@link Event event} which fires upon cancellation.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly onCancellationRequested: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Event",
-                  "canonicalReference": "@acidic/language!Event_2:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<any>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "onCancellationRequested",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Namespace",
-          "canonicalReference": "@acidic/language!CancellationToken:namespace",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare namespace CancellationToken "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/utils/cancellation-token.ts",
-          "releaseTag": "Public",
-          "name": "CancellationToken",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Variable",
-              "canonicalReference": "@acidic/language!CancellationToken.Cancelled:var",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "Cancelled: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "CancellationToken",
-                  "canonicalReference": "@acidic/language!CancellationToken:interface"
-                }
-              ],
-              "isReadonly": true,
-              "releaseTag": "Public",
-              "name": "Cancelled",
-              "variableTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "Function",
-              "canonicalReference": "@acidic/language!CancellationToken.is:function(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "function is(value: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "any"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "value",
-                  "canonicalReference": "@acidic/language!~value"
-                },
-                {
-                  "kind": "Content",
-                  "text": " is "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "CancellationToken",
-                  "canonicalReference": "@acidic/language!CancellationToken:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "value",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                }
-              ],
-              "name": "is"
-            },
-            {
-              "kind": "Variable",
-              "canonicalReference": "@acidic/language!CancellationToken.None:var",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "None: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "CancellationToken",
-                  "canonicalReference": "@acidic/language!CancellationToken:interface"
-                }
-              ],
-              "isReadonly": true,
-              "releaseTag": "Public",
-              "name": "None",
-              "variableTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ]
-        },
-        {
-          "kind": "Interface",
           "canonicalReference": "@acidic/language!DataSource:interface",
           "docComment": "",
           "excerptTokens": [
@@ -8345,15 +7881,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -8368,7 +7895,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -8784,270 +8311,6 @@
             "startIndex": 1,
             "endIndex": 18
           }
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@acidic/language!Disposable_2:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface Disposable "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/utils/cancellation-token.ts",
-          "releaseTag": "Public",
-          "name": "Disposable_2",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "MethodSignature",
-              "canonicalReference": "@acidic/language!Disposable_2#dispose:member(1)",
-              "docComment": "/**\n * Dispose this object.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "dispose(): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "returnTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [],
-              "name": "dispose"
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Namespace",
-          "canonicalReference": "@acidic/language!Disposable_2:namespace",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare namespace Disposable "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/utils/cancellation-token.ts",
-          "releaseTag": "Public",
-          "name": "Disposable_2",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Function",
-              "canonicalReference": "@acidic/language!Disposable_2.create:function(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "function create(func: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "() => void"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Disposable",
-                  "canonicalReference": "@acidic/language!Disposable_2:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "func",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                }
-              ],
-              "name": "create"
-            }
-          ]
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@acidic/language!Event_2:interface",
-          "docComment": "/**\n * Represents a typed event.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface Event<T> "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/utils/cancellation-token.ts",
-          "releaseTag": "Public",
-          "typeParameters": [
-            {
-              "typeParameterName": "T",
-              "constraintTokenRange": {
-                "startIndex": 0,
-                "endIndex": 0
-              },
-              "defaultTypeTokenRange": {
-                "startIndex": 0,
-                "endIndex": 0
-              }
-            }
-          ],
-          "name": "Event_2",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "CallSignature",
-              "canonicalReference": "@acidic/language!Event_2:call(1)",
-              "docComment": "/**\n * @param listener - The listener function will be called when the event happens.\n *\n * @param thisArgs - The 'this' which will be used when calling the event listener.\n *\n * @param disposables - An array to which a {{IDisposable}} will be added.  @return\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "(listener: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "(e: T) => any"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", thisArgs?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "any"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", disposables?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Disposable",
-                  "canonicalReference": "@acidic/language!Disposable_2:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Disposable",
-                  "canonicalReference": "@acidic/language!Disposable_2:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 8,
-                "endIndex": 9
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "listener",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "thisArgs",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": true
-                },
-                {
-                  "parameterName": "disposables",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 7
-                  },
-                  "isOptional": true
-                }
-              ]
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Namespace",
-          "canonicalReference": "@acidic/language!Event_2:namespace",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare namespace Event "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/utils/cancellation-token.ts",
-          "releaseTag": "Public",
-          "name": "Event_2",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Variable",
-              "canonicalReference": "@acidic/language!Event_2.None:var",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "None: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Event",
-                  "canonicalReference": "@acidic/language!Event_2:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<any>"
-                }
-              ],
-              "isReadonly": true,
-              "releaseTag": "Public",
-              "name": "None",
-              "variableTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            }
-          ]
         },
         {
           "kind": "TypeAlias",
@@ -9546,15 +8809,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -9569,7 +8823,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -9835,69 +9089,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicEnum",
-                  "canonicalReference": "@acidic/language!AcidicEnum:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicEvent",
-                  "canonicalReference": "@acidic/language!~AcidicEvent:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicModel",
-                  "canonicalReference": "@acidic/language!~AcidicModel:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicMutation",
-                  "canonicalReference": "@acidic/language!~AcidicMutation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicObject",
-                  "canonicalReference": "@acidic/language!~AcidicObject:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicQuery",
-                  "canonicalReference": "@acidic/language!~AcidicQuery:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicSubscription",
-                  "canonicalReference": "@acidic/language!~AcidicSubscription:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FunctionDecl",
                   "canonicalReference": "@acidic/language!FunctionDecl:interface"
                 },
@@ -9912,7 +9103,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 16
+                "endIndex": 2
               }
             },
             {
@@ -10314,15 +9505,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -10337,7 +9519,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -11787,15 +10969,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperationInputParam",
-                  "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -11859,26 +11032,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "GeneratorField",
-                  "canonicalReference": "@acidic/language!GeneratorField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -11891,15 +11046,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -11909,7 +11055,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 18
               }
             },
             {
@@ -15941,15 +15087,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperationInputParam",
-                  "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -15986,15 +15123,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -16013,26 +15141,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "GeneratorField",
-                  "canonicalReference": "@acidic/language!GeneratorField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -16045,15 +15155,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -16063,7 +15164,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 16
               }
             },
             {
@@ -16446,15 +15547,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperationInputParam",
-                  "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -16491,15 +15583,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -16518,26 +15601,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "GeneratorField",
-                  "canonicalReference": "@acidic/language!GeneratorField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -16550,15 +15615,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -16568,7 +15624,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 16
               }
             },
             {
@@ -16740,15 +15796,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -16760,15 +15807,6 @@
                   "kind": "Reference",
                   "text": "FunctionDecl",
                   "canonicalReference": "@acidic/language!FunctionDecl:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "GeneratorField",
-                  "canonicalReference": "@acidic/language!GeneratorField:interface"
                 },
                 {
                   "kind": "Content",
@@ -16799,15 +15837,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -16817,7 +15846,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 20
               }
             },
             {
@@ -16958,15 +15987,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -16981,7 +16001,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -17559,15 +16579,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperationInputParam",
-                  "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -17604,15 +16615,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -17631,26 +16633,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "GeneratorField",
-                  "canonicalReference": "@acidic/language!GeneratorField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -17663,15 +16647,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -17681,7 +16656,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 16
               }
             },
             {
@@ -18160,15 +17135,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperation",
-                  "canonicalReference": "@acidic/language!~AcidicOperation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Model",
                   "canonicalReference": "@acidic/language!Model:interface"
                 },
@@ -18183,7 +17149,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 4
+                "endIndex": 2
               }
             },
             {
@@ -18361,15 +17327,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperationInputParam",
-                  "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -18406,15 +17363,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -18433,26 +17381,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "GeneratorField",
-                  "canonicalReference": "@acidic/language!GeneratorField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -18465,15 +17395,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -18483,7 +17404,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 16
               }
             },
             {
@@ -18798,15 +17719,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicOperationInputParam",
-                  "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -18843,15 +17755,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -18870,26 +17773,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "GeneratorField",
-                  "canonicalReference": "@acidic/language!GeneratorField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -18902,15 +17787,6 @@
                 },
                 {
                   "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UnsupportedFieldType",
-                  "canonicalReference": "@acidic/language!UnsupportedFieldType:interface"
-                },
-                {
-                  "kind": "Content",
                   "text": ";"
                 }
               ],
@@ -18920,7 +17796,7 @@
               "name": "$container",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 26
+                "endIndex": 16
               }
             },
             {

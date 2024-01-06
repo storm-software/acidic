@@ -1,17 +1,13 @@
 import { AcidicConfig } from "@acidic/config";
 import { Model } from "@acidic/language/ast";
-import {
-  AcidicSchemaWrapper,
-  NodeSchema,
-  PluginOptions,
-  ServiceSchema
-} from "@acidic/schema";
+import { NodeSchema, PluginOptions, ServiceSchema } from "@acidic/schema";
 import { StormLog } from "@storm-stack/logging";
 import { MaybePromise } from "@storm-stack/utilities";
 import { ESLint } from "eslint";
 import { HelperOptions } from "handlebars/runtime";
 import prettier from "prettier";
 import { CompilerOptions } from "ts-morph";
+import { AcidicSchemaWrapper } from "./schema";
 
 export type PluginContextMapKey = Pick<PluginInfo, "options" | "provider">;
 
