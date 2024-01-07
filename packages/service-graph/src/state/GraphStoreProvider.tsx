@@ -13,8 +13,8 @@ export const GraphStoreProvider = ({
   schemas = []
 }: GraphStoreProviderProps) => {
   return (
-    <ReactFlowProvider>
-      <GraphProvider initialValues={{ schemas }}>{children}</GraphProvider>
-    </ReactFlowProvider>
+    <GraphProvider initialValues={{ schemas }}>
+      <ReactFlowProvider>{children}</ReactFlowProvider>
+    </GraphProvider>
   );
 };

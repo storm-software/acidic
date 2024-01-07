@@ -17,19 +17,19 @@ export const Primary: Story = {
     children: (
       <>
         <tr className="relative cursor-pointer text-slate-300 hover:bg-slate-200/30 hover:font-semibold">
-          <td>Value 1</td>
-          <td>Value 2</td>
-          <td>Value 3</td>
+          <td className="px-2">Value 1</td>
+          <td className="px-2">Value 2</td>
+          <td className="px-2">Value 3</td>
         </tr>
         <tr className="relative cursor-pointer text-slate-300 hover:bg-slate-200/30 hover:font-semibold">
-          <td>Value 1</td>
-          <td>Value 2</td>
-          <td>Value 3</td>
+          <td className="px-2">Value 1</td>
+          <td className="px-2">Value 2</td>
+          <td className="px-2">Value 3</td>
         </tr>
         <tr className="relative cursor-pointer text-slate-300 hover:bg-slate-200/30 hover:font-semibold">
-          <td>Value 1</td>
-          <td>Value 2</td>
-          <td>Value 3</td>
+          <td className="px-2">Value 1</td>
+          <td className="px-2">Value 2</td>
+          <td className="px-2">Value 3</td>
         </tr>
       </>
     )

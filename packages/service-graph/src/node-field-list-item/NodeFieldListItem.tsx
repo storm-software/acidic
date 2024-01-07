@@ -6,21 +6,24 @@ import {
   isObjectSchema
 } from "@acidic/schema";
 import clsx from "clsx";
-import React from "react";
+import React, { useCallback } from "react";
 import { Handle, Position } from "reactflow";
 import "reactflow/dist/style.css";
+import { useGraphStore } from "../state";
 
-export interface NodeFieldTableRowProps {
+export interface NodeFieldListItemProps {
+  id: string;
   kind: NodeKind;
   node?: NodeSchema;
   field: ObjectFieldSchema;
 }
 
-export const NodeFieldTableRow = ({
+export const NodeFieldListItem = ({
+  id,
   field,
   node,
   kind
-}: NodeFieldTableRowProps) => {
+}: NodeFieldListItemProps) => {
   let relationship: ObjectRelationshipSchema | undefined;
   if (isObjectSchema(node) && node.relationships.length > 0) {
     relationship = node.relationships.find(rel =>
@@ -28,12 +31,19 @@ export const NodeFieldTableRow = ({
     );
   }
 
+  const setActiveId = useGraphStore().set.activeId();
+  const handleClick = useCallback(() => {
+    setActiveId({ nodeId: id, fieldId: field.name });
+  }, [setActiveId, id, field.name]);
+
   return (
-    <tr className="text-md group/node-field-row relative cursor-pointer font-mona-sans-light text-slate-300 transition-all hover:bg-slate-200/30 hover:font-semibold">
+    <tr
+      onClick={handleClick}
+      className="text-md group/node-field-row relative cursor-pointer font-mona-sans-light text-slate-300 transition-all hover:bg-slate-200/30 hover:font-semibold">
       <td className="flex flex-row gap-0.5">
         <p
           className={clsx(
-            "overflow-hidden text-slate-300 transition-all group-hover/node-field-row:font-mona-sans",
+            "overflow-hidden px-2 text-slate-300 transition-all group-hover/node-field-row:font-mona-sans",
             {
               "font-mona-sans font-bold": field.isRequired
             },
@@ -72,7 +82,7 @@ export const NodeFieldTableRow = ({
       <td>
         <p
           className={clsx(
-            "text-slate-300 transition-all group-hover/node-field-row:font-mona-sans",
+            "px-2 text-slate-300 transition-all group-hover/node-field-row:font-mona-sans",
             {
               "group-hover/node-field-row:text-[#4c1d95]":
                 kind === NodeKind.ENUM

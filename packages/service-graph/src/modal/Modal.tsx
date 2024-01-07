@@ -25,8 +25,9 @@ export const Modal = ({ children, title, type }: ModalProps) => {
             <Button
               className="group absolute top-1.5 right-2"
               kind="ghost"
-              size="small"
-              rounded="full">
+              size="sm"
+              rounded="full"
+              screenReader="Close Modal">
               <svg
                 fill="none"
                 viewBox="0 0 24 24"

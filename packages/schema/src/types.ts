@@ -73,7 +73,15 @@ export type GeneratorOptions = {
 /**
  * Plugin configuration option value type
  */
-export type OptionValue = null | string | number | boolean;
+export type BaseOptionValue = null | string | number | boolean;
+
+/**
+ * Plugin configuration option value type
+ */
+export type OptionValue =
+  | BaseOptionValue
+  | BaseOptionValue[]
+  | Record<string, BaseOptionValue | BaseOptionValue[]>;
 
 /**
  * Plugin configuration options
@@ -89,10 +97,7 @@ export type PluginOptions = {
    */
   output?: string;
 } & GeneratorOptions &
-  Record<
-    string,
-    OptionValue | OptionValue[] | Record<string, OptionValue | OptionValue[]>
-  >;
+  Record<string, OptionValue>;
 
 export interface NodeSchema {
   /**
@@ -205,6 +210,8 @@ export interface IntegerEnumFieldSchema {
   value: number;
 }
 
+export type EnumFieldSchema = StringEnumFieldSchema | IntegerEnumFieldSchema;
+
 export interface EnumSchema extends NodeSchema {
   /**
    * The name of the schema
@@ -214,7 +221,7 @@ export interface EnumSchema extends NodeSchema {
   /**
    * The enum fields
    */
-  fields: StringEnumFieldSchema[] | IntegerEnumFieldSchema[];
+  fields: EnumFieldSchema[];
 
   /**
    * The attribute applied to the schema
@@ -609,19 +616,19 @@ export interface EventSchema extends NodeSchema {
   /**
    * The reference to the object schema
    */
-  ref: ObjectSchema;
+  data: OperationPayloadSchema;
 }
 
 export interface OperationSchema extends NodeSchema {
   /**
    * The input/request of the operation
    */
-  requestRef?: ObjectSchema;
+  request?: OperationPayloadSchema;
 
   /**
    * The event fields
    */
-  responseRef: OperationResponseSchema;
+  response: OperationPayloadSchema;
 
   /**
    * The url end point of the operation
@@ -639,7 +646,7 @@ export interface OperationSchema extends NodeSchema {
   attributes: AttributeSchema[];
 }
 
-export interface OperationResponseSchema {
+export interface OperationPayloadSchema {
   /**
    * The object reference
    */

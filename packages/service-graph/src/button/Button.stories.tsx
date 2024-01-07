@@ -69,42 +69,42 @@ export const Request: Story = {
 export const Small: Story = {
   args: {
     children: "Button Text",
-    size: "small"
+    size: "sm"
   }
 };
 
 export const Medium: Story = {
   args: {
     children: "Button Text",
-    size: "medium"
+    size: "md"
   }
 };
 
 export const Large: Story = {
   args: {
     children: "Button Text",
-    size: "large"
+    size: "lg"
   }
 };
 
 export const RoundedLarge: Story = {
   args: {
     children: "Button Text",
-    rounded: "large"
+    rounded: "lg"
   }
 };
 
 export const RoundedMedium: Story = {
   args: {
     children: "Button Text",
-    rounded: "medium"
+    rounded: "md"
   }
 };
 
 export const RoundedSmall: Story = {
   args: {
     children: "Button Text",
-    rounded: "small"
+    rounded: "sm"
   }
 };
 

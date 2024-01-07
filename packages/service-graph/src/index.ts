@@ -8,9 +8,13 @@
  */
 
 export * from "./base-node";
+export * from "./drawer";
 export * from "./enum-node";
+export * from "./hooks";
+export * from "./modal";
 export * from "./model-node";
 export * from "./object-node";
+export * from "./operation-node";
 export * from "./plugin-node";
 export * from "./service-graph";
 export * from "./service-node";

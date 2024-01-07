@@ -126,9 +126,9 @@ export const BaseNode = ({
                     kind === NodeKind.EVENT
                 }
               )}>
-              <h1 className="font-mona-sans text-xl font-bold text-slate-100">
+              <h2 className="font-mona-sans text-xl font-bold text-slate-100">
                 {name}
-              </h1>
+              </h2>
             </div>
           </div>
           {comments && comments.length > 0 && (

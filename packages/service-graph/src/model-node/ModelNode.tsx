@@ -2,7 +2,7 @@ import { NodeKind } from "@acidic/schema";
 import React from "react";
 import "reactflow/dist/style.css";
 import { BaseNode } from "../base-node";
-import { NodeFieldTable } from "../node-field-table";
+import { NodeFieldList } from "../node-field-list";
 import { modelAtoms, useGraphStore } from "../state";
 import { BaseNodeProps } from "../types";
 
@@ -32,8 +32,8 @@ export const ModelNode = ({ id, ...props }: BaseNodeProps) => {
             {schema.tableName}
           </p>
         </div>
-        <div className="bg-slate-200/10 px-2 pb-1">
-          <NodeFieldTable node={schema.ref} kind={schema.kind} />
+        <div className="bg-slate-200/10 pb-1">
+          <NodeFieldList id={id} node={schema.ref} kind={schema.kind} />
         </div>
       </div>
     </BaseNode>

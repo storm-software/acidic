@@ -64,29 +64,56 @@ export class ServiceTreeItem extends TreeItem {
   }
 
   public getIconPath() {
-    if (this.#status === ServiceTreeItemStatus.LOADING) {
-      return "$(loading~spin)";
-    }
-
     if (this.#type === ServiceTreeItemType.WORKSPACE) {
       if (this.#status === ServiceTreeItemStatus.ERROR) {
-        return "$(error)";
+        return {
+          light: Uri.file("assets/light/error.svg"),
+          dark: Uri.file("assets/dark/error.svg")
+        };
+      } else if (this.#status === ServiceTreeItemStatus.ACTIVE) {
+        return {
+          light: Uri.file("assets/light/success.svg"),
+          dark: Uri.file("assets/dark/success.svg")
+        };
       } else {
-        return "$(folder)";
+        return {
+          light: Uri.file("assets/light/workspace.svg"),
+          dark: Uri.file("assets/dark/workspace.svg")
+        };
       }
     } else if (this.#type === ServiceTreeItemType.SERVICE) {
       if (this.#status === ServiceTreeItemStatus.ERROR) {
-        return "$(bracket-error)";
+        return {
+          light: Uri.file("assets/light/error.svg"),
+          dark: Uri.file("assets/dark/error.svg")
+        };
+      } else if (this.#status === ServiceTreeItemStatus.ACTIVE) {
+        return {
+          light: Uri.file("assets/light/success.svg"),
+          dark: Uri.file("assets/dark/success.svg")
+        };
       } else {
-        return "$(bracket)";
+        return {
+          light: Uri.file("assets/light/service.svg"),
+          dark: Uri.file("assets/dark/service.svg")
+        };
       }
     } else {
       if (this.#status === ServiceTreeItemStatus.ERROR) {
-        return "$(pass-filled)";
+        return {
+          light: Uri.file("assets/light/error.svg"),
+          dark: Uri.file("assets/dark/error.svg")
+        };
       } else if (this.#status === ServiceTreeItemStatus.ACTIVE) {
-        return "$(error)";
+        return {
+          light: Uri.file("assets/light/success.svg"),
+          dark: Uri.file("assets/dark/success.svg")
+        };
       } else {
-        return "$(plug)";
+        return {
+          light: Uri.file("assets/light/plugin.svg"),
+          dark: Uri.file("assets/dark/plugin.svg")
+        };
       }
     }
   }

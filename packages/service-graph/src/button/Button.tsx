@@ -24,15 +24,15 @@ const variants = cva(
         ghost: ["ring-transparent"]
       },
       size: {
-        small: ["text-xs", "px-2", "py-1", "ring-1"],
-        medium: ["text-sm", "px-3", "py-2", "ring-2"],
-        large: ["text-lg", "px-5", "py-4", "ring"]
+        sm: ["text-xs", "px-2", "py-1", "ring-1"],
+        md: ["text-sm", "px-3", "py-2", "ring-2"],
+        lg: ["text-lg", "px-5", "py-4", "ring"]
       },
       rounded: {
         none: ["rounded-none"],
-        small: ["rounded-sm"],
-        medium: ["rounded-md"],
-        large: ["rounded-lg"],
+        sm: ["rounded-sm"],
+        md: ["rounded-md"],
+        lg: ["rounded-lg"],
         full: ["rounded-full"]
       },
       fill: {
@@ -137,17 +137,17 @@ const variants = cva(
       },
       {
         rounded: "full",
-        size: "small",
+        size: "sm",
         className: "px-2 py-2"
       },
       {
         rounded: "full",
-        size: "medium",
+        size: "md",
         className: "px-3 py-3"
       },
       {
         rounded: "full",
-        size: "large",
+        size: "lg",
         className: "px-5 py-5"
       },
       {
@@ -158,8 +158,8 @@ const variants = cva(
     ],
     defaultVariants: {
       kind: "primary",
-      size: "medium",
-      rounded: "medium",
+      size: "md",
+      rounded: "md",
       fill: "outlined",
       status: "enabled"
     }
@@ -180,17 +180,25 @@ export interface ButtonProps
 
 export const Button: React.FC<ButtonProps> = ({
   className,
-  kind: nodeType,
+  kind,
   size,
   rounded,
   fill,
   children,
+  disabled = false,
   screenReader,
   ...props
 }: ButtonProps) => (
   <button
     className={twMerge(
-      variants({ kind: nodeType, size, className, rounded, fill })
+      variants({
+        kind,
+        size,
+        className,
+        rounded,
+        fill,
+        status: disabled ? "disabled" : "enabled"
+      })
     )}
     {...props}>
     <span className="sr-only">{screenReader ? screenReader : children}</span>

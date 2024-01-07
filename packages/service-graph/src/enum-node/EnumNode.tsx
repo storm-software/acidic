@@ -2,7 +2,7 @@ import { NodeKind } from "@acidic/schema";
 import React from "react";
 import "reactflow/dist/style.css";
 import { BaseNode } from "../base-node";
-import { NodeFieldTable } from "../node-field-table";
+import { NodeFieldList } from "../node-field-list";
 import { enumAtoms, useGraphStore } from "../state";
 import { BaseNodeProps } from "../types";
 
@@ -19,8 +19,9 @@ export const EnumNode = ({ id, ...props }: BaseNodeProps) => {
       name={schema.name}
       kind={NodeKind.ENUM}
       comments={schema.comments}>
-      <div className="bg-slate-200/10 px-2 pb-1">
-        <NodeFieldTable
+      <div className="bg-slate-200/10 pb-1">
+        <NodeFieldList
+          id={id}
           node={schema}
           kind={NodeKind.ENUM}
           headers={["Enum Field", "Enum Value"]}

@@ -1,15 +1,22 @@
 import {
+  EnumFieldSchema,
   EnumSchema,
   EventSchema,
   ModelSchema,
+  MutationSchema,
   NodeKind,
+  NodeSchema,
+  ObjectFieldSchema,
   ObjectSchema,
   OperationSchema,
   PluginSchema,
-  ServiceSchema
+  QuerySchema,
+  ServiceSchema,
+  SubscriptionSchema
 } from "@acidic/schema";
 import {
   SimpleWritableAtom,
+  StoreAtomsWithoutExtend,
   createAtomStore,
   setAtomPrivate
 } from "@storm-stack/jotai";
@@ -30,6 +37,30 @@ import {
 import { getNodeType, getNodeTypeColor } from "../utilities";
 import { getNodeId } from "../utilities/get-node-id";
 import { NodeType } from "../utilities/node-types";
+
+export interface ActiveNode {
+  service: ServiceSchema;
+  node: NodeSchema | null;
+  field: ObjectFieldSchema | EnumFieldSchema | null;
+}
+
+export interface ActiveNodeId {
+  nodeId: string;
+  fieldId: string | null;
+}
+
+export interface GraphStore {
+  schemas: ServiceSchema[];
+  isShowingMinimap: boolean;
+  isShowingOptions: boolean;
+  backgroundVariant: BackgroundVariant | null;
+  activeId: ActiveNodeId | null;
+}
+
+export interface ExtendedGraphStore {
+  nodes: Node[];
+  edges: Edge[];
+}
 
 const getWorkspaceNodes = (schemas: ServiceSchema[]): Node<any>[] => {
   return schemas.reduce((nodes: Node<any>[], schema: ServiceSchema) => {
@@ -329,18 +360,6 @@ const getServiceEdges = (
   return edges;
 };
 
-export interface GraphStore {
-  schemas: ServiceSchema[];
-  isShowingMinimap: boolean;
-  isShowingOptions: boolean;
-  backgroundVariant: BackgroundVariant | null;
-}
-
-export interface ExtendedGraphStore {
-  nodes: Node[];
-  edges: Edge[];
-}
-
 const atomWithNodes = (atoms: SimpleWritableAtom<ServiceSchema[]>) => {
   const baseAtom = atomWithDefault<Node[]>(get =>
     getWorkspaceNodes(get(atoms))
@@ -399,18 +418,228 @@ const atomWithEdges = (atoms: SimpleWritableAtom<ServiceSchema[]>) => {
   );
 };
 
+export const findNodeSchema = (
+  nodeId: string,
+  schemas: ServiceSchema[],
+  kind:
+    | "plugins"
+    | "enums"
+    | "objects"
+    | "models"
+    | "events"
+    | "queries"
+    | "mutations"
+    | "subscriptions"
+): { node?: NodeSchema; service: ServiceSchema } | undefined => {
+  const serviceSchema = schemas?.find(
+    service =>
+      service[kind]?.some(
+        schema => getNodeId(schema.name, service.name) === nodeId
+      )
+  );
+
+  return serviceSchema
+    ? {
+        service: serviceSchema,
+        node: serviceSchema?.[kind]?.find(
+          schema => getNodeId(schema.name, serviceSchema.name) === nodeId
+        )
+      }
+    : undefined;
+};
+
+const atomWithActiveNode = (atoms: StoreAtomsWithoutExtend<GraphStore>) => {
+  const baseAtom = atomWithDefault<ActiveNode | null>(get => {
+    const activeId = get(atoms.activeId);
+    if (activeId) {
+      let results = findNodeSchema(
+        activeId.nodeId,
+        get(atoms.schemas),
+        "models"
+      );
+      if (results) {
+        let field: ObjectFieldSchema | null = null;
+        if (results.node) {
+          if (activeId.fieldId) {
+            field =
+              (results.node as ModelSchema).ref.fields.find(
+                field => field.name === activeId.fieldId
+              ) ?? null;
+          }
+        }
+
+        return {
+          service: results.service,
+          node: results.node ?? null,
+          field
+        };
+      }
+
+      results = findNodeSchema(activeId.nodeId, get(atoms.schemas), "objects");
+      if (results) {
+        let field: ObjectFieldSchema | null = null;
+        if (results.node) {
+          if (activeId.fieldId) {
+            field =
+              (results.node as ObjectSchema).fields.find(
+                field => field.name === activeId.fieldId
+              ) ?? null;
+          }
+        }
+
+        return {
+          service: results.service,
+          node: results.node ?? null,
+          field
+        };
+      }
+
+      results = findNodeSchema(activeId.nodeId, get(atoms.schemas), "events");
+      if (results) {
+        let field: ObjectFieldSchema | null = null;
+        if (results.node) {
+          if (activeId.fieldId) {
+            field =
+              (results.node as EventSchema).data.ref.fields.find(
+                field => field.name === activeId.fieldId
+              ) ?? null;
+          }
+        }
+
+        return {
+          service: results.service,
+          node: results.node ?? null,
+          field
+        };
+      }
+
+      results = findNodeSchema(activeId.nodeId, get(atoms.schemas), "queries");
+      if (results) {
+        let field: ObjectFieldSchema | null = null;
+        if (results.node) {
+          if (activeId.fieldId) {
+            field =
+              (results.node as QuerySchema).request?.ref.fields.find(
+                field => field.name === activeId.fieldId
+              ) ??
+              (results.node as QuerySchema).response?.ref.fields.find(
+                field => field.name === activeId.fieldId
+              ) ??
+              null;
+          }
+        }
+
+        return {
+          service: results.service,
+          node: results.node ?? null,
+          field
+        };
+      }
+
+      results = findNodeSchema(
+        activeId.nodeId,
+        get(atoms.schemas),
+        "mutations"
+      );
+      if (results) {
+        let field: ObjectFieldSchema | null = null;
+        if (results.node) {
+          if (activeId.fieldId) {
+            field =
+              (results.node as MutationSchema).request?.ref.fields.find(
+                field => field.name === activeId.fieldId
+              ) ??
+              (results.node as MutationSchema).response?.ref.fields.find(
+                field => field.name === activeId.fieldId
+              ) ??
+              null;
+          }
+        }
+
+        return {
+          service: results.service,
+          node: results.node ?? null,
+          field
+        };
+      }
+
+      results = findNodeSchema(
+        activeId.nodeId,
+        get(atoms.schemas),
+        "subscriptions"
+      );
+      if (results) {
+        let field: ObjectFieldSchema | null = null;
+        if (results.node) {
+          if (activeId.fieldId) {
+            field =
+              (results.node as SubscriptionSchema).request?.ref.fields.find(
+                field => field.name === activeId.fieldId
+              ) ??
+              (results.node as SubscriptionSchema).response?.ref.fields.find(
+                field => field.name === activeId.fieldId
+              ) ??
+              null;
+          }
+        }
+
+        return {
+          service: results.service,
+          node: results.node ?? null,
+          field
+        };
+      }
+
+      results = findNodeSchema(activeId.nodeId, get(atoms.schemas), "enums");
+      if (results) {
+        let field: EnumFieldSchema | null = null;
+        if (results.node) {
+          if (activeId.fieldId) {
+            field =
+              (results.node as EnumSchema).fields.find(
+                field => field.name === activeId.fieldId
+              ) ?? null;
+          }
+        }
+
+        return {
+          service: results.service,
+          node: results.node ?? null,
+          field
+        };
+      }
+    }
+
+    return null;
+  });
+  setAtomPrivate(baseAtom);
+
+  return atom(
+    get => get(baseAtom),
+    (get, set, action: ActiveNodeId | typeof RESET) => {
+      if (action === RESET) {
+        return set(baseAtom, RESET);
+      } else if (action) {
+        set(atoms.activeId, action);
+      }
+    }
+  );
+};
+
 export const { useGraphStore, graphStore, GraphProvider } = createAtomStore(
   {
     schemas: [],
     isShowingMinimap: true,
     isShowingOptions: true,
-    backgroundVariant: null
+    backgroundVariant: null,
+    activeId: null
   } as GraphStore,
   {
     name: "graph",
     extend: atoms => ({
       nodes: atomWithNodes(atoms.schemas),
-      edges: atomWithEdges(atoms.schemas)
+      edges: atomWithEdges(atoms.schemas),
+      active: atomWithActiveNode(atoms)
     })
   }
 );

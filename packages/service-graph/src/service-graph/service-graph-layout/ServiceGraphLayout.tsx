@@ -5,12 +5,14 @@ import ReactFlow, {
   Background,
   ConnectionLineType,
   Node,
+  OnSelectionChangeParams,
   Panel,
   ReactFlowInstance,
   addEdge
 } from "reactflow";
 import "reactflow/dist/style.css";
 import iconImage from "../../../../../assets/icons/dark/icon.png";
+import { ActiveNodeDrawer } from "../../active-node-drawer";
 import { ControlPanel } from "../../control-panel";
 import { EnumNode } from "../../enum-node";
 import { EventNode } from "../../event-node";
@@ -48,6 +50,17 @@ export const ServiceGraphLayout: React.FC<ServiceGraphLayoutProps> = ({
   const backgroundVariant = useGraphStore().get.backgroundVariant();
   const [reactFlowInstance, setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
+
+  const setActiveId = useGraphStore().set.activeId();
+  const onSelect = useCallback(
+    (elements: OnSelectionChangeParams) => {
+      if (elements.nodes.length > 0 && elements.nodes[0]?.id) {
+        setActiveId({ nodeId: elements.nodes[0].id, fieldId: null });
+        setNodes(elements.nodes);
+      }
+    },
+    [setActiveId, nodes]
+  );
 
   const onConnect = useCallback(
     params => {
@@ -107,11 +120,13 @@ export const ServiceGraphLayout: React.FC<ServiceGraphLayoutProps> = ({
   );
 
   return (
-    <div className={clsx("h-[30rem] w-full", className)}>
+    <div className={clsx("h-[40rem] w-full", className)}>
       <ReactFlow
         noDragClassName="acidic-no-drag"
         nodesDraggable={true}
         selectNodesOnDrag={false}
+        elementsSelectable={true}
+        onSelectionChange={onSelect}
         proOptions={{ hideAttribution: true }}
         nodes={nodes}
         edges={edges}
@@ -131,14 +146,13 @@ export const ServiceGraphLayout: React.FC<ServiceGraphLayoutProps> = ({
 
         <ControlPanel />
         <MiniMap reactFlowInstance={reactFlowInstance} />
+        <ActiveNodeDrawer size="sm" />
+        <Panel position="top-left" className="text-2xl font-bold text-white">
+          <a href="https://acidic.io" target="_blank" rel="noreferrer">
+            <img src={iconImage} alt="Acidic" className="h-16 w-16" />
+          </a>
+        </Panel>
       </ReactFlow>
-      <Panel
-        position="top-left"
-        className="p-2 px-3 text-2xl font-bold text-white">
-        <a href="https://acidic.io" target="_blank" rel="noreferrer">
-          <img src={iconImage} alt="Acidic" className="h-16 w-16" />
-        </a>
-      </Panel>
     </div>
   );
 };

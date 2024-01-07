@@ -65,51 +65,54 @@ const preview: Preview = {
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                   ],
                   url: "https://stormcloud.dev/graphql",
-                  requestRef: {
-                    kind: "object",
-                    name: "ExampleObject",
-                    comments: [
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    ],
+                  request: {
+                    ref: {
+                      kind: "object",
+                      name: "ExampleObject",
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                      ],
 
-                    fields: [
-                      {
-                        name: "exampleString",
-                        type: "String",
-                        isRequired: false,
-                        isArray: false,
-                        attributes: [],
-                        defaultValue: "Example Default"
-                      },
-                      {
-                        name: "exampleDecimal",
-                        type: "Decimal",
-                        isArray: false,
-                        attributes: [],
-                        defaultValue: 5.005
-                      },
-                      {
-                        name: "exampleStringArray",
-                        type: "String",
-                        isRequired: false,
-                        isArray: true,
-                        attributes: []
-                      },
-                      {
-                        name: "exampleBooleanRequired",
-                        type: "Boolean",
-                        isRequired: true,
-                        isArray: false,
-                        attributes: []
-                      }
-                    ],
+                      fields: [
+                        {
+                          name: "exampleString",
+                          type: "String",
+                          isRequired: false,
+                          isArray: false,
+                          attributes: [],
+                          defaultValue: "Example Default"
+                        },
+                        {
+                          name: "exampleDecimal",
+                          type: "Decimal",
+                          isArray: false,
+                          attributes: [],
+                          defaultValue: 5.005
+                        },
+                        {
+                          name: "exampleStringArray",
+                          type: "String",
+                          isRequired: false,
+                          isArray: true,
+                          attributes: []
+                        },
+                        {
+                          name: "exampleBooleanRequired",
+                          type: "Boolean",
+                          isRequired: true,
+                          isArray: false,
+                          attributes: []
+                        }
+                      ],
 
-                    relationships: [],
-                    extends: [],
-                    isExtend: false,
-                    attributes: []
+                      relationships: [],
+                      extends: [],
+                      isExtend: false,
+                      attributes: []
+                    },
+                    isArray: false
                   },
-                  responseRef: {
+                  response: {
                     isArray: true,
                     ref: {
                       kind: "object",
@@ -295,49 +298,52 @@ const preview: Preview = {
                   kind: "event",
                   name: "ExampleEvent",
                   topic: "storm.example.topic",
-                  ref: {
-                    kind: "object",
-                    name: "ExampleObject",
-                    comments: [
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                    ],
+                  data: {
+                    ref: {
+                      kind: "object",
+                      name: "ExampleObject",
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                      ],
 
-                    fields: [
-                      {
-                        name: "exampleString",
-                        type: "String",
-                        isRequired: false,
-                        isArray: false,
-                        attributes: [],
-                        defaultValue: "Example Default"
-                      },
-                      {
-                        name: "exampleDecimal",
-                        type: "Decimal",
-                        isArray: false,
-                        attributes: [],
-                        defaultValue: 5.005
-                      },
-                      {
-                        name: "exampleStringArray",
-                        type: "String",
-                        isRequired: false,
-                        isArray: true,
-                        attributes: []
-                      },
-                      {
-                        name: "exampleBooleanRequired",
-                        type: "Boolean",
-                        isRequired: true,
-                        isArray: false,
-                        attributes: []
-                      }
-                    ],
+                      fields: [
+                        {
+                          name: "exampleString",
+                          type: "String",
+                          isRequired: false,
+                          isArray: false,
+                          attributes: [],
+                          defaultValue: "Example Default"
+                        },
+                        {
+                          name: "exampleDecimal",
+                          type: "Decimal",
+                          isArray: false,
+                          attributes: [],
+                          defaultValue: 5.005
+                        },
+                        {
+                          name: "exampleStringArray",
+                          type: "String",
+                          isRequired: false,
+                          isArray: true,
+                          attributes: []
+                        },
+                        {
+                          name: "exampleBooleanRequired",
+                          type: "Boolean",
+                          isRequired: true,
+                          isArray: false,
+                          attributes: []
+                        }
+                      ],
 
-                    relationships: [],
-                    extends: [],
-                    isExtend: false,
-                    attributes: []
+                      relationships: [],
+                      extends: [],
+                      isExtend: false,
+                      attributes: []
+                    },
+                    isArray: false
                   }
                 }
               ],

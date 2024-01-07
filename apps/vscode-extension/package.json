@@ -294,7 +294,7 @@
     "@types/react-dom": "^18.2.18",
     "@types/vscode": "^1.85.0",
     "esbuild-style-plugin": "^1.6.3",
-    "langium-cli": "^1.2.0",
+    "langium-cli": "^2.1.0",
     "typescript": "~5.2.2",
     "vscode-test": "^1.6.1"
   },

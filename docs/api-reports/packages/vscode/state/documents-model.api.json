@@ -1125,7 +1125,25 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "\"$(loading~spin)\" | \"$(error)\" | \"$(folder)\" | \"$(bracket-error)\" | \"$(bracket)\" | \"$(pass-filled)\" | \"$(plug)\""
+                  "text": "{\n        light: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n        dark: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n    }"
                 },
                 {
                   "kind": "Content",
@@ -1135,7 +1153,7 @@
               "isStatic": false,
               "returnTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 6
               },
               "releaseTag": "Public",
               "isProtected": false,

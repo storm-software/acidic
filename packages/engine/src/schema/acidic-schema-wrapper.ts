@@ -202,7 +202,7 @@ export class AcidicSchemaWrapper {
 
   public addModel = (schemaModel: ModelSchema) => {
     if (
-      !this.#events.some(
+      !this.#models.some(
         existing =>
           existing.ref.name?.toUpperCase() ===
           schemaModel.ref.name?.toUpperCase()
@@ -217,13 +217,13 @@ export class AcidicSchemaWrapper {
     if (
       !this.#events.some(
         existing =>
-          existing.ref.name?.toUpperCase() ===
-          schemaEvent.ref.name?.toUpperCase()
+          existing.data.ref.name?.toUpperCase() ===
+          schemaEvent.data.ref.name?.toUpperCase()
       )
     ) {
       this.#events.push(schemaEvent);
     }
-    this.addObject(schemaEvent.ref);
+    this.addObject(schemaEvent.data.ref);
   };
 
   public addEnum = (schemaEnum: EnumSchema) => {
@@ -412,7 +412,7 @@ export class AcidicSchemaWrapper {
     const operationSchema = {
       name: acidicOperation.name,
       comments: acidicOperation.comments,
-      responseRef: {},
+      response: {},
       attributes: acidicOperation.attributes.map(
         this.mapAcidicAttributeToAttributeSchema
       )
@@ -1432,7 +1432,10 @@ export class AcidicSchemaWrapper {
       name: objectSchema.name,
       kind: "event",
       topic,
-      ref: objectSchema
+      data: {
+        ref: objectSchema,
+        isArray: false
+      }
     };
   };
 
