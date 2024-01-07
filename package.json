@@ -132,7 +132,7 @@
     "lint-staged": "^15.2.0",
     "log4brains": "^1.0.1",
     "nx": "17.2.8",
-    "postcss": "8.4.21",
+    "postcss": "8.4.31",
     "prettier": "^3.1.1",
     "prettier-plugin-packagejson": "^2.4.7",
     "prettier-plugin-prisma": "^5.0.0",
