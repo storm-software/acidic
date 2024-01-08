@@ -15,7 +15,7 @@
     "monaco-editor-wrapper": "^3.4.0"
   },
   "devDependencies": {
-    "@codingame/monaco-vscode-api": "^1.83.16"
+    "@codingame/monaco-vscode-api": "1.83.16"
   },
   "peerDependencies": {
     "@codingame/monaco-vscode-api": "^1.83.16"
