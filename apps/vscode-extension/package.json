@@ -275,7 +275,7 @@
     "@storm-stack/file-system": "latest",
     "@storm-stack/logging": "latest",
     "@storm-stack/serialization": "latest",
-    "@vscode/vsce": "2.21.1",
+    "@vscode/vsce": "2.22.0",
     "esbuild-plugin-pino": "^2.1.0",
     "express": "^4.18.2",
     "langium": "^2.1.3",
