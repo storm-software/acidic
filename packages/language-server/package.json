@@ -10,13 +10,13 @@
   },
   "type": "module",
   "dependencies": {
-    "chevrotain": "^11.0.3",
+    "chevrotain": "11.0.3",
     "langium": "^2.1.3",
-    "ts-pattern": "^5.0.5",
-    "vscode-jsonrpc": "^8.2.0",
-    "vscode-languageserver": "^9.0.1",
-    "vscode-languageserver-textdocument": "^1.0.11",
-    "vscode-uri": "^3.0.8"
+    "ts-pattern": "5.0.6",
+    "vscode-jsonrpc": "8.2.0",
+    "vscode-languageserver": "9.0.1",
+    "vscode-languageserver-textdocument": "1.0.11",
+    "vscode-uri": "3.0.8"
   },
   "publishConfig": {
     "access": "public"
