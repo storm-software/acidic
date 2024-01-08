@@ -154,7 +154,7 @@
   "peerDependencies": {
     "husky": "^8.0.3"
   },
-  "packageManager": "pnpm@8.10.2",
+  "packageManager": "pnpm@8.10.5",
   "engines": {
     "node": ">=18.17.1",
     "pnpm": ">=8.10.2"
