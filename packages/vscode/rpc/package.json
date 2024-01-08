@@ -15,6 +15,6 @@
   "dependencies": {
     "@storm-stack/serialization": "latest",
     "@vscode/vsce": "2.21.1",
-    "vscode": "^1.1.37"
+    "vscode": "1.1.37"
   }
 }
