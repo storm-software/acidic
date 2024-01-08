@@ -13,7 +13,7 @@
     "@storm-stack/errors": "latest",
     "@storm-stack/serialization": "latest",
     "@storm-stack/utilities": "latest",
-    "@vscode/vsce": "2.21.1",
+    "@vscode/vsce": "2.22.0",
     "@vscode/webview-ui-toolkit": "^1.4.0",
     "jotai": "^2.6.0",
     "vscode": "^1.1.37",
