@@ -10,7 +10,7 @@ AcidicImport:
     'import' path=STRING  ';'?;
 
 AbstractDeclaration:
-   ServiceID | AcidicDataSource | GeneratorDecl | AcidicPlugin | AcidicModel | AcidicObject | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicEvent | AcidicEnum | FunctionDecl | Attribute;
+   ServiceID | AcidicDataSource | AcidicPlugin | AcidicModel | AcidicObject | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicEvent | AcidicEnum | FunctionDecl | Attribute;
 
 // service name
 ServiceID:
@@ -23,16 +23,9 @@ AcidicDataSource:
 AcidicDataSourceField:
     (comments+=TRIPLE_SLASH_COMMENT)* name=RegularID '=' value=(LiteralExpr | InvocationExpr | ArrayExpr);
 
-// generator
-GeneratorDecl:
-    TRIPLE_SLASH_COMMENT* 'generator' name=RegularID '{' (fields+=GeneratorField)* '}';
-
-GeneratorField:
-    TRIPLE_SLASH_COMMENT* name=RegularID '=' value=(LiteralExpr | ArrayExpr);
-
 // plugin
 AcidicPlugin:
-    (comments+=TRIPLE_SLASH_COMMENT)* 'plugin' name=RegularID '{' (fields+=AcidicPluginField)* '}';
+    (comments+=TRIPLE_SLASH_COMMENT)* ('plugin' | 'generator') name=RegularID '{' (fields+=AcidicPluginField)* '}';
 
 AcidicPluginField:
     (comments+=TRIPLE_SLASH_COMMENT)* name=RegularID '=' value=(LiteralExpr | ArrayExpr | ObjectExpr);

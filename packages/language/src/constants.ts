@@ -25,7 +25,9 @@ export const SCALAR_TYPES = [
   "BigInt",
   "Boolean",
   "Bytes",
-  "DateTime"
+  "DateTime",
+  "Date",
+  "Time"
 ];
 
 /**

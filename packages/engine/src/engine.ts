@@ -57,11 +57,11 @@ export interface AcidicEngineOptions {
 }
 
 export class AcidicEngine {
-  #services: AcidicServices;
-  #stdLib: LangiumDocument<AstNode>;
-  #logger: IStormLog;
-  #config: AcidicConfig;
-  #pluginManager: PluginManager<AcidicContext, AcidicPluginModule>;
+  private _services: AcidicServices;
+  private _stdLib: LangiumDocument<AstNode>;
+  private _logger: IStormLog;
+  private _config: AcidicConfig;
+  private _pluginManager!: PluginManager<AcidicContext, AcidicPluginModule>;
 
   public readonly version: string;
   public readonly outputPath: string;
@@ -71,8 +71,8 @@ export class AcidicEngine {
     logger: IStormLog
   ): Promise<AcidicEngine> => {
     const engine = new AcidicEngine(config, logger);
-    engine.#pluginManager = await PluginManager.create(
-      engine.#logger as any,
+    engine._pluginManager = await PluginManager.create(
+      engine._logger as any,
       {
         rootPath: config.workspaceRoot,
         useNodeModules: true,
@@ -85,26 +85,26 @@ export class AcidicEngine {
   };
 
   private constructor(config: AcidicConfig, logger: IStormLog) {
-    this.#config = config;
-    this.#logger = logger ?? StormLog.create(this.#config, "Acidic Engine");
+    this._config = config;
+    this._logger = logger ?? StormLog.create(this._config, "Acidic Engine");
 
     this.version = getVersion();
-    this.#logger.info(
+    this._logger.info(
       `Initializing the Acidic Engine v${this.version ? this.version : "1.0.0"}`
     );
-    this.#services = createAcidicServices(NodeFileSystem).Acidic;
+    this._services = createAcidicServices(NodeFileSystem).Acidic;
 
     const stdLibFile = URI.file(
       resolve(join(__dirname, "res", STD_LIB_MODULE_NAME))
     );
 
-    this.#logger
+    this._logger
       .info(`Loading standard library file from '${stdLibFile.toString()}'
 JSON File:
 ${StormParser.stringify(stdLibFile.toJSON())}`);
 
-    this.#stdLib =
-      this.#services.shared.workspace.LangiumDocuments.getOrCreateDocument(
+    this._stdLib =
+      this._services.shared.workspace.LangiumDocuments.getOrCreateDocument(
         stdLibFile
       );
 
@@ -116,17 +116,17 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
   public execute = async (
     options: AcidicEngineOptions
   ): Promise<StormError | AcidicContext> => {
-    this.#logger.start("Acidic Engine");
+    this._logger.start("Acidic Engine");
 
     try {
-      this.#logger.info(`Running the 🧪 Acidic Engine v${this.version}`);
+      this._logger.info(`Running the 🧪 Acidic Engine v${this.version}`);
 
       const context = await this.prepare(options);
       if (isStormError(context)) {
         throw context;
       }
 
-      this.#logger.start("Running Plugins");
+      this._logger.start("Running Plugins");
 
       let issues: Array<{ plugin: string; error: Error }> = [];
       const executionDateTime = StormDateTime.current();
@@ -135,13 +135,13 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
         context.wrapper.service.plugins.map(plugin => {
           try {
             if (plugin.provider) {
-              context.currentPlugin = this.#pluginManager.getInstance(
+              context.currentPlugin = this._pluginManager.getInstance(
                 plugin.provider,
                 plugin.options
               );
 
               return Promise.resolve(
-                this.#pluginManager.execute(
+                this._pluginManager.execute(
                   plugin.provider,
                   context,
                   plugin.options,
@@ -150,7 +150,7 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
               );
             }
           } catch (e) {
-            this.#logger.error(e);
+            this._logger.error(e);
             issues.push({
               plugin: plugin.name,
               error: StormError.create(e)
@@ -161,31 +161,33 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
         })
       );
 
-      this.#logger.stopwatch("Running Plugins");
+      this._logger.stopwatch("Running Plugins");
 
       issues = results
         .filter(isSetObject)
         .reduce(
           (
             ret: Array<{ plugin: string; error: Error }>,
-            result: Record<string, Error | null>
+            result: Record<string, Error | null> | null
           ) => {
-            return Object.keys(result).reduce(
-              (
-                innerRet: Array<{ plugin: string; error: Error }>,
-                plugin: string
-              ) => {
-                if (isError(result[plugin])) {
-                  innerRet.push({
-                    plugin: plugin,
-                    error: result[plugin]!
-                  });
-                }
+            return result
+              ? Object.keys(result).reduce(
+                  (
+                    innerRet: Array<{ plugin: string; error: Error }>,
+                    plugin: string
+                  ) => {
+                    if (isError(result[plugin])) {
+                      innerRet.push({
+                        plugin: plugin,
+                        error: result[plugin]!
+                      });
+                    }
 
-                return innerRet;
-              },
-              ret
-            );
+                    return innerRet;
+                  },
+                  ret
+                )
+              : ret;
           },
           issues
         );
@@ -196,35 +198,35 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
         },
         75
       );
-      this.#logger.info(
+      this._logger.info(
         `\n${chalk
-          .hex(this.#config.colors.primary)
+          .hex(this._config.colors.primary)
           .bold(
             issues.length === 0
               ? `⚡ All ${
-                  this.#pluginManager.getStore().size
+                  this._pluginManager.getStore().size
                 } Acidic plugins completed successfully!`
               : `⚡ Acidic Engine completed running ${
-                  this.#pluginManager.getStore().size
+                  this._pluginManager.getStore().size
                 } plugins!`
           )}${NEWLINE_STRING}${NEWLINE_STRING}${context.wrapper.service.plugins
           .map(
             (plugin: PluginDefinition, i: number) =>
               `${chalk.gray(`${i + 1}.`)} ${
                 issues.some(issue => issue.plugin === plugin.provider)
-                  ? `${chalk.hex(this.#config.colors.error).bold(
+                  ? `${chalk.hex(this._config.colors.error).bold(
                       `${plugin.provider} ${Array.from(
                         Array(resultsLineWidth - plugin.provider.length - 11)
                       )
                         .map(_ => "-")
                         .join("")} FAILED X`
-                    )}${NEWLINE_STRING}${chalk.hex(this.#config.colors.error)(
+                    )}${NEWLINE_STRING}${chalk.hex(this._config.colors.error)(
                       `   -> ${
                         issues.find(issue => issue.plugin === plugin.provider)
                           ?.error ?? "No failures recorded"
                       }`
                     )}`
-                  : `${chalk.hex(this.#config.colors.success).bold(
+                  : `${chalk.hex(this._config.colors.success).bold(
                       `${plugin.provider} ${Array.from(
                         Array(resultsLineWidth - plugin.provider.length - 11)
                       )
@@ -242,87 +244,87 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
         )}\n`
       );
 
-      this.#logger.success(
+      this._logger.success(
         `${NEWLINE_STRING}🎉 The Acidic Engine has successfully completed processing!${NEWLINE_STRING}`
       );
 
       return context;
     } catch (error) {
-      this.#logger.error(error);
+      this._logger.error(error);
 
       return StormError.create(error);
     } finally {
-      this.#logger.stopwatch("Acidic Engine");
+      this._logger.stopwatch("Acidic Engine");
     }
   };
 
   public prepare = async (
     options: AcidicEngineOptions
   ): Promise<StormError | AcidicContext> => {
-    this.#logger.start("Acidic Engine - Prepare");
+    this._logger.start("Acidic Engine - Prepare");
 
     options.outputPath ??= "./node_modules/.storm";
     options.packageManager ??= PackageManagers.NPM;
 
     try {
-      this.#logger.start("Creating Context");
+      this._logger.start("Creating Context");
 
       let context = await this.createContext(options);
 
-      this.#logger.stopwatch("Creating Context");
+      this._logger.stopwatch("Creating Context");
 
       if (context.wrapper.service.plugins.length === 0) {
-        this.#logger.warn(
+        this._logger.warn(
           "No plugins specified for this schema. No processing will be performed (please ensure this is expected)."
         );
       } else {
-        context = await this.#pluginManager.invokeHook(
+        context = await this._pluginManager.invokeHook(
           AcidicPluginHookNames.EXTEND_CONTEXT,
           context
         );
 
-        this.#logger.start("Preparing Definition");
+        this._logger.start("Preparing Definition");
 
-        context = await this.#pluginManager.invokeHook(
+        context = await this._pluginManager.invokeHook(
           AcidicPluginHookNames.EXTEND_DEFINITION,
           context
         );
 
-        this.#logger.info(
+        this._logger.info(
           `🧪 The Acidic server definition ${
             context.wrapper.service.name
           } contains: ${NEWLINE_STRING}${chalk
-            .hex(this.#config.colors.primary)
+            .hex(this._config.colors.primary)
             .bold(
               `${context.wrapper.service.plugins?.length ?? 0} Plugins`
             )} ${NEWLINE_STRING}${chalk
-            .hex(this.#config.colors.primary)
+            .hex(this._config.colors.primary)
             .bold(
               `${context.wrapper.service.models?.length ?? 0} Models`
             )} ${NEWLINE_STRING}${chalk
-            .hex(this.#config.colors.primary)
+            .hex(this._config.colors.primary)
             .bold(
               `${context.wrapper.service.objects?.length ?? 0} Objects`
             )} ${NEWLINE_STRING}${chalk
-            .hex(this.#config.colors.primary)
+            .hex(this._config.colors.primary)
             .bold(
               `${context.wrapper.service.enums?.length ?? 0} Enums`
             )} ${NEWLINE_STRING}${chalk
-            .hex(this.#config.colors.primary)
+            .hex(this._config.colors.primary)
             .bold(
               `${context.wrapper.service.events?.length ?? 0} Events`
             )} ${NEWLINE_STRING}${chalk
-            .hex(this.#config.colors.primary)
+            .hex(this._config.colors.primary)
             .bold(
               `${context.wrapper.service.queries?.length ?? 0} Query Operations`
             )} ${NEWLINE_STRING}${chalk
-            .hex(this.#config.colors.primary)
+            .hex(this._config.colors.primary)
             .bold(
               `${
                 context.wrapper.service.mutations?.length ?? 0
               } Mutation Operations`
             )} ${NEWLINE_STRING}${chalk
-            .hex(this.#config.colors.primary)
+            .hex(this._config.colors.primary)
             .bold(
               `${
                 context.wrapper.service.subscriptions?.length ?? 0
@@ -330,25 +332,25 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
             )} that will be used to generate the service.${NEWLINE_STRING}`
         );
 
-        this.#logger.stopwatch("Preparing Definition");
+        this._logger.stopwatch("Preparing Definition");
 
-        this.#logger.start("Validation");
+        this._logger.start("Validation");
 
-        context = await this.#pluginManager.invokeHook(
+        context = await this._pluginManager.invokeHook(
           AcidicPluginHookNames.VALIDATE,
           context
         );
 
-        this.#logger.stopwatch("Validation");
+        this._logger.stopwatch("Validation");
       }
 
       return context;
     } catch (error) {
-      this.#logger.error(error);
+      this._logger.error(error);
 
       return StormError.create(error);
     } finally {
-      this.#logger.stopwatch("Acidic Engine - Prepare");
+      this._logger.stopwatch("Acidic Engine - Prepare");
     }
   };
 
@@ -385,8 +387,8 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
       schema: model,
       schemaPath: modelPath,
       wrapper: schema,
-      config: this.#config.extensions.acidic,
-      logger: this.#logger
+      config: this._config.extensions.acidic,
+      logger: this._logger
     };
   };
 
@@ -397,7 +399,7 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
    * @returns Parsed and validated AST
    */
   private readSchemaFile = async (fileName: string): Promise<AcidicSchema> => {
-    const extensions = this.#services.LanguageMetaData.fileExtensions;
+    const extensions = this._services.LanguageMetaData.fileExtensions;
     if (!extensions.includes(extname(fileName))) {
       throw new StormError(AcidicErrorCode.invalid_schema_extension, {
         message: `Invalid definition file. Please choose a file with extension: ${extensions}.`
@@ -412,7 +414,7 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
 
     // load documents provided by plugins
     const fileContent = readFileSync(fileName, { encoding: "utf-8" });
-    const parsed = this.#services.parser.LangiumParser.parse(fileContent)
+    const parsed = this._services.parser.LangiumParser.parse(fileContent)
       ?.value as AcidicSchema;
 
     const pluginDocuments = parsed?.declarations.reduce(
@@ -430,7 +432,7 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
                 );
                 if (exists(pluginModelFile)) {
                   ret.push(
-                    this.#services.shared.workspace.LangiumDocuments.getOrCreateDocument(
+                    this._services.shared.workspace.LangiumDocuments.getOrCreateDocument(
                       URI.file(pluginModelFile)
                     )
                   );
@@ -447,19 +449,19 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
       []
     );
 
-    const langiumDocuments = this.#services.shared.workspace.LangiumDocuments;
+    const langiumDocuments = this._services.shared.workspace.LangiumDocuments;
 
     const file = URI.file(resolve(fileName));
 
-    this.#logger.info(`Loading langium file from '${file.toString()}'
+    this._logger.info(`Loading langium file from '${file.toString()}'
 JSON File:
 ${JSON.stringify(file.toJSON())}`);
 
     // load the document
     const document = langiumDocuments.getOrCreateDocument(file);
-    await this.#services.shared.workspace.DocumentBuilder.build(
+    await this._services.shared.workspace.DocumentBuilder.build(
       [
-        this.#stdLib,
+        this._stdLib,
         ...pluginDocuments,
         document,
         ...this.eagerLoadAllImports(document, langiumDocuments).map(uri =>
@@ -479,7 +481,7 @@ ${JSON.stringify(file.toJSON())}`);
       .toArray();
 
     if (validationErrors.length > 0) {
-      this.#logger.error(
+      this._logger.error(
         `Service definition validation errors: \n${validationErrors
           .map(
             validationError =>

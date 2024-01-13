@@ -86,14 +86,14 @@ export const createCLIAcidicProgram = async (): Promise<number> => {
           }
         ],
         action: async () => {
-          const Config = createAcidicConfig();
-          const Logger = StormLog.create(Config, "Acidic Daemon");
-          const Engine = AcidicEngine.create(Config, Logger);
+          const config = createAcidicConfig();
+          const logger = StormLog.create(config, "Acidic Daemon");
+          const Engine = await AcidicEngine.create(config, logger);
 
-          const schema = await Engine.execute({
-            schema: Config.schemaPath,
-            packageManager: Config.extensions.acidic.packageManager,
-            outputPath: Config.extensions.acidic.outputPath
+          await Engine.execute({
+            schema: config.schemaPath,
+            packageManager: config.extensions.acidic.packageManager,
+            outputPath: config.extensions.acidic.outputPath
           });
         }
       }
