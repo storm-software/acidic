@@ -1,130 +1,142 @@
 import {
-  EnumSchema,
-  EventSchema,
-  ModelSchema,
-  ObjectSchema,
-  OperationSchema,
-  PluginSchema,
-  ServiceSchema
+  EnumDefinition,
+  EventDefinition,
+  ModelDefinition,
+  ObjectDefinition,
+  OperationDefinition,
+  PluginDefinition,
+  ServiceDefinition
 } from "@acidic/schema";
 import { Atom, atom } from "jotai";
 import { atomFamily } from "jotai/utils";
 import { getNodeId } from "../utilities/get-node-id";
 import { graphStore } from "./create-graph-store";
 
-export const serviceAtoms = atomFamily<string, Atom<ServiceSchema | undefined>>(
-  (name: string) =>
-    atom(get =>
-      get(graphStore.atom.schemas).find(schema => schema.name === name)
-    )
+export const serviceAtoms = atomFamily<
+  string,
+  Atom<ServiceDefinition | undefined>
+>((name: string) =>
+  atom(get => get(graphStore.atom.schemas).find(schema => schema.name === name))
 );
 
-export const pluginAtoms = atomFamily<string, Atom<PluginSchema | undefined>>(
-  (id: string) =>
-    atom(get => {
-      const serviceSchema = get(graphStore.atom.schemas).find(schema =>
-        schema.plugins.some(
-          pluginSchema => getNodeId(pluginSchema.name, schema.name) === id
-        )
-      );
+export const pluginAtoms = atomFamily<
+  string,
+  Atom<PluginDefinition | undefined>
+>((id: string) =>
+  atom(get => {
+    const serviceDefinition = get(graphStore.atom.schemas).find(schema =>
+      schema.plugins.some(
+        pluginDefinition => getNodeId(pluginDefinition.name, schema.name) === id
+      )
+    );
 
-      return serviceSchema?.plugins.find(
-        pluginSchema => getNodeId(pluginSchema.name, serviceSchema.name) === id
-      );
-    })
+    return serviceDefinition?.plugins.find(
+      pluginDefinition =>
+        getNodeId(pluginDefinition.name, serviceDefinition.name) === id
+    );
+  })
 );
 
 export const operationAtoms = atomFamily<
   string,
-  Atom<OperationSchema | undefined>
+  Atom<OperationDefinition | undefined>
 >((id: string) =>
   atom(get => {
-    const serviceSchema = get(graphStore.atom.schemas).find(
+    const serviceDefinition = get(graphStore.atom.schemas).find(
       schema =>
         schema.queries.some(
-          operationSchema => getNodeId(operationSchema.name, schema.name) === id
+          operationDefinition =>
+            getNodeId(operationDefinition.name, schema.name) === id
         ) ||
         schema.mutations.some(
-          operationSchema => getNodeId(operationSchema.name, schema.name) === id
+          operationDefinition =>
+            getNodeId(operationDefinition.name, schema.name) === id
         ) ||
         schema.subscriptions.some(
-          operationSchema => getNodeId(operationSchema.name, schema.name) === id
+          operationDefinition =>
+            getNodeId(operationDefinition.name, schema.name) === id
         )
     );
 
     return (
-      serviceSchema?.queries.find(
-        operationSchema =>
-          getNodeId(operationSchema.name, serviceSchema.name) === id
+      serviceDefinition?.queries.find(
+        operationDefinition =>
+          getNodeId(operationDefinition.name, serviceDefinition.name) === id
       ) ??
-      serviceSchema?.mutations.find(
-        operationSchema =>
-          getNodeId(operationSchema.name, serviceSchema.name) === id
+      serviceDefinition?.mutations.find(
+        operationDefinition =>
+          getNodeId(operationDefinition.name, serviceDefinition.name) === id
       ) ??
-      serviceSchema?.subscriptions.find(
-        operationSchema =>
-          getNodeId(operationSchema.name, serviceSchema.name) === id
+      serviceDefinition?.subscriptions.find(
+        operationDefinition =>
+          getNodeId(operationDefinition.name, serviceDefinition.name) === id
       )
     );
   })
 );
 
-export const modelAtoms = atomFamily<string, Atom<ModelSchema | undefined>>(
+export const modelAtoms = atomFamily<string, Atom<ModelDefinition | undefined>>(
   (id: string) =>
     atom(get => {
-      const serviceSchema = get(graphStore.atom.schemas).find(schema =>
+      const serviceDefinition = get(graphStore.atom.schemas).find(schema =>
         schema.models.some(
-          modelSchema => getNodeId(modelSchema.name, schema.name) === id
+          modelDefinition => getNodeId(modelDefinition.name, schema.name) === id
         )
       );
 
-      return serviceSchema?.models.find(
-        modelSchema => getNodeId(modelSchema.name, serviceSchema.name) === id
+      return serviceDefinition?.models.find(
+        modelDefinition =>
+          getNodeId(modelDefinition.name, serviceDefinition.name) === id
       );
     })
 );
 
-export const eventAtoms = atomFamily<string, Atom<EventSchema | undefined>>(
+export const eventAtoms = atomFamily<string, Atom<EventDefinition | undefined>>(
   (id: string) =>
     atom(get => {
-      const serviceSchema = get(graphStore.atom.schemas).find(schema =>
+      const serviceDefinition = get(graphStore.atom.schemas).find(schema =>
         schema.events.some(
-          eventSchema => getNodeId(eventSchema.name, schema.name) === id
+          eventDefinition => getNodeId(eventDefinition.name, schema.name) === id
         )
       );
 
-      return serviceSchema?.events.find(
-        eventSchema => getNodeId(eventSchema.name, serviceSchema.name) === id
+      return serviceDefinition?.events.find(
+        eventDefinition =>
+          getNodeId(eventDefinition.name, serviceDefinition.name) === id
       );
     })
 );
 
-export const objectAtoms = atomFamily<string, Atom<ObjectSchema | undefined>>(
-  (id: string) =>
-    atom(get => {
-      const serviceSchema = get(graphStore.atom.schemas).find(schema =>
-        schema.objects.some(
-          objectSchema => getNodeId(objectSchema.name, schema.name) === id
-        )
-      );
+export const objectAtoms = atomFamily<
+  string,
+  Atom<ObjectDefinition | undefined>
+>((id: string) =>
+  atom(get => {
+    const serviceDefinition = get(graphStore.atom.schemas).find(schema =>
+      schema.objects.some(
+        objectDefinition => getNodeId(objectDefinition.name, schema.name) === id
+      )
+    );
 
-      return serviceSchema?.objects.find(
-        objectSchema => getNodeId(objectSchema.name, serviceSchema.name) === id
-      );
-    })
+    return serviceDefinition?.objects.find(
+      objectDefinition =>
+        getNodeId(objectDefinition.name, serviceDefinition.name) === id
+    );
+  })
 );
 
-export const enumAtoms = atomFamily<string, Atom<EnumSchema | undefined>>(
+export const enumAtoms = atomFamily<string, Atom<EnumDefinition | undefined>>(
   (id: string) =>
     atom(get => {
-      const serviceSchema = get(graphStore.atom.schemas).find(schema =>
+      const serviceDefinition = get(graphStore.atom.schemas).find(schema =>
         schema.enums.some(
-          enumSchema => getNodeId(enumSchema.name, schema.name) === id
+          enumDefinition => getNodeId(enumDefinition.name, schema.name) === id
         )
       );
 
-      return serviceSchema?.enums.find(
-        enumSchema => getNodeId(enumSchema.name, serviceSchema.name) === id
+      return serviceDefinition?.enums.find(
+        enumDefinition =>
+          getNodeId(enumDefinition.name, serviceDefinition.name) === id
       );
     })
 );

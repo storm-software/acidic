@@ -92,15 +92,15 @@
         "ci": {
           "optimization": false
         },
-        "development": {
-          "optimization": false,
-          "minify": false,
-          "sourcemap": true
-        },
         "production": {
           "optimization": true,
           "skipTypeCheck": true,
           "minify": false
+        },
+        "development": {
+          "optimization": false,
+          "minify": false,
+          "sourcemap": true
         }
       }
     },

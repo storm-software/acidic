@@ -53,7 +53,10 @@ export const Modal = ({ children, title, type }: ModalProps) => {
                     "text-[#ec4899] ring-[#ec4899]": type === NodeKind.PLUGIN
                   },
                   {
-                    "text-[#0891b2] ring-[#0891b2]": type === NodeKind.OPERATION
+                    "text-[#0891b2] ring-[#0891b2]":
+                      type === NodeKind.QUERY ||
+                      type === NodeKind.MUTATION ||
+                      type === NodeKind.SUBSCRIPTION
                   },
                   {
                     "text-[#b91c1c] ring-[#b91c1c]": type === NodeKind.OBJECT

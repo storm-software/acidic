@@ -1,9 +1,9 @@
-import { NodeSchema } from "@acidic/schema";
+import { NodeDefinition } from "@acidic/schema";
 import { findFileName } from "@storm-stack/file-system";
 import * as Handlebars from "handlebars";
 import { TemplateDetails } from "../plugins/template-plugin-handler";
 import {
-  Context,
+  AcidicContext,
   TemplateGeneratorHelper,
   TemplatePluginOptions,
   TypeScriptGeneratorConfig,
@@ -17,7 +17,7 @@ import { TypescriptGenerator } from "./typescript-generator";
 export class TemplateGenerator<
   TOptions extends TemplatePluginOptions = TypescriptPluginOptions
 > extends TypescriptGenerator<TOptions> {
-  #context?: Context;
+  #context?: AcidicContext;
   #options?: TOptions;
 
   public get name(): string {
@@ -35,14 +35,14 @@ export class TemplateGenerator<
   protected templates = new Map<string, Handlebars.TemplateDelegate>();
   protected partials: string[] = [];
 
-  constructor(context: Context, config?: TypeScriptGeneratorConfig) {
+  constructor(context: AcidicContext, config?: TypeScriptGeneratorConfig) {
     super(context, config);
   }
 
   public generate = async (
     options: TOptions,
-    node: NodeSchema,
-    context: Context,
+    node: NodeDefinition,
+    context: AcidicContext,
     params: TemplateDetails
   ): Promise<string> => {
     this.#context = context;
@@ -53,7 +53,7 @@ export class TemplateGenerator<
     return template({ node, options, context });
   };
 
-  public getContext(): Context {
+  public getContext(): AcidicContext {
     return this.#context!;
   }
 

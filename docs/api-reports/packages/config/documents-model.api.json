@@ -201,8 +201,8 @@
             },
             {
               "kind": "Reference",
-              "text": "PluginOptions",
-              "canonicalReference": "@acidic/config!~PluginOptions:type"
+              "text": "AcidicPluginOptions",
+              "canonicalReference": "@acidic/config!~AcidicPluginOptions:type"
             },
             {
               "kind": "Content",

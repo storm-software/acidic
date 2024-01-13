@@ -134,6 +134,8 @@ export class AcidicValidationRegistry extends ValidationRegistry {
 export class AcidicValidator {
     constructor(services: AcidicServices);
     // (undocumented)
+    checkAcidicDataSource(node: AcidicDataSource, accept: ValidationAcceptor): void;
+    // (undocumented)
     checkAcidicEnum(node: AcidicEnum, accept: ValidationAcceptor): void;
     // (undocumented)
     checkAcidicEvent(node: AcidicEvent, accept: ValidationAcceptor): void;
@@ -146,19 +148,17 @@ export class AcidicValidator {
     // (undocumented)
     checkAcidicQuery(node: AcidicQuery, accept: ValidationAcceptor): void;
     // (undocumented)
+    checkAcidicSchema(node: AcidicSchema, accept: ValidationAcceptor): void;
+    // (undocumented)
     checkAcidicSubscription(node: AcidicSubscription, accept: ValidationAcceptor): void;
     // (undocumented)
     checkAttribute(node: Attribute, accept: ValidationAcceptor): void;
-    // (undocumented)
-    checkDataSource(node: DataSource, accept: ValidationAcceptor): void;
     // (undocumented)
     checkExpression(node: Expression, accept: ValidationAcceptor): void;
     // (undocumented)
     checkFunctionDecl(node: FunctionDecl, accept: ValidationAcceptor): void;
     // (undocumented)
     checkFunctionInvocation(node: InvocationExpr, accept: ValidationAcceptor): void;
-    // (undocumented)
-    checkModel(node: Model, accept: ValidationAcceptor): void;
     // (undocumented)
     protected readonly services: AcidicServices;
 }
@@ -197,88 +197,88 @@ export class default_alias extends DefaultWorkspaceManager {
 }
 
 // @public
-export class default_alias_1 implements AstValidator<AcidicEnum> {
+export class default_alias_1 implements AstValidator<AcidicDataSource> {
     // (undocumented)
-    validate(_enum: AcidicEnum, accept: ValidationAcceptor): void;
+    validate(ds: AcidicDataSource, accept: ValidationAcceptor): void;
 }
 
 // @public
-export class default_alias_10 implements AstValidator<Expression> {
-    // (undocumented)
-    validate(expr: Expression, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_11 implements AstValidator<FunctionDecl> {
-    // (undocumented)
-    validate(funcDecl: FunctionDecl, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_12 implements AstValidator<Expression> {
-    // (undocumented)
-    validate(expr: InvocationExpr, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_13 implements AstValidator<Model> {
-    constructor(documents: LangiumDocuments);
-    // (undocumented)
-    protected readonly documents: LangiumDocuments;
-    // (undocumented)
-    validate(model: Model, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_2 implements AstValidator<AcidicEvent> {
-    // (undocumented)
-    validate(acidicEvent: AcidicEvent, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_3 implements AstValidator<AcidicModel> {
-    // (undocumented)
-    validate(acidicModel: AcidicModel, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_4 implements AstValidator<AcidicMutation> {
-    // (undocumented)
-    validate(dm: AcidicMutation, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_5 implements AstValidator<AcidicObject> {
-    // (undocumented)
-    validate(acidicObject: AcidicObject, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_6 implements AstValidator<AcidicQuery> {
-    // (undocumented)
-    validate(dm: AcidicQuery, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_7 implements AstValidator<AcidicSubscription> {
-    // (undocumented)
-    validate(dm: AcidicSubscription, accept: ValidationAcceptor): void;
-}
-
-// @public
-export class default_alias_8 implements AstValidator<Attribute> {
+export class default_alias_10 implements AstValidator<Attribute> {
     // (undocumented)
     validate(attr: Attribute, accept: ValidationAcceptor): void;
 }
 
 // @public
-export class default_alias_9 implements AstValidator<DataSource> {
+export class default_alias_11 implements AstValidator<Expression> {
     // (undocumented)
-    validate(ds: DataSource, accept: ValidationAcceptor): void;
+    validate(expr: Expression, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_12 implements AstValidator<FunctionDecl> {
+    // (undocumented)
+    validate(funcDecl: FunctionDecl, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_13 implements AstValidator<Expression> {
+    // (undocumented)
+    validate(expr: InvocationExpr, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_2 implements AstValidator<AcidicEnum> {
+    // (undocumented)
+    validate(_enum: AcidicEnum, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_3 implements AstValidator<AcidicEvent> {
+    // (undocumented)
+    validate(acidicEvent: AcidicEvent, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_4 implements AstValidator<AcidicModel> {
+    // (undocumented)
+    validate(acidicModel: AcidicModel, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_5 implements AstValidator<AcidicMutation> {
+    // (undocumented)
+    validate(dm: AcidicMutation, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_6 implements AstValidator<AcidicObject> {
+    // (undocumented)
+    validate(acidicObject: AcidicObject, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_7 implements AstValidator<AcidicQuery> {
+    // (undocumented)
+    validate(dm: AcidicQuery, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_8 implements AstValidator<AcidicSchema> {
+    constructor(documents: LangiumDocuments);
+    // (undocumented)
+    protected readonly documents: LangiumDocuments;
+    // (undocumented)
+    validate(schema: AcidicSchema, accept: ValidationAcceptor): void;
+}
+
+// @public
+export class default_alias_9 implements AstValidator<AcidicSubscription> {
+    // (undocumented)
+    validate(dm: AcidicSubscription, accept: ValidationAcceptor): void;
 }
 
 // @public (undocumented)
-function getAllDeclarationsFromImports(documents: LangiumDocuments, model: Model): AbstractDeclaration[];
+function getAllDeclarationsFromImports(documents: LangiumDocuments, schema: AcidicSchema): AbstractDeclaration[];
 export { getAllDeclarationsFromImports }
 export { getAllDeclarationsFromImports as getAllDeclarationsFromImports_alias_1 }
 export { getAllDeclarationsFromImports as getAllDeclarationsFromImports_alias_2 }
@@ -359,7 +359,7 @@ export interface MissingOppositeRelationData_alias_5 {
 export function prepareAcidicParser(services: LangiumServices): LangiumParser;
 
 // @public (undocumented)
-function resolveImport(documents: LangiumDocuments, imp: AcidicImport): Model | undefined;
+function resolveImport(documents: LangiumDocuments, imp: AcidicImport): AcidicSchema | undefined;
 export { resolveImport }
 export { resolveImport as resolveImport_alias_1 }
 export { resolveImport as resolveImport_alias_2 }
@@ -371,7 +371,7 @@ export { resolveImportUri as resolveImportUri_alias_1 }
 export { resolveImportUri as resolveImportUri_alias_2 }
 
 // @public (undocumented)
-function resolveTransitiveImports(documents: LangiumDocuments, model: Model): Model[];
+function resolveTransitiveImports(documents: LangiumDocuments, schema: AcidicSchema): AcidicSchema[];
 export { resolveTransitiveImports }
 export { resolveTransitiveImports as resolveTransitiveImports_alias_1 }
 export { resolveTransitiveImports as resolveTransitiveImports_alias_2 }

@@ -5,12 +5,12 @@ import {
   AcidicModel,
   AcidicObject,
   AcidicObjectField,
+  AcidicSchema,
   FunctionDecl,
-  Model,
   ReferenceExpr,
   isAcidicEnumField,
+  isAcidicSchema,
   isArrayExpr,
-  isModel,
   isReferenceExpr
 } from "../ast";
 import { ExpressionContext, STD_LIB_MODULE_NAME } from "../constants";
@@ -25,18 +25,20 @@ export function resolved<T extends AstNode>(ref: Reference<T>): T {
 /**
  * Gets the toplevel Acidic Object containing the given node.
  */
-export function getContainingModel(node: AstNode | undefined): Model | null {
+export function getContainingSchema(
+  node: AstNode | undefined
+): AcidicSchema | null {
   if (!node) {
     return null;
   }
-  return isModel(node) ? node : getContainingModel(node.$container);
+  return isAcidicSchema(node) ? node : getContainingSchema(node.$container);
 }
 
 /**
  * Returns if the given node is declared in stdlib.
  */
 export function isFromStdlib(node: AstNode) {
-  const model = getContainingModel(node);
+  const model = getContainingSchema(node);
   return (
     !!model &&
     !!model.$document &&

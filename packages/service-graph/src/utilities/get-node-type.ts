@@ -9,7 +9,9 @@ export const getNodeType = (kind: NodeKind): NodeType => {
       return NodeType.MODEL_NODE;
     case NodeKind.PLUGIN:
       return NodeType.PLUGIN_NODE;
-    case NodeKind.OPERATION:
+    case NodeKind.QUERY:
+    case NodeKind.MUTATION:
+    case NodeKind.SUBSCRIPTION:
       return NodeType.OPERATION_NODE;
     case NodeKind.OBJECT:
       return NodeType.OBJECT_NODE;

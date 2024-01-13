@@ -115,7 +115,9 @@ export const BaseNode = ({
                 },
                 {
                   "border-b-[#0891b2] from-[#0891b2]/40":
-                    kind === NodeKind.OPERATION
+                    kind === NodeKind.QUERY ||
+                    kind === NodeKind.MUTATION ||
+                    kind === NodeKind.SUBSCRIPTION
                 },
                 {
                   "border-b-[#b91c1c] from-[#b91c1c]/40":
@@ -147,7 +149,10 @@ export const BaseNode = ({
                   "border-[#ec4899] text-[#ec4899]": kind === NodeKind.PLUGIN
                 },
                 {
-                  "border-[#0891b2] text-[#0891b2]": kind === NodeKind.OPERATION
+                  "border-[#0891b2] text-[#0891b2]":
+                    kind === NodeKind.QUERY ||
+                    kind === NodeKind.MUTATION ||
+                    kind === NodeKind.SUBSCRIPTION
                 },
                 { "border-[#b91c1c] text-[#b91c1c]": kind === NodeKind.OBJECT },
                 { "border-[#c2410c] text-[#c2410c]": kind === NodeKind.EVENT }

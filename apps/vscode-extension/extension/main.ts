@@ -220,7 +220,7 @@ async function loadWorkspaceRoot(workspacePath: string): Promise<boolean> {
         )
       );
 
-      initServiceTree(context, config, logger, handleWorkspaceReady);
+      await initServiceTree(context, config, logger, handleWorkspaceReady);
       if (workspaceFileWatcher) {
         workspaceFileWatcher.dispose();
       }

@@ -1,18 +1,18 @@
 import {
   AcidicAstType,
+  AcidicDataSource,
   AcidicEnum,
   AcidicEvent,
   AcidicModel,
   AcidicMutation,
   AcidicObject,
   AcidicQuery,
+  AcidicSchema,
   AcidicSubscription,
   Attribute,
-  DataSource,
   Expression,
   FunctionDecl,
-  InvocationExpr,
-  Model
+  InvocationExpr
 } from "@acidic/language/__generated__/ast";
 import {
   AstNode,
@@ -22,19 +22,19 @@ import {
   ValidationRegistry
 } from "langium";
 import type { AcidicServices } from "../acidic-module";
+import AcidicDataSourceValidator from "./acidic-data-source-validator";
 import AcidicEnumValidator from "./acidic-enum-validator";
 import AcidicEventValidator from "./acidic-event-validator";
 import AcidicModelValidator from "./acidic-model-validator";
 import AcidicMutationValidator from "./acidic-mutation-validator";
 import AcidicObjectValidator from "./acidic-object-validator";
 import { default as AcidicQueryValidator } from "./acidic-query-validator";
+import AcidicSchemaValidator from "./acidic-schema-validator";
 import AcidicSubscriptionValidator from "./acidic-subscription-validator";
 import AttributeValidator from "./attribute-validator";
-import DataSourceValidator from "./datasource-validator";
 import ExpressionValidator from "./expression-validator";
 import FunctionDeclValidator from "./function-decl-validator";
 import FunctionInvocationValidator from "./function-invocation-validator";
-import SchemaValidator from "./schema-validator";
 
 /**
  * Registry for validation checks.
@@ -44,8 +44,8 @@ export class AcidicValidationRegistry extends ValidationRegistry {
     super(services);
     const validator = services.validation.AcidicValidator;
     const checks: ValidationChecks<AcidicAstType> = {
-      Model: validator.checkModel,
-      DataSource: validator.checkDataSource,
+      AcidicSchema: validator.checkAcidicSchema,
+      AcidicDataSource: validator.checkAcidicDataSource,
       AcidicModel: validator.checkAcidicModel,
       AcidicObject: validator.checkAcidicObject,
       AcidicQuery: validator.checkAcidicQuery,
@@ -84,36 +84,49 @@ export class AcidicValidator {
     );
   }
 
-  checkModel(node: Model, accept: ValidationAcceptor): void {
+  public checkAcidicSchema(
+    node: AcidicSchema,
+    accept: ValidationAcceptor
+  ): void {
     this.shouldCheck(node) &&
-      new SchemaValidator(
+      new AcidicSchemaValidator(
         this.services.shared.workspace.LangiumDocuments
       ).validate(node, accept);
   }
 
-  checkDataSource(node: DataSource, accept: ValidationAcceptor): void {
-    this.shouldCheck(node) && new DataSourceValidator().validate(node, accept);
+  public checkAcidicDataSource(
+    node: AcidicDataSource,
+    accept: ValidationAcceptor
+  ): void {
+    this.shouldCheck(node) &&
+      new AcidicDataSourceValidator().validate(node, accept);
   }
 
-  checkAcidicObject(node: AcidicObject, accept: ValidationAcceptor): void {
+  public checkAcidicObject(
+    node: AcidicObject,
+    accept: ValidationAcceptor
+  ): void {
     this.shouldCheck(node) &&
       new AcidicObjectValidator().validate(node, accept);
   }
 
-  checkAcidicModel(node: AcidicModel, accept: ValidationAcceptor): void {
+  public checkAcidicModel(node: AcidicModel, accept: ValidationAcceptor): void {
     this.shouldCheck(node) && new AcidicModelValidator().validate(node, accept);
   }
 
-  checkAcidicQuery(node: AcidicQuery, accept: ValidationAcceptor): void {
+  public checkAcidicQuery(node: AcidicQuery, accept: ValidationAcceptor): void {
     this.shouldCheck(node) && new AcidicQueryValidator().validate(node, accept);
   }
 
-  checkAcidicMutation(node: AcidicMutation, accept: ValidationAcceptor): void {
+  public checkAcidicMutation(
+    node: AcidicMutation,
+    accept: ValidationAcceptor
+  ): void {
     this.shouldCheck(node) &&
       new AcidicMutationValidator().validate(node, accept);
   }
 
-  checkAcidicSubscription(
+  public checkAcidicSubscription(
     node: AcidicSubscription,
     accept: ValidationAcceptor
   ): void {
@@ -121,23 +134,23 @@ export class AcidicValidator {
       new AcidicSubscriptionValidator().validate(node, accept);
   }
 
-  checkAcidicEvent(node: AcidicEvent, accept: ValidationAcceptor): void {
+  public checkAcidicEvent(node: AcidicEvent, accept: ValidationAcceptor): void {
     this.shouldCheck(node) && new AcidicEventValidator().validate(node, accept);
   }
 
-  checkAcidicEnum(node: AcidicEnum, accept: ValidationAcceptor): void {
+  public checkAcidicEnum(node: AcidicEnum, accept: ValidationAcceptor): void {
     this.shouldCheck(node) && new AcidicEnumValidator().validate(node, accept);
   }
 
-  checkAttribute(node: Attribute, accept: ValidationAcceptor): void {
+  public checkAttribute(node: Attribute, accept: ValidationAcceptor): void {
     this.shouldCheck(node) && new AttributeValidator().validate(node, accept);
   }
 
-  checkExpression(node: Expression, accept: ValidationAcceptor): void {
+  public checkExpression(node: Expression, accept: ValidationAcceptor): void {
     this.shouldCheck(node) && new ExpressionValidator().validate(node, accept);
   }
 
-  checkFunctionInvocation(
+  public checkFunctionInvocation(
     node: InvocationExpr,
     accept: ValidationAcceptor
   ): void {
@@ -145,7 +158,10 @@ export class AcidicValidator {
       new FunctionInvocationValidator().validate(node, accept);
   }
 
-  checkFunctionDecl(node: FunctionDecl, accept: ValidationAcceptor): void {
+  public checkFunctionDecl(
+    node: FunctionDecl,
+    accept: ValidationAcceptor
+  ): void {
     this.shouldCheck(node) &&
       new FunctionDeclValidator().validate(node, accept);
   }

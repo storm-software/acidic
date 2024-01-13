@@ -1657,6 +1657,72 @@
             },
             {
               "kind": "Method",
+              "canonicalReference": "@acidic/language-server!AcidicValidator#checkAcidicDataSource:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "checkAcidicDataSource(node: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicDataSource",
+                  "canonicalReference": "@acidic/language-server!~AcidicDataSource:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "node",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "checkAcidicDataSource"
+            },
+            {
+              "kind": "Method",
               "canonicalReference": "@acidic/language-server!AcidicValidator#checkAcidicEnum:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -2053,6 +2119,72 @@
             },
             {
               "kind": "Method",
+              "canonicalReference": "@acidic/language-server!AcidicValidator#checkAcidicSchema:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "checkAcidicSchema(node: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language-server!~AcidicSchema:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "node",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "checkAcidicSchema"
+            },
+            {
+              "kind": "Method",
               "canonicalReference": "@acidic/language-server!AcidicValidator#checkAcidicSubscription:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -2182,72 +2314,6 @@
               "isOptional": false,
               "isAbstract": false,
               "name": "checkAttribute"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!AcidicValidator#checkDataSource:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "checkDataSource(node: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "DataSource",
-                  "canonicalReference": "@acidic/language-server!~DataSource:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "node",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "checkDataSource"
             },
             {
               "kind": "Method",
@@ -2446,72 +2512,6 @@
               "isOptional": false,
               "isAbstract": false,
               "name": "checkFunctionInvocation"
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!AcidicValidator#checkModel:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "checkModel(node: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language-server!~Model:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "node",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "checkModel"
             },
             {
               "kind": "Property",
@@ -2799,11 +2799,11 @@
         {
           "kind": "Class",
           "canonicalReference": "@acidic/language-server!default_alias_1:class",
-          "docComment": "/**\n * Validates enum declarations.\n */\n",
+          "docComment": "/**\n * Validates data source declarations.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export default class AcidicEnumValidator implements "
+              "text": "export default class AcidicDataSourceValidator implements "
             },
             {
               "kind": "Reference",
@@ -2816,8 +2816,8 @@
             },
             {
               "kind": "Reference",
-              "text": "AcidicEnum",
-              "canonicalReference": "@acidic/language-server!~AcidicEnum:interface"
+              "text": "AcidicDataSource",
+              "canonicalReference": "@acidic/language-server!~AcidicDataSource:interface"
             },
             {
               "kind": "Content",
@@ -2828,7 +2828,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-enum-validator.ts",
+          "fileUrlPath": "packages/language-server/src/validators/acidic-data-source-validator.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_1",
@@ -2841,12 +2841,12 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "validate(_enum: "
+                  "text": "validate(ds: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "AcidicEnum",
-                  "canonicalReference": "@acidic/language-server!~AcidicEnum:interface"
+                  "text": "AcidicDataSource",
+                  "canonicalReference": "@acidic/language-server!~AcidicDataSource:interface"
                 },
                 {
                   "kind": "Content",
@@ -2880,7 +2880,7 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "_enum",
+                  "parameterName": "ds",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
@@ -2911,1190 +2911,6 @@
         {
           "kind": "Class",
           "canonicalReference": "@acidic/language-server!default_alias_10:class",
-          "docComment": "/**\n * Validates expressions.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class ExpressionValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "Expression",
-              "canonicalReference": "@acidic/language-server!~Expression:type"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/expression-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_10",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_10#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(expr: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Expression",
-                  "canonicalReference": "@acidic/language-server!~Expression:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "expr",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_11:class",
-          "docComment": "/**\n * Validates function declarations.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class FunctionDeclValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "FunctionDecl",
-              "canonicalReference": "@acidic/language-server!~FunctionDecl:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/function-decl-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_11",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_11#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(funcDecl: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "FunctionDecl",
-                  "canonicalReference": "@acidic/language-server!~FunctionDecl:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "funcDecl",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_12:class",
-          "docComment": "/**\n * InvocationExpr validation\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class FunctionInvocationValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "Expression",
-              "canonicalReference": "@acidic/language-server!~Expression:type"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/function-invocation-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_12",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_12#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(expr: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "InvocationExpr",
-                  "canonicalReference": "@acidic/language-server!~InvocationExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "expr",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_13:class",
-          "docComment": "/**\n * Validates toplevel schema.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class SchemaValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language-server!~Model:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/schema-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_13",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Constructor",
-              "canonicalReference": "@acidic/language-server!default_alias_13:constructor(1)",
-              "docComment": "/**\n * Constructs a new instance of the `SchemaValidator` class\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "constructor(documents: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LangiumDocuments",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": ");"
-                }
-              ],
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "documents",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                }
-              ]
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@acidic/language-server!default_alias_13#documents:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "protected readonly documents: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LangiumDocuments",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "documents",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false,
-              "isProtected": true,
-              "isAbstract": false
-            },
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_13#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(model: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language-server!~Model:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "model",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_2:class",
-          "docComment": "/**\n * Validates data model declarations.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class AcidicEventValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicEvent",
-              "canonicalReference": "@acidic/language-server!~AcidicEvent:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-event-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_2",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_2#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(acidicEvent: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicEvent",
-                  "canonicalReference": "@acidic/language-server!~AcidicEvent:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "acidicEvent",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_3:class",
-          "docComment": "/**\n * Validates data model declarations.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class AcidicModelValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicModel",
-              "canonicalReference": "@acidic/language-server!~AcidicModel:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-model-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_3",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_3#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(acidicModel: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicModel",
-                  "canonicalReference": "@acidic/language-server!~AcidicModel:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "acidicModel",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_4:class",
-          "docComment": "/**\n * Validates data Type declarations.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class AcidicMutationValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicMutation",
-              "canonicalReference": "@acidic/language-server!~AcidicMutation:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-mutation-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_4",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_4#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(dm: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicMutation",
-                  "canonicalReference": "@acidic/language-server!~AcidicMutation:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "dm",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_5:class",
-          "docComment": "/**\n * Validates data model declarations.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class AcidicObjectValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicObject",
-              "canonicalReference": "@acidic/language-server!~AcidicObject:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-object-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_5",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_5#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(acidicObject: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicObject",
-                  "canonicalReference": "@acidic/language-server!~AcidicObject:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "acidicObject",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_6:class",
-          "docComment": "/**\n * Validates data Type declarations.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class AcidicQueryValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicQuery",
-              "canonicalReference": "@acidic/language-server!~AcidicQuery:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-query-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_6",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_6#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(dm: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicQuery",
-                  "canonicalReference": "@acidic/language-server!~AcidicQuery:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "dm",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_7:class",
-          "docComment": "/**\n * Validates data Type declarations.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export default class AcidicSubscriptionValidator implements "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstValidator",
-              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicSubscription",
-              "canonicalReference": "@acidic/language-server!~AcidicSubscription:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-subscription-validator.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "default_alias_7",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_7#validate:member(1)",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "validate(dm: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicSubscription",
-                  "canonicalReference": "@acidic/language-server!~AcidicSubscription:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accept: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Content",
-                  "text": "void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isStatic": false,
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 6
-              },
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "dm",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "accept",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": false
-                }
-              ],
-              "isOptional": false,
-              "isAbstract": false,
-              "name": "validate"
-            }
-          ],
-          "implementsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 5
-            }
-          ]
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_8:class",
           "docComment": "/**\n * Validates attribute declarations.\n */\n",
           "excerptTokens": [
             {
@@ -4127,12 +2943,12 @@
           "fileUrlPath": "packages/language-server/src/validators/attribute-validator.ts",
           "releaseTag": "Public",
           "isAbstract": false,
-          "name": "default_alias_8",
+          "name": "default_alias_10",
           "preserveMemberOrder": false,
           "members": [
             {
               "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_8#validate:member(1)",
+              "canonicalReference": "@acidic/language-server!default_alias_10#validate:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -4206,12 +3022,12 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "@acidic/language-server!default_alias_9:class",
-          "docComment": "/**\n * Validates data source declarations.\n */\n",
+          "canonicalReference": "@acidic/language-server!default_alias_11:class",
+          "docComment": "/**\n * Validates expressions.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export default class DataSourceValidator implements "
+              "text": "export default class ExpressionValidator implements "
             },
             {
               "kind": "Reference",
@@ -4224,8 +3040,8 @@
             },
             {
               "kind": "Reference",
-              "text": "DataSource",
-              "canonicalReference": "@acidic/language-server!~DataSource:interface"
+              "text": "Expression",
+              "canonicalReference": "@acidic/language-server!~Expression:type"
             },
             {
               "kind": "Content",
@@ -4236,25 +3052,25 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/datasource-validator.ts",
+          "fileUrlPath": "packages/language-server/src/validators/expression-validator.ts",
           "releaseTag": "Public",
           "isAbstract": false,
-          "name": "default_alias_9",
+          "name": "default_alias_11",
           "preserveMemberOrder": false,
           "members": [
             {
               "kind": "Method",
-              "canonicalReference": "@acidic/language-server!default_alias_9#validate:member(1)",
+              "canonicalReference": "@acidic/language-server!default_alias_11#validate:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "validate(ds: "
+                  "text": "validate(expr: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSource",
-                  "canonicalReference": "@acidic/language-server!~DataSource:interface"
+                  "text": "Expression",
+                  "canonicalReference": "@acidic/language-server!~Expression:type"
                 },
                 {
                   "kind": "Content",
@@ -4288,7 +3104,1191 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "ds",
+                  "parameterName": "expr",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_12:class",
+          "docComment": "/**\n * Validates function declarations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class FunctionDeclValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "FunctionDecl",
+              "canonicalReference": "@acidic/language-server!~FunctionDecl:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/function-decl-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_12",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_12#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(funcDecl: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "FunctionDecl",
+                  "canonicalReference": "@acidic/language-server!~FunctionDecl:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "funcDecl",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_13:class",
+          "docComment": "/**\n * InvocationExpr validation\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class FunctionInvocationValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "Expression",
+              "canonicalReference": "@acidic/language-server!~Expression:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/function-invocation-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_13",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_13#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(expr: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "InvocationExpr",
+                  "canonicalReference": "@acidic/language-server!~InvocationExpr:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "expr",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_2:class",
+          "docComment": "/**\n * Validates enum declarations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class AcidicEnumValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicEnum",
+              "canonicalReference": "@acidic/language-server!~AcidicEnum:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/acidic-enum-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_2",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_2#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(_enum: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicEnum",
+                  "canonicalReference": "@acidic/language-server!~AcidicEnum:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "_enum",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_3:class",
+          "docComment": "/**\n * Validates data model declarations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class AcidicEventValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicEvent",
+              "canonicalReference": "@acidic/language-server!~AcidicEvent:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/acidic-event-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_3",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_3#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(acidicEvent: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicEvent",
+                  "canonicalReference": "@acidic/language-server!~AcidicEvent:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "acidicEvent",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_4:class",
+          "docComment": "/**\n * Validates data model declarations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class AcidicModelValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicModel",
+              "canonicalReference": "@acidic/language-server!~AcidicModel:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/acidic-model-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_4",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_4#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(acidicModel: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicModel",
+                  "canonicalReference": "@acidic/language-server!~AcidicModel:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "acidicModel",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_5:class",
+          "docComment": "/**\n * Validates data Type declarations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class AcidicMutationValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicMutation",
+              "canonicalReference": "@acidic/language-server!~AcidicMutation:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/acidic-mutation-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_5",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_5#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(dm: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicMutation",
+                  "canonicalReference": "@acidic/language-server!~AcidicMutation:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "dm",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_6:class",
+          "docComment": "/**\n * Validates data model declarations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class AcidicObjectValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicObject",
+              "canonicalReference": "@acidic/language-server!~AcidicObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/acidic-object-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_6",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_6#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(acidicObject: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicObject",
+                  "canonicalReference": "@acidic/language-server!~AcidicObject:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "acidicObject",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_7:class",
+          "docComment": "/**\n * Validates data Type declarations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class AcidicQueryValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicQuery",
+              "canonicalReference": "@acidic/language-server!~AcidicQuery:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/acidic-query-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_7",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_7#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(dm: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicQuery",
+                  "canonicalReference": "@acidic/language-server!~AcidicQuery:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "dm",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_8:class",
+          "docComment": "/**\n * Validates toplevel schema.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class AcidicSchemaValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language-server!~AcidicSchema:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/acidic-schema-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_8",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@acidic/language-server!default_alias_8:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `AcidicSchemaValidator` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(documents: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LangiumDocuments",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "documents",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/language-server!default_alias_8#documents:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected readonly documents: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LangiumDocuments",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "documents",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": true,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_8#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(schema: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language-server!~AcidicSchema:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "schema",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "accept",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/language-server!default_alias_9:class",
+          "docComment": "/**\n * Validates data Type declarations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export default class AcidicSubscriptionValidator implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstValidator",
+              "canonicalReference": "@acidic/language-server!~AstValidator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicSubscription",
+              "canonicalReference": "@acidic/language-server!~AcidicSubscription:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language-server/src/validators/acidic-subscription-validator.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "default_alias_9",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/language-server!default_alias_9#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(dm: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicSubscription",
+                  "canonicalReference": "@acidic/language-server!~AcidicSubscription:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accept: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ValidationAcceptor",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "dm",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
@@ -4674,12 +4674,12 @@
             },
             {
               "kind": "Content",
-              "text": ", model: "
+              "text": ", schema: "
             },
             {
               "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language-server!~Model:interface"
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language-server!~AcidicSchema:interface"
             },
             {
               "kind": "Content",
@@ -4720,7 +4720,7 @@
               "isOptional": false
             },
             {
-              "parameterName": "model",
+              "parameterName": "schema",
               "parameterTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 4
@@ -5562,8 +5562,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language-server!~Model:interface"
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language-server!~AcidicSchema:interface"
             },
             {
               "kind": "Content",
@@ -5668,12 +5668,12 @@
             },
             {
               "kind": "Content",
-              "text": ", model: "
+              "text": ", schema: "
             },
             {
               "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language-server!~Model:interface"
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language-server!~AcidicSchema:interface"
             },
             {
               "kind": "Content",
@@ -5681,8 +5681,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language-server!~Model:interface"
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language-server!~AcidicSchema:interface"
             },
             {
               "kind": "Content",
@@ -5710,7 +5710,7 @@
               "isOptional": false
             },
             {
-              "parameterName": "model",
+              "parameterName": "schema",
               "parameterTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 4

@@ -1,93 +1,99 @@
+import { NodeKind } from "../schema/schema";
 import {
-  EnumSchema,
-  EventSchema,
-  ModelSchema,
-  MutationSchema,
-  NodeKind,
-  ObjectSchema,
-  QuerySchema,
-  ServiceSchema,
-  SubscriptionSchema
+  EnumDefinition,
+  EventDefinition,
+  ModelDefinition,
+  MutationDefinition,
+  ObjectDefinition,
+  QueryDefinition,
+  ServiceDefinition,
+  SubscriptionDefinition
 } from "../types";
 
 /**
- * Type check to see if value is of type `EnumSchema`
+ * Type check to see if value is of type `EnumDefinition`
  *
  * @param value - The value to type check
- * @returns An indicator specifying if the value is of type `EnumSchema`
+ * @returns An indicator specifying if the value is of type `EnumDefinition`
  */
-export const isEnumSchema = (value: unknown): value is EnumSchema => {
-  return (value as EnumSchema)?.kind === NodeKind.ENUM;
+export const isEnumDefinition = (value: unknown): value is EnumDefinition => {
+  return (value as EnumDefinition)?.kind === NodeKind.ENUM;
 };
 
 /**
- * Type check to see if value is of type `ModelSchema`
+ * Type check to see if value is of type `ModelDefinition`
  *
  * @param value - The value to type check
- * @returns An indicator specifying if the value is of type `ModelSchema`
+ * @returns An indicator specifying if the value is of type `ModelDefinition`
  */
-export const isModelSchema = (value: unknown): value is ModelSchema => {
-  return (value as ModelSchema)?.kind === NodeKind.MODEL;
+export const isModelDefinition = (value: unknown): value is ModelDefinition => {
+  return (value as ModelDefinition)?.kind === NodeKind.MODEL;
 };
 
 /**
- * Type check to see if value is of type `ObjectSchema`
+ * Type check to see if value is of type `ObjectDefinition`
  *
  * @param value - The value to type check
- * @returns An indicator specifying if the value is of type `ObjectSchema`
+ * @returns An indicator specifying if the value is of type `ObjectDefinition`
  */
-export const isObjectSchema = (value: unknown): value is ObjectSchema => {
-  return (value as ObjectSchema)?.kind === NodeKind.OBJECT;
-};
-
-/**
- * Type check to see if value is of type `EventSchema`
- *
- * @param value - The value to type check
- * @returns An indicator specifying if the value is of type `EventSchema`
- */
-export const isEventSchema = (value: unknown): value is EventSchema => {
-  return (value as EventSchema)?.kind === NodeKind.EVENT;
-};
-
-/**
- * Type check to see if value is of type `QuerySchema`
- *
- * @param value - The value to type check
- * @returns An indicator specifying if the value is of type `QuerySchema`
- */
-export const isQuerySchema = (value: unknown): value is QuerySchema => {
-  return (value as QuerySchema)?.kind === NodeKind.QUERY;
-};
-
-/**
- * Type check to see if value is of type `MutationSchema`
- *
- * @param value - The value to type check
- * @returns An indicator specifying if the value is of type `MutationSchema`
- */
-export const isMutationSchema = (value: unknown): value is MutationSchema => {
-  return (value as MutationSchema)?.kind === NodeKind.MUTATION;
-};
-
-/**
- * Type check to see if value is of type `SubscriptionSchema`
- *
- * @param value - The value to type check
- * @returns An indicator specifying if the value is of type `SubscriptionSchema`
- */
-export const isSubscriptionSchema = (
+export const isObjectDefinition = (
   value: unknown
-): value is SubscriptionSchema => {
-  return (value as SubscriptionSchema)?.kind === NodeKind.SUBSCRIPTION;
+): value is ObjectDefinition => {
+  return (value as ObjectDefinition)?.kind === NodeKind.OBJECT;
 };
 
 /**
- * Type check to see if value is of type `ServiceSchema`
+ * Type check to see if value is of type `EventDefinition`
  *
  * @param value - The value to type check
- * @returns An indicator specifying if the value is of type `ServiceSchema`
+ * @returns An indicator specifying if the value is of type `EventDefinition`
  */
-export const isServiceSchema = (value: unknown): value is ServiceSchema => {
-  return (value as ServiceSchema)?.kind === NodeKind.SERVICE;
+export const isEventDefinition = (value: unknown): value is EventDefinition => {
+  return (value as EventDefinition)?.kind === NodeKind.EVENT;
+};
+
+/**
+ * Type check to see if value is of type `QueryDefinition`
+ *
+ * @param value - The value to type check
+ * @returns An indicator specifying if the value is of type `QueryDefinition`
+ */
+export const isQueryDefinition = (value: unknown): value is QueryDefinition => {
+  return (value as QueryDefinition)?.kind === NodeKind.QUERY;
+};
+
+/**
+ * Type check to see if value is of type `MutationDefinition`
+ *
+ * @param value - The value to type check
+ * @returns An indicator specifying if the value is of type `MutationDefinition`
+ */
+export const isMutationDefinition = (
+  value: unknown
+): value is MutationDefinition => {
+  return (value as MutationDefinition)?.kind === NodeKind.MUTATION;
+};
+
+/**
+ * Type check to see if value is of type `SubscriptionDefinition`
+ *
+ * @param value - The value to type check
+ * @returns An indicator specifying if the value is of type `SubscriptionDefinition`
+ */
+export const isSubscriptionDefinition = (
+  value: unknown
+): value is SubscriptionDefinition => {
+  return (value as SubscriptionDefinition)?.kind === NodeKind.SUBSCRIPTION;
+};
+
+/**
+ * Type check to see if value is of type `ServiceDefinition`
+ *
+ * @param value - The value to type check
+ * @returns An indicator specifying if the value is of type `ServiceDefinition`
+ */
+export const isServiceDefinition = (
+  value: unknown
+): value is ServiceDefinition => {
+  return (value as ServiceDefinition)?.kind === NodeKind.SERVICE;
 };

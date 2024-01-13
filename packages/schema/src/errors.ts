@@ -1,13 +1,13 @@
 import { ErrorCode } from "@storm-stack/errors";
 
-export type AcidicSchemaErrorCode =
+export type AcidicDefinitionErrorCode =
   | ErrorCode
   | "invalid_schema"
   | "invalid_attr_arg"
   | "invalid_relationship";
-export const AcidicSchemaErrorCode = {
+export const AcidicDefinitionErrorCode = {
   ...ErrorCode,
-  invalid_schema: "invalid_schema" as AcidicSchemaErrorCode,
-  invalid_attr_arg: "invalid_attr_arg" as AcidicSchemaErrorCode,
-  invalid_relationship: "invalid_relationship" as AcidicSchemaErrorCode
+  invalid_schema: "invalid_schema" as AcidicDefinitionErrorCode,
+  invalid_attr_arg: "invalid_attr_arg" as AcidicDefinitionErrorCode,
+  invalid_relationship: "invalid_relationship" as AcidicDefinitionErrorCode
 };

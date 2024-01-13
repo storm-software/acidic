@@ -8,7 +8,7 @@ import { StormConfig } from '@storm-software/config-tools';
 
 // @public
 type AcidicConfig = StormConfig<"acidic", {
-    defaultOptions?: Omit<PluginOptions, "provider">;
+    defaultOptions?: Omit<AcidicPluginOptions, "provider">;
     outputPath?: string;
     input: string | readonly string[];
     ignored?: string | readonly string[];

@@ -1,10 +1,10 @@
-import { ServiceSchema } from "@acidic/schema";
+import { ServiceDefinition } from "@acidic/schema";
 import React, { ReactNode } from "react";
 import { ReactFlowProvider } from "reactflow";
 import { GraphProvider } from "./create-graph-store";
 
 export interface GraphStoreProviderProps {
-  schemas: ServiceSchema[];
+  schemas: ServiceDefinition[];
   children: ReactNode;
 }
 

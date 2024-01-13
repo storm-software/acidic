@@ -1,4 +1,4 @@
-import { AcidicImport, Model, isModel } from "@acidic/language";
+import { AcidicImport, AcidicSchema, isAcidicSchema } from "@acidic/language";
 import { LangiumDocuments, getDocument } from "langium";
 import { URI, Utils } from "vscode-uri";
 
@@ -16,50 +16,50 @@ export function resolveImportUri(imp: AcidicImport): URI | undefined {
 
 export function resolveTransitiveImports(
   documents: LangiumDocuments,
-  model: Model
-): Model[] {
-  return resolveTransitiveImportsInternal(documents, model);
+  schema: AcidicSchema
+): AcidicSchema[] {
+  return resolveTransitiveImportsInternal(documents, schema);
 }
 
 function resolveTransitiveImportsInternal(
   documents: LangiumDocuments,
-  model: Model,
-  initialModel = model,
+  schema: AcidicSchema,
+  initialSchema = schema,
   visited: Set<URI> = new Set(),
-  models: Set<Model> = new Set()
-): Model[] {
-  const doc = getDocument(model);
-  if (initialModel !== model) {
-    models.add(model);
+  schemas: Set<AcidicSchema> = new Set()
+): AcidicSchema[] {
+  const doc = getDocument(schema);
+  if (initialSchema !== schema) {
+    schemas.add(schema);
   }
   if (!visited.has(doc.uri)) {
     visited.add(doc.uri);
-    for (const imp of model.imports) {
+    for (const imp of schema.imports) {
       const importedModel = resolveImport(documents, imp);
       if (importedModel) {
         resolveTransitiveImportsInternal(
           documents,
           importedModel,
-          initialModel,
+          initialSchema,
           visited,
-          models
+          schemas
         );
       }
     }
   }
-  return Array.from(models);
+  return Array.from(schemas);
 }
 
 export function resolveImport(
   documents: LangiumDocuments,
   imp: AcidicImport
-): Model | undefined {
+): AcidicSchema | undefined {
   const resolvedUri = resolveImportUri(imp);
   try {
     if (resolvedUri) {
       const resolvedDocument = documents.getOrCreateDocument(resolvedUri);
       const node = resolvedDocument.parseResult.value;
-      if (isModel(node)) {
+      if (isAcidicSchema(node)) {
         return node;
       }
     }
@@ -71,8 +71,8 @@ export function resolveImport(
 
 export function getAllDeclarationsFromImports(
   documents: LangiumDocuments,
-  model: Model
+  schema: AcidicSchema
 ) {
-  const imports = resolveTransitiveImports(documents, model);
-  return model.declarations.concat(...imports.map(imp => imp.declarations));
+  const imports = resolveTransitiveImports(documents, schema);
+  return schema.declarations.concat(...imports.map(imp => imp.declarations));
 }

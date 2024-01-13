@@ -1,9 +1,9 @@
 import {
-  EnumFieldSchema,
+  EnumFieldDefinition,
+  NodeDefinition,
   NodeKind,
-  NodeSchema,
-  ObjectFieldSchema,
-  ServiceSchema
+  ObjectFieldDefinition,
+  ServiceDefinition
 } from "@acidic/schema";
 import clsx from "clsx";
 import React, { ComponentPropsWithoutRef } from "react";
@@ -15,17 +15,17 @@ export interface ActiveNodeDrawerHeaderProps
   /**
    * The service schema.
    */
-  service: ServiceSchema;
+  service: ServiceDefinition;
 
   /**
    * The node content of the drawer.
    */
-  node: NodeSchema | null;
+  node: NodeDefinition | null;
 
   /**
    * The current node field displayed in the drawer.
    */
-  field: ObjectFieldSchema | EnumFieldSchema | null;
+  field: ObjectFieldDefinition | EnumFieldDefinition | null;
 }
 
 export const ActiveNodeDrawerHeader = ({

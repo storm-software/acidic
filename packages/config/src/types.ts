@@ -1,4 +1,4 @@
-import { OptionValue, PluginOptions } from "@acidic/schema";
+import { AcidicPluginOptions, OptionValue } from "@acidic/schema";
 import { StormConfig } from "@storm-software/config-tools";
 
 /**
@@ -10,7 +10,7 @@ export type AcidicConfig = StormConfig<
     /**
      * The default options for all plugins
      */
-    defaultOptions?: Omit<PluginOptions, "provider">;
+    defaultOptions?: Omit<AcidicPluginOptions, "provider">;
 
     /**
      * The base output directory where the generated code/artifacts will be written to

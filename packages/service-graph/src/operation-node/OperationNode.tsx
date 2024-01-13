@@ -1,5 +1,5 @@
 //import { stringify } from "@storm-stack/serialization";
-import { NodeKind, ObjectSchema } from "@acidic/schema";
+import { ObjectDefinition } from "@acidic/schema";
 import React from "react";
 import "reactflow/dist/style.css";
 import { BaseNode } from "../base-node";
@@ -18,7 +18,7 @@ export const OperationNode = ({ id, ...props }: BaseNodeProps) => {
       id={id}
       {...props}
       name={schema.name}
-      kind={NodeKind.OPERATION}
+      kind={schema.kind}
       comments={schema.comments}>
       <div className="flex flex-col gap-2">
         {schema.url && (
@@ -37,8 +37,8 @@ export const OperationNode = ({ id, ...props }: BaseNodeProps) => {
             </h3>
             <NodeFieldList
               id={id}
-              node={schema.request?.ref as ObjectSchema}
-              kind={NodeKind.OPERATION}
+              node={schema.request as ObjectDefinition}
+              kind={schema.kind}
             />
           </div>
         </div>
@@ -51,8 +51,8 @@ export const OperationNode = ({ id, ...props }: BaseNodeProps) => {
               </h3>
               <NodeFieldList
                 id={id}
-                node={schema.response.ref as ObjectSchema}
-                kind={NodeKind.OPERATION}
+                node={schema.response.ref as ObjectDefinition}
+                kind={schema.kind}
               />
             </div>
           </div>

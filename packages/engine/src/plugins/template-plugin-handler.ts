@@ -1,14 +1,14 @@
-import { NodeSchema } from "@acidic/schema";
+import { NodeDefinition } from "@acidic/schema";
 import { isFile } from "@storm-stack/file-system";
-import { stringify } from "@storm-stack/serialization";
+import { StormParser } from "@storm-stack/serialization";
 import { EMPTY_STRING } from "@storm-stack/utilities";
 import { readFile } from "fs/promises";
 import { glob } from "glob";
 import { join } from "path";
 import { TemplateGenerator } from "../generators/template-generator";
 import {
-  Context,
-  PluginHandler,
+  AcidicContext,
+  AcidicPluginHandler,
   TEMPLATE_EXTENSIONS,
   TemplatePluginOptions,
   TemplatePluginPaths
@@ -27,20 +27,20 @@ export const createTemplatePluginHandler =
     templatePaths: TemplatePluginPaths,
     filterTemplates?: (
       options: TOptions,
-      context: Context,
+      context: AcidicContext,
       generator: TemplateGenerator<TOptions>,
-      node: NodeSchema | null,
+      node: NodeDefinition | null,
       templates: Array<TemplateDetails>
     ) => Array<TemplateDetails>
-  ): PluginHandler<TOptions> =>
+  ): AcidicPluginHandler<TOptions> =>
   async (
     options: TOptions,
-    context: Context,
+    context: AcidicContext,
     generator: TemplateGenerator<TOptions>
   ) => {
     context.logger.debug(
       `Generating templates with options:
-${stringify(options)}`
+${StormParser.stringify(options)}`
     );
 
     const partials = await registerPartials(
@@ -89,7 +89,7 @@ ${stringify(options)}`
         `Running template based generation for ${service.enums.length} enums`
       );
 
-      await generateNodeSchemaTemplates(
+      await generateNodeDefinitionTemplates(
         templatePaths.enumTemplatePath,
         options,
         context,
@@ -108,7 +108,7 @@ ${stringify(options)}`
         `Running template based generation for ${service.objects.length} api models`
       );
 
-      await generateNodeSchemaTemplates(
+      await generateNodeDefinitionTemplates(
         templatePaths.objectTemplatePath,
         options,
         context,
@@ -127,7 +127,7 @@ ${stringify(options)}`
         `Running template based generation for ${service.models.length} data models`
       );
 
-      await generateNodeSchemaTemplates(
+      await generateNodeDefinitionTemplates(
         templatePaths.modelTemplatePath,
         options,
         context,
@@ -146,7 +146,7 @@ ${stringify(options)}`
         `Running template based generation for ${service.events.length} inputs`
       );
 
-      await generateNodeSchemaTemplates(
+      await generateNodeDefinitionTemplates(
         templatePaths.eventTemplatePath,
         options,
         context,
@@ -165,7 +165,7 @@ ${stringify(options)}`
         `Running template based generation for ${service.queries.length} query operations`
       );
 
-      await generateNodeSchemaTemplates(
+      await generateNodeDefinitionTemplates(
         templatePaths.queryTemplatePath,
         options,
         context,
@@ -184,7 +184,7 @@ ${stringify(options)}`
         `Running template based generation for ${service.mutations.length} mutation operations`
       );
 
-      await generateNodeSchemaTemplates(
+      await generateNodeDefinitionTemplates(
         templatePaths.mutationTemplatePath,
         options,
         context,
@@ -203,7 +203,7 @@ ${stringify(options)}`
         `Running template based generation for ${service.subscriptions.length} subscription operations`
       );
 
-      await generateNodeSchemaTemplates(
+      await generateNodeDefinitionTemplates(
         templatePaths.subscriptionTemplatePath,
         options,
         context,
@@ -222,9 +222,9 @@ const getFilterTemplates = <
   partials: Array<TemplateDetails>,
   filterTemplates?: (
     options: TOptions,
-    context: Context,
+    context: AcidicContext,
     generator: TemplateGenerator<TOptions>,
-    node: NodeSchema | null,
+    node: NodeDefinition | null,
     templates: Array<TemplateDetails>
   ) => Array<TemplateDetails>
 ) => {
@@ -232,9 +232,9 @@ const getFilterTemplates = <
 
   return (
     options: TOptions,
-    context: Context,
+    context: AcidicContext,
     generator: TemplateGenerator<TOptions>,
-    node: NodeSchema | null,
+    node: NodeDefinition | null,
     templates: Array<TemplateDetails>
   ): Array<TemplateDetails> => {
     if (!templates || templates.length === 0) {
@@ -262,7 +262,7 @@ const registerPartials = async <
 >(
   partialsPath: string | string[] = [],
   options: TOptions,
-  context: Context,
+  context: AcidicContext,
   generator: TemplateGenerator<TOptions>
 ): Promise<Array<TemplateDetails>> => {
   if (partialsPath && partialsPath.length > 0) {
@@ -298,19 +298,19 @@ const registerPartials = async <
   return [];
 };
 
-const generateNodeSchemaTemplates = async <
+const generateNodeDefinitionTemplates = async <
   TOptions extends TemplatePluginOptions = TemplatePluginOptions
 >(
   templatePath: string | string[],
   options: TOptions,
-  context: Context,
-  nodes: NodeSchema[],
+  context: AcidicContext,
+  nodes: NodeDefinition[],
   generator: TemplateGenerator<TOptions>,
   filterTemplates?: (
     options: TOptions,
-    context: Context,
+    context: AcidicContext,
     generator: TemplateGenerator<TOptions>,
-    node: NodeSchema | null,
+    node: NodeDefinition | null,
     templates: Array<TemplateDetails>
   ) => Array<TemplateDetails>
 ) => {
@@ -347,8 +347,8 @@ export const getGeneratedContent = async <
   TOptions extends TemplatePluginOptions = TemplatePluginOptions
 >(
   options: TOptions,
-  context: Context,
-  node: NodeSchema,
+  context: AcidicContext,
+  node: NodeDefinition,
   generator: TemplateGenerator<TOptions>,
   template: TemplateDetails
 ): Promise<{ name: string; content: string }> => {
@@ -358,8 +358,8 @@ export const getGeneratedContent = async <
     template.name
       .replace(__dirname, "")
       .replace(
-        context.plugins.current
-          ? context.plugins.table[context.plugins.current]?.module?.resolvedPath
+        context.currentPlugin
+          ? context.currentPlugin.resolvedPath
           : EMPTY_STRING,
         EMPTY_STRING
       ),
@@ -373,7 +373,7 @@ export const getGeneratedContent = async <
 };
 
 export const getTemplates = async (
-  context: Context,
+  context: AcidicContext,
   defaultPath: string | string[],
   optionsPath?: string | string[]
 ): Promise<Array<TemplateDetails>> => {
@@ -397,7 +397,10 @@ export const getTemplates = async (
   return Promise.all(templateNames.map(getTemplate));
 };
 
-const formatFileName = (fileName: string, nodeSchema?: NodeSchema): string => {
+const formatFileName = (
+  fileName: string,
+  nodeDefinition?: NodeDefinition
+): string => {
   let result = TEMPLATE_EXTENSIONS.reduce((ret: string, ext: string) => {
     if (ret.endsWith(ext)) {
       return ret.replace(`.${ext}`, "");
@@ -406,8 +409,11 @@ const formatFileName = (fileName: string, nodeSchema?: NodeSchema): string => {
     return ret;
   }, fileName).replace("templates", "");
 
-  if (nodeSchema) {
-    result = result.replace("__name__", (nodeSchema as NodeSchema)?.name!);
+  if (nodeDefinition) {
+    result = result.replace(
+      "__name__",
+      (nodeDefinition as NodeDefinition)?.name!
+    );
   }
 
   return result;
@@ -423,7 +429,7 @@ const getTemplate = async (templateName: string): Promise<TemplateDetails> => {
 };
 
 const getTemplateNames = async (
-  context: Context,
+  context: AcidicContext,
   path: string | string[]
 ): Promise<string[]> => {
   if (!path || (Array.isArray(path) && path.length === 0)) {
@@ -455,8 +461,7 @@ const getTemplateNames = async (
   });
   if (!templateNames || templateNames.length === 0) {
     // Try getting the templates from the path of the plugin
-    const resolvedPath =
-      context.plugins.table[context.plugins.current!]?.module?.resolvedPath;
+    const resolvedPath = context.currentPlugin?.definition.provider;
     if (resolvedPath) {
       context.logger.info(
         `Checking for template files in ${resolvedPath} with ${path}`

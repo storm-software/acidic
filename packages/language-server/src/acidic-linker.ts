@@ -27,7 +27,7 @@ import {
   ResolvedShape,
   ThisExpr,
   UnaryExpr,
-  getContainingModel,
+  getContainingSchema,
   isAcidicEnum,
   isAcidicEvent,
   isAcidicModel,
@@ -353,13 +353,13 @@ export class AcidicLinker extends DefaultLinker {
       const funcDecl = node.function.ref as FunctionDecl;
       if (funcDecl.name === "auth" && isFromStdlib(funcDecl)) {
         // auth() function is resolved to User model in the current document
-        const acidicObject = getContainingModel(node);
+        const acidicObject = getContainingSchema(node);
 
         if (acidicObject) {
           const userAcidicObject = getAllDeclarationsFromImports(
             this.langiumDocuments(),
             acidicObject
-          ).find(d => isAcidicObject(d) && d.name === "User");
+          ).find((doc: any) => isAcidicObject(doc) && doc.name === "User");
           if (userAcidicObject) {
             node.$resolvedType = { decl: userAcidicObject, nullable: true };
           }

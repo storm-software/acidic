@@ -23,7 +23,7 @@ export const EventNode = ({ id, ...props }: BaseNodeProps) => {
         Array.isArray(schema.comments) &&
         schema.comments.length > 0
           ? schema.comments
-          : schema.data.ref.comments
+          : schema.data.comments
       }>
       <div className="flex flex-col gap-2">
         <div className="flex flex-row gap-1 bg-slate-200/10 px-2 py-0.5">
@@ -33,7 +33,7 @@ export const EventNode = ({ id, ...props }: BaseNodeProps) => {
           </p>
         </div>
         <div className="bg-slate-200/10 pb-1">
-          <NodeFieldList id={id} node={schema.data.ref} kind={NodeKind.EVENT} />
+          <NodeFieldList id={id} node={schema.data} kind={NodeKind.EVENT} />
         </div>
       </div>
     </BaseNode>

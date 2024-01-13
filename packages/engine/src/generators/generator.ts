@@ -1,14 +1,15 @@
-import { NodeSchema, PluginOptions } from "@acidic/schema";
+import { AcidicPluginOptions, NodeDefinition } from "@acidic/schema";
 import { EMPTY_STRING, isString } from "@storm-stack/utilities";
-import { Context, IGenerator } from "../types";
+import { AcidicContext, IGenerator } from "../types";
 
 /**
  * Acidic base Code Generator
  */
-export abstract class Generator<TOptions extends PluginOptions = PluginOptions>
-  implements IGenerator
+export abstract class Generator<
+  TOptions extends AcidicPluginOptions = AcidicPluginOptions
+> implements IGenerator
 {
-  constructor(protected context: Context) {}
+  constructor(protected context: AcidicContext) {}
 
   public abstract get name(): string;
 
@@ -18,8 +19,8 @@ export abstract class Generator<TOptions extends PluginOptions = PluginOptions>
 
   public abstract generate(
     options: TOptions,
-    node: NodeSchema,
-    context: Context,
+    node: NodeDefinition,
+    context: AcidicContext,
     params: any
   ): Promise<string>;
 

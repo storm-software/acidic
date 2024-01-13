@@ -1,4 +1,4 @@
-import { ServiceSchema } from "@acidic/schema";
+import { ServiceDefinition } from "@acidic/schema";
 import { ServiceGraph } from "@acidic/service-graph";
 import { CommandName, getCommandId } from "@acidic/vscode-rpc";
 import { StormParser } from "@storm-stack/serialization";
@@ -22,7 +22,7 @@ declare const vscode: vscode;
 export function ServiceGraphContainer({
   className
 }: ServiceGraphContainerProps) {
-  const [schemas, setSchemas] = useState<ServiceSchema[]>([]);
+  const [schemas, setDefinitions] = useState<ServiceDefinition[]>([]);
   const [settings, setSettings] = useState<Record<string, any>>({});
 
   useEffect(() => {
@@ -31,11 +31,11 @@ export function ServiceGraphContainer({
       switch (message.type) {
         case getCommandId(CommandName.SET_SERVICES): {
           if (message.value) {
-            const nextSchemas = StormParser.parse<ServiceSchema[]>(
+            const nextDefinitions = StormParser.parse<ServiceDefinition[]>(
               message.value
             );
-            if (nextSchemas) {
-              setSchemas(nextSchemas);
+            if (nextDefinitions) {
+              setDefinitions(nextDefinitions);
             }
           }
 

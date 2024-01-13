@@ -23,7 +23,7 @@ export const ModelNode = ({ id, ...props }: BaseNodeProps) => {
         Array.isArray(schema.comments) &&
         schema.comments.length > 0
           ? schema.comments
-          : schema.ref.comments
+          : schema.data.comments
       }>
       <div className="flex flex-col gap-2">
         <div className="flex flex-row gap-1 bg-slate-200/10 px-2 py-0.5">
@@ -33,7 +33,7 @@ export const ModelNode = ({ id, ...props }: BaseNodeProps) => {
           </p>
         </div>
         <div className="bg-slate-200/10 pb-1">
-          <NodeFieldList id={id} node={schema.ref} kind={schema.kind} />
+          <NodeFieldList id={id} node={schema.data} kind={schema.kind} />
         </div>
       </div>
     </BaseNode>

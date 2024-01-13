@@ -12,7 +12,8 @@
   "dependencies": {
     "@storm-stack/errors": "latest",
     "@storm-stack/serialization": "latest",
-    "@storm-stack/utilities": "latest"
+    "@storm-stack/utilities": "latest",
+    "valibot": "^0.25.0"
   },
   "publishConfig": {
     "access": "public"

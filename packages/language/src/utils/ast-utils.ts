@@ -7,9 +7,9 @@ import {
   AcidicObjectAttribute,
   AcidicObjectField,
   AcidicQuery,
+  AcidicSchema,
   AcidicSubscription,
   Expression,
-  Model,
   ReferenceExpr,
   isAcidicEvent,
   isAcidicModel,
@@ -25,35 +25,35 @@ import {
 } from "../ast";
 import { isFromStdlib } from "./server-utils";
 
-export function extractAcidicModelsWithAllowRules(model: Model): AcidicModel[] {
-  return model.declarations.filter(
+export function extractAcidicModelsWithAllowRules(
+  schema: AcidicSchema
+): AcidicModel[] {
+  return schema.declarations.filter(
     d =>
       isAcidicModel(d) &&
       d.attributes.some(attr => attr.decl.ref?.name === "@@allow")
   ) as AcidicModel[];
 }
 
-export function mergeBaseModel(model: Model) {
-  model.declarations
+export function mergeBaseSchema(schema: AcidicSchema) {
+  schema.declarations
     .filter(x => x.$type === "AcidicObject" || x.$type === "AcidicModel")
     .forEach(decl => {
-      const dataModel = decl as AcidicObject | AcidicModel;
+      const model = decl as AcidicObject | AcidicModel;
 
-      dataModel.fields = dataModel.superTypes
+      model.fields = model.superTypes
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        .flatMap(superType => updateContainer(superType.ref!.fields, dataModel))
-        .concat(dataModel.fields) as AcidicObjectField[];
+        .flatMap(superType => updateContainer(superType.ref!.fields, model))
+        .concat(model.fields) as AcidicObjectField[];
 
-      dataModel.attributes = dataModel.superTypes
+      model.attributes = model.superTypes
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        .flatMap(superType =>
-          updateContainer(superType.ref!.attributes, dataModel)
-        )
-        .concat(dataModel.attributes) as AcidicObjectAttribute[];
+        .flatMap(superType => updateContainer(superType.ref!.attributes, model))
+        .concat(model.attributes) as AcidicObjectAttribute[];
     });
 
   // remove abstract models
-  model.declarations = model.declarations.filter(
+  schema.declarations = schema.declarations.filter(
     x => !(x.$type == "AcidicModel" && x.isAbstract)
   );
 }
@@ -71,15 +71,15 @@ function updateContainer<T extends AstNode>(
   });
 }
 
-export function getIdFields(dataModel: AcidicModel | AcidicObject) {
-  const fieldLevelId = dataModel.$resolvedFields.find(f =>
+export function getIdFields(model: AcidicModel | AcidicObject) {
+  const fieldLevelId = model.$resolvedFields.find(f =>
     f.attributes.some(attr => attr.decl.$refText === "@id")
   );
   if (fieldLevelId) {
     return [fieldLevelId];
   } else {
     // get model level @@id attribute
-    const modelIdAttr = dataModel.attributes.find(
+    const modelIdAttr = model.attributes.find(
       attr => attr.decl?.ref?.name === "@@id"
     );
     if (

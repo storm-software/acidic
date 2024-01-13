@@ -1,1 +1,2 @@
-export = "./acidic.schema.json";
+export * from "./parse";
+export * from "./schema";

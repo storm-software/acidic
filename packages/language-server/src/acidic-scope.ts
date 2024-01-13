@@ -8,10 +8,10 @@ import {
   AcidicMutation,
   AcidicObject,
   AcidicQuery,
+  AcidicSchema,
   AcidicSubscription,
-  Model,
   isAcidicEnumField,
-  isModel
+  isAcidicSchema
 } from "@acidic/language/definition";
 import {
   AstNode,
@@ -81,7 +81,7 @@ export class AcidicScopeComputation extends DefaultScopeComputation {
   }
 
   private resolveBaseModels(document: LangiumDocument) {
-    const model = document.parseResult.value as Model;
+    const model = document.parseResult.value as AcidicSchema;
 
     model.declarations.forEach(decl => {
       if (decl.$type === "AcidicObject") {
@@ -197,7 +197,7 @@ export class AcidicScopeProvider extends DefaultScopeProvider {
     referenceType: string,
     context: ReferenceInfo
   ): Scope {
-    const acidicObject = getContainerOfType(context.container, isModel);
+    const acidicObject = getContainerOfType(context.container, isAcidicSchema);
     if (!acidicObject) {
       return EMPTY_SCOPE;
     }

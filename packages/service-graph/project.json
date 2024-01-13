@@ -12,11 +12,11 @@
         "outputPath": "dist/packages/service-graph"
       },
       "configurations": {
-        "development": {
-          "mode": "development"
-        },
         "production": {
           "mode": "production"
+        },
+        "development": {
+          "mode": "development"
         }
       }
     },

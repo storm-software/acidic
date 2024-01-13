@@ -1,9 +1,9 @@
 import {
+  NodeDefinition,
   NodeKind,
-  NodeSchema,
-  ObjectFieldSchema,
-  ObjectRelationshipSchema,
-  isObjectSchema
+  ObjectFieldDefinition,
+  RelationshipDefinition,
+  isObjectDefinition
 } from "@acidic/schema";
 import clsx from "clsx";
 import React, { useCallback } from "react";
@@ -14,8 +14,8 @@ import { useGraphStore } from "../state";
 export interface NodeFieldListItemProps {
   id: string;
   kind: NodeKind;
-  node?: NodeSchema;
-  field: ObjectFieldSchema;
+  node?: NodeDefinition;
+  field: ObjectFieldDefinition;
 }
 
 export const NodeFieldListItem = ({
@@ -24,8 +24,8 @@ export const NodeFieldListItem = ({
   node,
   kind
 }: NodeFieldListItemProps) => {
-  let relationship: ObjectRelationshipSchema | undefined;
-  if (isObjectSchema(node) && node.relationships.length > 0) {
+  let relationship: RelationshipDefinition | undefined;
+  if (isObjectDefinition(node) && node.relationships.length > 0) {
     relationship = node.relationships.find(rel =>
       rel.fields.findIndex(foreignKey => foreignKey.name === field.name)
     );
@@ -64,7 +64,9 @@ export const NodeFieldListItem = ({
             },
             {
               "group-hover/node-field-row:text-[#0369a1]":
-                kind === NodeKind.OPERATION
+                kind === NodeKind.QUERY ||
+                kind === NodeKind.MUTATION ||
+                kind === NodeKind.SUBSCRIPTION
             },
             {
               "group-hover/node-field-row:text-[#f87171]":
@@ -97,7 +99,9 @@ export const NodeFieldListItem = ({
             },
             {
               "group-hover/node-field-row:text-[#0369a1]":
-                kind === NodeKind.OPERATION
+                kind === NodeKind.QUERY ||
+                kind === NodeKind.MUTATION ||
+                kind === NodeKind.SUBSCRIPTION
             },
             {
               "group-hover/node-field-row:text-[#f87171]":

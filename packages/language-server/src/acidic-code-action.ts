@@ -1,8 +1,8 @@
 import {
   AcidicModel,
   AcidicObjectField,
+  AcidicSchema,
   IssueCodes,
-  Model,
   isAcidicModel
 } from "@acidic/language";
 import {
@@ -77,27 +77,25 @@ export class AcidicCodeActionProvider implements CodeActionProvider {
           )?.parseResult.value;
 
     if (rootCst) {
-      const fieldModel = rootCst as Model;
-      const fieldAstNode = (
-        fieldModel.declarations.find(
+      const schema = rootCst as AcidicSchema;
+      const astNode = (
+        schema.declarations.find(
           x => isAcidicModel(x) && x.name === data.relationAcidicModelName
         ) as AcidicModel
       )?.fields.find(
         x => x.name === data.relationFieldName
       ) as AcidicObjectField;
 
-      if (!fieldAstNode) {
+      if (!astNode) {
         return undefined;
       }
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const oppositeModel = fieldAstNode.type.reference!.ref! as AcidicModel;
-
+      const oppositeModel = astNode.type.reference!.ref! as AcidicModel;
       const lastField = oppositeModel.fields[oppositeModel.fields.length - 1];
+      const currentSchema = document.parseResult.value as AcidicSchema;
 
-      const currentModel = document.parseResult.value as Model;
-
-      const container = currentModel.declarations.find(
+      const container = currentSchema.declarations.find(
         decl => decl.name === data.dataModelName && isAcidicModel(decl)
       ) as AcidicModel;
 
@@ -111,7 +109,7 @@ export class AcidicCodeActionProvider implements CodeActionProvider {
         indent = indent.repeat(this.formatter.getIndent());
 
         let newText = "";
-        if (fieldAstNode.type.array) {
+        if (astNode.type.array) {
           //post Post[]
           const idField = container.$resolvedFields.find(f =>
             f.attributes.find(attr => attr.decl.ref?.name === "@id")

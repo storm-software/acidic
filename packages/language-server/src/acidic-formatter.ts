@@ -1,11 +1,11 @@
 import {
-  Model,
+  AcidicSchema,
   isAbstractDeclaration,
   isAcidicFieldAttribute,
   isAcidicObjectField,
   isAcidicOperation,
-  isAttributeArg,
-  isModel
+  isAcidicSchema,
+  isAttributeArg
 } from "@acidic/language";
 import {
   AbstractFormatter,
@@ -43,8 +43,8 @@ export class AcidicFormatter extends AbstractFormatter {
         .prepend(Formatting.indent({ allowMore: true }));
       bracesOpen.prepend(Formatting.oneSpace());
       bracesClose.prepend(Formatting.newLine());
-    } else if (isModel(node)) {
-      const model = node as Model;
+    } else if (isAcidicSchema(node)) {
+      const model = node as AcidicSchema;
       const nodes = formatter.nodes(...model.declarations);
       nodes.prepend(Formatting.noIndent());
     } else if (isAcidicOperation(node)) {

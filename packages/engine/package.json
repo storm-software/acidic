@@ -8,6 +8,7 @@
     "@storm-stack/errors": "latest",
     "@storm-stack/file-system": "latest",
     "@storm-stack/logging": "latest",
+    "@storm-stack/plugin-system": "latest",
     "@storm-stack/serialization": "latest",
     "@storm-stack/unique-identifier": "latest",
     "@storm-stack/utilities": "latest",

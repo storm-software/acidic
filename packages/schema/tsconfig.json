@@ -1,11 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "module": "esnext",
-    "strict": false,
-    "moduleResolution": "Bundler",
-    "lib": ["esnext", "dom"]
+    "outDir": "../../dist/out-tsc"
   },
   "files": [],
   "include": ["src/**/*.ts", "src/**/*.js", "bin/**/*"],

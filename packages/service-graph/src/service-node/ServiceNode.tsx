@@ -1,4 +1,4 @@
-import { ConnectorType } from "@acidic/schema";
+import { DataSourceType } from "@acidic/schema";
 import clsx from "clsx";
 import React from "react";
 import "reactflow/dist/style.css";
@@ -71,7 +71,7 @@ export const ServiceNode = ({ className, id }: ServiceNodeProps) => {
                 </div>
               </div>
 
-              {schema.dataSource.provider === ConnectorType.MYSQL && (
+              {schema.dataSource.provider === DataSourceType.MYSQL && (
                 <svg viewBox="0 0 204.8 105.765">
                   <path
                     d="M0 96.334h6.747V69.7l10.445 23.227c1.232 2.8 2.92 3.806 6.228 3.806s4.93-.995 6.164-3.806L40.03 69.7v26.644h6.748v-26.6c0-2.595-1.04-3.85-3.18-4.498-5.125-1.6-8.564-.216-10.12 3.244l-10.25 22.923L13.3 68.48c-1.492-3.46-4.995-4.844-10.12-3.244C1.038 65.885 0 67.14 0 69.734v26.6zm52.386-21.686h6.745v14.68c-.063.798.256 2.67 3.952 2.727 1.886.03 14.554 0 14.672 0v-17.48h6.76c.03 0-.007 23.834-.006 23.936.037 5.878-7.294 7.155-10.672 7.254H52.533v-4.54l21.342-.001c4.342-.46 3.83-2.617 3.83-3.344v-1.77h-14.34c-6.672-.06-10.92-2.973-10.973-6.323-.005-.3.144-14.995-.004-15.14z"
@@ -96,7 +96,7 @@ export const ServiceNode = ({ className, id }: ServiceNodeProps) => {
                 </svg>
               )}
 
-              {schema.dataSource.provider === ConnectorType.MONGO_DB && (
+              {schema.dataSource.provider === DataSourceType.MONGO_DB && (
                 <svg className="w-[390px] min-w-[350px]">
                   <path
                     d="M16.147 5.154l1.09 2.05a6.15 6.15 0 0 0 .824 1.024c.913.913 1.782 1.87 2.56 2.895 1.848 2.427 3.095 5.122 3.986 8.04.534 1.782.824 3.608.846 5.456.09 5.523-1.804 10.266-5.634 14.208a16.3 16.3 0 0 1-2.004 1.715c-.38 0-.557-.3-.713-.557-.3-.5-.468-1.047-.557-1.603-.134-.668-.223-1.336-.178-2.027v-.312c-.022-.067-.356-30.732-.223-30.888z"
@@ -127,7 +127,7 @@ export const ServiceNode = ({ className, id }: ServiceNodeProps) => {
                 </svg>
               )}
 
-              {schema.dataSource.provider === ConnectorType.SQLITE && (
+              {schema.dataSource.provider === DataSourceType.SQLITE && (
                 <svg
                   className="w-[400px] min-w-[350px]"
                   viewBox="1 0 21.9 14.291"
@@ -164,8 +164,8 @@ export const ServiceNode = ({ className, id }: ServiceNodeProps) => {
                 </svg>
               )}
 
-              {(schema.dataSource.provider === ConnectorType.POSTGRES ||
-                schema.dataSource.provider === ConnectorType.POSTGRESQL) && (
+              {(schema.dataSource.provider === DataSourceType.POSTGRES ||
+                schema.dataSource.provider === DataSourceType.POSTGRESQL) && (
                 <svg
                   className="w-[300px] min-w-[300px]"
                   viewBox="0 0 128 128"
@@ -194,9 +194,9 @@ export const ServiceNode = ({ className, id }: ServiceNodeProps) => {
                 </svg>
               )}
 
-              {(schema.dataSource.provider === ConnectorType.SQL_SERVER ||
+              {(schema.dataSource.provider === DataSourceType.SQL_SERVER ||
                 schema.dataSource.provider ===
-                  ConnectorType.JDBC_SQL_SERVER) && (
+                  DataSourceType.JDBC_SQL_SERVER) && (
                 <svg
                   className="w-[300px] min-w-[300px]"
                   viewBox="65.1 102.4 367.4 295.19999999999993">
@@ -251,7 +251,7 @@ export const ServiceNode = ({ className, id }: ServiceNodeProps) => {
                 </svg>
               )}
 
-              {schema.dataSource.provider === ConnectorType.COCKROACH_DB && (
+              {schema.dataSource.provider === DataSourceType.COCKROACH_DB && (
                 <div className="flex w-[300px] min-w-[300px] flex-col items-start gap-0">
                   <div className="flex w-full justify-center">
                     <svg className="flex w-[50px]" viewBox="0 0 31.82 32">

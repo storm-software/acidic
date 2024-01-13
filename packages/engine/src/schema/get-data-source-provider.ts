@@ -1,28 +1,36 @@
-import { DataSource, Model, getLiteral, isDataSource } from "@acidic/language";
-import { ConnectorType } from "@acidic/schema";
+import {
+  AcidicDataSource,
+  AcidicSchema,
+  getLiteral,
+  isAcidicDataSource
+} from "@acidic/language";
+import { DataSourceType } from "@acidic/schema";
 
-export const getDataSource = (model: Model): DataSource | undefined => {
-  return model.declarations.find((declaration): declaration is DataSource =>
-    isDataSource(declaration)
+export const getDataSource = (
+  schema: AcidicSchema
+): AcidicDataSource | undefined => {
+  return schema.declarations.find(
+    (declaration): declaration is AcidicDataSource =>
+      isAcidicDataSource(declaration)
   );
 };
 
-export const getDataSourceName = (model: Model): string => {
-  const dataSource = getDataSource(model);
+export const getDataSourceName = (schema: AcidicSchema): string => {
+  const dataSource = getDataSource(schema);
 
   return dataSource?.name as "db";
 };
 
-export const getDataSourceProvider = (model: Model): ConnectorType => {
-  const dataSource = getDataSource(model);
+export const getDataSourceProvider = (schema: AcidicSchema): DataSourceType => {
+  const dataSource = getDataSource(schema);
 
   return getLiteral<string>(
     dataSource?.fields.find(field => field.name === "provider")?.value
-  ) as ConnectorType;
+  ) as DataSourceType;
 };
 
-export const getDataSourceUrl = (model: Model): string => {
-  const dataSource = getDataSource(model);
+export const getDataSourceUrl = (schema: AcidicSchema): string => {
+  const dataSource = getDataSource(schema);
 
   return getLiteral<string>(
     dataSource?.fields.find(field => field.name === "url")?.value

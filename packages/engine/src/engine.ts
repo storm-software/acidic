@@ -8,27 +8,23 @@ import {
 } from "@acidic/language-server/utilities";
 import {
   AbstractDeclaration,
-  Model,
-  isDataSource,
-  isModel,
-  isPlugin
+  AcidicSchema,
+  isAcidicDataSource,
+  isAcidicPlugin,
+  isAcidicSchema
 } from "@acidic/language/definition";
-import { getLiteral, mergeBaseModel } from "@acidic/language/utils";
-import { PluginOptions, PluginSchema, ServiceSchema } from "@acidic/schema";
+import { getLiteral, mergeBaseSchema } from "@acidic/language/utils";
+import { PluginDefinition, ServiceDefinition } from "@acidic/schema";
+import { StormDateTime } from "@storm-stack/date-time";
 import { StormError, isStormError } from "@storm-stack/errors";
-import {
-  PackageManagers,
-  exists,
-  findFilePath,
-  joinPaths
-} from "@storm-stack/file-system";
-import { StormLog } from "@storm-stack/logging";
+import { PackageManagers, exists } from "@storm-stack/file-system";
+import { IStormLog, StormLog } from "@storm-stack/logging";
+import { PluginDiscoveryMode, PluginManager } from "@storm-stack/plugin-system";
 import { StormParser } from "@storm-stack/serialization";
-import { hash } from "@storm-stack/unique-identifier";
 import {
   NEWLINE_STRING,
-  isFunction,
-  isSet,
+  isError,
+  isSetObject,
   isString
 } from "@storm-stack/utilities";
 import chalk from "chalk";
@@ -45,44 +41,54 @@ import { NodeFileSystem } from "langium/node";
 import { dirname, extname, join, resolve } from "path";
 import { URI } from "vscode-uri";
 import { AcidicErrorCode } from "./errors";
-import { AcidicSchemaWrapper } from "./schema/acidic-schema-wrapper";
+import { AcidicDefinitionWrapper } from "./schema/acidic-definition-wrapper";
 import {
-  Context,
-  PluginContextMapKey,
-  PluginInfo,
-  PluginModule
+  AcidicContext,
+  AcidicPluginHookNames,
+  AcidicPluginModule
 } from "./types";
 import { ensureOutputFolder } from "./utils/plugin-utils";
 import { getVersion } from "./utils/version-utils";
 
 export interface AcidicEngineOptions {
-  schema: string | Model | ServiceSchema;
+  schema: string | AcidicSchema | ServiceDefinition;
   packageManager?: PackageManagers;
   outputPath?: string;
 }
 
-const PLUGIN_CACHE = new Map<string, PluginModule>();
-
 export class AcidicEngine {
   #services: AcidicServices;
   #stdLib: LangiumDocument<AstNode>;
-  #logger: StormLog;
+  #logger: IStormLog;
   #config: AcidicConfig;
-  #pluginTable = new WeakMap<PluginContextMapKey, PluginInfo>();
+  #pluginManager: PluginManager<AcidicContext, AcidicPluginModule>;
 
   public readonly version: string;
   public readonly outputPath: string;
 
-  public static create(config: AcidicConfig, logger: StormLog): AcidicEngine {
-    return new AcidicEngine(config, logger);
-  }
+  public static create = async (
+    config: AcidicConfig,
+    logger: IStormLog
+  ): Promise<AcidicEngine> => {
+    const engine = new AcidicEngine(config, logger);
+    engine.#pluginManager = await PluginManager.create(
+      engine.#logger as any,
+      {
+        rootPath: config.workspaceRoot,
+        useNodeModules: true,
+        discoveryMode: PluginDiscoveryMode.FALLBACK,
+        defaultLoader: "@acidic/engine/plugins/acidic-plugin-loader"
+      } as any
+    );
 
-  private constructor(config: AcidicConfig, logger: StormLog) {
+    return engine;
+  };
+
+  private constructor(config: AcidicConfig, logger: IStormLog) {
     this.#config = config;
     this.#logger = logger ?? StormLog.create(this.#config, "Acidic Engine");
 
     this.version = getVersion();
-
     this.#logger.info(
       `Initializing the Acidic Engine v${this.version ? this.version : "1.0.0"}`
     );
@@ -109,7 +115,7 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
 
   public execute = async (
     options: AcidicEngineOptions
-  ): Promise<StormError | Context> => {
+  ): Promise<StormError | AcidicContext> => {
     this.#logger.start("Acidic Engine");
 
     try {
@@ -120,31 +126,90 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
         throw context;
       }
 
-      const plugins: PluginInfo<PluginOptions>[] = Array.from(
-        context.wrapper.service.plugins.map(
-          plugin =>
-            context.plugins.table.get(this.getPluginSchemaHashKey(plugin))!
-        )
+      this.#logger.start("Running Plugins");
+
+      let issues: Array<{ plugin: string; error: Error }> = [];
+      const executionDateTime = StormDateTime.current();
+
+      const results = await Promise.all(
+        context.wrapper.service.plugins.map(plugin => {
+          try {
+            if (plugin.provider) {
+              context.currentPlugin = this.#pluginManager.getInstance(
+                plugin.provider,
+                plugin.options
+              );
+
+              return Promise.resolve(
+                this.#pluginManager.execute(
+                  plugin.provider,
+                  context,
+                  plugin.options,
+                  executionDateTime as any
+                )
+              );
+            }
+          } catch (e) {
+            this.#logger.error(e);
+            issues.push({
+              plugin: plugin.name,
+              error: StormError.create(e)
+            });
+          }
+
+          return Promise.resolve(null);
+        })
       );
 
-      const issues = await this.generate(context);
-      if (isStormError(issues)) {
-        throw issues;
-      }
+      this.#logger.stopwatch("Running Plugins");
 
-      const resultsLineWidth = plugins.reduce((ret: number, plugin) => {
-        return plugin.provider.length > ret ? plugin.provider.length : ret;
-      }, 75);
+      issues = results
+        .filter(isSetObject)
+        .reduce(
+          (
+            ret: Array<{ plugin: string; error: Error }>,
+            result: Record<string, Error | null>
+          ) => {
+            return Object.keys(result).reduce(
+              (
+                innerRet: Array<{ plugin: string; error: Error }>,
+                plugin: string
+              ) => {
+                if (isError(result[plugin])) {
+                  innerRet.push({
+                    plugin: plugin,
+                    error: result[plugin]!
+                  });
+                }
+
+                return innerRet;
+              },
+              ret
+            );
+          },
+          issues
+        );
+
+      const resultsLineWidth = context.wrapper.service.plugins.reduce(
+        (ret: number, plugin) => {
+          return plugin.provider.length > ret ? plugin.provider.length : ret;
+        },
+        75
+      );
       this.#logger.info(
         `\n${chalk
           .hex(this.#config.colors.primary)
           .bold(
             issues.length === 0
-              ? `⚡ All ${plugins.length} Acidic plugins completed successfully!`
-              : `⚡ Acidic Engine completed running ${plugins.length} plugins!`
-          )}${NEWLINE_STRING}${NEWLINE_STRING}${plugins
+              ? `⚡ All ${
+                  this.#pluginManager.getStore().size
+                } Acidic plugins completed successfully!`
+              : `⚡ Acidic Engine completed running ${
+                  this.#pluginManager.getStore().size
+                } plugins!`
+          )}${NEWLINE_STRING}${NEWLINE_STRING}${context.wrapper.service.plugins
           .map(
-            (plugin: PluginInfo, i: number) =>
+            (plugin: PluginDefinition, i: number) =>
               `${chalk.gray(`${i + 1}.`)} ${
                 issues.some(issue => issue.plugin === plugin.provider)
                   ? `${chalk.hex(this.#config.colors.error).bold(
@@ -193,7 +258,7 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
 
   public prepare = async (
     options: AcidicEngineOptions
-  ): Promise<StormError | Context> => {
+  ): Promise<StormError | AcidicContext> => {
     this.#logger.start("Acidic Engine - Prepare");
 
     options.outputPath ??= "./node_modules/.storm";
@@ -203,52 +268,28 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
       this.#logger.start("Creating Context");
 
       let context = await this.createContext(options);
+
+      this.#logger.stopwatch("Creating Context");
+
       if (context.wrapper.service.plugins.length === 0) {
         this.#logger.warn(
           "No plugins specified for this schema. No processing will be performed (please ensure this is expected)."
         );
       } else {
-        const plugins: PluginInfo<PluginOptions>[] = Array.from(
-          context.wrapper.service.plugins.map(
-            plugin =>
-              context.plugins.table.get(this.getPluginSchemaHashKey(plugin))!
-          )
+        context = await this.#pluginManager.invokeHook(
+          AcidicPluginHookNames.EXTEND_CONTEXT,
+          context
         );
 
-        await Promise.all(
-          plugins
-            .filter(plugin => isFunction(plugin.hooks?.postCreateContext))
-            .map(plugin =>
-              Promise.resolve(
-                plugin.hooks!.postCreateContext!(plugin.options, context)
-              )
-            )
-        );
+        this.#logger.start("Preparing Definition");
 
-        this.#logger.stopwatch("Creating Context");
-
-        this.#logger.start("Preparing Schema");
-
-        for (const plugin of plugins.filter(plugin =>
-          isFunction(plugin.hooks?.extendSchema)
-        )) {
-          context.wrapper.service = await Promise.resolve(
-            plugin.hooks!.extendSchema!(plugin.options, context)
-          );
-        }
-
-        await Promise.all(
-          plugins
-            .filter(plugin => isFunction(plugin.hooks?.preGenerate))
-            .map(plugin =>
-              Promise.resolve(
-                plugin.hooks!.preGenerate!(plugin.options, context)
-              )
-            )
+        context = await this.#pluginManager.invokeHook(
+          AcidicPluginHookNames.EXTEND_DEFINITION,
+          context
         );
 
         this.#logger.info(
-          `🧪 The Acidic schema ${
+          `🧪 The Acidic server definition ${
             context.wrapper.service.name
           } contains: ${NEWLINE_STRING}${chalk
             .hex(this.#config.colors.primary)
@@ -289,7 +330,16 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
             )} that will be used to generate the service.${NEWLINE_STRING}`
         );
 
-        this.#logger.stopwatch("Preparing Schema");
+        this.#logger.stopwatch("Preparing Definition");
+
+        this.#logger.start("Validation");
+
+        context = await this.#pluginManager.invokeHook(
+          AcidicPluginHookNames.VALIDATE,
+          context
+        );
+
+        this.#logger.stopwatch("Validation");
       }
 
       return context;
@@ -302,63 +352,6 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
     }
   };
 
-  public generate = async (
-    context: Context
-  ): Promise<StormError | Array<{ plugin: string; error: Error }>> => {
-    this.#logger.start("Acidic Engine - Generate");
-
-    try {
-      this.#logger.start("Running Plugins");
-
-      const issues: Array<{ plugin: string; error: Error }> = [];
-
-      const plugins: PluginInfo<PluginOptions>[] = Array.from(
-        context.wrapper.service.plugins.map(
-          plugin =>
-            context.plugins.table.get(this.getPluginSchemaHashKey(plugin))!
-        )
-      );
-
-      await Promise.allSettled(
-        plugins.map(plugin => {
-          try {
-            context.plugins.current = plugin.pluginId;
-
-            if (plugin.handle && plugin.generator) {
-              this.#logger.info(
-                `🧪 Generating code with ${chalk
-                  .hex(this.#config.colors.primary)
-                  .bold(plugin.name)} plugin`
-              );
-
-              return Promise.resolve(
-                plugin.handle(plugin.options, context, plugin.generator)
-              );
-            }
-          } catch (e) {
-            this.#logger.error(e);
-            issues.push({
-              plugin: plugin.name,
-              error: StormError.create(e)
-            });
-          }
-
-          return Promise.resolve();
-        })
-      );
-
-      this.#logger.stopwatch("Running Plugins");
-
-      return issues;
-    } catch (error) {
-      this.#logger.error(error);
-
-      return StormError.create(error);
-    } finally {
-      this.#logger.stopwatch("Acidic Engine - Generate");
-    }
-  };
-
   /**
    * Loads a Acidic document from a file.
    *
@@ -367,222 +360,35 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
    */
   private createContext = async (
     options: AcidicEngineOptions
-  ): Promise<Context> => {
+  ): Promise<AcidicContext> => {
     if (!options.schema) {
       throw new StormError(AcidicErrorCode.missing_schema, {
-        message: "A valid schema must be provided to the Acidic Engine"
+        message: "A valid definition must be provided to the Acidic Engine"
       });
     }
 
     let modelPath: string | undefined;
-    let model: Model | undefined;
-    let schema!: AcidicSchemaWrapper;
+    let model: AcidicSchema | undefined;
+    let schema!: AcidicDefinitionWrapper;
     if (isString(options.schema)) {
-      model = await this.readModelFile(options.schema);
+      model = await this.readSchemaFile(options.schema);
       modelPath = options.schema;
-      schema = AcidicSchemaWrapper.loadSchema(model);
-    } else if (isModel(options.schema)) {
+      schema = AcidicDefinitionWrapper.loadDefinition(model);
+    } else if (isAcidicSchema(options.schema)) {
       model = options.schema;
-      schema = AcidicSchemaWrapper.loadSchema(model);
+      schema = AcidicDefinitionWrapper.loadDefinition(model);
     } else {
-      schema = AcidicSchemaWrapper.loadSchema(options.schema);
+      schema = AcidicDefinitionWrapper.loadDefinition(options.schema);
     }
-
-    await Promise.all(
-      schema.service.plugins.map(plugin =>
-        this.getPluginInfo(plugin.provider, null, {
-          ...plugin,
-          output: plugin.output
-            ? plugin.output
-            : joinPaths(this.outputPath, plugin.name)
-        })
-      )
-    );
 
     return {
       schema: model,
       schemaPath: modelPath,
       wrapper: schema,
       config: this.#config.extensions.acidic,
-      plugins: {
-        table: this.#pluginTable
-      },
       logger: this.#logger
     };
   };
-
-  private getPluginModulePath(provider: string) {
-    let pluginModulePath = provider;
-    if (pluginModulePath.startsWith("@acidic/")) {
-      pluginModulePath = `file://${join(
-        pluginModulePath.replace(
-          "@acidic/",
-          join(__dirname, "../../../../../plugins/")
-        ),
-        "index.cjs"
-      )}`;
-    }
-
-    return pluginModulePath;
-  }
-
-  private async getPluginModule(pluginProvider: string): Promise<PluginModule> {
-    if (!pluginProvider) {
-      throw new StormError(AcidicErrorCode.plugin_not_found, {
-        message: `Plugin "${pluginProvider}" has invalid provider option`
-      });
-    }
-
-    if (PLUGIN_CACHE.has(pluginProvider)) {
-      return PLUGIN_CACHE.get(pluginProvider)!;
-    }
-
-    let pluginModule: PluginModule;
-    let resolvedPath!: string;
-    try {
-      resolvedPath = pluginProvider;
-      pluginModule = await import(resolvedPath);
-    } catch (origError) {
-      resolvedPath = this.getPluginModulePath(pluginProvider);
-
-      try {
-        pluginModule = await import(resolvedPath);
-      } catch (error) {
-        this.#logger.error(
-          `Unable to load plugin module ${pluginProvider}: ${origError}`
-        );
-
-        throw new StormError(AcidicErrorCode.plugin_not_found, {
-          message: isSet(origError)
-            ? `Error: ${StormParser.stringify(origError)}`
-            : undefined
-        });
-      }
-    }
-
-    if (!pluginModule) {
-      this.#logger.error(`Plugin provider ${pluginProvider} cannot be found`);
-      throw new StormError(AcidicErrorCode.plugin_not_found, {
-        message: `Plugin provider ${pluginProvider} cannot be found`
-      });
-    }
-
-    if (!pluginModule.name) {
-      this.#logger.warn(
-        `Plugin provider ${pluginProvider} is missing a "name" export`
-      );
-    }
-
-    if (
-      (pluginModule.execute && !pluginModule.generator) ||
-      (!pluginModule.execute && pluginModule.generator)
-    ) {
-      throw new StormError(AcidicErrorCode.invalid_plugin, {
-        message: `Plugin provider ${pluginProvider} is missing a "generator" or "handle" export. If a one of the "generator" or "handle" exports are set, then both "generator" and "handle" must be set.`
-      });
-    }
-
-    if (
-      !pluginModule.execute &&
-      (!pluginModule.hooks ||
-        Object.keys(pluginModule.hooks).some((hookName: string) =>
-          isFunction((pluginModule.hooks as any)?.[hookName])
-        ))
-    ) {
-      this.#logger.warn(
-        `Plugin provider ${pluginProvider} is missing both the "handle" and "extend" exports. If a plugin does not have a "handle" or "extend" export, then it will be ignored.`
-      );
-    }
-
-    pluginModule = {
-      ...pluginModule,
-      resolvedPath: findFilePath(resolvedPath)
-    };
-    PLUGIN_CACHE.set(pluginProvider, pluginModule);
-
-    return pluginModule;
-  }
-
-  private async getPluginInfo(
-    pluginProvider: string,
-    parentPluginName: string | null,
-    pluginOptions: PluginOptions & { output: string }
-  ): Promise<PluginInfo> {
-    if (!pluginProvider) {
-      throw new StormError(AcidicErrorCode.plugin_not_found, {
-        message: `Plugin ${pluginProvider} has invalid provider option`
-      });
-    }
-
-    const module: PluginModule = await this.getPluginModule(pluginProvider);
-
-    const options = {
-      ...module.options,
-      ...pluginOptions
-    };
-    const name =
-      typeof module.name === "string"
-        ? (module.name as string)
-        : pluginProvider;
-
-    options.headerName = options.headerName ?? name;
-    const hashKey = this.getPluginHashKey(options, pluginProvider);
-    if (this.#pluginTable.has(hashKey)) {
-      return this.#pluginTable.get(hashKey)!;
-    }
-
-    const dependencies = Array.isArray(module.dependencies)
-      ? (module.dependencies as string[])
-      : [];
-    const pluginId = hash(hashKey as any);
-
-    const pluginInfo: PluginInfo = {
-      ...module,
-      module,
-      dependencyOf: parentPluginName,
-      pluginId,
-      name,
-      provider: pluginProvider,
-      options: {
-        ...options,
-        output: join(
-          options.output,
-          `${name
-            .toLowerCase()
-            .replace("/", "-")
-            .replace("\\", "-")}_${pluginId}`
-        )
-      },
-      dependencies: []
-    };
-
-    if (dependencies) {
-      for (const dependency of dependencies) {
-        pluginInfo.dependencies.push(
-          await this.getPluginInfo(dependency, pluginInfo.name, {
-            ...pluginInfo.options,
-            output: pluginOptions.output
-          })
-        );
-      }
-    }
-
-    this.#pluginTable.set(hashKey, pluginInfo);
-    return pluginInfo;
-  }
-
-  private getPluginSchemaHashKey = (
-    pluginSchema: PluginSchema
-  ): PluginContextMapKey =>
-    this.getPluginHashKey({ ...pluginSchema }, pluginSchema.provider);
-
-  private getPluginHashKey = (
-    options: PluginOptions,
-    provider: PluginInfo["provider"]
-  ): PluginContextMapKey => ({
-    options: { ...options, provider },
-    provider
-  });
 
   /**
    * Loads a Acidic document from a file.
@@ -590,11 +396,11 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
    * @param fileName File name
    * @returns Parsed and validated AST
    */
-  private readModelFile = async (fileName: string): Promise<Model> => {
+  private readSchemaFile = async (fileName: string): Promise<AcidicSchema> => {
     const extensions = this.#services.LanguageMetaData.fileExtensions;
     if (!extensions.includes(extname(fileName))) {
       throw new StormError(AcidicErrorCode.invalid_schema_extension, {
-        message: `Invalid schema file. Please choose a file with extension: ${extensions}.`
+        message: `Invalid definition file. Please choose a file with extension: ${extensions}.`
       });
     }
 
@@ -607,11 +413,11 @@ ${StormParser.stringify(stdLibFile.toJSON())}`);
     // load documents provided by plugins
     const fileContent = readFileSync(fileName, { encoding: "utf-8" });
     const parsed = this.#services.parser.LangiumParser.parse(fileContent)
-      ?.value as Model;
+      ?.value as AcidicSchema;
 
     const pluginDocuments = parsed?.declarations.reduce(
       (ret: LangiumDocument[], decl: AbstractDeclaration) => {
-        if (isPlugin(decl)) {
+        if (isAcidicPlugin(decl)) {
           const providerField = decl.fields.find(f => f.name === "provider");
           if (providerField) {
             const provider = getLiteral<string>(providerField.value);
@@ -674,7 +480,7 @@ ${JSON.stringify(file.toJSON())}`);
 
     if (validationErrors.length > 0) {
       this.#logger.error(
-        `Acidic Schema validation errors: \n${validationErrors
+        `Service definition validation errors: \n${validationErrors
           .map(
             validationError =>
               `line ${validationError.range.start.line + 1}: ${
@@ -685,11 +491,11 @@ ${JSON.stringify(file.toJSON())}`);
       );
 
       throw new StormError(AcidicErrorCode.invalid_schema, {
-        message: "Invalid schema was provided to the Acidic Engine"
+        message: "Invalid definition was provided to the Acidic Engine"
       });
     }
 
-    const model = document.parseResult.value as Model;
+    const model = document.parseResult.value as AcidicSchema;
     model.declarations.push(
       ...resolveTransitiveImports(langiumDocuments, model)
         .flatMap(m => m.declarations)
@@ -704,20 +510,20 @@ ${JSON.stringify(file.toJSON())}`);
         })
     );
 
-    const dataSources = model.declarations.filter(d => isDataSource(d));
+    const dataSources = model.declarations.filter(d => isAcidicDataSource(d));
     if (dataSources.length == 0) {
       throw new StormError(AcidicErrorCode.invalid_schema, {
         message:
-          "Acidic Schema validation errors: \nModel must define a data source"
+          "Service definition validation errors: \nDefinition must include a data source"
       });
     } else if (dataSources.length > 1) {
       throw new StormError(AcidicErrorCode.invalid_schema, {
         message:
-          "Acidic Schema validation errors: \nMultiple data source declarations are not allowed"
+          "Service definition validation errors: \nMultiple data source declarations are not allowed"
       });
     }
 
-    mergeBaseModel(model);
+    mergeBaseSchema(model);
 
     return model;
   };
@@ -742,7 +548,7 @@ ${JSON.stringify(file.toJSON())}`);
     const uriString = document.uri.toString();
     if (!uris.has(uriString)) {
       uris.add(uriString);
-      const model = document.parseResult.value as Model;
+      const model = document.parseResult.value as AcidicSchema;
 
       for (const imp of model.imports) {
         const importedModel = resolveImport(documents, imp);

@@ -1,16 +1,20 @@
-import { PluginOptions } from "@acidic/schema";
-import { PluginHandler, type Context, type IGenerator } from "../types";
+import { AcidicPluginOptions } from "@acidic/schema";
+import {
+  AcidicPluginHandler,
+  type AcidicContext,
+  type IGenerator
+} from "../types";
 
 /**
  * Runs the core functionality of a plugin generator
  */
 export const createPluginHandler =
-  <TOptions extends PluginOptions = PluginOptions>(
+  <TOptions extends AcidicPluginOptions = AcidicPluginOptions>(
     fileName: string = "index"
-  ): PluginHandler<TOptions> =>
+  ): AcidicPluginHandler<TOptions> =>
   async (
     options: TOptions,
-    context: Context,
+    context: AcidicContext,
     generator: IGenerator<TOptions>
   ) => {
     const fileContent = await generator.generate(

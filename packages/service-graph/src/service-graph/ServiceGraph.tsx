@@ -1,11 +1,11 @@
-import { ServiceSchema } from "@acidic/schema";
+import { ServiceDefinition } from "@acidic/schema";
 import React from "react";
 import "reactflow/dist/style.css";
 import { ServiceGraphLayout } from "./service-graph-layout";
 
 export interface ServiceGraphProps {
   className?: string;
-  schemas?: ServiceSchema[];
+  schemas?: ServiceDefinition[];
 }
 
 export const ServiceGraph = ({ className, schemas }: ServiceGraphProps) => {

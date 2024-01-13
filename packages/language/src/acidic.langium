@@ -1,6 +1,6 @@
 grammar Acidic
 
-entry Model:
+entry AcidicSchema:
     imports+=AcidicImport*
     (
         declarations+=AbstractDeclaration
@@ -10,18 +10,18 @@ AcidicImport:
     'import' path=STRING  ';'?;
 
 AbstractDeclaration:
-   ServiceID | DataSource | GeneratorDecl | Plugin | AcidicModel | AcidicObject | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicEvent | AcidicEnum | FunctionDecl | Attribute;
+   ServiceID | AcidicDataSource | GeneratorDecl | AcidicPlugin | AcidicModel | AcidicObject | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicEvent | AcidicEnum | FunctionDecl | Attribute;
 
 // service name
 ServiceID:
-    TRIPLE_SLASH_COMMENT* 'service' name=RegularID;
+    (comments+=TRIPLE_SLASH_COMMENT)* 'service' name=RegularID;
 
 // datasource
-DataSource:
-    TRIPLE_SLASH_COMMENT* 'datasource' name=RegularID '{' (fields+=DataSourceField)* '}';
+AcidicDataSource:
+    (comments+=TRIPLE_SLASH_COMMENT)* 'datasource' name=RegularID '{' (fields+=AcidicDataSourceField)* '}';
 
-DataSourceField:
-    TRIPLE_SLASH_COMMENT* name=RegularID '=' value=(LiteralExpr | InvocationExpr | ArrayExpr);
+AcidicDataSourceField:
+    (comments+=TRIPLE_SLASH_COMMENT)* name=RegularID '=' value=(LiteralExpr | InvocationExpr | ArrayExpr);
 
 // generator
 GeneratorDecl:
@@ -31,11 +31,11 @@ GeneratorField:
     TRIPLE_SLASH_COMMENT* name=RegularID '=' value=(LiteralExpr | ArrayExpr);
 
 // plugin
-Plugin:
-    TRIPLE_SLASH_COMMENT* 'plugin' name=RegularID '{' (fields+=PluginField)* '}';
+AcidicPlugin:
+    (comments+=TRIPLE_SLASH_COMMENT)* 'plugin' name=RegularID '{' (fields+=AcidicPluginField)* '}';
 
-PluginField:
-    TRIPLE_SLASH_COMMENT* name=RegularID '=' value=(LiteralExpr | ArrayExpr | ObjectExpr);
+AcidicPluginField:
+    (comments+=TRIPLE_SLASH_COMMENT)* name=RegularID '=' value=(LiteralExpr | ArrayExpr | ObjectExpr);
 
 // expression
 Expression:
@@ -147,7 +147,7 @@ AcidicObject:
     (
         (
             (isAbstract?='abstract')? 'type' name=RegularID |
-            (isExtend?='extend')? 'type' name=RegularID
+            (isExtending?='extend')? 'type' name=RegularID
         )
         ('extends' superTypes+=[AcidicObject] (',' superTypes+=[AcidicObject])*)?
     )
@@ -171,7 +171,7 @@ AcidicModel:
         (
             (
                 (isAbstract?='abstract')? 'model' name=RegularID |
-                (isExtend?='extend')? 'model' name=RegularID
+                (isExtending?='extend')? 'model' name=RegularID
             ) |
             (
                 (isView?='view') name=RegularID
@@ -191,7 +191,7 @@ AcidicEvent:
     (
         (
             (isAbstract?='abstract')? 'event' name=RegularID |
-            (isExtend?='extend')? 'event' name=RegularID
+            (isExtending?='extend')? 'event' name=RegularID
         )
         ('extends' superTypes+=[AcidicObject] (',' superTypes+=[AcidicObject])*)?
     )
@@ -219,7 +219,7 @@ AcidicEnumField:
 AcidicQuery:
     (comments+=TRIPLE_SLASH_COMMENT)*
     (
-        ((isExtend?='extend')? 'type' name=AcidicQueryName
+        ((isExtending?='extend')? 'type' name=AcidicQueryName
             ('extends' superTypes+=[AcidicQuery] (',' superTypes+=[AcidicQuery])*)?)
     )
     '{' (
@@ -241,7 +241,7 @@ AcidicOperationInputParam:
 AcidicMutation:
     (comments+=TRIPLE_SLASH_COMMENT)*
     (
-        ((isExtend?='extend')? 'type' name=AcidicMutationName
+        ((isExtending?='extend')? 'type' name=AcidicMutationName
             ('extends' superTypes+=[AcidicMutation] (',' superTypes+=[AcidicMutation])*)?)
     )
     '{' (
@@ -256,7 +256,7 @@ AcidicMutationName returns string:
 AcidicSubscription:
     (comments+=TRIPLE_SLASH_COMMENT)*
     (
-        ((isExtend?='extend')? 'type' name=AcidicSubscriptionName
+        ((isExtending?='extend')? 'type' name=AcidicSubscriptionName
             ('extends' superTypes+=[AcidicSubscription] (',' superTypes+=[AcidicSubscription])*)?)
     )
     '{' (

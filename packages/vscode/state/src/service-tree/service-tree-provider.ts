@@ -7,31 +7,41 @@ import { ServiceTreeItemStatus, ServiceTreeItemType } from "../types";
 import { ServiceTreeItem } from "./service-tree-item";
 
 export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
-  #workspaceRoot: string | undefined;
-  #daemon: DaemonProcessManager | undefined;
-  #config: AcidicConfig;
-  #logger: StormLog;
+  private _workspaceRoot: string | undefined;
+  private _daemon: DaemonProcessManager | undefined;
+  private _config: AcidicConfig;
+  private _logger: StormLog;
 
   private _onDidChangeTreeData: EventEmitter<ServiceTreeItem | undefined> =
     new EventEmitter<ServiceTreeItem | undefined>();
+
+  public static create = async (
+    config: AcidicConfig,
+    logger: StormLog,
+    onReadyFn: () => void
+  ): Promise<ServiceTreeProvider> => {
+    const provider = new ServiceTreeProvider(config, logger, onReadyFn);
+
+    if (provider._workspaceRoot) {
+      provider._daemon = await DaemonProcessManager.start(
+        config,
+        logger,
+        onReadyFn
+      );
+      provider._daemon.onChange(provider.refresh);
+    }
+
+    return provider;
+  };
 
   public constructor(
     config: AcidicConfig,
     logger: StormLog,
     onReadyFn: () => void
   ) {
-    this.#config = config;
-    this.#logger = logger;
-
-    this.#workspaceRoot = this.#config.workspaceRoot;
-    if (this.#workspaceRoot) {
-      this.#daemon = DaemonProcessManager.start(
-        this.#config,
-        this.#logger,
-        onReadyFn
-      );
-      this.#daemon.onChange(this.refresh);
-    }
+    this._config = config;
+    this._logger = logger;
+    this._workspaceRoot = this._config.workspaceRoot;
   }
 
   public readonly onDidChangeTreeData: Event<ServiceTreeItem | undefined> =
@@ -47,7 +57,7 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
     }
 
     return new ServiceTreeItem(
-      Uri.file(this.#workspaceRoot!),
+      Uri.file(this._workspaceRoot!),
       "workspace",
       "workspace",
       ServiceTreeItemType.WORKSPACE,
@@ -61,11 +71,11 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
   }
 
   public getChildren(element?: ServiceTreeItem) {
-    if (this.#daemon) {
+    if (this._daemon) {
       if (!element) {
         return Promise.resolve([
           new ServiceTreeItem(
-            Uri.file(this.#workspaceRoot!),
+            Uri.file(this._workspaceRoot!),
             "workspace",
             "workspace",
             ServiceTreeItemType.WORKSPACE,
@@ -74,7 +84,7 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
         ]);
       } else if (element?.type === ServiceTreeItemType.WORKSPACE) {
         return Promise.resolve(
-          Array.from(this.#daemon.processes.values()).map(
+          Array.from(this._daemon.processes.values()).map(
             process =>
               new ServiceTreeItem(
                 Uri.file(process.path),
@@ -93,7 +103,7 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
           )
         );
       } else if (element?.type === ServiceTreeItemType.SERVICE) {
-        const process = this.#daemon.getProcess(element.name);
+        const process = this._daemon.getProcess(element.name);
 
         const plugins = process?.context?.wrapper?.service?.plugins;
         if (process && Array.isArray(plugins)) {

@@ -1,33 +1,24 @@
 import { AcidicConfig } from "@acidic/config";
-import { Model } from "@acidic/language/ast";
-import { NodeSchema, PluginOptions, ServiceSchema } from "@acidic/schema";
-import { StormLog } from "@storm-stack/logging";
+import { AcidicSchema } from "@acidic/language/ast";
+import { AcidicPluginOptions, NodeDefinition } from "@acidic/schema";
+import { IStormLog } from "@storm-stack/logging";
+import {
+  IPluginModule,
+  PluginHookFn,
+  PluginInstance
+} from "@storm-stack/plugin-system";
 import { MaybePromise } from "@storm-stack/utilities";
 import { ESLint } from "eslint";
 import { HelperOptions } from "handlebars/runtime";
 import prettier from "prettier";
 import { CompilerOptions } from "ts-morph";
-import { AcidicSchemaWrapper } from "./schema";
+import { AcidicDefinitionWrapper } from "./schema";
 
-export type PluginContextMapKey = Pick<PluginInfo, "options" | "provider">;
-
-export interface PluginContext {
-  /**
-   * The current plugin being used
-   */
-  current?: string;
-
-  /**
-   * The map of plugins that are being used
-   */
-  table: WeakMap<PluginContextMapKey, PluginInfo>;
-}
-
-export interface Context {
+export interface AcidicContext {
   /**
    * The sdl model to create the schema from
    */
-  schema?: Model;
+  schema?: AcidicSchema;
 
   /**
    * The path to the sdl model file
@@ -37,7 +28,7 @@ export interface Context {
   /**
    * The schema to generate service code/artifacts from
    */
-  wrapper: AcidicSchemaWrapper;
+  wrapper: AcidicDefinitionWrapper;
 
   /**
    * The options used by acidic during generation
@@ -46,21 +37,23 @@ export interface Context {
   config: AcidicConfig;
 
   /**
-   * The context of the plugins that are being used
-   */
-  plugins: PluginContext;
-
-  /**
    * The logger used by the engine
    */
-  logger: StormLog;
+  logger: IStormLog;
+
+  /**
+   * The current plugin being executed
+   */
+  currentPlugin?: PluginInstance;
 }
 
-export interface IGenerator<TOptions extends PluginOptions = PluginOptions> {
+export interface IGenerator<
+  TOptions extends AcidicPluginOptions = AcidicPluginOptions
+> {
   generate(
     options: TOptions,
-    node: NodeSchema,
-    context: Context,
+    node: NodeDefinition,
+    context: AcidicContext,
     params?: any
   ): Promise<string>;
   write(
@@ -73,69 +66,18 @@ export interface IGenerator<TOptions extends PluginOptions = PluginOptions> {
 
 export const GENERATOR_SYMBOL = Symbol("Generator");
 
-export type PluginHandler<TOptions extends PluginOptions = PluginOptions> = (
+export type AcidicPluginHandler<
+  TOptions extends AcidicPluginOptions = AcidicPluginOptions
+> = (
   options: TOptions,
-  context: Context,
-  generator: IGenerator<TOptions>
+  context: AcidicContext,
+  generator?: IGenerator<TOptions>
 ) => MaybePromise<void>;
-
-/**
- * Update the acidic schema based on the plugin options
- *
- * @remarks
- * Please note any changes made to the schema will be applied to all other plugins.
- *
- * If you want to update the schema for only the current plugin, use the `prepareSchema` hook instead.
- */
-export type PluginHookExtendSchema<
-  TOptions extends PluginOptions = PluginOptions
-> = (options: TOptions, context: Context) => MaybePromise<ServiceSchema>;
-
-/**
- * Update the acidic schema just prior to generating the code
- *
- * @remarks
- * Please note any changes made to the schema will **NOT** be applied to any other plugins.
- *
- * If you want to update the schema for all plugins, use the `extendSchema` hook instead.
- */
-export type PluginHookPrepareSchema<
-  TOptions extends PluginOptions = PluginOptions
-> = (options: TOptions, context: Context) => MaybePromise<ServiceSchema>;
-
-/**
- * Preform some action using the Context immediately after it is created (but before to generating the code)
- */
-export type PluginHookPostCreateContext<
-  TOptions extends PluginOptions = PluginOptions
-> = (options: TOptions, context: Context) => MaybePromise<void>;
-
-/**
- * Preform some action using the Context immediately before generating the code
- */
-export type PluginHookPreGenerate<
-  TOptions extends PluginOptions = PluginOptions
-> = (options: TOptions, context: Context) => MaybePromise<void>;
-
-export const PLUGIN_RUNNER_SYMBOL = Symbol("PluginRunner");
-
-export type PluginInfo<TOptions extends PluginOptions = PluginOptions> = {
-  pluginId: string;
-  name: string;
-  dependencyOf: string | null;
-  provider: string;
-  options: TOptions;
-  generator?: IGenerator;
-  hooks?: PluginHooks<TOptions>;
-  handle?: PluginHandler<TOptions>;
-  dependencies: PluginInfo<TOptions>[];
-  module: PluginModule<TOptions>;
-};
 
 /**
  * TypeScript Plugin configuration options
  */
-export type TypescriptPluginOptions = PluginOptions & {
+export type TypescriptPluginOptions = AcidicPluginOptions & {
   /**
    * Should the generated TypeScript files be compiled
    */
@@ -245,11 +187,11 @@ export type TemplatePluginPaths = {
 /**
  * Template Plugin options
  */
-export type TemplatePluginOptions = PluginOptions &
+export type TemplatePluginOptions = AcidicPluginOptions &
   Partial<TemplatePluginPaths>;
 
 export type TemplateGeneratorHelper = (
-  getContext: () => Context,
+  getContext: () => AcidicContext,
   getOptions: () => TemplatePluginOptions,
   context?: any,
   arg1?: any,
@@ -260,47 +202,41 @@ export type TemplateGeneratorHelper = (
   options?: HelperOptions
 ) => any;
 
-export interface PluginHooks<TOptions extends PluginOptions = PluginOptions> {
+export type AcidicPluginHooks = {
   /**
    * A reference to the plugin postCreateContext function to extend the model based on pre-defined logic
    */
-  postCreateContext?: PluginHookPostCreateContext<TOptions>;
+  "extend-context"?: PluginHookFn<AcidicContext>;
 
   /**
    * A reference to the plugin extend function to extend the model based on pre-defined logic
    */
-  extendSchema?: PluginHookExtendSchema<TOptions>;
+  "extend-definition"?: PluginHookFn<AcidicContext>;
 
   /**
-   * A reference to the plugin prepareSchema function to extend the model based on pre-defined logic
+   * A reference to the plugin prepare definition function to extend the model based on pre-defined logic
    */
-  prepareSchema?: PluginHookPrepareSchema<TOptions>;
+  "validate"?: PluginHookFn<AcidicContext>;
 
   /**
    * A reference to the plugin preGenerate function to extend the model based on pre-defined logic
    */
-  preGenerate?: PluginHookPreGenerate<TOptions>;
-}
+  "generate"?: PluginHookFn<AcidicContext>;
+};
+
+export const AcidicPluginHookNames = {
+  EXTEND_CONTEXT: "extend-context",
+  EXTEND_DEFINITION: "extend-definition",
+  VALIDATE: "validate",
+  GENERATE: "generate"
+};
 
 /**
  * Plugin module structure used in codegen
  */
-export type PluginModule<TOptions extends PluginOptions = PluginOptions> = {
-  /**
-   * The display name of the plugin
-   */
-  name?: string;
-
-  /**
-   * The default options for the plugin
-   */
-  options?: TOptions;
-
-  /**
-   * Functions that can be used to hook into the Acidic lifecycle
-   */
-  hooks?: PluginHooks<TOptions>;
-
+export interface AcidicPluginModule<
+  TOptions extends AcidicPluginOptions = AcidicPluginOptions
+> extends IPluginModule<AcidicContext> {
   /**
    * A reference to the plugin generator used to generate the code based on the acidic model
    */
@@ -309,7 +245,7 @@ export type PluginModule<TOptions extends PluginOptions = PluginOptions> = {
   /**
    * A reference to the plugin runner
    */
-  execute?: PluginHandler<TOptions>;
+  execute?: AcidicPluginHandler<TOptions>;
 
   /**
    * A list of dependencies that should be installed
@@ -317,30 +253,10 @@ export type PluginModule<TOptions extends PluginOptions = PluginOptions> = {
   dependencies?: string[];
 
   /**
-   * The path/url/package name the plugin was resolved at
+   * The default options for the plugin
    */
-  resolvedPath: string;
-};
-
-export type ConnectorType =
-  | "mysql"
-  | "mongodb"
-  | "sqlite"
-  | "postgresql"
-  | "postgres"
-  | "sqlserver"
-  | "cockroachdb"
-  | "jdbc:sqlserver";
-export const ConnectorType = {
-  MYSQL: "mysql" as ConnectorType,
-  MONGO_DB: "mongodb" as ConnectorType,
-  SQLITE: "sqlite" as ConnectorType,
-  POSTGRESQL: "postgresql" as ConnectorType,
-  POSTGRES: "postgres" as ConnectorType,
-  SQL_SERVER: "sqlserver" as ConnectorType,
-  COCKROACH_DB: "cockroachdb" as ConnectorType,
-  JDBC_SQL_SERVER: "jdbc:sqlserver" as ConnectorType
-};
+  options?: TOptions;
+}
 
 export const TEMPLATE_EXTENSIONS = [
   "hbs",

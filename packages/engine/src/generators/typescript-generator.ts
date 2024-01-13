@@ -15,7 +15,7 @@ import {
   SourceFile
 } from "ts-morph";
 import {
-  Context,
+  AcidicContext,
   TypeScriptGeneratorConfig,
   TypescriptPluginOptions
 } from "../types";
@@ -42,7 +42,7 @@ export abstract class TypescriptGenerator<
   }
 
   constructor(
-    context: Context,
+    context: AcidicContext,
     protected config: TypeScriptGeneratorConfig = {
       compiler: {},
       eslint: {},

@@ -10,14 +10,14 @@ import {
   AcidicObjectAttribute,
   AcidicObjectField,
   AcidicOperation,
+  AcidicPlugin,
   AcidicQuery,
+  AcidicSchema,
   AcidicSubscription,
   AstNode,
   Expression,
   ExpressionContext,
   FunctionDecl,
-  Model,
-  Plugin,
   ReferenceExpr,
   ServiceID,
   getLiteral,
@@ -28,23 +28,23 @@ import {
   isAcidicModel,
   isAcidicMutation,
   isAcidicObject,
+  isAcidicPlugin,
   isAcidicQuery,
   isAcidicSubscription,
   isArrayExpr,
   isLiteralExpr,
   isObjectExpr,
-  isPlugin,
   isReferenceExpr,
   isServiceID,
   resolved
 } from "@acidic/language";
-import { PluginOptions } from "@acidic/schema";
+import { AcidicPluginOptions } from "@acidic/schema";
 
 /**
  * Gets data types that are not ignored
  */
-export function getServiceId(model: Model): string {
-  const serviceIds = model.declarations.filter((d): d is ServiceID =>
+export function getServiceId(schema: AcidicSchema): string {
+  const serviceIds = schema.declarations.filter((d): d is ServiceID =>
     isServiceID(d)
   );
   if (!serviceIds || serviceIds.length === 0 || !serviceIds[0]?.name) {
@@ -57,8 +57,8 @@ export function getServiceId(model: Model): string {
 /**
  * Gets data models that are not ignored
  */
-export function getAcidicModels(model: Model): AcidicModel[] {
-  return model.declarations.filter(
+export function getAcidicModels(schema: AcidicSchema): AcidicModel[] {
+  return schema.declarations.filter(
     (d): d is AcidicModel => isAcidicModel(d) && !hasAttribute(d, "@@ignore")
   );
 }
@@ -66,15 +66,17 @@ export function getAcidicModels(model: Model): AcidicModel[] {
 /**
  * Gets plugins that are not ignored
  */
-export function getAcidicPlugins(model: Model): Plugin[] {
-  return model.declarations.filter((d): d is Plugin => isPlugin(d));
+export function getAcidicPlugins(schema: AcidicSchema): AcidicPlugin[] {
+  return schema.declarations.filter((d): d is AcidicPlugin =>
+    isAcidicPlugin(d)
+  );
 }
 
 /**
  * Gets data models that are not ignored
  */
-export function getAcidicEnums(model: Model): AcidicEnum[] {
-  return model.declarations.filter(
+export function getAcidicEnums(schema: AcidicSchema): AcidicEnum[] {
+  return schema.declarations.filter(
     (d): d is AcidicEnum => isAcidicEnum(d) && !hasAttribute(d, "@@ignore")
   );
 }
@@ -82,8 +84,8 @@ export function getAcidicEnums(model: Model): AcidicEnum[] {
 /**
  * Gets data types that are not ignored
  */
-export function getAcidicObjects(model: Model): AcidicObject[] {
-  return model.declarations.filter(
+export function getAcidicObjects(schema: AcidicSchema): AcidicObject[] {
+  return schema.declarations.filter(
     (d): d is AcidicObject => isAcidicObject(d) && !hasAttribute(d, "@@ignore")
   );
 }
@@ -91,8 +93,8 @@ export function getAcidicObjects(model: Model): AcidicObject[] {
 /**
  * Gets data types that are not ignored
  */
-export function getAcidicQueries(model: Model): AcidicQuery[] {
-  return model.declarations.filter(
+export function getAcidicQueries(schema: AcidicSchema): AcidicQuery[] {
+  return schema.declarations.filter(
     (d): d is AcidicQuery => isAcidicQuery(d) && !hasAttribute(d, "@@ignore")
   );
 }
@@ -100,8 +102,8 @@ export function getAcidicQueries(model: Model): AcidicQuery[] {
 /**
  * Gets data types that are not ignored
  */
-export function getAcidicMutations(model: Model): AcidicMutation[] {
-  return model.declarations.filter(
+export function getAcidicMutations(schema: AcidicSchema): AcidicMutation[] {
+  return schema.declarations.filter(
     (d): d is AcidicMutation =>
       isAcidicMutation(d) && !hasAttribute(d, "@@ignore")
   );
@@ -110,8 +112,10 @@ export function getAcidicMutations(model: Model): AcidicMutation[] {
 /**
  * Gets data types that are not ignored
  */
-export function getAcidicSubscriptions(model: Model): AcidicSubscription[] {
-  return model.declarations.filter(
+export function getAcidicSubscriptions(
+  schema: AcidicSchema
+): AcidicSubscription[] {
+  return schema.declarations.filter(
     (d): d is AcidicSubscription =>
       isAcidicSubscription(d) && !hasAttribute(d, "@@ignore")
   );
@@ -120,8 +124,8 @@ export function getAcidicSubscriptions(model: Model): AcidicSubscription[] {
 /**
  * Gets data types that are not ignored
  */
-export function getAcidicEvents(model: Model): AcidicEvent[] {
-  return model.declarations.filter(
+export function getAcidicEvents(schema: AcidicSchema): AcidicEvent[] {
+  return schema.declarations.filter(
     (d): d is AcidicEvent =>
       isAcidicEvent(d) &&
       !hasAttribute(d as unknown as AcidicObject, "@@ignore")
@@ -337,7 +341,10 @@ export function isForeignKeyField(field: AcidicObjectField) {
   });
 }
 
-export function requireOption<T>(options: PluginOptions, name: string): T {
+export function requireOption<T>(
+  options: AcidicPluginOptions,
+  name: string
+): T {
   const value = options[name];
   if (value === undefined) {
     throw new Error(

@@ -5,36 +5,78 @@
 ```ts
 
 import { AstNode } from 'langium';
-import { AstNode as AstNode_2 } from 'langium/lib/syntax-tree';
 import { CompilerOptions } from 'ts-morph';
 import { ErrorCode } from '@storm-stack/errors';
 import { ESLint } from 'eslint';
 import * as Handlebars from 'handlebars';
 import { HelperOptions } from 'handlebars/runtime';
+import { IPluginModule } from '@storm-stack/plugin-system';
+import { IStormLog } from '@storm-stack/logging';
+import type { JsonValue } from '@storm-stack/serialization';
 import { MaybePromise } from '@storm-stack/utilities';
 import { PackageManagers } from '@storm-stack/file-system';
+import { PluginDefinition } from '@storm-stack/plugin-system';
+import { PluginHookFn } from '@storm-stack/plugin-system';
+import { PluginInstance } from '@storm-stack/plugin-system';
+import { PluginLoader } from '@storm-stack/plugin-system';
 import prettier from 'prettier';
 import { Project } from 'ts-morph';
-import { Reference } from 'langium';
+import type { Reference } from 'langium';
 import { StormConfig } from '@storm-software/config-tools';
 import { StormError } from '@storm-stack/errors';
-import { StormLog } from '@storm-stack/logging';
+import * as v from 'valibot';
+
+// @public (undocumented)
+interface AcidicContext {
+    config: AcidicConfig;
+    currentPlugin?: PluginInstance;
+    logger: IStormLog;
+    schema?: AcidicSchema;
+    schemaPath?: string;
+    wrapper: AcidicDefinitionWrapper;
+}
+export { AcidicContext }
+export { AcidicContext as AcidicContext_alias_1 }
+
+// @public
+class AcidicDefinitionWrapper {
+    constructor(param: AcidicSchema | ServiceDefinition);
+    // (undocumented)
+    addEnum: (schemaEnum: EnumInput) => void;
+    // (undocumented)
+    addEvent: (schemaEvent: EventInput) => void;
+    // (undocumented)
+    addModel: (schemaModel: ModelInput) => void;
+    // (undocumented)
+    addMutation: (schemaMutation: MutationInput) => void;
+    // (undocumented)
+    addObject: (schemaObject: ObjectInput) => void;
+    // (undocumented)
+    addPlugin: (pluginDefinition: PluginInput) => void;
+    // (undocumented)
+    addQuery: (schemaQuery: QueryInput) => void;
+    // (undocumented)
+    addSubscription: (schemaSubscription: SubscriptionInput) => void;
+    // (undocumented)
+    static loadDefinition: (param: AcidicSchema | ServiceDefinition) => AcidicDefinitionWrapper;
+    // (undocumented)
+    get service(): ServiceDefinition;
+    set service(_service: ServiceDefinition);
+}
+export { AcidicDefinitionWrapper }
+export { AcidicDefinitionWrapper as AcidicDefinitionWrapper_alias_1 }
+export { AcidicDefinitionWrapper as AcidicDefinitionWrapper_alias_2 }
 
 // @public (undocumented)
 class AcidicEngine {
     // (undocumented)
-    static create(config: AcidicConfig, logger: StormLog): AcidicEngine;
+    static create: (config: AcidicConfig, logger: IStormLog) => Promise<AcidicEngine>;
     // (undocumented)
-    execute: (options: AcidicEngineOptions) => Promise<StormError | Context>;
-    // (undocumented)
-    generate: (context: Context) => Promise<StormError | Array<{
-        plugin: string;
-        error: Error;
-    }>>;
+    execute: (options: AcidicEngineOptions) => Promise<StormError | AcidicContext>;
     // (undocumented)
     readonly outputPath: string;
     // (undocumented)
-    prepare: (options: AcidicEngineOptions) => Promise<StormError | Context>;
+    prepare: (options: AcidicEngineOptions) => Promise<StormError | AcidicContext>;
     // (undocumented)
     readonly version: string;
 }
@@ -48,7 +90,7 @@ interface AcidicEngineOptions {
     // (undocumented)
     packageManager?: PackageManagers;
     // (undocumented)
-    schema: string | Model | ServiceSchema;
+    schema: string | AcidicSchema | ServiceDefinition;
 }
 export { AcidicEngineOptions }
 export { AcidicEngineOptions as AcidicEngineOptions_alias_1 }
@@ -88,6 +130,51 @@ export { AcidicErrorCode }
 export { AcidicErrorCode as AcidicErrorCode_alias_1 }
 
 // @public (undocumented)
+type AcidicPluginHandler<TOptions extends AcidicPluginOptions = AcidicPluginOptions> = (options: TOptions, context: AcidicContext, generator?: IGenerator<TOptions>) => MaybePromise<void>;
+export { AcidicPluginHandler }
+export { AcidicPluginHandler as AcidicPluginHandler_alias_1 }
+
+// @public (undocumented)
+const AcidicPluginHookNames: {
+    EXTEND_CONTEXT: string;
+    EXTEND_DEFINITION: string;
+    VALIDATE: string;
+    GENERATE: string;
+};
+export { AcidicPluginHookNames }
+export { AcidicPluginHookNames as AcidicPluginHookNames_alias_1 }
+
+// @public (undocumented)
+type AcidicPluginHooks = {
+    "extend-context"?: PluginHookFn<AcidicContext>;
+    "extend-definition"?: PluginHookFn<AcidicContext>;
+    "validate"?: PluginHookFn<AcidicContext>;
+    "generate"?: PluginHookFn<AcidicContext>;
+};
+export { AcidicPluginHooks }
+export { AcidicPluginHooks as AcidicPluginHooks_alias_1 }
+
+// @public (undocumented)
+class AcidicPluginLoader extends PluginLoader<AcidicContext, AcidicPluginModule> {
+    // (undocumented)
+    execute: (instance: PluginInstance<AcidicContext, AcidicPluginModule>, context: AcidicContext, options: AcidicPluginOptions) => Promise<void>;
+    // (undocumented)
+    load: (definition: PluginDefinition, options?: Record<string, any>) => Promise<PluginInstance<AcidicContext, AcidicPluginModule>>;
+}
+export { AcidicPluginLoader }
+export { AcidicPluginLoader as AcidicPluginLoader_alias_1 }
+
+// @public
+interface AcidicPluginModule<TOptions extends AcidicPluginOptions = AcidicPluginOptions> extends IPluginModule<AcidicContext> {
+    dependencies?: string[];
+    execute?: AcidicPluginHandler<TOptions>;
+    generator?: IGenerator<TOptions>;
+    options?: TOptions;
+}
+export { AcidicPluginModule }
+export { AcidicPluginModule as AcidicPluginModule_alias_1 }
+
+// @public (undocumented)
 const ALL_OPERATION_KINDS: string[];
 export { ALL_OPERATION_KINDS }
 export { ALL_OPERATION_KINDS as ALL_OPERATION_KINDS_alias_1 }
@@ -98,42 +185,13 @@ const AUXILIARY_FIELDS: string[];
 export { AUXILIARY_FIELDS }
 export { AUXILIARY_FIELDS as AUXILIARY_FIELDS_alias_1 }
 
-// @public (undocumented)
-type ConnectorType = "mysql" | "mongodb" | "sqlite" | "postgresql" | "postgres" | "sqlserver" | "cockroachdb" | "jdbc:sqlserver";
-
-// @public (undocumented)
-const ConnectorType: {
-    MYSQL: ConnectorType;
-    MONGO_DB: ConnectorType;
-    SQLITE: ConnectorType;
-    POSTGRESQL: ConnectorType;
-    POSTGRES: ConnectorType;
-    SQL_SERVER: ConnectorType;
-    COCKROACH_DB: ConnectorType;
-    JDBC_SQL_SERVER: ConnectorType;
-};
-export { ConnectorType }
-export { ConnectorType as ConnectorType_alias_1 }
-
-// @public (undocumented)
-interface Context {
-    config: AcidicConfig;
-    logger: StormLog;
-    plugins: PluginContext;
-    schema?: Model;
-    schemaPath?: string;
-    wrapper: AcidicSchemaWrapper;
-}
-export { Context }
-export { Context as Context_alias_1 }
-
 // @public
-const createPluginHandler: <TOptions extends PluginOptions = PluginOptions>(fileName?: string) => PluginHandler<TOptions>;
+const createPluginHandler: <TOptions extends AcidicPluginOptions = AcidicPluginOptions>(fileName?: string) => AcidicPluginHandler<TOptions>;
 export { createPluginHandler }
 export { createPluginHandler as createPluginHandler_alias_1 }
 
 // @public
-const createTemplatePluginHandler: <TOptions extends TemplatePluginOptions = TemplatePluginOptions>(templatePaths: TemplatePluginPaths, filterTemplates?: ((options: TOptions, context: Context, generator: TemplateGenerator<TOptions>, node: NodeSchema | null, templates: Array<TemplateDetails>) => Array<TemplateDetails>) | undefined) => PluginHandler<TOptions>;
+const createTemplatePluginHandler: <TOptions extends TemplatePluginOptions = TemplatePluginOptions>(templatePaths: TemplatePluginPaths, filterTemplates?: ((options: TOptions, context: AcidicContext, generator: TemplateGenerator<TOptions>, node: NodeDefinition | null, templates: Array<TemplateDetails>) => Array<TemplateDetails>) | undefined) => AcidicPluginHandler<TOptions>;
 export { createTemplatePluginHandler }
 export { createTemplatePluginHandler as createTemplatePluginHandler_alias_1 }
 
@@ -145,10 +203,19 @@ enum CrudFailureReason {
 export { CrudFailureReason }
 export { CrudFailureReason as CrudFailureReason_alias_1 }
 
+// @public (undocumented)
+export function default_alias(string: string, count?: number): string;
+
 // @public
 const DEFAULT_PASSWORD_SALT_LENGTH = 12;
 export { DEFAULT_PASSWORD_SALT_LENGTH }
 export { DEFAULT_PASSWORD_SALT_LENGTH as DEFAULT_PASSWORD_SALT_LENGTH_alias_1 }
+
+// @public
+function deserializeAcidicDefinitionWrapper(schemaString: JsonValue): AcidicDefinitionWrapper;
+export { deserializeAcidicDefinitionWrapper }
+export { deserializeAcidicDefinitionWrapper as deserializeAcidicDefinitionWrapper_alias_1 }
+export { deserializeAcidicDefinitionWrapper as deserializeAcidicDefinitionWrapper_alias_2 }
 
 // @public (undocumented)
 const DIRECTORY_TRACKER_SYMBOL: unique symbol;
@@ -189,16 +256,16 @@ export { ensureOutputFolder as ensureOutputFolder_alias_1 }
 export { ensureOutputFolder as ensureOutputFolder_alias_2 }
 
 // @public
-abstract class Generator_2<TOptions extends PluginOptions = PluginOptions> implements IGenerator {
-    constructor(context: Context);
+abstract class Generator_2<TOptions extends AcidicPluginOptions = AcidicPluginOptions> implements IGenerator {
+    constructor(context: AcidicContext);
     // (undocumented)
     abstract get commentStart(): string;
     // (undocumented)
-    protected context: Context;
+    protected context: AcidicContext;
     // (undocumented)
     abstract get fileExtension(): string | "*";
     // (undocumented)
-    abstract generate(options: TOptions, node: NodeSchema, context: Context, params: any): Promise<string>;
+    abstract generate(options: TOptions, node: NodeDefinition, context: AcidicContext, params: any): Promise<string>;
     // (undocumented)
     protected getFileFooter(options: TOptions): string;
     // (undocumented)
@@ -225,18 +292,126 @@ export { GENERATOR_SYMBOL }
 export { GENERATOR_SYMBOL as GENERATOR_SYMBOL_alias_1 }
 
 // @public
+function getAcidicEnums(schema: AcidicSchema): AcidicEnum[];
+export { getAcidicEnums }
+export { getAcidicEnums as getAcidicEnums_alias_1 }
+export { getAcidicEnums as getAcidicEnums_alias_2 }
+
+// @public
+function getAcidicEvents(schema: AcidicSchema): AcidicEvent[];
+export { getAcidicEvents }
+export { getAcidicEvents as getAcidicEvents_alias_1 }
+export { getAcidicEvents as getAcidicEvents_alias_2 }
+
+// @public
+function getAcidicModels(schema: AcidicSchema): AcidicModel[];
+export { getAcidicModels }
+export { getAcidicModels as getAcidicModels_alias_1 }
+export { getAcidicModels as getAcidicModels_alias_2 }
+
+// @public
+function getAcidicMutations(schema: AcidicSchema): AcidicMutation[];
+export { getAcidicMutations }
+export { getAcidicMutations as getAcidicMutations_alias_1 }
+export { getAcidicMutations as getAcidicMutations_alias_2 }
+
+// @public
+function getAcidicObjects(schema: AcidicSchema): AcidicObject[];
+export { getAcidicObjects }
+export { getAcidicObjects as getAcidicObjects_alias_1 }
+export { getAcidicObjects as getAcidicObjects_alias_2 }
+
+// @public
+function getAcidicPlugins(schema: AcidicSchema): AcidicPlugin[];
+export { getAcidicPlugins }
+export { getAcidicPlugins as getAcidicPlugins_alias_1 }
+export { getAcidicPlugins as getAcidicPlugins_alias_2 }
+
+// @public
+function getAcidicQueries(schema: AcidicSchema): AcidicQuery[];
+export { getAcidicQueries }
+export { getAcidicQueries as getAcidicQueries_alias_1 }
+export { getAcidicQueries as getAcidicQueries_alias_2 }
+
+// @public
+function getAcidicSubscriptions(schema: AcidicSchema): AcidicSubscription[];
+export { getAcidicSubscriptions }
+export { getAcidicSubscriptions as getAcidicSubscriptions_alias_1 }
+export { getAcidicSubscriptions as getAcidicSubscriptions_alias_2 }
+
+// @public (undocumented)
+function getAttributeArg(attr: AcidicObjectAttribute | AcidicFieldAttribute | AcidicInternalAttribute, name: string): Expression | undefined;
+export { getAttributeArg }
+export { getAttributeArg as getAttributeArg_alias_1 }
+export { getAttributeArg as getAttributeArg_alias_2 }
+
+// @public (undocumented)
+function getAttributeArgLiteral<T extends string | number | boolean>(attr: AcidicObjectAttribute | AcidicFieldAttribute, name: string): T | undefined;
+export { getAttributeArgLiteral }
+export { getAttributeArgLiteral as getAttributeArgLiteral_alias_1 }
+export { getAttributeArgLiteral as getAttributeArgLiteral_alias_2 }
+
+// @public (undocumented)
+function getAttributeArgs(attr: AcidicObjectAttribute | AcidicFieldAttribute | AcidicInternalAttribute): Record<string, Expression>;
+export { getAttributeArgs }
+export { getAttributeArgs as getAttributeArgs_alias_1 }
+export { getAttributeArgs as getAttributeArgs_alias_2 }
+
+// @public (undocumented)
+const getDataSource: (schema: AcidicSchema) => AcidicDataSource | undefined;
+export { getDataSource }
+export { getDataSource as getDataSource_alias_1 }
+export { getDataSource as getDataSource_alias_2 }
+
+// @public (undocumented)
+const getDataSourceName: (schema: AcidicSchema) => string;
+export { getDataSourceName }
+export { getDataSourceName as getDataSourceName_alias_1 }
+export { getDataSourceName as getDataSourceName_alias_2 }
+
+// @public (undocumented)
+const getDataSourceProvider: (schema: AcidicSchema) => DataSourceType;
+export { getDataSourceProvider }
+export { getDataSourceProvider as getDataSourceProvider_alias_1 }
+export { getDataSourceProvider as getDataSourceProvider_alias_2 }
+
+// @public (undocumented)
+const getDataSourceUrl: (schema: AcidicSchema) => string;
+export { getDataSourceUrl }
+export { getDataSourceUrl as getDataSourceUrl_alias_1 }
+export { getDataSourceUrl as getDataSourceUrl_alias_2 }
+
+// @public
 function getDefaultOutputFolder(): string | undefined;
 export { getDefaultOutputFolder }
 export { getDefaultOutputFolder as getDefaultOutputFolder_alias_1 }
 export { getDefaultOutputFolder as getDefaultOutputFolder_alias_2 }
 
 // @public (undocumented)
-const getGeneratedContent: <TOptions extends TemplatePluginOptions = TemplatePluginOptions>(options: TOptions, context: Context, node: NodeSchema, generator: TemplateGenerator<TOptions>, template: TemplateDetails) => Promise<{
+function getFunctionExpressionContext(funcDecl: FunctionDecl): ExpressionContext[];
+export { getFunctionExpressionContext }
+export { getFunctionExpressionContext as getFunctionExpressionContext_alias_1 }
+export { getFunctionExpressionContext as getFunctionExpressionContext_alias_2 }
+
+// @public (undocumented)
+const getGeneratedContent: <TOptions extends TemplatePluginOptions = TemplatePluginOptions>(options: TOptions, context: AcidicContext, node: NodeDefinition, generator: TemplateGenerator<TOptions>, template: TemplateDetails) => Promise<{
     name: string;
     content: string;
 }>;
 export { getGeneratedContent }
 export { getGeneratedContent as getGeneratedContent_alias_1 }
+
+// @public
+function getModelIdFields(model: AcidicModel): AcidicObjectField[];
+export { getModelIdFields }
+export { getModelIdFields as getModelIdFields_alias_1 }
+export { getModelIdFields as getModelIdFields_alias_2 }
+
+// @public
+function getModelUniqueFields(model: AcidicModel): AcidicObjectField[];
+export { getModelUniqueFields }
+export { getModelUniqueFields as getModelUniqueFields_alias_1 }
+export { getModelUniqueFields as getModelUniqueFields_alias_2 }
 
 // @public
 function getNodeModulesFolder(startPath?: string): string | undefined;
@@ -245,7 +420,19 @@ export { getNodeModulesFolder as getNodeModulesFolder_alias_1 }
 export { getNodeModulesFolder as getNodeModulesFolder_alias_2 }
 
 // @public (undocumented)
-const getTemplates: (context: Context, defaultPath: string | string[], optionsPath?: string | string[]) => Promise<Array<TemplateDetails>>;
+function getObjectLiteral<T>(expr: Expression | undefined): T | undefined;
+export { getObjectLiteral }
+export { getObjectLiteral as getObjectLiteral_alias_1 }
+export { getObjectLiteral as getObjectLiteral_alias_2 }
+
+// @public
+function getServiceId(schema: AcidicSchema): string;
+export { getServiceId }
+export { getServiceId as getServiceId_alias_1 }
+export { getServiceId as getServiceId_alias_2 }
+
+// @public (undocumented)
+const getTemplates: (context: AcidicContext, defaultPath: string | string[], optionsPath?: string | string[]) => Promise<Array<TemplateDetails>>;
 export { getTemplates }
 export { getTemplates as getTemplates_alias_1 }
 
@@ -261,102 +448,50 @@ export { GUARD_FIELD_NAME }
 export { GUARD_FIELD_NAME as GUARD_FIELD_NAME_alias_1 }
 
 // @public (undocumented)
-interface IGenerator<TOptions extends PluginOptions = PluginOptions> {
+function hasAttribute(decl: AcidicModel | AcidicObject | AcidicObjectField | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicOperation | AcidicEnum | AcidicEnumField, name: string): boolean;
+export { hasAttribute }
+export { hasAttribute as hasAttribute_alias_1 }
+export { hasAttribute as hasAttribute_alias_2 }
+
+// @public (undocumented)
+interface IGenerator<TOptions extends AcidicPluginOptions = AcidicPluginOptions> {
     // (undocumented)
-    generate(options: TOptions, node: NodeSchema, context: Context, params?: any): Promise<string>;
+    generate(options: TOptions, node: NodeDefinition, context: AcidicContext, params?: any): Promise<string>;
     // (undocumented)
     write(options: TOptions, fileContent: string, fileName: string, fileExtension?: string): Promise<void>;
 }
 export { IGenerator }
 export { IGenerator as IGenerator_alias_1 }
 
+// @public (undocumented)
+function isAcidicEnumFieldReference(node: AstNode): node is ReferenceExpr;
+export { isAcidicEnumFieldReference }
+export { isAcidicEnumFieldReference as isAcidicEnumFieldReference_alias_1 }
+export { isAcidicEnumFieldReference as isAcidicEnumFieldReference_alias_2 }
+
 // @public
-function isFutureExpr(node: AstNode_2): boolean;
+function isForeignKeyField(field: AcidicObjectField): boolean;
+export { isForeignKeyField }
+export { isForeignKeyField as isForeignKeyField_alias_1 }
+export { isForeignKeyField as isForeignKeyField_alias_2 }
+
+// @public
+function isFutureExpr(node: AstNode): boolean;
 export { isFutureExpr }
 export { isFutureExpr as isFutureExpr_alias_1 }
 export { isFutureExpr as isFutureExpr_alias_2 }
 
-// @public (undocumented)
-const PLUGIN_RUNNER_SYMBOL: unique symbol;
-export { PLUGIN_RUNNER_SYMBOL }
-export { PLUGIN_RUNNER_SYMBOL as PLUGIN_RUNNER_SYMBOL_alias_1 }
-
-// @public (undocumented)
-interface PluginContext {
-    current?: string;
-    table: WeakMap<PluginContextMapKey, PluginInfo>;
-}
-export { PluginContext }
-export { PluginContext as PluginContext_alias_1 }
-
-// @public (undocumented)
-type PluginContextMapKey = Pick<PluginInfo, "options" | "provider">;
-export { PluginContextMapKey }
-export { PluginContextMapKey as PluginContextMapKey_alias_1 }
-
-// @public (undocumented)
-type PluginHandler<TOptions extends PluginOptions = PluginOptions> = (options: TOptions, context: Context, generator: IGenerator<TOptions>) => MaybePromise<void>;
-export { PluginHandler }
-export { PluginHandler as PluginHandler_alias_1 }
+// @public
+function isIdField(field: AcidicObjectField): boolean;
+export { isIdField }
+export { isIdField as isIdField_alias_1 }
+export { isIdField as isIdField_alias_2 }
 
 // @public
-type PluginHookExtendSchema<TOptions extends PluginOptions = PluginOptions> = (options: TOptions, context: Context) => MaybePromise<ServiceSchema>;
-export { PluginHookExtendSchema }
-export { PluginHookExtendSchema as PluginHookExtendSchema_alias_1 }
-
-// @public
-type PluginHookPostCreateContext<TOptions extends PluginOptions = PluginOptions> = (options: TOptions, context: Context) => MaybePromise<void>;
-export { PluginHookPostCreateContext }
-export { PluginHookPostCreateContext as PluginHookPostCreateContext_alias_1 }
-
-// @public
-type PluginHookPreGenerate<TOptions extends PluginOptions = PluginOptions> = (options: TOptions, context: Context) => MaybePromise<void>;
-export { PluginHookPreGenerate }
-export { PluginHookPreGenerate as PluginHookPreGenerate_alias_1 }
-
-// @public
-type PluginHookPrepareSchema<TOptions extends PluginOptions = PluginOptions> = (options: TOptions, context: Context) => MaybePromise<ServiceSchema>;
-export { PluginHookPrepareSchema }
-export { PluginHookPrepareSchema as PluginHookPrepareSchema_alias_1 }
-
-// @public (undocumented)
-interface PluginHooks<TOptions extends PluginOptions = PluginOptions> {
-    extendSchema?: PluginHookExtendSchema<TOptions>;
-    postCreateContext?: PluginHookPostCreateContext<TOptions>;
-    preGenerate?: PluginHookPreGenerate<TOptions>;
-    prepareSchema?: PluginHookPrepareSchema<TOptions>;
-}
-export { PluginHooks }
-export { PluginHooks as PluginHooks_alias_1 }
-
-// @public (undocumented)
-type PluginInfo<TOptions extends PluginOptions = PluginOptions> = {
-    pluginId: string;
-    name: string;
-    dependencyOf: string | null;
-    provider: string;
-    options: TOptions;
-    generator?: IGenerator;
-    hooks?: PluginHooks<TOptions>;
-    handle?: PluginHandler<TOptions>;
-    dependencies: PluginInfo<TOptions>[];
-    module: PluginModule<TOptions>;
-};
-export { PluginInfo }
-export { PluginInfo as PluginInfo_alias_1 }
-
-// @public
-type PluginModule<TOptions extends PluginOptions = PluginOptions> = {
-    name?: string;
-    options?: TOptions;
-    hooks?: PluginHooks<TOptions>;
-    generator?: IGenerator<TOptions>;
-    execute?: PluginHandler<TOptions>;
-    dependencies?: string[];
-    resolvedPath: string;
-};
-export { PluginModule }
-export { PluginModule as PluginModule_alias_1 }
+function isRelationshipField(field: AcidicObjectField): boolean;
+export { isRelationshipField }
+export { isRelationshipField as isRelationshipField_alias_1 }
+export { isRelationshipField as isRelationshipField_alias_2 }
 
 // @public
 const PRISMA_MINIMUM_VERSION = "4.8.0";
@@ -384,6 +519,18 @@ export { PrismaErrorCode }
 export { PrismaErrorCode as PrismaErrorCode_alias_1 }
 
 // @public (undocumented)
+function requireOption<T>(options: AcidicPluginOptions, name: string): T;
+export { requireOption }
+export { requireOption as requireOption_alias_1 }
+export { requireOption as requireOption_alias_2 }
+
+// @public
+function serializeAcidicDefinitionWrapper(schemaWrapper: AcidicDefinitionWrapper): string;
+export { serializeAcidicDefinitionWrapper }
+export { serializeAcidicDefinitionWrapper as serializeAcidicDefinitionWrapper_alias_1 }
+export { serializeAcidicDefinitionWrapper as serializeAcidicDefinitionWrapper_alias_2 }
+
+// @public (undocumented)
 const TEMPLATE_EXTENSIONS: string[];
 export { TEMPLATE_EXTENSIONS }
 export { TEMPLATE_EXTENSIONS as TEMPLATE_EXTENSIONS_alias_1 }
@@ -398,13 +545,13 @@ export { TemplateDetails as TemplateDetails_alias_1 }
 
 // @public
 class TemplateGenerator<TOptions extends TemplatePluginOptions = TypescriptPluginOptions> extends TypescriptGenerator<TOptions> {
-    constructor(context: Context, config?: TypeScriptGeneratorConfig);
+    constructor(context: AcidicContext, config?: TypeScriptGeneratorConfig);
     // (undocumented)
     get fileExtension(): string;
     // (undocumented)
-    generate: (options: TOptions, node: NodeSchema, context: Context, params: TemplateDetails) => Promise<string>;
+    generate: (options: TOptions, node: NodeDefinition, context: AcidicContext, params: TemplateDetails) => Promise<string>;
     // (undocumented)
-    getContext(): Context;
+    getContext(): AcidicContext;
     // (undocumented)
     getOptions(): TOptions;
     // (undocumented)
@@ -428,12 +575,12 @@ export { TemplateGenerator }
 export { TemplateGenerator as TemplateGenerator_alias_1 }
 
 // @public (undocumented)
-type TemplateGeneratorHelper = (getContext: () => Context, getOptions: () => TemplatePluginOptions, context?: any, arg1?: any, arg2?: any, arg3?: any, arg4?: any, arg5?: any, options?: HelperOptions) => any;
+type TemplateGeneratorHelper = (getContext: () => AcidicContext, getOptions: () => TemplatePluginOptions, context?: any, arg1?: any, arg2?: any, arg3?: any, arg4?: any, arg5?: any, options?: HelperOptions) => any;
 export { TemplateGeneratorHelper }
 export { TemplateGeneratorHelper as TemplateGeneratorHelper_alias_1 }
 
 // @public
-type TemplatePluginOptions = PluginOptions & Partial<TemplatePluginPaths>;
+type TemplatePluginOptions = AcidicPluginOptions & Partial<TemplatePluginPaths>;
 export { TemplatePluginOptions }
 export { TemplatePluginOptions as TemplatePluginOptions_alias_1 }
 
@@ -460,7 +607,7 @@ export { TRANSACTION_FIELD_NAME as TRANSACTION_FIELD_NAME_alias_1 }
 
 // @public
 abstract class TypescriptGenerator<TOptions extends TypescriptPluginOptions = TypescriptPluginOptions> extends Generator_2<TOptions> {
-    constructor(context: Context, config?: TypeScriptGeneratorConfig);
+    constructor(context: AcidicContext, config?: TypeScriptGeneratorConfig);
     // (undocumented)
     get commentStart(): string;
     // (undocumented)
@@ -495,7 +642,7 @@ export { TypeScriptGeneratorConfig }
 export { TypeScriptGeneratorConfig as TypeScriptGeneratorConfig_alias_1 }
 
 // @public
-type TypescriptPluginOptions = PluginOptions & {
+type TypescriptPluginOptions = AcidicPluginOptions & {
     compile?: boolean;
     preserveTsFiles?: boolean;
     prettier?: boolean;

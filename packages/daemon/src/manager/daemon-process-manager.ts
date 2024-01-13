@@ -1,5 +1,5 @@
 import { AcidicConfig } from "@acidic/config";
-import { AcidicEngine, Context } from "@acidic/engine";
+import { AcidicContext, AcidicEngine } from "@acidic/engine";
 import { StormError, getCauseFromUnknown } from "@storm-stack/errors";
 import { StormLog } from "@storm-stack/logging";
 import { MaybePromise, isError } from "@storm-stack/utilities";
@@ -18,28 +18,30 @@ type ProcessStatus = "active" | "error" | "loading";
 export type DaemonProcess = {
   path: string;
   status: ProcessStatus;
-  context?: Context;
+  context?: AcidicContext;
   error: StormError | null;
 };
 
 export class DaemonProcessManager {
-  #config: AcidicConfig;
-  #logger: StormLog;
+  private _config: AcidicConfig;
+  private _logger: StormLog;
+  private _watcher: FSWatcher;
+  private _engine: AcidicEngine;
+  private _processes: Map<string, DaemonProcess> = new Map<
+    string,
+    DaemonProcess
+  >();
 
-  #watcher: FSWatcher;
-  #engine: AcidicEngine;
+  private _changedHandlers: Array<(name: string) => MaybePromise<any>> = [];
+  private _readyHandlers: Array<() => MaybePromise<any>> = [];
 
-  #processes: Map<string, DaemonProcess> = new Map<string, DaemonProcess>();
-
-  #changedHandlers: Array<(name: string) => MaybePromise<any>> = [];
-  #readyHandlers: Array<() => MaybePromise<any>> = [];
-
-  public static start = (
+  public static start = async (
     config: AcidicConfig,
     logger: StormLog,
     onReadyFn: () => void
-  ) => {
+  ): Promise<DaemonProcessManager> => {
     const daemon = new DaemonProcessManager(config, logger);
+    daemon._engine = await AcidicEngine.create(config, logger);
 
     daemon.onReady(onReadyFn);
     daemon.start();
@@ -48,23 +50,22 @@ export class DaemonProcessManager {
   };
 
   private constructor(config: AcidicConfig, logger: StormLog) {
-    this.#config = config;
+    this._config = config;
 
-    this.#logger = logger ?? StormLog.create(this.#config, "Acidic Engine");
-    this.#logger.info(`Initializing the Acidic Daemon Manager`);
+    this._logger = logger ?? StormLog.create(this._config, "Acidic Engine");
+    this._logger.info(`Initializing the Acidic Daemon Manager`);
 
-    this.#watcher = chokidar.watch(this.#config.extensions.acidic.input, {
-      cwd: this.#config.workspaceRoot,
+    this._watcher = chokidar.watch(this._config.extensions.acidic.input, {
+      cwd: this._config.workspaceRoot,
       ignoreInitial: true,
       usePolling: true,
       interval: 1000,
-      ignored: this.#config.extensions.acidic.ignored
+      ignored: this._config.extensions.acidic.ignored
     });
-    this.#engine = AcidicEngine.create(this.#config, this.#logger);
   }
 
   public get processes(): Map<string, DaemonProcess> {
-    return this.#processes;
+    return this._processes;
   }
 
   public getProcess(schemaPath: string): DaemonProcess | undefined {
@@ -74,7 +75,7 @@ export class DaemonProcessManager {
   }
 
   public start = async () => {
-    this.#watcher
+    this._watcher
       .on("ready", this.handleReady)
       .on("add", this.handleStart)
       .on("change", this.handleChange)
@@ -82,22 +83,22 @@ export class DaemonProcessManager {
   };
 
   public stop = () => {
-    this.#watcher.close();
-    this.#processes.forEach(process => {
+    this._watcher.close();
+    this._processes.forEach(process => {
       this.handleStop(process.path);
     });
   };
 
   public onChange = (handler: (name: string) => void) => {
-    this.#changedHandlers.push(handler);
+    this._changedHandlers.push(handler);
   };
 
   public onReady = (handler: () => void) => {
-    this.#readyHandlers.push(handler);
+    this._readyHandlers.push(handler);
   };
 
   private handleStart = async (schemaPath: string) => {
-    if (!this.#processes.has(schemaPath)) {
+    if (!this._processes.has(schemaPath)) {
       this.setProcess(schemaPath, {
         path: schemaPath,
         status: "loading",
@@ -121,8 +122,8 @@ export class DaemonProcessManager {
   };
 
   private handleStop = (schemaPath: string) => {
-    if (this.#processes.has(schemaPath)) {
-      this.#processes.delete(schemaPath);
+    if (this._processes.has(schemaPath)) {
+      this._processes.delete(schemaPath);
     }
   };
 
@@ -132,26 +133,26 @@ export class DaemonProcessManager {
   };
 
   private handleReady = () => {
-    const watched = globSync(this.#config.extensions.acidic.input, {
-      cwd: this.#config.workspaceRoot,
-      ignore: this.#config.extensions.acidic.ignored,
+    const watched = globSync(this._config.extensions.acidic.input, {
+      cwd: this._config.workspaceRoot,
+      ignore: this._config.extensions.acidic.ignored,
       absolute: true
     });
 
     return Promise.all(
       watched.map(watch => this.prepareEngine(watch.replaceAll("\\", "/")))
     ).then(() => {
-      return this.#readyHandlers.forEach(handler => handler());
+      return this._readyHandlers.forEach(handler => handler());
     });
   };
 
   private prepareEngine = (schemaPath: string) => {
     return lockfile.lock(schemaPath).then(release =>
-      this.#engine
+      this._engine
         .prepare({
           schema: schemaPath,
-          packageManager: this.#config.packageManager,
-          outputPath: this.#config.runtimePath
+          packageManager: this._config.packageManager,
+          outputPath: this._config.runtimePath
         })
         .then(result => {
           if (isError(result)) {
@@ -168,7 +169,7 @@ export class DaemonProcessManager {
           }
         })
         .catch(e => {
-          this.#logger.error(e);
+          this._logger.error(e);
 
           this.setProcess(schemaPath, {
             status: "error",
@@ -181,11 +182,11 @@ export class DaemonProcessManager {
 
   private executeEngine = (schemaPath: string) => {
     return lockfile.lock(schemaPath).then(release =>
-      this.#engine
+      this._engine
         .execute({
           schema: schemaPath,
-          packageManager: this.#config.packageManager,
-          outputPath: this.#config.runtimePath
+          packageManager: this._config.packageManager,
+          outputPath: this._config.runtimePath
         })
         .then(result => {
           if (isError(result)) {
@@ -202,7 +203,7 @@ export class DaemonProcessManager {
           }
         })
         .catch(e => {
-          this.#logger.error(e);
+          this._logger.error(e);
 
           this.setProcess(schemaPath, {
             status: "error",
@@ -217,14 +218,14 @@ export class DaemonProcessManager {
     schemaPath: string,
     daemonProcess: Partial<DaemonProcess>
   ) => {
-    this.#processes.set(schemaPath, {
+    this._processes.set(schemaPath, {
       path: schemaPath,
       status: "loading",
       error: null,
-      ...this.#processes.get(schemaPath),
+      ...this._processes.get(schemaPath),
       ...daemonProcess
     });
 
-    this.#readyHandlers.forEach(handler => handler());
+    this._readyHandlers.forEach(handler => handler());
   };
 }

@@ -1,4 +1,9 @@
-import { NodeKind, NodeSchema, ObjectSchema } from "@acidic/schema";
+import {
+  NodeDefinition,
+  NodeKind,
+  ObjectDefinition,
+  ObjectFieldDefinition
+} from "@acidic/schema";
 import React from "react";
 import "reactflow/dist/style.css";
 import { List, ListProps } from "../list";
@@ -8,7 +13,7 @@ export type NodeFieldListProps = Partial<ListProps> & {
   id: string;
   headers?: string[];
   kind: NodeKind;
-  node: NodeSchema;
+  node: NodeDefinition;
 };
 
 export const NodeFieldList = ({
@@ -19,12 +24,12 @@ export const NodeFieldList = ({
 }: NodeFieldListProps) => {
   return (
     <List headers={headers ? headers : ["Field Name", "Field Type"]}>
-      {(node as ObjectSchema)?.fields &&
-        (node as ObjectSchema)?.fields?.map(field => (
+      {(node as ObjectDefinition)?.fields &&
+        (node as ObjectDefinition)?.fields?.map(field => (
           <NodeFieldListItem
             id={id}
             key={field.name}
-            field={field}
+            field={field as ObjectFieldDefinition}
             node={node}
             kind={kind}
           />

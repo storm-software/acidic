@@ -9,7 +9,6 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "main": "packages/schema/src/index.ts",
-        "additionalEntries": ["packages/schema/src/schema"],
         "outputPath": "dist/packages/schema",
         "tsConfig": "packages/schema/tsconfig.json",
         "project": "packages/schema/package.json",
@@ -26,5 +25,7 @@
     },
     "lint": {},
     "test": {}
-  }
+  },
+  "tags": [],
+  "implicitDependencies": ["language"]
 }

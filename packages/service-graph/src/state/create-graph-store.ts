@@ -1,18 +1,18 @@
 import {
-  EnumFieldSchema,
-  EnumSchema,
-  EventSchema,
-  ModelSchema,
-  MutationSchema,
+  EnumDefinition,
+  EnumFieldDefinition,
+  EventDefinition,
+  ModelDefinition,
+  MutationDefinition,
+  NodeDefinition,
   NodeKind,
-  NodeSchema,
-  ObjectFieldSchema,
-  ObjectSchema,
-  OperationSchema,
-  PluginSchema,
-  QuerySchema,
-  ServiceSchema,
-  SubscriptionSchema
+  ObjectDefinition,
+  ObjectFieldDefinition,
+  OperationDefinition,
+  PluginDefinition,
+  QueryDefinition,
+  ServiceDefinition,
+  SubscriptionDefinition
 } from "@acidic/schema";
 import {
   SimpleWritableAtom,
@@ -39,9 +39,9 @@ import { getNodeId } from "../utilities/get-node-id";
 import { NodeType } from "../utilities/node-types";
 
 export interface ActiveNode {
-  service: ServiceSchema;
-  node: NodeSchema | null;
-  field: ObjectFieldSchema | EnumFieldSchema | null;
+  service: ServiceDefinition;
+  node: NodeDefinition | null;
+  field: ObjectFieldDefinition | EnumFieldDefinition | null;
 }
 
 export interface ActiveNodeId {
@@ -50,7 +50,7 @@ export interface ActiveNodeId {
 }
 
 export interface GraphStore {
-  schemas: ServiceSchema[];
+  schemas: ServiceDefinition[];
   isShowingMinimap: boolean;
   isShowingOptions: boolean;
   backgroundVariant: BackgroundVariant | null;
@@ -62,8 +62,8 @@ export interface ExtendedGraphStore {
   edges: Edge[];
 }
 
-const getWorkspaceNodes = (schemas: ServiceSchema[]): Node<any>[] => {
-  return schemas.reduce((nodes: Node<any>[], schema: ServiceSchema) => {
+const getWorkspaceNodes = (schemas: ServiceDefinition[]): Node<any>[] => {
+  return schemas.reduce((nodes: Node<any>[], schema: ServiceDefinition) => {
     let serviceNodes: Node<any>[] = [];
     serviceNodes = getServiceNodes(schema, nodes, serviceNodes);
 
@@ -93,17 +93,17 @@ const getWorkspaceNodes = (schemas: ServiceSchema[]): Node<any>[] => {
 const calculateNodeYPosition = (count: number) => {};
 
 const getServiceNodes = (
-  schema: ServiceSchema,
+  schema: ServiceDefinition,
   existingNodes: Node<any>[],
   serviceNodes: Node<any>[]
 ): Node<any>[] => {
   serviceNodes = schema.enums.reduce(
-    (ret: Node<any>[], enumSchema: EnumSchema) => {
+    (ret: Node<any>[], enumDefinition: EnumDefinition) => {
       const node: Node<any> = {
-        id: getNodeId(enumSchema.name, schema.name),
+        id: getNodeId(enumDefinition.name, schema.name),
         type: NodeType.ENUM_NODE,
         data: {
-          name: enumSchema.name
+          name: enumDefinition.name
         },
         position: { x: 50, y: serviceNodes.length * 100 },
         dragHandle: "acidic-drag",
@@ -120,12 +120,12 @@ const getServiceNodes = (
   );
 
   serviceNodes = schema.models.reduce(
-    (ret: Node<any>[], modelSchema: ModelSchema) => {
+    (ret: Node<any>[], modelDefinition: ModelDefinition) => {
       const node: Node<any> = {
-        id: getNodeId(modelSchema.name, schema.name),
+        id: getNodeId(modelDefinition.name, schema.name),
         type: NodeType.MODEL_NODE,
         data: {
-          name: modelSchema.name
+          name: modelDefinition.name
         },
         position: { x: 200, y: serviceNodes.length * 100 },
         dragHandle: "acidic-drag",
@@ -141,13 +141,13 @@ const getServiceNodes = (
     serviceNodes
   );
   serviceNodes = schema.objects.reduce(
-    (ret: Node<any>[], objectSchema: ObjectSchema) => {
-      if (!ret.some(existing => existing.id === objectSchema.name)) {
+    (ret: Node<any>[], objectDefinition: ObjectDefinition) => {
+      if (!ret.some(existing => existing.id === objectDefinition.name)) {
         const node: Node<any> = {
-          id: getNodeId(objectSchema.name, schema.name),
+          id: getNodeId(objectDefinition.name, schema.name),
           type: NodeType.OBJECT_NODE,
           data: {
-            name: objectSchema.name
+            name: objectDefinition.name
           },
           position: { x: 600, y: serviceNodes.length * 100 },
           dragHandle: "acidic-drag",
@@ -165,13 +165,13 @@ const getServiceNodes = (
   );
 
   serviceNodes = schema.events.reduce(
-    (ret: Node<any>[], eventSchema: EventSchema) => {
-      if (!ret.some(existing => existing.id === eventSchema.name)) {
+    (ret: Node<any>[], eventDefinition: EventDefinition) => {
+      if (!ret.some(existing => existing.id === eventDefinition.name)) {
         const node: Node<any> = {
-          id: getNodeId(eventSchema.name, schema.name),
+          id: getNodeId(eventDefinition.name, schema.name),
           type: NodeType.EVENT_NODE,
           data: {
-            name: eventSchema.name
+            name: eventDefinition.name
           },
           position: { x: 400, y: serviceNodes.length * 100 },
           dragHandle: "acidic-drag",
@@ -189,13 +189,13 @@ const getServiceNodes = (
     serviceNodes
   );
   serviceNodes = schema.queries.reduce(
-    (ret: Node<any>[], operationSchema: OperationSchema) => {
-      if (!ret.some(existing => existing.id === operationSchema.name)) {
+    (ret: Node<any>[], operationDefinition: OperationDefinition) => {
+      if (!ret.some(existing => existing.id === operationDefinition.name)) {
         const node: Node<any> = {
-          id: getNodeId(operationSchema.name, schema.name),
+          id: getNodeId(operationDefinition.name, schema.name),
           type: NodeType.OPERATION_NODE,
           data: {
-            name: operationSchema.name
+            name: operationDefinition.name
           },
           position: { x: 600, y: serviceNodes.length * 100 },
           dragHandle: "acidic-drag",
@@ -212,13 +212,13 @@ const getServiceNodes = (
     serviceNodes
   );
   serviceNodes = schema.mutations.reduce(
-    (ret: Node<any>[], operationSchema: OperationSchema) => {
-      if (!ret.some(existing => existing.id === operationSchema.name)) {
+    (ret: Node<any>[], operationDefinition: OperationDefinition) => {
+      if (!ret.some(existing => existing.id === operationDefinition.name)) {
         const node: Node<any> = {
-          id: getNodeId(operationSchema.name, schema.name),
+          id: getNodeId(operationDefinition.name, schema.name),
           type: NodeType.OPERATION_NODE,
           data: {
-            name: operationSchema.name
+            name: operationDefinition.name
           },
           position: { x: 600, y: serviceNodes.length * 100 },
           dragHandle: "acidic-drag",
@@ -235,13 +235,13 @@ const getServiceNodes = (
     serviceNodes
   );
   serviceNodes = schema.subscriptions.reduce(
-    (ret: Node<any>[], operationSchema: OperationSchema) => {
-      if (!ret.some(existing => existing.id === operationSchema.name)) {
+    (ret: Node<any>[], operationDefinition: OperationDefinition) => {
+      if (!ret.some(existing => existing.id === operationDefinition.name)) {
         const node: Node<any> = {
-          id: getNodeId(operationSchema.name, schema.name),
+          id: getNodeId(operationDefinition.name, schema.name),
           type: NodeType.OPERATION_NODE,
           data: {
-            name: operationSchema.name
+            name: operationDefinition.name
           },
           position: { x: 600, y: serviceNodes.length * 100 },
           dragHandle: "acidic-drag",
@@ -259,13 +259,13 @@ const getServiceNodes = (
   );
 
   serviceNodes = schema.plugins.reduce(
-    (ret: Node<any>[], pluginSchema: PluginSchema) => {
-      if (!ret.some(existing => existing.id === pluginSchema.name)) {
+    (ret: Node<any>[], pluginDefinition: PluginDefinition) => {
+      if (!ret.some(existing => existing.id === pluginDefinition.name)) {
         const node: Node<any> = {
-          id: getNodeId(pluginSchema.name, schema.name),
+          id: getNodeId(pluginDefinition.name, schema.name),
           type: NodeType.PLUGIN_NODE,
           data: {
-            name: pluginSchema.name
+            name: pluginDefinition.name
           },
           position: { x: 600, y: serviceNodes.length * 100 },
           dragHandle: "acidic-drag",
@@ -285,22 +285,22 @@ const getServiceNodes = (
   return serviceNodes;
 };
 
-const getWorkspaceEdges = (schemas: ServiceSchema[]): Edge<any>[] => {
-  return schemas.reduce((edges: Edge<any>[], schema: ServiceSchema) => {
+const getWorkspaceEdges = (schemas: ServiceDefinition[]): Edge<any>[] => {
+  return schemas.reduce((edges: Edge<any>[], schema: ServiceDefinition) => {
     return getServiceEdges(schema, edges);
   }, []);
 };
 
 const getServiceEdges = (
-  schema: ServiceSchema,
+  schema: ServiceDefinition,
   edges: Edge<any>[]
 ): Edge<any>[] => {
-  /*schema.enums.reduce((ret: Edge<any>[], enumSchema: EnumSchema) => {
+  /*schema.enums.reduce((ret: Edge<any>[], enumDefinition: EnumDefinition) => {
     const node: Edge<any> = {
-      id: getNodeId(enumSchema.name, schema.name),
+      id: getNodeId(enumDefinition.name, schema.name),
       type: "enumNode",
       data: {
-        name: enumSchema.name
+        name: enumDefinition.name
       },
       position: { x: 0, y: 0 },
       dragHandle: "acidic-drag",
@@ -312,10 +312,10 @@ const getServiceEdges = (
     return ret;
   }, nodes);*/
   schema.models
-    .filter(model => model.ref.relationships.length > 0)
-    .reduce((ret: Edge<any>[], modelSchema: ModelSchema) => {
-      const modelId = getNodeId(modelSchema.name, schema.name);
-      modelSchema.ref.relationships.forEach(relationship => {
+    .filter(model => model.data.relationships.length > 0)
+    .reduce((ret: Edge<any>[], modelDefinition: ModelDefinition) => {
+      const modelId = getNodeId(modelDefinition.name, schema.name);
+      modelDefinition.data.relationships.forEach(relationship => {
         const foreignId = getNodeId(relationship.ref.name, schema.name);
         const edge: Edge<any> = {
           id: `${modelId}-${foreignId}`,
@@ -334,10 +334,10 @@ const getServiceEdges = (
       return ret;
     }, edges);
   schema.objects
-    .filter(objectSchema => objectSchema.relationships.length > 0)
-    .reduce((ret: Edge<any>[], objectSchema: ObjectSchema) => {
-      const objectId = getNodeId(objectSchema.name, schema.name);
-      objectSchema.relationships.forEach(relationship => {
+    .filter(objectDefinition => objectDefinition.relationships.length > 0)
+    .reduce((ret: Edge<any>[], objectDefinition: ObjectDefinition) => {
+      const objectId = getNodeId(objectDefinition.name, schema.name);
+      objectDefinition.relationships.forEach(relationship => {
         const foreignId = getNodeId(relationship.ref.name, schema.name);
         const edge: Edge<any> = {
           id: `${objectId}-${foreignId}`,
@@ -360,7 +360,7 @@ const getServiceEdges = (
   return edges;
 };
 
-const atomWithNodes = (atoms: SimpleWritableAtom<ServiceSchema[]>) => {
+const atomWithNodes = (atoms: SimpleWritableAtom<ServiceDefinition[]>) => {
   const baseAtom = atomWithDefault<Node[]>(get =>
     getWorkspaceNodes(get(atoms))
   );
@@ -389,7 +389,7 @@ const atomWithNodes = (atoms: SimpleWritableAtom<ServiceSchema[]>) => {
   );
 };
 
-const atomWithEdges = (atoms: SimpleWritableAtom<ServiceSchema[]>) => {
+const atomWithEdges = (atoms: SimpleWritableAtom<ServiceDefinition[]>) => {
   const baseAtom = atomWithDefault<Edge[]>(get =>
     getWorkspaceEdges(get(atoms))
   );
@@ -418,9 +418,9 @@ const atomWithEdges = (atoms: SimpleWritableAtom<ServiceSchema[]>) => {
   );
 };
 
-export const findNodeSchema = (
+export const findNodeDefinition = (
   nodeId: string,
-  schemas: ServiceSchema[],
+  schemas: ServiceDefinition[],
   kind:
     | "plugins"
     | "enums"
@@ -430,19 +430,19 @@ export const findNodeSchema = (
     | "queries"
     | "mutations"
     | "subscriptions"
-): { node?: NodeSchema; service: ServiceSchema } | undefined => {
-  const serviceSchema = schemas?.find(
+): { node?: NodeDefinition; service: ServiceDefinition } | undefined => {
+  const serviceDefinition = schemas?.find(
     service =>
       service[kind]?.some(
         schema => getNodeId(schema.name, service.name) === nodeId
       )
   );
 
-  return serviceSchema
+  return serviceDefinition
     ? {
-        service: serviceSchema,
-        node: serviceSchema?.[kind]?.find(
-          schema => getNodeId(schema.name, serviceSchema.name) === nodeId
+        service: serviceDefinition,
+        node: serviceDefinition?.[kind]?.find(
+          schema => getNodeId(schema.name, serviceDefinition.name) === nodeId
         )
       }
     : undefined;
@@ -452,19 +452,18 @@ const atomWithActiveNode = (atoms: StoreAtomsWithoutExtend<GraphStore>) => {
   const baseAtom = atomWithDefault<ActiveNode | null>(get => {
     const activeId = get(atoms.activeId);
     if (activeId) {
-      let results = findNodeSchema(
+      let results = findNodeDefinition(
         activeId.nodeId,
         get(atoms.schemas),
         "models"
       );
       if (results) {
-        let field: ObjectFieldSchema | null = null;
+        let field: ObjectFieldDefinition | null = null;
         if (results.node) {
           if (activeId.fieldId) {
-            field =
-              (results.node as ModelSchema).ref.fields.find(
-                field => field.name === activeId.fieldId
-              ) ?? null;
+            field = ((results.node as ModelDefinition).data.fields.find(
+              field => field.name === activeId.fieldId
+            ) ?? null) as ObjectFieldDefinition | null;
           }
         }
 
@@ -475,15 +474,18 @@ const atomWithActiveNode = (atoms: StoreAtomsWithoutExtend<GraphStore>) => {
         };
       }
 
-      results = findNodeSchema(activeId.nodeId, get(atoms.schemas), "objects");
+      results = findNodeDefinition(
+        activeId.nodeId,
+        get(atoms.schemas),
+        "objects"
+      );
       if (results) {
-        let field: ObjectFieldSchema | null = null;
+        let field: ObjectFieldDefinition | null = null;
         if (results.node) {
           if (activeId.fieldId) {
-            field =
-              (results.node as ObjectSchema).fields.find(
-                field => field.name === activeId.fieldId
-              ) ?? null;
+            field = ((results.node as ObjectDefinition).fields.find(
+              field => field.name === activeId.fieldId
+            ) ?? null) as ObjectFieldDefinition | null;
           }
         }
 
@@ -494,15 +496,18 @@ const atomWithActiveNode = (atoms: StoreAtomsWithoutExtend<GraphStore>) => {
         };
       }
 
-      results = findNodeSchema(activeId.nodeId, get(atoms.schemas), "events");
+      results = findNodeDefinition(
+        activeId.nodeId,
+        get(atoms.schemas),
+        "events"
+      );
       if (results) {
-        let field: ObjectFieldSchema | null = null;
+        let field: ObjectFieldDefinition | null = null;
         if (results.node) {
           if (activeId.fieldId) {
-            field =
-              (results.node as EventSchema).data.ref.fields.find(
-                field => field.name === activeId.fieldId
-              ) ?? null;
+            field = ((results.node as EventDefinition).data.fields.find(
+              field => field.name === activeId.fieldId
+            ) ?? null) as ObjectFieldDefinition | null;
           }
         }
 
@@ -513,19 +518,22 @@ const atomWithActiveNode = (atoms: StoreAtomsWithoutExtend<GraphStore>) => {
         };
       }
 
-      results = findNodeSchema(activeId.nodeId, get(atoms.schemas), "queries");
+      results = findNodeDefinition(
+        activeId.nodeId,
+        get(atoms.schemas),
+        "queries"
+      );
       if (results) {
-        let field: ObjectFieldSchema | null = null;
+        let field: ObjectFieldDefinition | null = null;
         if (results.node) {
           if (activeId.fieldId) {
-            field =
-              (results.node as QuerySchema).request?.ref.fields.find(
+            field = ((results.node as QueryDefinition).request?.fields.find(
+              field => field.name === activeId.fieldId
+            ) ??
+              (results.node as QueryDefinition).response?.ref.fields.find(
                 field => field.name === activeId.fieldId
               ) ??
-              (results.node as QuerySchema).response?.ref.fields.find(
-                field => field.name === activeId.fieldId
-              ) ??
-              null;
+              null) as ObjectFieldDefinition | null;
           }
         }
 
@@ -536,23 +544,22 @@ const atomWithActiveNode = (atoms: StoreAtomsWithoutExtend<GraphStore>) => {
         };
       }
 
-      results = findNodeSchema(
+      results = findNodeDefinition(
         activeId.nodeId,
         get(atoms.schemas),
         "mutations"
       );
       if (results) {
-        let field: ObjectFieldSchema | null = null;
+        let field: ObjectFieldDefinition | null = null;
         if (results.node) {
           if (activeId.fieldId) {
-            field =
-              (results.node as MutationSchema).request?.ref.fields.find(
+            field = ((results.node as MutationDefinition).request?.fields.find(
+              field => field.name === activeId.fieldId
+            ) ??
+              (results.node as MutationDefinition).response?.ref.fields.find(
                 field => field.name === activeId.fieldId
               ) ??
-              (results.node as MutationSchema).response?.ref.fields.find(
-                field => field.name === activeId.fieldId
-              ) ??
-              null;
+              null) as ObjectFieldDefinition | null;
           }
         }
 
@@ -563,23 +570,24 @@ const atomWithActiveNode = (atoms: StoreAtomsWithoutExtend<GraphStore>) => {
         };
       }
 
-      results = findNodeSchema(
+      results = findNodeDefinition(
         activeId.nodeId,
         get(atoms.schemas),
         "subscriptions"
       );
       if (results) {
-        let field: ObjectFieldSchema | null = null;
+        let field: ObjectFieldDefinition | null = null;
         if (results.node) {
           if (activeId.fieldId) {
-            field =
-              (results.node as SubscriptionSchema).request?.ref.fields.find(
+            field = ((
+              results.node as SubscriptionDefinition
+            ).request?.fields.find(field => field.name === activeId.fieldId) ??
+              (
+                results.node as SubscriptionDefinition
+              ).response?.ref.fields.find(
                 field => field.name === activeId.fieldId
               ) ??
-              (results.node as SubscriptionSchema).response?.ref.fields.find(
-                field => field.name === activeId.fieldId
-              ) ??
-              null;
+              null) as ObjectFieldDefinition | null;
           }
         }
 
@@ -590,13 +598,17 @@ const atomWithActiveNode = (atoms: StoreAtomsWithoutExtend<GraphStore>) => {
         };
       }
 
-      results = findNodeSchema(activeId.nodeId, get(atoms.schemas), "enums");
+      results = findNodeDefinition(
+        activeId.nodeId,
+        get(atoms.schemas),
+        "enums"
+      );
       if (results) {
-        let field: EnumFieldSchema | null = null;
+        let field: EnumFieldDefinition | null = null;
         if (results.node) {
           if (activeId.fieldId) {
             field =
-              (results.node as EnumSchema).fields.find(
+              (results.node as EnumDefinition).fields.find(
                 field => field.name === activeId.fieldId
               ) ?? null;
           }

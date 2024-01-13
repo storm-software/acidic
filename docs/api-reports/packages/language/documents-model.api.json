@@ -183,6 +183,15 @@
             },
             {
               "kind": "Reference",
+              "text": "AcidicDataSource",
+              "canonicalReference": "@acidic/language!AcidicDataSource:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
               "text": "AcidicEnum",
               "canonicalReference": "@acidic/language!AcidicEnum:interface"
             },
@@ -228,6 +237,15 @@
             },
             {
               "kind": "Reference",
+              "text": "AcidicPlugin",
+              "canonicalReference": "@acidic/language!AcidicPlugin:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
               "text": "AcidicQuery",
               "canonicalReference": "@acidic/language!~AcidicQuery:interface"
             },
@@ -255,15 +273,6 @@
             },
             {
               "kind": "Reference",
-              "text": "DataSource",
-              "canonicalReference": "@acidic/language!DataSource:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " | "
-            },
-            {
-              "kind": "Reference",
               "text": "FunctionDecl",
               "canonicalReference": "@acidic/language!FunctionDecl:interface"
             },
@@ -275,15 +284,6 @@
               "kind": "Reference",
               "text": "GeneratorDecl",
               "canonicalReference": "@acidic/language!GeneratorDecl:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " | "
-            },
-            {
-              "kind": "Reference",
-              "text": "Plugin",
-              "canonicalReference": "@acidic/language!Plugin_2:interface"
             },
             {
               "kind": "Content",
@@ -579,6 +579,24 @@
             },
             {
               "kind": "Content",
+              "text": ";\n    AcidicDataSource: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicDataSource",
+              "canonicalReference": "@acidic/language!AcidicDataSource:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    AcidicDataSourceField: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicDataSourceField",
+              "canonicalReference": "@acidic/language!AcidicDataSourceField:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    AcidicEnum: "
             },
             {
@@ -705,12 +723,39 @@
             },
             {
               "kind": "Content",
+              "text": ";\n    AcidicPlugin: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPlugin",
+              "canonicalReference": "@acidic/language!AcidicPlugin:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    AcidicPluginField: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPluginField",
+              "canonicalReference": "@acidic/language!AcidicPluginField:interface"
+            },
+            {
+              "kind": "Content",
               "text": ";\n    AcidicQuery: "
             },
             {
               "kind": "Reference",
               "text": "AcidicQuery",
               "canonicalReference": "@acidic/language!~AcidicQuery:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    AcidicSchema: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language!AcidicSchema:interface"
             },
             {
               "kind": "Content",
@@ -783,24 +828,6 @@
               "kind": "Reference",
               "text": "BinaryExpr",
               "canonicalReference": "@acidic/language!BinaryExpr:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    DataSource: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DataSource",
-              "canonicalReference": "@acidic/language!DataSource:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    DataSourceField: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DataSourceField",
-              "canonicalReference": "@acidic/language!DataSourceField:interface"
             },
             {
               "kind": "Content",
@@ -894,15 +921,6 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    Model: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language!Model:interface"
-            },
-            {
-              "kind": "Content",
               "text": ";\n    NullExpr: "
             },
             {
@@ -918,24 +936,6 @@
               "kind": "Reference",
               "text": "ObjectExpr",
               "canonicalReference": "@acidic/language!ObjectExpr:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    Plugin: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Plugin",
-              "canonicalReference": "@acidic/language!Plugin_2:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    PluginField: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PluginField",
-              "canonicalReference": "@acidic/language!PluginField:interface"
             },
             {
               "kind": "Content",
@@ -1073,6 +1073,441 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@acidic/language!AcidicDataSource:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AcidicDataSource extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstNode",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "releaseTag": "Public",
+          "name": "AcidicDataSource",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSource#$container:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $container: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$container",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSource#$type:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $type: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'AcidicDataSource'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSource#comments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "comments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "comments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSource#fields:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "fields: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicDataSourceField",
+                  "canonicalReference": "@acidic/language!AcidicDataSourceField:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "fields",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSource#name:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RegularID",
+                  "canonicalReference": "@acidic/language!RegularID:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/language!AcidicDataSource:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "AcidicDataSource = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"AcidicDataSource\""
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "initializerTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "AcidicDataSource",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@acidic/language!AcidicDataSourceField:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AcidicDataSourceField extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstNode",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "releaseTag": "Public",
+          "name": "AcidicDataSourceField",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSourceField#$container:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $container: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicDataSource",
+                  "canonicalReference": "@acidic/language!AcidicDataSource:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$container",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSourceField#$type:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $type: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'AcidicDataSourceField'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSourceField#comments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "comments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "comments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSourceField#name:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RegularID",
+                  "canonicalReference": "@acidic/language!RegularID:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicDataSourceField#value:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ArrayExpr",
+                  "canonicalReference": "@acidic/language!ArrayExpr:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "InvocationExpr",
+                  "canonicalReference": "@acidic/language!InvocationExpr:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LiteralExpr",
+                  "canonicalReference": "@acidic/language!LiteralExpr:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/language!AcidicDataSourceField:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "AcidicDataSourceField = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"AcidicDataSourceField\""
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "initializerTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "AcidicDataSourceField",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@acidic/language!AcidicEnum:interface",
           "docComment": "",
           "excerptTokens": [
@@ -1106,8 +1541,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -1577,8 +2012,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -1764,12 +2199,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!AcidicEvent#isExtend:member",
+              "canonicalReference": "@acidic/language!AcidicEvent#isExtending:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "isExtend: "
+                  "text": "isExtending: "
                 },
                 {
                   "kind": "Content",
@@ -1783,7 +2218,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "isExtend",
+              "name": "isExtending",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -2297,8 +2732,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -2692,8 +3127,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -2879,12 +3314,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!AcidicModel#isExtend:member",
+              "canonicalReference": "@acidic/language!AcidicModel#isExtending:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "isExtend: "
+                  "text": "isExtending: "
                 },
                 {
                   "kind": "Content",
@@ -2898,7 +3333,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "isExtend",
+              "name": "isExtending",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -3079,8 +3514,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -3239,12 +3674,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!AcidicMutation#isExtend:member",
+              "canonicalReference": "@acidic/language!AcidicMutation#isExtending:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "isExtend: "
+                  "text": "isExtending: "
                 },
                 {
                   "kind": "Content",
@@ -3258,7 +3693,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "isExtend",
+              "name": "isExtending",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -3447,8 +3882,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -3634,12 +4069,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!AcidicObject#isExtend:member",
+              "canonicalReference": "@acidic/language!AcidicObject#isExtending:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "isExtend: "
+                  "text": "isExtending: "
                 },
                 {
                   "kind": "Content",
@@ -3653,7 +4088,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "isExtend",
+              "name": "isExtending",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -5139,6 +5574,441 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@acidic/language!AcidicPlugin:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AcidicPlugin extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstNode",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "releaseTag": "Public",
+          "name": "AcidicPlugin",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPlugin#$container:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $container: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$container",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPlugin#$type:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $type: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'AcidicPlugin'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPlugin#comments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "comments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "comments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPlugin#fields:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "fields: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicPluginField",
+                  "canonicalReference": "@acidic/language!AcidicPluginField:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "fields",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPlugin#name:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RegularID",
+                  "canonicalReference": "@acidic/language!RegularID:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/language!AcidicPlugin:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "AcidicPlugin = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"AcidicPlugin\""
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "initializerTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "AcidicPlugin",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@acidic/language!AcidicPluginField:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AcidicPluginField extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstNode",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "releaseTag": "Public",
+          "name": "AcidicPluginField",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPluginField#$container:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $container: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicPlugin",
+                  "canonicalReference": "@acidic/language!AcidicPlugin:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$container",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPluginField#$type:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $type: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'AcidicPluginField'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPluginField#comments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "comments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "comments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPluginField#name:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "name: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RegularID",
+                  "canonicalReference": "@acidic/language!RegularID:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicPluginField#value:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "value: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ArrayExpr",
+                  "canonicalReference": "@acidic/language!ArrayExpr:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "LiteralExpr",
+                  "canonicalReference": "@acidic/language!LiteralExpr:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectExpr",
+                  "canonicalReference": "@acidic/language!ObjectExpr:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/language!AcidicPluginField:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "AcidicPluginField = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"AcidicPluginField\""
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "initializerTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "AcidicPluginField",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@acidic/language!AcidicQuery:interface",
           "docComment": "",
           "excerptTokens": [
@@ -5172,8 +6042,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -5332,12 +6202,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!AcidicQuery#isExtend:member",
+              "canonicalReference": "@acidic/language!AcidicQuery#isExtending:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "isExtend: "
+                  "text": "isExtending: "
                 },
                 {
                   "kind": "Content",
@@ -5351,7 +6221,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "isExtend",
+              "name": "isExtending",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -5498,6 +6368,174 @@
         },
         {
           "kind": "Interface",
+          "canonicalReference": "@acidic/language!AcidicSchema:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AcidicSchema extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AstNode",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "releaseTag": "Public",
+          "name": "AcidicSchema",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicSchema#$type:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly $type: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "'AcidicSchema'"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicSchema#declarations:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "declarations: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AbstractDeclaration",
+                  "canonicalReference": "@acidic/language!AbstractDeclaration:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "declarations",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!AcidicSchema#imports:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "imports: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicImport",
+                  "canonicalReference": "@acidic/language!AcidicImport:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "imports",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/language!AcidicSchema:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "AcidicSchema = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"AcidicSchema\""
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "initializerTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "AcidicSchema",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
+          "kind": "Interface",
           "canonicalReference": "@acidic/language!AcidicSubscription:interface",
           "docComment": "",
           "excerptTokens": [
@@ -5531,8 +6569,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -5691,12 +6729,12 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!AcidicSubscription#isExtend:member",
+              "canonicalReference": "@acidic/language!AcidicSubscription#isExtending:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "isExtend: "
+                  "text": "isExtending: "
                 },
                 {
                   "kind": "Content",
@@ -5710,7 +6748,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "isExtend",
+              "name": "isExtending",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -6228,8 +7266,26 @@
                 },
                 {
                   "kind": "Reference",
+                  "text": "AcidicDataSourceField",
+                  "canonicalReference": "@acidic/language!AcidicDataSourceField:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
                   "text": "AcidicOperationInputParam",
                   "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicPluginField",
+                  "canonicalReference": "@acidic/language!AcidicPluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -6273,15 +7329,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -6311,15 +7358,6 @@
                   "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -6682,8 +7720,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -7847,377 +8885,6 @@
           }
         },
         {
-          "kind": "Interface",
-          "canonicalReference": "@acidic/language!DataSource:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface DataSource extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstNode",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "releaseTag": "Public",
-          "name": "DataSource",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!DataSource#$container:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $container: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$container",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!DataSource#$type:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $type: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "'DataSource'"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$type",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!DataSource#fields:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "fields: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Array",
-                  "canonicalReference": "!Array:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "fields",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 5
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!DataSource#name:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "name: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RegularID",
-                  "canonicalReference": "@acidic/language!RegularID:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "name",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 2
-            }
-          ]
-        },
-        {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/language!DataSource:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "DataSource = "
-            },
-            {
-              "kind": "Content",
-              "text": "\"DataSource\""
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "initializerTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          },
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "DataSource",
-          "variableTypeTokenRange": {
-            "startIndex": 0,
-            "endIndex": 0
-          }
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@acidic/language!DataSourceField:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface DataSourceField extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstNode",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "releaseTag": "Public",
-          "name": "DataSourceField",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!DataSourceField#$container:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $container: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "DataSource",
-                  "canonicalReference": "@acidic/language!DataSource:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$container",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!DataSourceField#$type:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $type: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "'DataSourceField'"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$type",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!DataSourceField#name:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "name: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RegularID",
-                  "canonicalReference": "@acidic/language!RegularID:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "name",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!DataSourceField#value:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "value: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ArrayExpr",
-                  "canonicalReference": "@acidic/language!ArrayExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "InvocationExpr",
-                  "canonicalReference": "@acidic/language!InvocationExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LiteralExpr",
-                  "canonicalReference": "@acidic/language!LiteralExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "value",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 6
-              }
-            }
-          ],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 2
-            }
-          ]
-        },
-        {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/language!DataSourceField:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "DataSourceField = "
-            },
-            {
-              "kind": "Content",
-              "text": "\"DataSourceField\""
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "initializerTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          },
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "DataSourceField",
-          "variableTypeTokenRange": {
-            "startIndex": 0,
-            "endIndex": 0
-          }
-        },
-        {
           "kind": "Variable",
           "canonicalReference": "@acidic/language!default_alias:var",
           "docComment": "",
@@ -8560,12 +9227,12 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare function extractAcidicModelsWithAllowRules(model: "
+              "text": "export declare function extractAcidicModelsWithAllowRules(schema: "
             },
             {
               "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language!Model:interface"
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language!AcidicSchema:interface"
             },
             {
               "kind": "Content",
@@ -8594,7 +9261,7 @@
           "overloadIndex": 1,
           "parameters": [
             {
-              "parameterName": "model",
+              "parameterName": "schema",
               "parameterTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -8809,8 +9476,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -9505,8 +10172,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -10315,12 +10982,12 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@acidic/language!getContainingModel:function(1)",
+          "canonicalReference": "@acidic/language!getContainingSchema:function(1)",
           "docComment": "/**\n * Gets the toplevel Acidic Object containing the given node.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare function getContainingModel(node: "
+              "text": "export declare function getContainingSchema(node: "
             },
             {
               "kind": "Reference",
@@ -10337,8 +11004,8 @@
             },
             {
               "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language!Model:interface"
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language!AcidicSchema:interface"
             },
             {
               "kind": "Content",
@@ -10366,7 +11033,7 @@
               "isOptional": false
             }
           ],
-          "name": "getContainingModel"
+          "name": "getContainingSchema"
         },
         {
           "kind": "Function",
@@ -10426,7 +11093,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare function getIdFields(dataModel: "
+              "text": "export declare function getIdFields(model: "
             },
             {
               "kind": "Reference",
@@ -10469,7 +11136,7 @@
           "overloadIndex": 1,
           "parameters": [
             {
-              "parameterName": "dataModel",
+              "parameterName": "model",
               "parameterTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 4
@@ -10969,6 +11636,15 @@
                 },
                 {
                   "kind": "Reference",
+                  "text": "AcidicDataSourceField",
+                  "canonicalReference": "@acidic/language!AcidicDataSourceField:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -10998,15 +11674,6 @@
                   "kind": "Reference",
                   "text": "BinaryExpr",
                   "canonicalReference": "@acidic/language!BinaryExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
                 },
                 {
                   "kind": "Content",
@@ -11311,6 +11978,116 @@
             }
           ],
           "name": "isAcidicAttributeName"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/language!isAcidicDataSource:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isAcidicDataSource(item: "
+            },
+            {
+              "kind": "Content",
+              "text": "unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "item",
+              "canonicalReference": "@acidic/language!~item"
+            },
+            {
+              "kind": "Content",
+              "text": " is "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicDataSource",
+              "canonicalReference": "@acidic/language!AcidicDataSource:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "item",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "isAcidicDataSource"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/language!isAcidicDataSourceField:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isAcidicDataSourceField(item: "
+            },
+            {
+              "kind": "Content",
+              "text": "unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "item",
+              "canonicalReference": "@acidic/language!~item"
+            },
+            {
+              "kind": "Content",
+              "text": " is "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicDataSourceField",
+              "canonicalReference": "@acidic/language!AcidicDataSourceField:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "item",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "isAcidicDataSourceField"
         },
         {
           "kind": "Function",
@@ -12360,6 +13137,116 @@
         },
         {
           "kind": "Function",
+          "canonicalReference": "@acidic/language!isAcidicPlugin:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isAcidicPlugin(item: "
+            },
+            {
+              "kind": "Content",
+              "text": "unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "item",
+              "canonicalReference": "@acidic/language!~item"
+            },
+            {
+              "kind": "Content",
+              "text": " is "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPlugin",
+              "canonicalReference": "@acidic/language!AcidicPlugin:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "item",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "isAcidicPlugin"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/language!isAcidicPluginField:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isAcidicPluginField(item: "
+            },
+            {
+              "kind": "Content",
+              "text": "unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "item",
+              "canonicalReference": "@acidic/language!~item"
+            },
+            {
+              "kind": "Content",
+              "text": " is "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPluginField",
+              "canonicalReference": "@acidic/language!AcidicPluginField:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "item",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "isAcidicPluginField"
+        },
+        {
+          "kind": "Function",
           "canonicalReference": "@acidic/language!isAcidicQuery:function(1)",
           "docComment": "",
           "excerptTokens": [
@@ -12467,6 +13354,61 @@
             }
           ],
           "name": "isAcidicQueryName"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/language!isAcidicSchema:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isAcidicSchema(item: "
+            },
+            {
+              "kind": "Content",
+              "text": "unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "item",
+              "canonicalReference": "@acidic/language!~item"
+            },
+            {
+              "kind": "Content",
+              "text": " is "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language!AcidicSchema:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "item",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "isAcidicSchema"
         },
         {
           "kind": "Function",
@@ -13121,116 +14063,6 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@acidic/language!isDataSource:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function isDataSource(item: "
-            },
-            {
-              "kind": "Content",
-              "text": "unknown"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Reference",
-              "text": "item",
-              "canonicalReference": "@acidic/language!~item"
-            },
-            {
-              "kind": "Content",
-              "text": " is "
-            },
-            {
-              "kind": "Reference",
-              "text": "DataSource",
-              "canonicalReference": "@acidic/language!DataSource:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 6
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "item",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "isDataSource"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/language!isDataSourceField:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function isDataSourceField(item: "
-            },
-            {
-              "kind": "Content",
-              "text": "unknown"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Reference",
-              "text": "item",
-              "canonicalReference": "@acidic/language!~item"
-            },
-            {
-              "kind": "Content",
-              "text": " is "
-            },
-            {
-              "kind": "Reference",
-              "text": "DataSourceField",
-              "canonicalReference": "@acidic/language!DataSourceField:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 6
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "item",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "isDataSourceField"
-        },
-        {
-          "kind": "Function",
           "canonicalReference": "@acidic/language!isExpression:function(1)",
           "docComment": "",
           "excerptTokens": [
@@ -13882,61 +14714,6 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@acidic/language!isModel:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function isModel(item: "
-            },
-            {
-              "kind": "Content",
-              "text": "unknown"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Reference",
-              "text": "item",
-              "canonicalReference": "@acidic/language!~item"
-            },
-            {
-              "kind": "Content",
-              "text": " is "
-            },
-            {
-              "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language!Model:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 6
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "item",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "isModel"
-        },
-        {
-          "kind": "Function",
           "canonicalReference": "@acidic/language!isNullExpr:function(1)",
           "docComment": "",
           "excerptTokens": [
@@ -14044,116 +14821,6 @@
             }
           ],
           "name": "isObjectExpr"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/language!isPlugin:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function isPlugin(item: "
-            },
-            {
-              "kind": "Content",
-              "text": "unknown"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Reference",
-              "text": "item",
-              "canonicalReference": "@acidic/language!~item"
-            },
-            {
-              "kind": "Content",
-              "text": " is "
-            },
-            {
-              "kind": "Reference",
-              "text": "Plugin",
-              "canonicalReference": "@acidic/language!Plugin_2:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 6
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "item",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "isPlugin"
-        },
-        {
-          "kind": "Function",
-          "canonicalReference": "@acidic/language!isPluginField:function(1)",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare function isPluginField(item: "
-            },
-            {
-              "kind": "Content",
-              "text": "unknown"
-            },
-            {
-              "kind": "Content",
-              "text": "): "
-            },
-            {
-              "kind": "Reference",
-              "text": "item",
-              "canonicalReference": "@acidic/language!~item"
-            },
-            {
-              "kind": "Content",
-              "text": " is "
-            },
-            {
-              "kind": "Reference",
-              "text": "PluginField",
-              "canonicalReference": "@acidic/language!PluginField:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "returnTypeTokenRange": {
-            "startIndex": 3,
-            "endIndex": 6
-          },
-          "releaseTag": "Public",
-          "overloadIndex": 1,
-          "parameters": [
-            {
-              "parameterName": "item",
-              "parameterTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isOptional": false
-            }
-          ],
-          "name": "isPluginField"
         },
         {
           "kind": "Function",
@@ -14778,8 +15445,26 @@
                 },
                 {
                   "kind": "Reference",
+                  "text": "AcidicDataSourceField",
+                  "canonicalReference": "@acidic/language!AcidicDataSourceField:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
                   "text": "AcidicOperationInputParam",
                   "canonicalReference": "@acidic/language!AcidicOperationInputParam:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicPluginField",
+                  "canonicalReference": "@acidic/language!AcidicPluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -14823,15 +15508,6 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "DataSourceField",
-                  "canonicalReference": "@acidic/language!DataSourceField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
                   "text": "FieldInitializer",
                   "canonicalReference": "@acidic/language!FieldInitializer:interface"
                 },
@@ -14861,15 +15537,6 @@
                   "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -15300,17 +15967,17 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@acidic/language!mergeBaseModel:function(1)",
+          "canonicalReference": "@acidic/language!mergeBaseSchema:function(1)",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare function mergeBaseModel(model: "
+              "text": "export declare function mergeBaseSchema(schema: "
             },
             {
               "kind": "Reference",
-              "text": "Model",
-              "canonicalReference": "@acidic/language!Model:interface"
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/language!AcidicSchema:interface"
             },
             {
               "kind": "Content",
@@ -15334,7 +16001,7 @@
           "overloadIndex": 1,
           "parameters": [
             {
-              "parameterName": "model",
+              "parameterName": "schema",
               "parameterTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -15342,175 +16009,7 @@
               "isOptional": false
             }
           ],
-          "name": "mergeBaseModel"
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@acidic/language!Model:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface Model extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstNode",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "releaseTag": "Public",
-          "name": "Model",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!Model#$type:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $type: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "'Model'"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$type",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!Model#declarations:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "declarations: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Array",
-                  "canonicalReference": "!Array:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AbstractDeclaration",
-                  "canonicalReference": "@acidic/language!AbstractDeclaration:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "declarations",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 5
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!Model#imports:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "imports: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Array",
-                  "canonicalReference": "!Array:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicImport",
-                  "canonicalReference": "@acidic/language!AcidicImport:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "imports",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 5
-              }
-            }
-          ],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 2
-            }
-          ]
-        },
-        {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/language!Model:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "Model = "
-            },
-            {
-              "kind": "Content",
-              "text": "\"Model\""
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "initializerTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          },
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "Model",
-          "variableTypeTokenRange": {
-            "startIndex": 0,
-            "endIndex": 0
-          }
+          "name": "mergeBaseSchema"
         },
         {
           "kind": "Interface",
@@ -15760,6 +16259,15 @@
                 },
                 {
                   "kind": "Reference",
+                  "text": "AcidicPluginField",
+                  "canonicalReference": "@acidic/language!AcidicPluginField:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
                   "text": "Argument",
                   "canonicalReference": "@acidic/language!Argument:interface"
                 },
@@ -15816,15 +16324,6 @@
                   "kind": "Reference",
                   "text": "MemberAccessExpr",
                   "canonicalReference": "@acidic/language!MemberAccessExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
                 },
                 {
                   "kind": "Content",
@@ -15953,189 +16452,6 @@
           }
         },
         {
-          "kind": "Interface",
-          "canonicalReference": "@acidic/language!Plugin_2:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface Plugin extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstNode",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "releaseTag": "Public",
-          "name": "Plugin_2",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!Plugin_2#$container:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $container: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$container",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!Plugin_2#$type:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $type: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "'Plugin'"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$type",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!Plugin_2#fields:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "fields: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Array",
-                  "canonicalReference": "!Array:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginField",
-                  "canonicalReference": "@acidic/language!PluginField:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "fields",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 5
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!Plugin_2#name:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "name: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RegularID",
-                  "canonicalReference": "@acidic/language!RegularID:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "name",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 2
-            }
-          ]
-        },
-        {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/language!Plugin_2:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "Plugin = "
-            },
-            {
-              "kind": "Content",
-              "text": "\"Plugin\""
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "initializerTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          },
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "Plugin_2",
-          "variableTypeTokenRange": {
-            "startIndex": 0,
-            "endIndex": 0
-          }
-        },
-        {
           "kind": "Variable",
           "canonicalReference": "@acidic/language!PLUGIN_MODULE_NAME:var",
           "docComment": "/**\n * Name of module contributed by plugins\n */\n",
@@ -16157,194 +16473,6 @@
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "PLUGIN_MODULE_NAME",
-          "variableTypeTokenRange": {
-            "startIndex": 0,
-            "endIndex": 0
-          }
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@acidic/language!PluginField:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface PluginField extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "AstNode",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "releaseTag": "Public",
-          "name": "PluginField",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!PluginField#$container:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $container: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Plugin",
-                  "canonicalReference": "@acidic/language!Plugin_2:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$container",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!PluginField#$type:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "readonly $type: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "'PluginField'"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": true,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$type",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!PluginField#name:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "name: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RegularID",
-                  "canonicalReference": "@acidic/language!RegularID:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "name",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/language!PluginField#value:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "value: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ArrayExpr",
-                  "canonicalReference": "@acidic/language!ArrayExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "LiteralExpr",
-                  "canonicalReference": "@acidic/language!LiteralExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectExpr",
-                  "canonicalReference": "@acidic/language!ObjectExpr:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "value",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 6
-              }
-            }
-          ],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 2
-            }
-          ]
-        },
-        {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/language!PluginField:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "PluginField = "
-            },
-            {
-              "kind": "Content",
-              "text": "\"PluginField\""
-            }
-          ],
-          "fileUrlPath": "packages/language/src/__generated__/ast.ts",
-          "initializerTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          },
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "PluginField",
           "variableTypeTokenRange": {
             "startIndex": 0,
             "endIndex": 0
@@ -17135,8 +17263,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Model",
-                  "canonicalReference": "@acidic/language!Model:interface"
+                  "text": "AcidicSchema",
+                  "canonicalReference": "@acidic/language!AcidicSchema:interface"
                 },
                 {
                   "kind": "Content",
@@ -17177,6 +17305,38 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/language!ServiceID#comments:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "comments: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "comments",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
               }
             },
             {

@@ -1,4 +1,4 @@
-import { isPlugin, Model } from "@acidic/language";
+import { AcidicSchema, isAcidicPlugin } from "@acidic/language";
 import {
   PLUGIN_MODULE_NAME,
   STD_LIB_MODULE_NAME
@@ -6,8 +6,8 @@ import {
 import { getLiteral } from "@acidic/language/utils";
 import {
   DefaultWorkspaceManager,
-  interruptAndCheck,
-  LangiumDocument
+  LangiumDocument,
+  interruptAndCheck
 } from "langium";
 import path from "path";
 import { CancellationToken, WorkspaceFolder } from "vscode-languageserver";
@@ -58,9 +58,9 @@ export default class AcidicWorkspaceManager extends DefaultWorkspaceManager {
 
     // find plugin models
     documents.forEach(doc => {
-      const parsed = doc.parseResult.value as Model;
+      const parsed = doc.parseResult.value as AcidicSchema;
       parsed.declarations.forEach(decl => {
-        if (isPlugin(decl)) {
+        if (isAcidicPlugin(decl)) {
           const providerField = decl.fields.find(f => f.name === "provider");
           if (providerField) {
             const provider = getLiteral<string>(providerField.value);
