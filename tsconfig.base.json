@@ -5,8 +5,6 @@
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": ".",
-    "noUnusedLocals": false,
-    "skipLibCheck": true,
     "paths": {
       "@acidic/cli": ["apps/cli/src/index.ts"],
       "@acidic/cli/*": ["apps/cli/src/*"],

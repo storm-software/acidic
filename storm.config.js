@@ -11,7 +11,7 @@ module.exports = {
   timezone: "America/New_York",
   locale: "en-US",
   ci: true,
-  logLevel: "trace",
+  logLevel: "all",
   externalPackagePatterns: ["@acidic/", "@storm-software/", "@storm-stack/"],
   colors: {
     primary: "#1fb2a6",
