@@ -1,4 +1,4 @@
-import { AstNode, ValidationAcceptor } from "langium";
+import type { AstNode, ValidationAcceptor } from "langium";
 
 /**
  * AST validator contract

@@ -1,8 +1,8 @@
-import { NodeDefinition } from "@acidic/schema";
+import type { NodeDefinition } from "@acidic/definition";
 import { findFileName } from "@storm-stack/file-system";
 import * as Handlebars from "handlebars";
-import { TemplateDetails } from "../plugins/template-plugin-handler";
-import {
+import type { TemplateDetails } from "../plugins/template-plugin-handler";
+import type {
   AcidicContext,
   TemplateGeneratorHelper,
   TemplatePluginOptions,
@@ -17,9 +17,6 @@ import { TypescriptGenerator } from "./typescript-generator";
 export class TemplateGenerator<
   TOptions extends TemplatePluginOptions = TypescriptPluginOptions
 > extends TypescriptGenerator<TOptions> {
-  #context?: AcidicContext;
-  #options?: TOptions;
-
   public get name(): string {
     return "Template Generator";
   }
@@ -35,18 +32,15 @@ export class TemplateGenerator<
   protected templates = new Map<string, Handlebars.TemplateDelegate>();
   protected partials: string[] = [];
 
-  constructor(context: AcidicContext, config?: TypeScriptGeneratorConfig) {
-    super(context, config);
+  constructor(config: TypeScriptGeneratorConfig) {
+    super(config);
   }
 
-  public generate = async (
-    options: TOptions,
+  public innerGenerate = async (  context: AcidicContext,
     node: NodeDefinition,
-    context: AcidicContext,
-    params: TemplateDetails
+    options: TOptions,
+      params: TemplateDetails
   ): Promise<string> => {
-    this.#context = context;
-    this.#options = options;
 
     const template = await this.getTemplate(params);
 
@@ -54,17 +48,14 @@ export class TemplateGenerator<
   };
 
   public getContext(): AcidicContext {
-    return this.#context!;
+    return this.context!;
   }
 
   public getOptions(): TOptions {
-    return this.#options!;
+    return this.options!;
   }
 
-  public registerHelper = (
-    name: string,
-    helper: TemplateGeneratorHelper
-  ): void => {
+  public registerHelper = (name: string, helper: TemplateGeneratorHelper): void => {
     this.handlebars.registerHelper(
       name,
       (
@@ -75,18 +66,7 @@ export class TemplateGenerator<
         arg4?: any,
         arg5?: any,
         options?: Handlebars.HelperOptions
-      ) =>
-        helper(
-          this.getContext,
-          this.getOptions,
-          context,
-          arg1,
-          arg2,
-          arg3,
-          arg4,
-          arg5,
-          options
-        )
+      ) => helper(this.getContext, this.getOptions, context, arg1, arg2, arg3, arg4, arg5, options)
     );
   };
 
@@ -102,7 +82,7 @@ export class TemplateGenerator<
 
   public registerPartials = async (partials: Array<TemplateDetails>) =>
     Promise.all(
-      partials.map(partial =>
+      partials.map((partial) =>
         Promise.resolve(
           this.handlebars.registerPartial(
             findFileName(partial.name).replace(".hbs", ""),
@@ -117,12 +97,9 @@ export class TemplateGenerator<
   ): Promise<Handlebars.TemplateDelegate> => {
     let compiled = this.templates.get(template.name);
     if (!compiled) {
-      this.context.logger.info(`Compiling template for ${template.name}`);
+      this.context?.logger.info(`Compiling template for ${template.name}`);
 
-      compiled = this.handlebars.compile(
-        template.content,
-        this.config.compiler
-      );
+      compiled = this.handlebars.compile(template.content, this.config.compiler);
       this.templates.set(template.name, compiled);
     }
 

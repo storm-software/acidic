@@ -1,0 +1,14 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.5.1/schema.json",
+  "extends": ["./node_modules/@storm-software/linting-tools/biome/biome.json"],
+  "linter": {
+    "rules": {
+      "nursery": {
+        "useForOf": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
+      }
+    }
+  }
+}

@@ -10,12 +10,10 @@
       "options": {
         "outputPath": "dist/packages/engine",
         "main": "packages/engine/src/index.ts",
-        "additionalEntryPoints": [
-          "packages/engine/src/plugins/acidic-plugin-loader.ts"
-        ],
         "tsConfig": "packages/engine/tsconfig.json",
         "project": "packages/engine/package.json",
         "defaultConfiguration": "production",
+        "external": ["pnpapi"],
         "assets": [
           {
             "input": "packages/engine",
@@ -39,13 +37,23 @@
           "debug": false
         },
         "development": {
-          "debug": true
+          "debug": true,
+          "verbose": true
         }
       }
     },
     "lint": {},
-    "test": {}
+    "test": {},
+    "nx-release-publish": {
+      "cache": false,
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "executor": "@storm-software/workspace-tools:npm-publish",
+      "options": {
+        "packageRoot": "dist/{projectRoot}",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
   },
-  "tags": [],
-  "implicitDependencies": ["schema"]
+  "tags": []
 }

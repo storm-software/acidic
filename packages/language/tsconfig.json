@@ -2,10 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "module": "esnext",
     "strict": false,
-    "moduleResolution": "Bundler",
-    "lib": ["esnext", "dom"]
+    "noEmit": true,
+    "lib": ["esnext", "dom", "webworker"]
   },
   "files": [],
   "include": [

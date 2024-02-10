@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.39.0",
+    "toolVersion": "7.38.5",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -184,7 +184,7 @@
             {
               "kind": "Reference",
               "text": "StormConfig",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "@storm-software/config!StormConfig:type"
             },
             {
               "kind": "Content",
@@ -206,73 +206,19 @@
             },
             {
               "kind": "Content",
-              "text": ", \"provider\">;\n    outputPath?: string;\n    input: string | readonly string[];\n    ignored?: string | readonly string[];\n} & "
-            },
-            {
-              "kind": "Reference",
-              "text": "Record",
-              "canonicalReference": "!Record:type"
-            },
-            {
-              "kind": "Content",
-              "text": "<string, "
-            },
-            {
-              "kind": "Reference",
-              "text": "OptionValue",
-              "canonicalReference": "@acidic/config!~OptionValue:type"
-            },
-            {
-              "kind": "Content",
-              "text": " | "
-            },
-            {
-              "kind": "Reference",
-              "text": "OptionValue",
-              "canonicalReference": "@acidic/config!~OptionValue:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[] | "
-            },
-            {
-              "kind": "Reference",
-              "text": "Record",
-              "canonicalReference": "!Record:type"
-            },
-            {
-              "kind": "Content",
-              "text": "<string, "
-            },
-            {
-              "kind": "Reference",
-              "text": "OptionValue",
-              "canonicalReference": "@acidic/config!~OptionValue:type"
-            },
-            {
-              "kind": "Content",
-              "text": " | "
-            },
-            {
-              "kind": "Reference",
-              "text": "OptionValue",
-              "canonicalReference": "@acidic/config!~OptionValue:type"
-            },
-            {
-              "kind": "Content",
-              "text": "[]>>>"
+              "text": ", \"provider\">;\n    outputPath?: string;\n    cacheDirectory?: string;\n    input: string | readonly string[];\n    ignored?: string | readonly string[];\n}>"
             },
             {
               "kind": "Content",
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/config/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/config/src/types.d.ts",
           "releaseTag": "Public",
           "name": "AcidicConfig",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 19
+            "endIndex": 7
           }
         },
         {
@@ -294,7 +240,7 @@
               "canonicalReference": "@acidic/config!AcidicConfig:type"
             }
           ],
-          "fileUrlPath": "packages/config/src/utilities/create-acidic-config.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/config/src/utilities/create-acidic-config.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "createAcidicConfig",

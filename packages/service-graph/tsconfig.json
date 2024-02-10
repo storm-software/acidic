@@ -5,12 +5,13 @@
     "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
+    "noEmit": true,
     "declaration": true,
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": false,
-    "types": ["vite/client", "vitest", "node"]
+    "types": ["vite/client", "vitest", "node", "@types/react"]
   },
   "files": [],
   "include": [],

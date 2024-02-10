@@ -47,10 +47,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-apps/**/bin
 apps/**/obj
 apps/**/ddata-*
-libs/**/bin
 libs/**/obj
 
 tools/**/out-test/**

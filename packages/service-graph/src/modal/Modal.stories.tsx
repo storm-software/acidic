@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { NodeKind } from "@acidic/schema";
+import { NodeKind } from "@acidic/definition";
 import { Modal } from "./Modal";
 
 const meta: Meta<typeof Modal> = {

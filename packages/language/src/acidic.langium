@@ -10,11 +10,17 @@ AcidicImport:
     'import' path=STRING  ';'?;
 
 AbstractDeclaration:
-   ServiceID | AcidicDataSource | AcidicPlugin | AcidicModel | AcidicObject | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicEvent | AcidicEnum | FunctionDecl | Attribute;
+   ServiceID | BaseUrl | Owner | AcidicDataSource | AcidicPlugin | AcidicModel | AcidicObject | AcidicQuery | AcidicMutation | AcidicSubscription | AcidicEvent | AcidicEnum | FunctionDecl | Attribute;
 
 // service name
 ServiceID:
     (comments+=TRIPLE_SLASH_COMMENT)* 'service' name=RegularID;
+
+BaseUrl:
+   (comments+=TRIPLE_SLASH_COMMENT)* 'baseUrl' name=RegularID;
+
+Owner:
+   (comments+=TRIPLE_SLASH_COMMENT)* 'owner' name=RegularID;
 
 // datasource
 AcidicDataSource:
@@ -281,7 +287,7 @@ QualifiedName returns string:
 // https://github.com/langium/langium/discussions/1012
 RegularID returns string:
     // include keywords that we'd like to work as ID in most places
-    ID | 'model' | 'type' | 'event' | 'enum' | 'attribute' | 'service' | 'view' | 'datasource' | 'plugin' | 'abstract' | 'in' | 'sort';
+    ID | 'model' | 'type' | 'event' | 'enum' | 'attribute' | 'service' | 'baseUrl' | 'owner' | 'view' | 'datasource' | 'plugin' | 'generator' | 'abstract' | 'in' | 'sort';
 
 // internal attribute
 AcidicInternalAttributeName returns string:

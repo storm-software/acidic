@@ -9,7 +9,9 @@ module.exports = {
   loader: {
     ".png": "dataurl",
     ".jpeg": "dataurl",
-    ".svg": "dataurl"
+    ".svg": "dataurl",
+    ".webp": "dataurl",
+    ".node": "dataurl"
   },
   sourcemap: "both",
   sourcesContent: true,
@@ -20,10 +22,7 @@ module.exports = {
   define: {
     "import.meta.url": "importMetaUrl"
   },
-  inject: [
-    "./apps/vscode-extension/esbuild.shim.js",
-    "./apps/vscode-extension/react.shim.js"
-  ],
+  inject: ["./apps/vscode-extension/esbuild.shim.js", "./apps/vscode-extension/react.shim.js"],
   plugins: [
     esbuildDecorators({
       tsconfig: "apps/vscode-extension/tsconfig.client.json"

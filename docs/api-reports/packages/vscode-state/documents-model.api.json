@@ -1,0 +1,2977 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.38.5",
+    "schemaVersion": 1011,
+    "oldestForwardsCompatibleVersion": 1001,
+    "tsdocConfig": {
+      "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+      "noStandardTags": true,
+      "tagDefinitions": [
+        {
+          "tagName": "@alpha",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@beta",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@defaultValue",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@decorator",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@deprecated",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@eventProperty",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@example",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@experimental",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@inheritDoc",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@internal",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@label",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@link",
+          "syntaxKind": "inline",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@override",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@packageDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@param",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@privateRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@public",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@readonly",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@remarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@returns",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@sealed",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@see",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@throws",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@typeParam",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@virtual",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@betaDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@internalRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@preapproved",
+          "syntaxKind": "modifier"
+        }
+      ],
+      "supportForTags": {
+        "@alpha": true,
+        "@beta": true,
+        "@defaultValue": true,
+        "@decorator": true,
+        "@deprecated": true,
+        "@eventProperty": true,
+        "@example": true,
+        "@experimental": true,
+        "@inheritDoc": true,
+        "@internal": true,
+        "@label": true,
+        "@link": true,
+        "@override": true,
+        "@packageDocumentation": true,
+        "@param": true,
+        "@privateRemarks": true,
+        "@public": true,
+        "@readonly": true,
+        "@remarks": true,
+        "@returns": true,
+        "@sealed": true,
+        "@see": true,
+        "@throws": true,
+        "@typeParam": true,
+        "@virtual": true,
+        "@betaDocumentation": true,
+        "@internalRemarks": true,
+        "@preapproved": true
+      },
+      "reportUnsupportedHtmlElements": false
+    }
+  },
+  "kind": "Package",
+  "canonicalReference": "@acidic/vscode-state!",
+  "docComment": "",
+  "name": "@acidic/vscode-state",
+  "preserveMemberOrder": false,
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "@acidic/vscode-state!",
+      "name": "",
+      "preserveMemberOrder": false,
+      "members": [
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/vscode-state!ActionsTreeItem:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ActionsTreeItem extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeItem",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/actions-tree/actions-tree-item.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "ActionsTreeItem",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@acidic/vscode-state!ActionsTreeItem:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `ActionsTreeItem` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(commandString: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", extensionPath: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", generatorType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", generator?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "commandString",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "extensionPath",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "generatorType",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  },
+                  "isOptional": true
+                },
+                {
+                  "parameterName": "generator",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  },
+                  "isOptional": true
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ActionsTreeItem#commandString:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly commandString: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "commandString",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ActionsTreeItem#extensionPath:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly extensionPath: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "extensionPath",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ActionsTreeItem#generator:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly generator?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "generator",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ActionsTreeItem#generatorType:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly generatorType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "generatorType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!ActionsTreeItem.getIconUri:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static getIconUri(extensionPath: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "{\n        light: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n        dark: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n    } | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": true,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 8
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "extensionPath",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getIconUri"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!ActionsTreeItem#revealWorkspaceRoute:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "revealWorkspaceRoute(currentWorkspace: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TreeView",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ActionsTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!ActionsTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 6,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "currentWorkspace",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 5
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "revealWorkspaceRoute"
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/vscode-state!CHANGE_WORKSPACE:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "CHANGE_WORKSPACE: "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeItem",
+              "canonicalReference": "!unknown"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/actions-tree/actions-tree-provider.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "CHANGE_WORKSPACE",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/vscode-state!checkHasWorkspaceRoot:var",
+          "docComment": "/**\n * Check if the workspace root is valid\n *\n * @param workspaceRoot - The workspace root to check\n *\n * @returns An indicator specifying whether the workspace root is valid\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "checkHasWorkspaceRoot: "
+            },
+            {
+              "kind": "Content",
+              "text": "(workspaceRoot?: string) => boolean"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/utilities/check-has-workspace-root.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "checkHasWorkspaceRoot",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/vscode-state!createLogger:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "createLogger: "
+            },
+            {
+              "kind": "Content",
+              "text": "(config: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicConfig",
+              "canonicalReference": "@acidic/vscode-state!~AcidicConfig:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "StormTrace",
+              "canonicalReference": "!unknown"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/logger/create-logger.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "createLogger",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/vscode-state!createVsCodeLogger:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "createVsCodeLogger: "
+            },
+            {
+              "kind": "Content",
+              "text": "(config: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicConfig",
+              "canonicalReference": "@acidic/vscode-state!~AcidicConfig:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "LoggerWrapper",
+              "canonicalReference": "!unknown"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/logger/vscode-logger.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "createVsCodeLogger",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/vscode-state!createVsCodeStorage:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "createVsCodeStorage: "
+            },
+            {
+              "kind": "Content",
+              "text": "() => "
+            },
+            {
+              "kind": "Reference",
+              "text": "AsyncStringStorage",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
+              "text": "SyncStringStorage",
+              "canonicalReference": "!unknown"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/utilities/create-vscode-storage.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "createVsCodeStorage",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 5
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/vscode-state!getOutputChannel:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getOutputChannel(): "
+            },
+            {
+              "kind": "Reference",
+              "text": "OutputChannel",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/logger/vscode-logger.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [],
+          "name": "getOutputChannel"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/vscode-state!getStoredCollapsibleState:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getStoredCollapsibleState(treeItemId: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeItemCollapsibleState",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " | undefined"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/utilities/tree-item-collapsible-store.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 5
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "treeItemId",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "getStoredCollapsibleState"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/vscode-state!initServiceTree:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function initServiceTree(context: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ExtensionContext",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ", config: "
+            },
+            {
+              "kind": "Content",
+              "text": "any"
+            },
+            {
+              "kind": "Content",
+              "text": ", logger: "
+            },
+            {
+              "kind": "Reference",
+              "text": "StormTrace",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ", onReadyFn: "
+            },
+            {
+              "kind": "Content",
+              "text": "() => void"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeProvider",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider:class"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/service-tree/init-service-tree.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 9,
+            "endIndex": 13
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "context",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "config",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "logger",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "onReadyFn",
+              "parameterTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 8
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "initServiceTree"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/vscode-state!listenForAndStoreCollapsibleChanges:function(1)",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function listenForAndStoreCollapsibleChanges(serviceTreeView: "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeView",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeItem",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ", context: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ExtensionContext",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/utilities/tree-item-collapsible-store.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 8,
+            "endIndex": 9
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "serviceTreeView",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "context",
+              "parameterTypeTokenRange": {
+                "startIndex": 6,
+                "endIndex": 7
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "listenForAndStoreCollapsibleChanges"
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/vscode-state!LOCATE_YOUR_WORKSPACE:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "LOCATE_YOUR_WORKSPACE: "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeItem",
+              "canonicalReference": "!unknown"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/actions-tree/actions-tree-provider.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "LOCATE_YOUR_WORKSPACE",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/vscode-state!ServiceTreeItem:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ServiceTreeItem extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeItem",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/service-tree/service-tree-item.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "ServiceTreeItem",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItem:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `ServiceTreeItem` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(resourceUri: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", id: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", label: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", type: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceTreeItemType",
+                  "canonicalReference": "@acidic/vscode-state!ServiceTreeItemType:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", status?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceSchemaStatus",
+                  "canonicalReference": "@acidic/vscode-state!~ServiceSchemaStatus:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", description?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceUri",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "id",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "label",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "type",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "status",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 9,
+                    "endIndex": 10
+                  },
+                  "isOptional": true
+                },
+                {
+                  "parameterName": "description",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 11,
+                    "endIndex": 12
+                  },
+                  "isOptional": true
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItem#getIconPath:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getIconPath(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "{\n        light: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n        dark: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n    }"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getIconPath"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItem#name:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get name(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "name",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItem#resourceUri:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "resourceUri: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "resourceUri",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItem#status:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get status(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceSchemaStatus",
+                  "canonicalReference": "@acidic/vscode-state!~ServiceSchemaStatus:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "status",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItem#type:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get type(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceTreeItemType",
+                  "canonicalReference": "@acidic/vscode-state!ServiceTreeItemType:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "type",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ServiceTreeItemContextValue = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"workspace_active\" | \"workspace_refreshing\" | \"workspace_loading\" | \"service_active\" | \"service_refreshing\" | \"service_loading\" | \"plugin_active\" | \"plugin_refreshing\" | \"plugin_loading\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/types.d.ts",
+          "releaseTag": "Public",
+          "name": "ServiceTreeItemContextValue",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "ServiceTreeItemContextValue: "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    WORKSPACE_ACTIVE: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    WORKSPACE_REFRESHING: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    WORKSPACE_LOADING: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    SERVICE_ACTIVE: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    SERVICE_REFRESHING: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    SERVICE_LOADING: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    PLUGIN_ACTIVE: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    PLUGIN_REFRESHING: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    PLUGIN_LOADING: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemContextValue",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemContextValue:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/types.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "ServiceTreeItemContextValue",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 20
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@acidic/vscode-state!ServiceTreeItemType:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ServiceTreeItemType = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"workspace\" | \"service\" | \"plugin\""
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/types.d.ts",
+          "releaseTag": "Public",
+          "name": "ServiceTreeItemType",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/vscode-state!ServiceTreeItemType:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "ServiceTreeItemType: "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    WORKSPACE: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemType",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    SERVICE: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemType",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    PLUGIN: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItemType",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItemType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/types.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "ServiceTreeItemType",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 8
+          }
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class ServiceTreeProvider implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeDataProvider",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceTreeItem",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeItem:class"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/service-tree/service-tree-provider.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "ServiceTreeProvider",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `ServiceTreeProvider` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(config: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicConfig",
+                  "canonicalReference": "@acidic/vscode-state!~AcidicConfig:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", logger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormTrace",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", _onReadyFn: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "() => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "config",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "logger",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "_onReadyFn",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  },
+                  "isOptional": false
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider.create:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static create: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(config: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicConfig",
+                  "canonicalReference": "@acidic/vscode-state!~AcidicConfig:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", logger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormTrace",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", onReadyFn: () => void) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceTreeProvider",
+                  "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "create",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 10
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider#getChildren:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getChildren(element?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!ServiceTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!ServiceTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "element",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": true
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getChildren"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider#getParent:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getParent(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getParent"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider#getTreeItem:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getTreeItem(element: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!ServiceTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TreeItem",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "element",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getTreeItem"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider#onDidChangeTreeData:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly onDidChangeTreeData: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Event",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!ServiceTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | undefined>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "onDidChangeTreeData",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider#refresh:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "refresh(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "refresh"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/vscode-state!SupportTreeItem:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class SupportTreeItem extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeItem",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/support-tree/support-tree-item.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "SupportTreeItem",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeItem:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `SupportTreeItem` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(title: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", link: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", icon: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | {\n        light: string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n        dark: string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n    } | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ThemeIcon",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "title",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "link",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "icon",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 13
+                  },
+                  "isOptional": false
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeItem#commandString:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "commandString: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "commandString",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeItem#icon:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly icon: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | {\n        light: string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n        dark: string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uri",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n    } | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ThemeIcon",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "icon",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 9
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeItem#registerCommand:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "registerCommand(url: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "url",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "registerCommand"
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/vscode-state!SupportTreeProvider:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class SupportTreeProvider implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "TreeDataProvider",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "SupportTreeItem",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeItem:class"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/support-tree/support-tree-provider.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "SupportTreeProvider",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeProvider:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `SupportTreeProvider` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ExtensionContext",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "context",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeProvider#getChildren:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getChildren(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SupportTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!SupportTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[] | null | undefined>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getChildren"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeProvider#getParent:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getParent(_: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SupportTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!SupportTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TreeItem",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "_",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getParent"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeProvider#getTreeItem:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getTreeItem(element: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SupportTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!SupportTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TreeItem",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "element",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getTreeItem"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeProvider#onDidChangeTreeData:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly onDidChangeTreeData: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Event",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "SupportTreeItem",
+                  "canonicalReference": "@acidic/vscode-state!SupportTreeItem:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | undefined>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "onDidChangeTreeData",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!SupportTreeProvider#refresh:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "refresh(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "refresh"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 5
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore:class",
+          "docComment": "/**\n * Configuration store that has config related to the opened workspace in vscode\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class WorkspaceConfigStore "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode-state/src/utilities/workspace-config-store.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "WorkspaceConfigStore",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `WorkspaceConfigStore` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(state: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Memento",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ExtensionContext",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", logger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormTrace",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "state",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "context",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "logger",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  },
+                  "isOptional": false
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore#config:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get config(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicConfig",
+                  "canonicalReference": "@acidic/vscode-state!~AcidicConfig:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "config",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore#context:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get context(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ExtensionContext",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n\nset context(context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ExtensionContext",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "context",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore#delete:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "delete(key: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "key",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "delete"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore.fromContext:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static fromContext(context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ExtensionContext",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", logger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormTrace",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "WorkspaceConfigStore",
+                  "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": true,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "context",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "logger",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "fromContext"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore#get:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get<T>(key: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", defaultValue: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "typeParameters": [
+                {
+                  "typeParameterName": "T",
+                  "constraintTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  },
+                  "defaultTypeTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  }
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "key",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "defaultValue",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "get"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore.instance:member",
+              "docComment": "/**\n * Returns the instance of WorkspaceConfigStore\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static get instance(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "WorkspaceConfigStore",
+                  "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "instance",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore#set:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "set<T>(key: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", value: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "typeParameters": [
+                {
+                  "typeParameterName": "T",
+                  "constraintTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  },
+                  "defaultTypeTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  }
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "key",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "value",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "set"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!WorkspaceConfigStore#workspaceRoot:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get workspaceRoot(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";\n\nset workspaceRoot(workspaceRoot: string);"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "workspaceRoot",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            }
+          ],
+          "implementsTokenRanges": []
+        }
+      ]
+    }
+  ]
+}

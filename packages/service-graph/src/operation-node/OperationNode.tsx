@@ -1,7 +1,7 @@
 //import { stringify } from "@storm-stack/serialization";
-import { ObjectDefinition } from "@acidic/schema";
+import { ObjectDefinition } from "@acidic/definition";
 import React from "react";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { BaseNode } from "../base-node";
 import { NodeFieldList } from "../node-field-list";
 import { operationAtoms, useGraphStore } from "../state";

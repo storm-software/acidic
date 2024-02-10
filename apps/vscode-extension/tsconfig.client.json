@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
@@ -10,11 +10,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": false,
-    "types": [
-      "@nx/react/typings/cssmodule.d.ts",
-      "@nx/react/typings/image.d.ts",
-      "node"
-    ]
+    "types": ["@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "node"]
   },
   "exclude": [
     "client/**/*.spec.ts",

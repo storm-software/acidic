@@ -1,0 +1,63 @@
+{
+  "name": "definition",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/definition/src",
+  "targets": {
+    "clean-base": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "command": "pnpm exec rimraf packages/definition/src/__generated__/typia"
+      }
+    },
+    "build-base": {
+      "cache": true,
+      "dependsOn": ["clean-base"],
+      "executor": "@storm-software/workspace-tools:typia",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entryPath": "packages/definition/src/definitions",
+        "outputPath": "packages/definition/src/__generated__/typia",
+        "tsConfig": "packages/definition/tsconfig.json"
+      }
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": ["build-base"],
+      "executor": "@storm-software/workspace-tools:tsup-neutral",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "main": "packages/definition/src/index.ts",
+        "outputPath": "dist/packages/definition",
+        "tsConfig": "packages/definition/tsconfig.json",
+        "project": "packages/definition/package.json",
+        "defaultConfiguration": "production",
+        "skipTypia": false
+      },
+      "configurations": {
+        "production": {
+          "debug": false
+        },
+        "development": {
+          "debug": true,
+          "minify": false
+        }
+      }
+    },
+    "lint": {},
+    "test": {},
+    "nx-release-publish": {
+      "cache": false,
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "executor": "@storm-software/workspace-tools:npm-publish",
+      "options": {
+        "packageRoot": "dist/{projectRoot}",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
+  },
+  "tags": []
+}

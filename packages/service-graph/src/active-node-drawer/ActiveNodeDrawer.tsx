@@ -1,6 +1,6 @@
 import { RESET } from "jotai/utils";
 import React, { useLayoutEffect, useRef } from "react";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { ActiveNodeDrawerHeader } from "../active-node-drawer-header";
 import { Drawer, DrawerProps, DrawerRef } from "../drawer";
 import { useEvent } from "../hooks";

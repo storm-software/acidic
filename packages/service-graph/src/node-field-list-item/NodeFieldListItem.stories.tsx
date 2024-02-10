@@ -1,4 +1,4 @@
-import { NodeKind, ObjectSchema } from "@acidic/schema";
+import { NodeKind, ObjectSchema } from "@acidic/definition";
 import type { Meta, StoryObj } from "@storybook/react";
 import { NodeFieldListItem } from "./NodeFieldListItem";
 

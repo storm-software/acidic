@@ -1,7 +1,7 @@
 // Monarch syntax highlighting for the acidic language.
 export default {
     keywords: [
-        'Any','Asc','BigInt','Boolean','Bytes','ContextType','Date','DateTime','Decimal','Desc','FieldReference','Float','Int','Json','Mutation','Null','Object','Query','String','Subscription','Time','TransitiveFieldReference','Unsupported','abstract','attribute','datasource','enum','event','extend','extends','false','function','generator','import','in','model','plugin','service','sort','true','type','view'
+        'Any','Asc','BigInt','Boolean','Bytes','ContextType','Date','DateTime','Decimal','Desc','FieldReference','Float','Int','Json','Mutation','Null','Object','Query','String','Subscription','Time','TransitiveFieldReference','Unsupported','abstract','attribute','baseUrl','datasource','enum','event','extend','extends','false','function','generator','import','in','model','owner','plugin','service','sort','true','type','view'
     ],
     operators: [
         '!','!=','&&',',','.',':',';','<','<=','=','==','>','>=','?','@','@@','@@@','^','_','||'

@@ -1,31 +1,31 @@
-import { uuid } from "@storm-stack/unique-identifier";
+import { snowflake, uuid } from "@storm-stack/unique-identifier";
 import clsx from "clsx";
+// biome-ignore lint/nursery/useImportType: <explanation>
 import React, { useCallback, useState } from "react";
 import ReactFlow, {
   Background,
+  type ReactFlowInstance,
   ConnectionLineType,
-  Node,
-  OnSelectionChangeParams,
-  Panel,
-  ReactFlowInstance,
-  addEdge
+  type OnSelectionChangeParams,
+  // addEdge
+  type Node
 } from "reactflow";
-import "reactflow/dist/style.css";
-import iconImage from "../../../../../assets/icons/dark/icon.png";
 import { ActiveNodeDrawer } from "../../active-node-drawer";
 import { ControlPanel } from "../../control-panel";
+import { MiniMap } from "../../mini-map";
 import { EnumNode } from "../../enum-node";
 import { EventNode } from "../../event-node";
-import { MiniMap } from "../../mini-map";
 import { ModelNode } from "../../model-node";
 import { ObjectNode } from "../../object-node";
 import { OperationNode } from "../../operation-node";
 import { PluginNode } from "../../plugin-node";
 import { ServiceNode } from "../../service-node";
-import { useGraphStore } from "../../state";
-import { getLayoutElements } from "../../utilities/get-layout";
 import { NodeType } from "../../utilities/node-types";
 import "./ServiceGraphLayout.css";
+import { IconPanel } from "../../icon-panel";
+import { useGraphStore } from "../../state/create-graph-store";
+// import { getLayoutElements } from "../../utilities/get-layout";
+import { useEvent } from "../../hooks/use-event";
 
 export const NODE_TYPES = {
   [NodeType.MODEL_NODE]: ModelNode,
@@ -44,12 +44,11 @@ export interface ServiceGraphLayoutProps {
 export const ServiceGraphLayout: React.FC<ServiceGraphLayoutProps> = ({
   className
 }: ServiceGraphLayoutProps) => {
+  const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
   const [nodes, setNodes] = useGraphStore().use.nodes();
   const [edges, setEdges] = useGraphStore().use.edges();
 
   const backgroundVariant = useGraphStore().get.backgroundVariant();
-  const [reactFlowInstance, setReactFlowInstance] =
-    useState<ReactFlowInstance | null>(null);
 
   const setActiveId = useGraphStore().set.activeId();
   const onSelect = useCallback(
@@ -59,68 +58,58 @@ export const ServiceGraphLayout: React.FC<ServiceGraphLayoutProps> = ({
         setNodes(elements.nodes);
       }
     },
-    [setActiveId, nodes]
+    [setActiveId, setNodes]
   );
 
-  const onConnect = useCallback(
-    params => {
-      const { nodes: layoutNodes, edges: layoutEdges } = getLayoutElements(
-        nodes,
-        edges,
-        "LR"
-      );
+  // const onConnect = useCallback(
+  //   (params) => {
+  //     const { nodes: layoutNodes, edges: layoutEdges } = getLayoutElements(nodes, edges, "LR");
 
-      setNodes([...layoutNodes]);
-      setEdges(eds => [
-        ...layoutEdges,
-        ...addEdge(
-          { ...params, type: ConnectionLineType.SmoothStep, animated: true },
-          eds
-        )
-      ]);
-    },
-    [nodes, edges, setNodes, setEdges]
-  );
+  //     setNodes([...layoutNodes]);
+  //     setEdges((eds) => [
+  //       ...layoutEdges,
+  //       ...addEdge({ ...params, type: ConnectionLineType.SmoothStep, animated: true }, eds)
+  //     ]);
+  //   },
+  //   [nodes, edges, setNodes, setEdges]
+  // );
 
-  const onDragOver = useCallback(event => {
+  const onDragOver = useEvent((event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
-  }, []);
+  });
 
-  const onDrop = useCallback(
-    event => {
-      event.preventDefault();
+  const onDrop = useEvent((event) => {
+    event.preventDefault();
 
-      const type = event.dataTransfer.getData("application/reactflow");
+    const type = event.dataTransfer.getData("application/reactflow");
 
-      // check if the dropped element is valid
-      if (typeof type === "undefined" || !type) {
-        return;
-      }
+    // check if the dropped element is valid
+    if (typeof type === "undefined" || !type) {
+      return;
+    }
 
-      if (reactFlowInstance) {
-        // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
-        // and you don't need to subtract the reactFlowBounds.left/top anymore
-        // details: https://reactflow.dev/whats-new/2023-11-10
-        const position = reactFlowInstance.screenToFlowPosition({
-          x: event.clientX,
-          y: event.clientY
-        });
-        const newNode = {
-          id: uuid(),
-          type,
-          position,
-          data: {}
-        };
+    if (reactFlowInstance) {
+      // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
+      // and you don't need to subtract the reactFlowBounds.left/top anymore
+      // details: https://reactflow.dev/whats-new/2023-11-10
+      const position = reactFlowInstance.screenToFlowPosition({
+        x: event.clientX,
+        y: event.clientY
+      });
+      const newNode = {
+        id: snowflake(),
+        type,
+        position,
+        data: {}
+      };
 
-        setNodes((currentNodes: Node[]) => currentNodes.concat(newNode));
-      }
-    },
-    [reactFlowInstance]
-  );
+      setNodes((currentNodes: Node[]) => currentNodes.concat(newNode));
+    }
+  });
 
   return (
-    <div className={clsx("h-[40rem] w-full", className)}>
+    <div className={clsx("h-[40rem] w-full overflow-hidden", className)}>
       <ReactFlow
         noDragClassName="acidic-no-drag"
         nodesDraggable={true}
@@ -132,26 +121,23 @@ export const ServiceGraphLayout: React.FC<ServiceGraphLayoutProps> = ({
         edges={edges}
         onNodesChange={setNodes}
         onEdgesChange={setEdges}
-        onConnect={onConnect}
+        // onConnect={onConnect}
         onInit={setReactFlowInstance}
         onDrop={onDrop}
         onDragOver={onDragOver}
         connectionLineType={ConnectionLineType.SmoothStep}
-        nodeTypes={NODE_TYPES}>
+        nodeTypes={NODE_TYPES}
+      >
         <Background
           id="bg-1"
           color="#1a202c"
-          variant={backgroundVariant ? backgroundVariant! : undefined}
+          variant={backgroundVariant ? backgroundVariant : undefined}
         />
 
         <ControlPanel />
         <MiniMap reactFlowInstance={reactFlowInstance} />
         <ActiveNodeDrawer size="sm" />
-        <Panel position="top-left" className="text-2xl font-bold text-white">
-          <a href="https://acidic.io" target="_blank" rel="noreferrer">
-            <img src={iconImage} alt="Acidic" className="h-16 w-16" />
-          </a>
-        </Panel>
+        <IconPanel />
       </ReactFlow>
     </div>
   );

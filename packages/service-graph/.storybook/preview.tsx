@@ -1,8 +1,10 @@
-import { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/react";
+// biome-ignore lint/nursery/useImportType: <explanation>
 import React from "react";
 import theme from "../../../.storybook/themes/storm.theme";
 import "../../../.storybook/themes/tailwind.css";
-import { GraphStoreProvider } from "../src/state/GraphStoreProvider";
+import { GraphStoreProvider } from "../src/graph-store-provider/GraphStoreProvider";
+import { DataSourceType, FieldType, NodeKind } from "@acidic/definition";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -16,31 +18,30 @@ export const parameters = {
 
 const preview: Preview = {
   decorators: [
-    Story =>
+    (Story) =>
       (
         <GraphStoreProvider
           schemas={[
             {
               name: "ExampleService",
-              kind: "service",
+              kind: NodeKind.SERVICE,
               comments: [
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
               ],
               dataSource: {
-                kind: "data_source",
+                kind: NodeKind.DATA_SOURCE,
                 name: "exampleDataSource",
-                provider: "mysql",
+                provider: DataSourceType.POSTGRES,
                 comments: [
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 ],
-                "url":
-                  "https://github.com/bluwy/publint/blob/master/pkg/src/index.js",
+                url: "https://github.com/bluwy/publint/blob/master/pkg/src/index.js",
                 directUrl:
                   "https://www.google.com/search?client=avast-a-1&q=publint&oq=publint&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQABhAMgYIAhAAGEAyBggDEAAYQDIGCAQQABhAMgYIBRAAGEAyBggGEAAYQDIGCAcQABhA0gEIMTYwMWowajSoAgCwAgA&ie=UTF-8"
               },
               plugins: [
                 {
-                  kind: "plugin",
+                  kind: NodeKind.PLUGIN,
                   name: "examplePlugin",
                   comments: [
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -48,74 +49,82 @@ const preview: Preview = {
                   provider: "@example/provider",
                   output: "node_modules/.storm/examplePlugin",
                   dependencies: ["exampleDependency1", "exampleDependency2"],
-                  dependencyOf: "exampleDependency3",
                   options: {
                     exampleOption: "exampleValue",
                     anotherOption: 1,
                     thirdOption: [1, 2, 3],
                     lastOption: true
-                  }
+                  },
+                  attributes: []
                 }
               ],
               queries: [
                 {
-                  kind: "query",
+                  kind: NodeKind.QUERY,
                   name: "ExampleQuery",
                   comments: [
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                   ],
                   url: "https://stormcloud.dev/graphql",
                   request: {
-                    ref: {
-                      kind: "object",
-                      name: "ExampleObject",
-                      comments: [
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                      ],
-
-                      fields: [
-                        {
-                          name: "exampleString",
-                          type: "String",
-                          isRequired: false,
-                          isArray: false,
-                          attributes: [],
-                          defaultValue: "Example Default"
-                        },
-                        {
-                          name: "exampleDecimal",
-                          type: "Decimal",
-                          isArray: false,
-                          attributes: [],
-                          defaultValue: 5.005
-                        },
-                        {
-                          name: "exampleStringArray",
-                          type: "String",
-                          isRequired: false,
-                          isArray: true,
-                          attributes: []
-                        },
-                        {
-                          name: "exampleBooleanRequired",
-                          type: "Boolean",
-                          isRequired: true,
-                          isArray: false,
-                          attributes: []
-                        }
-                      ],
-
-                      relationships: [],
-                      extends: [],
-                      isExtend: false,
-                      attributes: []
-                    },
-                    isArray: false
+                    kind: NodeKind.OBJECT,
+                    name: "ExampleObject",
+                    comments: [
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    ],
+                    fields: [
+                      {
+                        name: "exampleString",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.STRING,
+                        isRequired: false,
+                        isArray: false,
+                        attributes: [],
+                        defaultValue: "Example Default"
+                      },
+                      {
+                        name: "exampleDecimal",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.DECIMAL,
+                        isArray: false,
+                        isRequired: true,
+                        attributes: [],
+                        defaultValue: 5.005
+                      },
+                      {
+                        name: "exampleStringArray",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.STRING,
+                        isRequired: false,
+                        isArray: true,
+                        attributes: []
+                      },
+                      {
+                        name: "exampleBooleanRequired",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.BOOLEAN,
+                        isRequired: true,
+                        isArray: false,
+                        attributes: []
+                      }
+                    ],
+                    relationships: [],
+                    extends: [],
+                    isExtending: false,
+                    attributes: []
                   },
                   response: {
                     isArray: true,
                     ref: {
-                      kind: "object",
+                      kind: NodeKind.OBJECT,
                       name: "ExampleObject",
                       comments: [
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -123,7 +132,10 @@ const preview: Preview = {
                       fields: [
                         {
                           name: "exampleString",
-                          type: "String",
+                          comments: [
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                          ],
+                          type: FieldType.STRING,
                           isRequired: false,
                           isArray: false,
                           attributes: [],
@@ -131,30 +143,39 @@ const preview: Preview = {
                         },
                         {
                           name: "exampleDecimal",
-                          type: "Decimal",
+                          comments: [
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                          ],
+                          type: FieldType.DECIMAL,
                           isArray: false,
+                          isRequired: true,
                           attributes: [],
                           defaultValue: 5.005
                         },
                         {
                           name: "exampleStringArray",
-                          type: "String",
+                          comments: [
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                          ],
+                          type: FieldType.STRING,
                           isRequired: false,
                           isArray: true,
                           attributes: []
                         },
                         {
                           name: "exampleBooleanRequired",
-                          type: "Boolean",
+                          comments: [
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                          ],
+                          type: FieldType.BOOLEAN,
                           isRequired: true,
                           isArray: false,
                           attributes: []
                         }
                       ],
-
                       relationships: [],
                       extends: [],
-                      isExtend: false,
+                      isExtending: false,
                       attributes: []
                     }
                   },
@@ -165,20 +186,26 @@ const preview: Preview = {
               ],
               models: [
                 {
-                  kind: "model",
+                  kind: NodeKind.MODEL,
+                  comments: [
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                  ],
                   name: "ExampleModel",
                   tableName: "example_object",
-                  ref: {
-                    kind: "object",
+                  attributes: [],
+                  data: {
+                    kind: NodeKind.OBJECT,
                     name: "ExampleObject",
                     comments: [
                       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                     ],
-
                     fields: [
                       {
                         name: "exampleString",
-                        type: "String",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.STRING,
                         isRequired: false,
                         isArray: false,
                         attributes: [],
@@ -186,46 +213,57 @@ const preview: Preview = {
                       },
                       {
                         name: "exampleDecimal",
-                        type: "Decimal",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.DECIMAL,
                         isArray: false,
+                        isRequired: true,
                         attributes: [],
                         defaultValue: 5.005
                       },
                       {
                         name: "exampleStringArray",
-                        type: "String",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.STRING,
                         isRequired: false,
                         isArray: true,
                         attributes: []
                       },
                       {
                         name: "exampleBooleanRequired",
-                        type: "Boolean",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.BOOLEAN,
                         isRequired: true,
                         isArray: false,
                         attributes: []
                       }
                     ],
-
                     relationships: [],
                     extends: [],
-                    isExtend: false,
+                    isExtending: false,
                     attributes: []
                   }
                 }
               ],
               objects: [
                 {
-                  kind: "object",
+                  kind: NodeKind.OBJECT,
                   name: "ExampleObject",
                   comments: [
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                   ],
-
                   fields: [
                     {
                       name: "exampleString",
-                      type: "String",
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                      ],
+                      type: FieldType.STRING,
                       isRequired: false,
                       isArray: false,
                       attributes: [],
@@ -233,36 +271,45 @@ const preview: Preview = {
                     },
                     {
                       name: "exampleDecimal",
-                      type: "Decimal",
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                      ],
+                      type: FieldType.DECIMAL,
                       isArray: false,
+                      isRequired: true,
                       attributes: [],
                       defaultValue: 5.005
                     },
                     {
                       name: "exampleStringArray",
-                      type: "String",
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                      ],
+                      type: FieldType.STRING,
                       isRequired: false,
                       isArray: true,
                       attributes: []
                     },
                     {
                       name: "exampleBooleanRequired",
-                      type: "Boolean",
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                      ],
+                      type: FieldType.BOOLEAN,
                       isRequired: true,
                       isArray: false,
                       attributes: []
                     }
                   ],
-
                   relationships: [],
                   extends: [],
-                  isExtend: false,
+                  isExtending: false,
                   attributes: []
                 }
               ],
               enums: [
                 {
-                  kind: "enum",
+                  kind: NodeKind.ENUM,
                   name: "ExampleEnum",
                   comments: [
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -271,93 +318,115 @@ const preview: Preview = {
                   fields: [
                     {
                       name: "FIELD_NAME1",
-                      type: "Int",
-                      value: 0
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                      ],
+                      type: FieldType.STRING,
+                      value: "FIELD_NAME1"
                     },
                     {
                       name: "FIELD_NAME2",
-                      type: "Int",
-                      value: 1
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                      ],
+                      type: FieldType.STRING,
+                      value: "FIELD_NAME2"
                     },
                     {
                       name: "FIELD_NAME3",
-                      type: "Int",
-                      value: 2
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                      ],
+                      type: FieldType.STRING,
+                      value: "FIELD_NAME3"
                     },
                     {
                       name: "FIELD_NAME4",
-                      type: "Int",
-                      value: 3
+                      comments: [
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                      ],
+                      type: FieldType.STRING,
+                      value: "FIELD_NAME4"
                     }
-                  ],
-                  attributes: []
+                  ]
                 }
               ],
               events: [
                 {
-                  kind: "event",
+                  kind: NodeKind.EVENT,
+                  comments: [
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                  ],
                   name: "ExampleEvent",
                   topic: "storm.example.topic",
                   data: {
-                    ref: {
-                      kind: "object",
-                      name: "ExampleObject",
-                      comments: [
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                      ],
-
-                      fields: [
-                        {
-                          name: "exampleString",
-                          type: "String",
-                          isRequired: false,
-                          isArray: false,
-                          attributes: [],
-                          defaultValue: "Example Default"
-                        },
-                        {
-                          name: "exampleDecimal",
-                          type: "Decimal",
-                          isArray: false,
-                          attributes: [],
-                          defaultValue: 5.005
-                        },
-                        {
-                          name: "exampleStringArray",
-                          type: "String",
-                          isRequired: false,
-                          isArray: true,
-                          attributes: []
-                        },
-                        {
-                          name: "exampleBooleanRequired",
-                          type: "Boolean",
-                          isRequired: true,
-                          isArray: false,
-                          attributes: []
-                        }
-                      ],
-
-                      relationships: [],
-                      extends: [],
-                      isExtend: false,
-                      attributes: []
-                    },
-                    isArray: false
-                  }
+                    kind: NodeKind.OBJECT,
+                    name: "ExampleObject",
+                    comments: [
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    ],
+                    fields: [
+                      {
+                        name: "exampleString",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.STRING,
+                        isRequired: false,
+                        isArray: false,
+                        attributes: [],
+                        defaultValue: "Example Default"
+                      },
+                      {
+                        name: "exampleDecimal",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.DECIMAL,
+                        isArray: false,
+                        isRequired: true,
+                        attributes: [],
+                        defaultValue: 5.005
+                      },
+                      {
+                        name: "exampleStringArray",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.STRING,
+                        isRequired: false,
+                        isArray: true,
+                        attributes: []
+                      },
+                      {
+                        name: "exampleBooleanRequired",
+                        comments: [
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                        ],
+                        type: FieldType.BOOLEAN,
+                        isRequired: true,
+                        isArray: false,
+                        attributes: []
+                      }
+                    ],
+                    relationships: [],
+                    extends: [],
+                    isExtending: false,
+                    attributes: []
+                  },
+                  attributes: []
                 }
               ],
               imports: [],
               mutations: [],
-              subscriptions: []
+              subscriptions: [],
+              attributes: []
             }
-          ]}>
+          ]}
+        >
           <Story />
         </GraphStoreProvider>
-      ) as React.ReactElement<
-        unknown,
-        string | React.JSXElementConstructor<any>
-      >
+      ) as React.ReactElement<unknown, string | React.JSXElementConstructor<any>>
   ],
   parameters: {
     docs: {

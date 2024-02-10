@@ -1,9 +1,14 @@
-import { createAcidicConfig } from "@acidic/config";
+import type { AcidicConfig } from "@acidic/definition";
 import { AcidicEngine } from "@acidic/engine";
 import { createCLIProgram } from "@storm-stack/cli";
-import { StormLog } from "@storm-stack/logging";
+import type { StormTrace } from "@storm-stack/telemetry";
 
-export const createCLIAcidicProgram = async (): Promise<number> => {
+export const createCLIAcidicProgram = async (
+  config: AcidicConfig,
+  logger: StormTrace
+): Promise<number> => {
+  const engine = await AcidicEngine.create(config, logger);
+
   await createCLIProgram({
     name: "acidic",
     description:
@@ -19,8 +24,7 @@ export const createCLIAcidicProgram = async (): Promise<number> => {
     commands: [
       {
         name: "info",
-        description:
-          "Get information of installed Acidic and related packages.",
+        description: "Get information of installed Acidic and related packages.",
         argument: [
           {
             flags: "path",
@@ -48,8 +52,7 @@ export const createCLIAcidicProgram = async (): Promise<number> => {
           },
           {
             flags: "tag",
-            description:
-              "the NPM package tag to use when installing dependencies"
+            description: "the NPM package tag to use when installing dependencies"
           }
         ],
         argument: [
@@ -73,27 +76,27 @@ export const createCLIAcidicProgram = async (): Promise<number> => {
             }
           },
           {
-            flags: "config",
-            description: "config file"
-          },
-          {
             flags: "package-manager",
             description: "package manager to use"
           },
           {
-            flags: "no-dependency-check",
+            flags: "output",
             description: "do not check if dependencies are installed"
           }
         ],
-        action: async () => {
-          const config = createAcidicConfig();
-          const logger = StormLog.create(config, "Acidic Daemon");
-          const Engine = await AcidicEngine.create(config, logger);
-
-          await Engine.execute({
-            schema: config.schemaPath,
-            packageManager: config.extensions.acidic.packageManager,
-            outputPath: config.extensions.acidic.outputPath
+        action: async ({
+          schema,
+          packageManager,
+          output
+        }: {
+          schema: string;
+          packageManager: string;
+          output?: string;
+        }) => {
+          await engine.execute({
+            schema: schema ? schema : config.schemaPath,
+            packageManager: packageManager ? packageManager : config.packageManager,
+            outputPath: output ? output : config.extensions.acidic.outputPath
           });
         }
       }

@@ -1,13 +1,19 @@
 /// <reference types='vitest' />
 import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
 import react from "@vitejs/plugin-react-swc";
-import * as path from "path";
+import * as path from "node:path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
   root: __dirname,
   cacheDir: "../../node_modules/.vite/packages/service-graph",
+
+  esbuild: {
+    jsxInject: `import React from 'react'; \nimport "reactflow/dist/style.css";`
+  },
+
+  assetsInclude: ["../../assets/images/bg-noise.webp", "../../assets/icons/dark/icon.png"],
 
   plugins: [
     react(),
@@ -36,6 +42,7 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true
     },
+
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: "src/index.ts",

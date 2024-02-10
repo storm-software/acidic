@@ -1,13 +1,7 @@
 /**
  * Supported Prisma db providers
  */
-export const SUPPORTED_PROVIDERS = [
-  "sqlite",
-  "postgresql",
-  "mysql",
-  "sqlserver",
-  "cockroachdb"
-];
+export const SUPPORTED_PROVIDERS = ["sqlite", "postgresql", "mysql", "sqlserver", "cockroachdb"];
 
 /**
  * Name of module contributed by plugins

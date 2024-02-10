@@ -1,7 +1,7 @@
 {
   "name": "cli",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
+  "projectType": "application",
   "sourceRoot": "apps/cli/src",
   "targets": {
     "build": {
@@ -9,10 +9,11 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/cli",
+        "main": "apps/cli/bin/acidic.ts",
         "tsConfig": "apps/cli/tsconfig.json",
         "project": "apps/cli/package.json",
         "defaultConfiguration": "production",
-        "additionalEntryPoints": ["apps/cli/bin/acidic.ts"]
+        "external": ["pnpapi"]
       },
       "configurations": {
         "production": {
@@ -26,6 +27,16 @@
       }
     },
     "lint": {},
-    "test": {}
+    "test": {},
+    "nx-release-publish": {
+      "cache": false,
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "executor": "@storm-software/workspace-tools:npm-publish",
+      "options": {
+        "packageRoot": "dist/{projectRoot}",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
   }
 }

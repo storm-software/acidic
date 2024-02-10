@@ -4,15 +4,16 @@
 
 ```ts
 
-import { StormConfig } from '@storm-software/config-tools';
+import type { StormConfig } from '@storm-software/config';
 
 // @public
 type AcidicConfig = StormConfig<"acidic", {
     defaultOptions?: Omit<AcidicPluginOptions, "provider">;
     outputPath?: string;
+    cacheDirectory?: string;
     input: string | readonly string[];
     ignored?: string | readonly string[];
-} & Record<string, OptionValue | OptionValue[] | Record<string, OptionValue | OptionValue[]>>>;
+}>;
 export { AcidicConfig }
 export { AcidicConfig as AcidicConfig_alias_1 }
 

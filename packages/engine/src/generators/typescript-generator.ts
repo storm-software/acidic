@@ -3,22 +3,18 @@ import tsconfigBase from "@storm-software/linting-tools/tsconfig/tsconfig.root.j
 import { ErrorCode, StormError } from "@storm-stack/errors";
 import { deepMerge } from "@storm-stack/utilities";
 import { ESLint } from "eslint";
-import { join } from "path";
-import prettier, { RequiredOptions } from "prettier";
+import { join } from "node:path";
+import prettier, { type RequiredOptions } from "prettier";
 import {
-  CompilerOptions,
+  type CompilerOptions,
   DiagnosticCategory,
   ModuleKind,
   ModuleResolutionKind,
   Project,
   ScriptTarget,
-  SourceFile
+  type SourceFile
 } from "ts-morph";
-import {
-  AcidicContext,
-  TypeScriptGeneratorConfig,
-  TypescriptPluginOptions
-} from "../types";
+import type { TypeScriptGeneratorConfig, TypescriptPluginOptions } from "../types";
 import { DirectoryTracker } from "./directory-tracker";
 import { Generator } from "./generator";
 
@@ -42,14 +38,13 @@ export abstract class TypescriptGenerator<
   }
 
   constructor(
-    context: AcidicContext,
     protected config: TypeScriptGeneratorConfig = {
       compiler: {},
       eslint: {},
       prettier: {}
     }
   ) {
-    super(context);
+    super();
 
     this.eslint = new ESLint({
       ...this.config.eslint,
@@ -73,7 +68,7 @@ export abstract class TypescriptGenerator<
     if (!shouldCompile || options.preserveTsFiles === true) {
       // save ts files
       await Promise.all(
-        this.project.getSourceFiles().map(async sf => {
+        this.project.getSourceFiles().map(async (sf) => {
           const extension = [".graphql", ".gql"].includes(sf.getExtension())
             ? "graphql"
             : "typescript";
@@ -92,10 +87,10 @@ export abstract class TypescriptGenerator<
     if (shouldCompile) {
       const errors = this.project
         .getPreEmitDiagnostics()
-        .filter(d => d.getCategory() === DiagnosticCategory.Error);
+        .filter((d) => d.getCategory() === DiagnosticCategory.Error);
       if (errors.length > 0) {
-        this.context.logger.error("Error compiling generated code:");
-        this.context.logger.error(
+        this.context?.logger.error("Error compiling generated code:");
+        this.context?.logger.error(
           this.project.formatDiagnosticsWithColorAndContext(errors.slice(0, 10))
         );
         await this.project.save();
@@ -109,13 +104,11 @@ export abstract class TypescriptGenerator<
 
       const emitErrors = result
         .getDiagnostics()
-        .filter(d => d.getCategory() === DiagnosticCategory.Error);
+        .filter((d) => d.getCategory() === DiagnosticCategory.Error);
       if (emitErrors.length > 0) {
-        this.context.logger.error("Some generated code is not emitted:");
-        this.context.logger.error(
-          this.project.formatDiagnosticsWithColorAndContext(
-            emitErrors.slice(0, 10)
-          )
+        this.context?.logger.error("Some generated code is not emitted:");
+        this.context?.logger.error(
+          this.project.formatDiagnosticsWithColorAndContext(emitErrors.slice(0, 10))
         );
         await this.project.save();
         throw new StormError(ErrorCode.processing_error, {
@@ -152,6 +145,7 @@ export abstract class TypescriptGenerator<
           : `.${fileExtension}`;
 
     const filePath = join(
+      // biome-ignore lint/style/noNonNullAssertion: <explanation>
       options.output!,
       fileName.endsWith(extension) ? fileName : `${fileName}${extension}`
     );
@@ -167,6 +161,7 @@ export abstract class TypescriptGenerator<
 
     if (options.generateIndexFiles !== false) {
       this.directoryTracker ??= new DirectoryTracker("/");
+      // biome-ignore lint/style/noNonNullAssertion: <explanation>
       this.directoryTracker.addFile(filePath.replace(options.output!, ""));
     }
   }
@@ -218,21 +213,21 @@ export abstract class TypescriptGenerator<
    * @param options The plugin options
    */
   private async formatProjectESLint(options: TOptions) {
-    this.context.logger.info("1. Create an instance.");
+    this.context?.logger.info("1. Create an instance.");
     // 1. Create an instance.
 
-    this.context.logger.info("2. Lint files.");
+    this.context?.logger.info("2. Lint files.");
     // 2. Lint files.
     const results = await this.eslint.lintFiles([`${options.output}/**/*.ts`]);
     await ESLint.outputFixes(results);
 
-    this.context.logger.info("3. Format the results..");
+    this.context?.logger.info("3. Format the results..");
     // 3. Format the results.
     const formatter = await this.eslint.loadFormatter("stylish");
     const resultText = await Promise.resolve(formatter.format(results));
-    this.context.logger.info(resultText);
+    this.context?.logger.info(resultText);
 
-    this.context.logger.info("4. Done Lint files.");
+    this.context?.logger.info("4. Done Lint files.");
   }
 
   /**
@@ -241,15 +236,9 @@ export abstract class TypescriptGenerator<
    * @param sourceFile The source file to format
    * @param parser The parser to use
    */
-  private async formatFilePrettier(
-    sourceFile: SourceFile,
-    parser = "typescript"
-  ) {
+  private async formatFilePrettier(sourceFile: SourceFile, parser = "typescript") {
     try {
-      const formatted = await this.formatStringPrettier(
-        sourceFile.getFullText(),
-        parser
-      );
+      const formatted = await this.formatStringPrettier(sourceFile.getFullText(), parser);
 
       sourceFile.replaceWithText(formatted);
       await sourceFile.save();
@@ -264,10 +253,8 @@ export abstract class TypescriptGenerator<
    * @param content The string content to format
    * @param parser The parser to use
    */
-  private formatStringPrettier = async (
-    content: string,
-    parser = "typescript"
-  ): Promise<string> => {
+
+  private formatStringPrettier = (content: string, parser = "typescript"): Promise<string> => {
     try {
       return prettier.format(content, {
         ...prettierConfig,
@@ -275,10 +262,10 @@ export abstract class TypescriptGenerator<
         parser
       } as Partial<RequiredOptions>);
     } catch (e) {
-      this.context.logger.error("Error formatting file");
-      this.context.logger.error(e);
+      this.context?.logger.error("Error formatting file");
+      this.context?.logger.error(e);
 
-      return content;
+      return Promise.resolve(content);
     }
   };
 }

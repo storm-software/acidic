@@ -1,0 +1,16 @@
+{
+  "name": "@acidic/messages",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A package containing modules to support server/client RPC communication, caching, and state management.",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/state"
+  },
+  "type": "module",
+  "publishConfig": { "access": "public" },
+  "dependencies": { "@storm-stack/utilities": "latest", "@storm-stack/serialization": "latest" },
+  "peerDependencies": { "typia": "^5.3.9" },
+  "peerDependenciesMeta": { "typia": { "optional": true } }
+}

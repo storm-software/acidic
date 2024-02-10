@@ -1,16 +1,16 @@
-import { ServiceDefinition } from "@acidic/schema";
+// biome-ignore lint/nursery/useImportType: <explanation>
 import React from "react";
-import "reactflow/dist/style.css";
 import { ServiceGraphLayout } from "./service-graph-layout";
 
 export interface ServiceGraphProps {
   className?: string;
-  schemas?: ServiceDefinition[];
 }
 
-export const ServiceGraph = ({ className, schemas }: ServiceGraphProps) => {
+export const ServiceGraph = ({
+  className
+}: ServiceGraphProps): React.ReactElement<ServiceGraphProps> => {
   return (
-    <div className="h-full w-full border-[1px] border-gray-600/50">
+    <div className="h-full w-full min-h-[500px] border-[1px] border-gray-600/50">
       <ServiceGraphLayout className={className} />
     </div>
   );

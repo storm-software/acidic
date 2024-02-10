@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React, { ReactNode, useState } from "react";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { useEvent } from "../hooks";
 
 export interface CollapsibleProps {

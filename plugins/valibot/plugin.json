@@ -1,0 +1,7 @@
+{
+  "id": "valibot",
+  "name": "Valibot",
+  "description": "Valibot Data Validation",
+  "options": {},
+  "tags": ["validation", "typescript"]
+}

@@ -1,12 +1,15 @@
 import {
-  Disposable,
-  ExtensionContext,
+  type Disposable,
+  type ExtensionContext,
   Uri,
   ViewColumn,
-  WebviewPanel,
+  type WebviewPanel,
   window
 } from "vscode";
 import { getUri } from "./get-uri";
+import type { StormTrace } from "@storm-stack/telemetry";
+import { createAcidicStore, type AcidicStore } from "@acidic/engine";
+import { stringifyService, type AcidicConfig } from "@acidic/definition";
 
 /**
  * Manages react webview panels
@@ -23,24 +26,38 @@ export class ReactPanel {
   #extensionPath: string;
   #disposables: Disposable[] = [];
 
-  public static createOrShow(context: ExtensionContext, title: string) {
-    const column = window.activeTextEditor
-      ? window.activeTextEditor.viewColumn
-      : undefined;
+  #config: AcidicConfig;
+  #logger: StormTrace;
+  #store!: AcidicStore;
+  #unsubscribe!: () => void;
+
+  public static async createOrShow(
+    context: ExtensionContext,
+    config: AcidicConfig,
+    logger: StormTrace,
+    title: string
+  ) {
+    const column = window.activeTextEditor ? window.activeTextEditor.viewColumn : undefined;
 
     if (ReactPanel.currentPanel) {
       ReactPanel.currentPanel.#panel.reveal(column);
     } else {
       ReactPanel.currentPanel = new ReactPanel(
         context,
+        config,
+        logger,
         title,
         column || { viewColumn: ViewColumn.Active, preserveFocus: false }
       );
+      await ReactPanel.currentPanel.setup();
+      await ReactPanel.currentPanel.sync();
     }
   }
 
   private constructor(
     context: ExtensionContext,
+    config: AcidicConfig,
+    logger: StormTrace,
     title: string,
     column:
       | ViewColumn
@@ -50,38 +67,27 @@ export class ReactPanel {
         }
   ) {
     this.#context = context;
+    this.#config = config;
+    this.#logger = logger;
     this.#extensionPath = this.#context.extensionPath;
 
-    this.#panel = window.createWebviewPanel(
-      ReactPanel.viewType,
-      title,
-      column,
-      {
-        // Enable javascript in the webview
-        enableScripts: true,
-        enableCommandUris: true,
-        retainContextWhenHidden: true,
-        localResourceRoots: [Uri.file(this.#extensionPath)]
-      }
-    );
+    this.#panel = window.createWebviewPanel(ReactPanel.viewType, title, column, {
+      // Enable javascript in the webview
+      enableScripts: true,
+      enableCommandUris: true,
+      retainContextWhenHidden: true,
+      localResourceRoots: [Uri.file(this.#extensionPath)]
+    });
 
     this.#panel.webview.html = this.getHtmlForWebview();
     this.#panel.iconPath = {
-      light: getUri(
-        this.#panel.webview,
-        this.#extensionPath,
-        "assets/logos/test-tube.png"
-      ),
-      dark: getUri(
-        this.#panel.webview,
-        this.#extensionPath,
-        "assets/logos/test-tube.png"
-      )
+      light: getUri(this.#panel.webview, this.#extensionPath, "assets/logos/test-tube.png"),
+      dark: getUri(this.#panel.webview, this.#extensionPath, "assets/logos/test-tube.png")
     };
 
     this.#panel.onDidDispose(() => this.dispose(), null, this.#disposables);
     this.#panel.webview.onDidReceiveMessage(
-      message => {
+      (message) => {
         switch (message.command) {
           case "startup":
             console.log("message received");
@@ -96,12 +102,24 @@ export class ReactPanel {
     );
   }
 
-  public doRefactor() {
-    this.#panel.webview.postMessage({ command: "refactor" });
+  public async sync() {
+    const services = await this.#store.getServices();
+    this.#logger.info(`Syncing client with ${services.length} services`);
+
+    this.#panel.webview.postMessage({
+      command: "updateServices",
+      data: {
+        services: services
+          .filter((service) => !!service?.definition)
+          // biome-ignore lint/style/noNonNullAssertion: <explanation>
+          .map((service) => stringifyService(service.definition!))
+      }
+    });
   }
 
   public dispose() {
     ReactPanel.currentPanel = undefined;
+    this.#unsubscribe();
     this.#panel.dispose();
 
     while (this.#disposables.length) {
@@ -110,6 +128,22 @@ export class ReactPanel {
         disposable.dispose();
       }
     }
+  }
+
+  private async setup() {
+    this.#store = await createAcidicStore(this.#config, this.#logger);
+    this.#unsubscribe = this.#store.subscribe(
+      async (args: {
+        key: string;
+        store: string;
+        value: any;
+      }) => {
+        this.#logger.info(`Store updated: ${args.key}`);
+        if (args.key.includes("service")) {
+          await this.sync();
+        }
+      }
+    );
   }
 
   private getHtmlForWebview() {
@@ -130,6 +164,11 @@ export class ReactPanel {
 				<meta name="theme-color" content="#000000">
         <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src vscode-resource: https:; script-src 'nonce-${nonce}';style-src vscode-resource: 'unsafe-inline' http: https: data:;">
         <title>Acidic Workspace</title>
+        <link rel="icon" href={${getUri(
+          this.#panel.webview,
+          this.#extensionPath,
+          "assets/logos/test-tube.png"
+        )} />
 
 				<link rel="stylesheet" type="text/css" href="${getUri(
           this.#panel.webview,
@@ -286,8 +325,7 @@ export class ReactPanel {
 
 function getNonce() {
   let text = "";
-  const possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   for (let i = 0; i < 32; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }

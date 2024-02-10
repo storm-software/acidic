@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.39.0",
+    "toolVersion": "7.38.5",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -199,7 +199,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-module.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-module.d.ts",
           "releaseTag": "Public",
           "name": "AcidicAddedServices",
           "typeTokenRange": {
@@ -226,7 +226,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-code-action.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-code-action.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicCodeActionProvider",
@@ -514,7 +514,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-definition.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-definition.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicDefinitionProvider",
@@ -690,7 +690,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-formatter.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-formatter.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicFormatter",
@@ -943,7 +943,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-linker.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-linker.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicLinker",
@@ -1106,7 +1106,7 @@
               "text": ">"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-module.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-module.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "AcidicModule",
@@ -1134,7 +1134,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-scope.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-scope.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicScopeComputation",
@@ -1393,7 +1393,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-scope.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-scope.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicScopeProvider",
@@ -1533,7 +1533,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-module.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-module.d.ts",
           "releaseTag": "Public",
           "name": "AcidicServices",
           "typeTokenRange": {
@@ -1560,7 +1560,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicValidationRegistry",
@@ -1616,7 +1616,7 @@
               "text": "export declare class AcidicValidator "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicValidator",
@@ -2575,7 +2575,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-parser.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-parser.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -2639,7 +2639,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-module.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-module.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 8
@@ -2708,7 +2708,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-module.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-module.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 9
@@ -2777,7 +2777,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-module.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-module.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 9
@@ -2828,7 +2828,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-data-source-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-data-source-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_1",
@@ -2940,7 +2940,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/attribute-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/attribute-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_10",
@@ -3052,7 +3052,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/expression-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/expression-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_11",
@@ -3164,7 +3164,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/function-decl-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/function-decl-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_12",
@@ -3276,7 +3276,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/function-invocation-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/function-invocation-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_13",
@@ -3388,7 +3388,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-enum-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-enum-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_2",
@@ -3500,7 +3500,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-event-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-event-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_3",
@@ -3612,7 +3612,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-model-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-model-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_4",
@@ -3724,7 +3724,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-mutation-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-mutation-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_5",
@@ -3836,7 +3836,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-object-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-object-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_6",
@@ -3948,7 +3948,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-query-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-query-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_7",
@@ -4060,7 +4060,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-schema-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-schema-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_8",
@@ -4236,7 +4236,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-subscription-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-subscription-validator.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias_9",
@@ -4335,7 +4335,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-workspace-manager.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-workspace-manager.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "default_alias",
@@ -4703,7 +4703,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/utilities/import-utilities.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/utilities/import-utilities.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 5,
             "endIndex": 8
@@ -4740,7 +4740,7 @@
               "text": "export interface MissingOppositeRelationData "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-model-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-model-validator.d.ts",
           "releaseTag": "Public",
           "name": "MissingOppositeRelationData_alias_1",
           "preserveMemberOrder": false,
@@ -4866,7 +4866,7 @@
               "text": "export interface MissingOppositeRelationData "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-mutation-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-mutation-validator.d.ts",
           "releaseTag": "Public",
           "name": "MissingOppositeRelationData_alias_2",
           "preserveMemberOrder": false,
@@ -4992,7 +4992,7 @@
               "text": "export interface MissingOppositeRelationData "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-object-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-object-validator.d.ts",
           "releaseTag": "Public",
           "name": "MissingOppositeRelationData_alias_3",
           "preserveMemberOrder": false,
@@ -5118,7 +5118,7 @@
               "text": "export interface MissingOppositeRelationData "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-query-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-query-validator.d.ts",
           "releaseTag": "Public",
           "name": "MissingOppositeRelationData_alias_4",
           "preserveMemberOrder": false,
@@ -5244,7 +5244,7 @@
               "text": "export interface MissingOppositeRelationData "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-subscription-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-subscription-validator.d.ts",
           "releaseTag": "Public",
           "name": "MissingOppositeRelationData_alias_5",
           "preserveMemberOrder": false,
@@ -5370,7 +5370,7 @@
               "text": "export interface MissingOppositeRelationData "
             }
           ],
-          "fileUrlPath": "packages/language-server/src/validators/acidic-event-validator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/validators/acidic-event-validator.d.ts",
           "releaseTag": "Public",
           "name": "MissingOppositeRelationData",
           "preserveMemberOrder": false,
@@ -5514,7 +5514,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/acidic-parser.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/acidic-parser.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -5574,7 +5574,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/utilities/import-utilities.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/utilities/import-utilities.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 5,
             "endIndex": 7
@@ -5633,7 +5633,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/utilities/import-utilities.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/utilities/import-utilities.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -5693,7 +5693,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/language-server/src/utilities/import-utilities.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/language-server/src/utilities/import-utilities.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 5,
             "endIndex": 7

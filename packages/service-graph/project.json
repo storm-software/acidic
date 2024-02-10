@@ -9,14 +9,17 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/service-graph"
+        "outputPath": "dist/packages/service-graph",
+        "configFile": "packages/service-graph/vite.config.ts"
       },
       "configurations": {
         "production": {
-          "mode": "production"
+          "mode": "production",
+          "minify": true
         },
         "development": {
-          "mode": "development"
+          "mode": "development",
+          "minify": false
         }
       }
     },
@@ -64,7 +67,17 @@
           "buildTarget": "service-graph:build-storybook:ci"
         }
       }
+    },
+    "nx-release-publish": {
+      "cache": false,
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "executor": "@storm-software/workspace-tools:npm-publish",
+      "options": {
+        "packageRoot": "dist/{projectRoot}",
+        "registry": "https://registry.npmjs.org/"
+      }
     }
   },
-  "implicitDependencies": ["schema"]
+  "implicitDependencies": ["definition"]
 }

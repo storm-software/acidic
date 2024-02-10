@@ -1,0 +1,21 @@
+{
+  "name": "@acidic/definition",
+  "version": "0.0.1",
+  "private": false,
+  "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/schema"
+  },
+  "type": "module",
+  "dependencies": {
+    "@storm-stack/errors": "latest",
+    "@storm-stack/serialization": "latest",
+    "@storm-stack/utilities": "latest"
+  },
+  "publishConfig": { "access": "public" },
+  "peerDependencies": { "typia": "^5.3.9" },
+  "peerDependenciesMeta": { "typia": { "optional": true } },
+  "devDependencies": { "@types/node": "20.9.0" }
+}

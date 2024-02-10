@@ -1,0 +1,45 @@
+{
+  "name": "plugin-valibot",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "plugins/valibot/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-node",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "entry": "plugins/valibot/src/index.ts",
+        "outputPath": "dist/plugins/valibot",
+        "tsConfig": "plugins/valibot/tsconfig.json",
+        "project": "plugins/valibot/package.json",
+        "defaultConfiguration": "production",
+        "external": ["pnpapi"],
+        "assets": [
+          {
+            "input": "plugins/valibot",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    },
+    "lint": {},
+    "test": {}
+  }
+}

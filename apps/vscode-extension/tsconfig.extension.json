@@ -1,16 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "moduleResolution": "Bundler",
-    "lib": ["esnext", "dom"]
+    "outDir": "../../dist/out-tsc"
   },
   "files": [],
-  "include": ["extension/**/*.ts", "extension/**/*.js", "declarations.d.ts"],
-  "exclude": [
-    "jest.config.ts",
-    "extension/**/*.spec.ts",
-    "extension/**/*.test.ts",
-    "client/**/*.*"
-  ]
+  "include": ["extension/**/*.ts", "extension/**/*.js"],
+  "exclude": ["jest.config.ts", "extension/**/*.spec.ts", "extension/**/*.test.ts", "client/**/*.*"]
 }

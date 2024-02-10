@@ -1,4 +1,16 @@
 {
-  "import": ["@storm-software/linting-tools/cspell/config.json"],
-  "words": ["autodocs", "Dagre", "langium", "rankdir", "reactflow"]
+  "import": [
+    "@storm-software/linting-tools/cspell/config.json"
+  ],
+  "words": [
+    "autodocs",
+    "Bento",
+    "bentocache",
+    "bentostore",
+    "Dagre",
+    "langium",
+    "nonpositive",
+    "rankdir",
+    "reactflow"
+  ]
 }

@@ -17,18 +17,21 @@ module.exports = {
         "mona-sans-light": ["Mona-Sans-Light", "sans-serif"],
         "antique-olive": ["Antique-Olive-Black", "sans-serif"]
       },
+      backgroundImage: {
+        "bg-noise": "url('/assets/images/bg-noise.webp')"
+      },
       animation: {
         "fade-in": "fade-in .5s ease-out both",
         "fade-out": "fade-out .5s ease-out both"
       },
       keyframes: {
         "fade-in": {
-          "0%": { "opacity": "0" },
-          "100%": { "opacity": "1" }
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" }
         },
         "fade-out": {
-          "0%": { "opacity": "1" },
-          "100%": { "opacity": "0" }
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" }
         }
       }
     }

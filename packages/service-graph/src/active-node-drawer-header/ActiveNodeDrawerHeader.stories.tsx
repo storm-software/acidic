@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ModelSchema } from "@acidic/schema";
+import { ModelSchema } from "@acidic/definition";
 import { ActiveNodeDrawerHeader } from "./ActiveNodeDrawerHeader";
 
 const meta: Meta<typeof ActiveNodeDrawerHeader> = {

@@ -1,13 +1,21 @@
 {
   "name": "@acidic/service-graph",
   "version": "0.0.1",
-  "private": false,
+  "private": true,
   "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
   "repository": {
     "type": "github",
     "url": "https://github.com/storm-software/acidic.git",
     "directory": "packages/service-graph"
   },
+  "type": "module",
+  "sideEffects": false,
+  "types": "index.d.ts",
+  "typings": "index.d.ts",
+  "typescript": { "definition": "index.d.ts" },
+  "main": "index.cjs",
+  "module": "index.js",
+  "files": ["**/*"],
   "dependencies": {
     "@dagrejs/dagre": "^1.0.4",
     "@storm-stack/jotai": "latest",
@@ -17,18 +25,17 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "dagre": "^0.8.5",
+    "jotai": "^2.6.0",
     "html-to-image": "^1.11.11",
     "reactflow": "^11.10.1",
     "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.45",
-    "jotai": "^2.6.0",
-    "react": "18.2.0"
+    "@types/react": "^18.2.45"
   },
   "peerDependencies": {
-    "jotai": "^2.6.0",
-    "react": "18.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "publishConfig": {
     "access": "public"

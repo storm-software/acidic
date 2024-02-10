@@ -1,6 +1,6 @@
-import { NodeKind } from "@acidic/schema";
+import { NodeKind } from "@acidic/definition";
 import React, { ReactNode } from "react";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { Button } from "../button";
 
 export interface ModalProps {

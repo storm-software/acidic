@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { NodeKind, ObjectSchema } from "@acidic/schema";
+import { NodeKind, ObjectSchema } from "@acidic/definition";
 import { NodeFieldList } from "./NodeFieldList";
 
 const meta: Meta<typeof NodeFieldList> = {

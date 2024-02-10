@@ -4,8 +4,11 @@
 
 ```ts
 
+import type { StormConfig } from '@storm-software/config';
+import type { StormTrace } from '@storm-stack/telemetry';
+
 // @public (undocumented)
-const createCLIAcidicProgram: () => Promise<number>;
+const createCLIAcidicProgram: (config: AcidicConfig, logger: StormTrace) => Promise<number>;
 export { createCLIAcidicProgram }
 export { createCLIAcidicProgram as createCLIAcidicProgram_alias_1 }
 export { createCLIAcidicProgram as createCLIAcidicProgram_alias_2 }

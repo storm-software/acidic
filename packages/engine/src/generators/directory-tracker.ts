@@ -1,6 +1,5 @@
-import { findFileName, findFilePath } from "@storm-stack/file-system";
+import { findFileName, findFilePath, joinPaths } from "@storm-stack/file-system";
 import { NEWLINE_STRING } from "@storm-stack/utilities";
-import { join } from "path";
 
 export type DirectoryTrackerFile = {
   fullPath: string;
@@ -98,7 +97,7 @@ export class DirectoryTracker {
               `export * from "./${childDirectory.directoryPath}";`
           )
           .join(NEWLINE_STRING),
-      fileName: join(this.#directoryPath, "index.ts")
+      fileName: joinPaths(this.#directoryPath, "index.ts")
     });
 
     return this.#childDirectories.reduce(

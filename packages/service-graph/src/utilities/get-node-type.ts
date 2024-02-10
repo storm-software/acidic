@@ -1,4 +1,4 @@
-import { NodeKind } from "@acidic/schema";
+import { NodeKind } from "@acidic/definition";
 import { NodeType } from "./node-types";
 
 export const getNodeType = (kind: NodeKind): NodeType => {

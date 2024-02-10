@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.39.0",
+    "toolVersion": "7.38.5",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -190,7 +190,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/types.d.ts",
           "releaseTag": "Public",
           "name": "CommandName",
           "typeTokenRange": {
@@ -284,7 +284,7 @@
               "text": ";\n}"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "CommandName",
@@ -325,7 +325,7 @@
               "text": "<TData>"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/message/serialization.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/message/serialization.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "deserialize",
@@ -361,7 +361,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/types.d.ts",
           "releaseTag": "Public",
           "name": "ExtensionCommandName",
           "typeTokenRange": {
@@ -397,7 +397,7 @@
               "canonicalReference": "@acidic/vscode-rpc!ExtensionCommandName:type"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/commands/get-command-id.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/commands/get-command-id.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "getCommandId",
@@ -434,7 +434,7 @@
               "canonicalReference": "@acidic/vscode-rpc!CommandName:type"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/commands/get-command-id.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/commands/get-command-id.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "parseCommandId",
@@ -475,7 +475,7 @@
               "text": "<TData>"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/message/serialization.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/message/serialization.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "serialize",
@@ -502,7 +502,7 @@
               "text": "> "
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/types.d.ts",
           "releaseTag": "Public",
           "typeParameters": [
             {
@@ -596,7 +596,7 @@
               "text": "> "
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/types.d.ts",
           "releaseTag": "Public",
           "typeParameters": [
             {
@@ -704,7 +704,7 @@
               "text": "<TData>) => void"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/message/rpc-decorator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/message/rpc-decorator.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "withMessageHandler",
@@ -745,7 +745,7 @@
               "text": ", data: any) => void"
             }
           ],
-          "fileUrlPath": "packages/vscode/rpc/src/message/rpc-decorator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/rpc/src/message/rpc-decorator.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "withSendMessage",

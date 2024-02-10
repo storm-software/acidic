@@ -1,5 +1,4 @@
 const { esbuildDecorators } = require("@anatine/esbuild-decorators");
-const esbuildPluginPino = require("esbuild-plugin-pino");
 
 module.exports = {
   mainFields: ["module", "main"],
@@ -20,7 +19,6 @@ module.exports = {
   plugins: [
     esbuildDecorators({
       tsconfig: "apps/vscode-extension/tsconfig.extension.json"
-    }),
-    esbuildPluginPino({ transports: ["pino-pretty"] })
+    })
   ]
 };

@@ -1,6 +1,6 @@
-import { NodeKind } from "@acidic/schema";
+import { NodeKind } from "@acidic/definition";
 import React from "react";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { BaseNode } from "../base-node";
 import { NodeFieldList } from "../node-field-list";
 import { eventAtoms, useGraphStore } from "../state";

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.39.0",
+    "toolVersion": "7.38.5",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -191,7 +191,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/actions-tree/actions-tree-item.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/actions-tree/actions-tree-item.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "ActionsTreeItem",
@@ -547,7 +547,7 @@
               "canonicalReference": "!unknown"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/actions-tree/actions-tree-provider.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/actions-tree/actions-tree-provider.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "CHANGE_WORKSPACE",
@@ -579,7 +579,7 @@
               "text": "<boolean>"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/utilities/check-has-workspace-root.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/utilities/check-has-workspace-root.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "checkHasWorkspaceRoot",
@@ -616,7 +616,7 @@
               "canonicalReference": "!unknown"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/logger/create-logger.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/logger/create-logger.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "createLogger",
@@ -653,7 +653,7 @@
               "canonicalReference": "!unknown"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/logger/vscode-logger.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/logger/vscode-logger.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "createVsCodeLogger",
@@ -690,7 +690,7 @@
               "canonicalReference": "!unknown"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/utilities/create-vscode-storage.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/utilities/create-vscode-storage.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "createVsCodeStorage",
@@ -718,7 +718,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/logger/vscode-logger.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/logger/vscode-logger.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -759,7 +759,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/utilities/tree-item-collapsible-store.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/utilities/tree-item-collapsible-store.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -823,18 +823,31 @@
             },
             {
               "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
               "text": "ServiceTreeProvider",
               "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider:class"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
             },
             {
               "kind": "Content",
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/service-tree/init-service-tree.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/service-tree/init-service-tree.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 9,
-            "endIndex": 10
+            "endIndex": 13
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
@@ -923,7 +936,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/utilities/tree-item-collapsible-store.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/utilities/tree-item-collapsible-store.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 8,
             "endIndex": 9
@@ -965,7 +978,7 @@
               "canonicalReference": "!unknown"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/actions-tree/actions-tree-provider.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/actions-tree/actions-tree-provider.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "LOCATE_YOUR_WORKSPACE",
@@ -993,7 +1006,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/service-tree/service-tree-item.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/service-tree/service-tree-item.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "ServiceTreeItem",
@@ -1311,7 +1324,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/types.d.ts",
           "releaseTag": "Public",
           "name": "ServiceTreeItemContextValue",
           "typeTokenRange": {
@@ -1414,7 +1427,7 @@
               "text": ";\n}"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "ServiceTreeItemContextValue",
@@ -1441,7 +1454,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/types.d.ts",
           "releaseTag": "Public",
           "name": "ServiceTreeItemStatus",
           "typeTokenRange": {
@@ -1499,7 +1512,7 @@
               "text": ";\n}"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "ServiceTreeItemStatus",
@@ -1526,7 +1539,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/types.d.ts",
           "releaseTag": "Public",
           "name": "ServiceTreeItemType",
           "typeTokenRange": {
@@ -1575,7 +1588,7 @@
               "text": ";\n}"
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "ServiceTreeItemType",
@@ -1616,7 +1629,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/service-tree/service-tree-provider.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/service-tree/service-tree-provider.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "ServiceTreeProvider",
@@ -1647,7 +1660,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", onReadyFn: "
+                  "text": ", _onReadyFn: "
                 },
                 {
                   "kind": "Content",
@@ -1679,7 +1692,7 @@
                   "isOptional": false
                 },
                 {
-                  "parameterName": "onReadyFn",
+                  "parameterName": "_onReadyFn",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
                     "endIndex": 6
@@ -1687,6 +1700,72 @@
                   "isOptional": false
                 }
               ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider.create:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static create: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(config: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicConfig",
+                  "canonicalReference": "@acidic/vscode-state!~AcidicConfig:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", logger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormLog",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", onReadyFn: () => void) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceTreeProvider",
+                  "canonicalReference": "@acidic/vscode-state!ServiceTreeProvider:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "create",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 10
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
             },
             {
               "kind": "Method",
@@ -1934,7 +2013,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/support-tree/support-tree-item.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/support-tree/support-tree-item.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "SupportTreeItem",
@@ -2220,7 +2299,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/support-tree/support-tree-provider.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/support-tree/support-tree-provider.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "SupportTreeProvider",
@@ -2474,7 +2553,7 @@
               "text": "export declare class WorkspaceConfigStore "
             }
           ],
-          "fileUrlPath": "packages/vscode/state/src/utilities/workspace-config-store.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/vscode/state/src/utilities/workspace-config-store.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "WorkspaceConfigStore",

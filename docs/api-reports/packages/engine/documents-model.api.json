@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.39.0",
+    "toolVersion": "7.38.5",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -173,6 +173,33 @@
       "preserveMemberOrder": false,
       "members": [
         {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/engine!ACIDIC_PROXY_ENHANCER:var",
+          "docComment": "/**\n * Field name for getting current enhancer\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "ACIDIC_PROXY_ENHANCER = "
+            },
+            {
+              "kind": "Content",
+              "text": "\"$__acidic_enhancer\""
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/constants.d.ts",
+          "initializerTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "ACIDIC_PROXY_ENHANCER",
+          "variableTypeTokenRange": {
+            "startIndex": 0,
+            "endIndex": 0
+          }
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "@acidic/engine!AcidicContext:interface",
           "docComment": "",
@@ -182,7 +209,7 @@
               "text": "export interface AcidicContext "
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "name": "AcidicContext",
           "preserveMemberOrder": false,
@@ -199,7 +226,7 @@
                 {
                   "kind": "Reference",
                   "text": "AcidicConfig",
-                  "canonicalReference": "@acidic/engine!~AcidicConfig:type"
+                  "canonicalReference": "@acidic/engine!~AcidicConfig:interface"
                 },
                 {
                   "kind": "Content",
@@ -217,17 +244,17 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@acidic/engine!AcidicContext#currentPlugin:member",
-              "docComment": "/**\n * The current plugin being executed\n */\n",
+              "canonicalReference": "@acidic/engine!AcidicContext#definition:member",
+              "docComment": "/**\n * The definition used to generate service code/artifacts from\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "currentPlugin?: "
+                  "text": "definition: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "PluginInstance",
-                  "canonicalReference": "!unknown"
+                  "text": "AcidicDefinitionWrapper",
+                  "canonicalReference": "@acidic/engine!AcidicDefinitionWrapper:class"
                 },
                 {
                   "kind": "Content",
@@ -235,9 +262,9 @@
                 }
               ],
               "isReadonly": false,
-              "isOptional": true,
+              "isOptional": false,
               "releaseTag": "Public",
-              "name": "currentPlugin",
+              "name": "definition",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -254,7 +281,7 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IStormLog",
+                  "text": "StormTrace",
                   "canonicalReference": "!unknown"
                 },
                 {
@@ -266,6 +293,34 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "logger",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicContext#plugin:member",
+              "docComment": "/**\n * The current plugin being executed\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "plugin?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PluginInstance",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "plugin",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -325,34 +380,6 @@
                 "startIndex": 1,
                 "endIndex": 2
               }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/engine!AcidicContext#wrapper:member",
-              "docComment": "/**\n * The schema to generate service code/artifacts from\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "wrapper: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicDefinitionWrapper",
-                  "canonicalReference": "@acidic/engine!AcidicDefinitionWrapper:class"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "wrapper",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
             }
           ],
           "extendsTokenRanges": []
@@ -367,7 +394,7 @@
               "text": "export declare class AcidicDefinitionWrapper "
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/acidic-definition-wrapper.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/definitions/acidic-definition-wrapper.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicDefinitionWrapper",
@@ -394,7 +421,7 @@
                 {
                   "kind": "Reference",
                   "text": "ServiceDefinition",
-                  "canonicalReference": "@acidic/engine!~ServiceDefinition:type"
+                  "canonicalReference": "@acidic/engine!~ServiceDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -430,8 +457,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "EnumInput",
-                  "canonicalReference": "@acidic/engine!~EnumInput:type"
+                  "text": "EnumDefinition",
+                  "canonicalReference": "@acidic/engine!~EnumDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -469,8 +496,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "EventInput",
-                  "canonicalReference": "@acidic/engine!~EventInput:type"
+                  "text": "EventDefinition",
+                  "canonicalReference": "@acidic/engine!~EventDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -508,8 +535,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "ModelInput",
-                  "canonicalReference": "@acidic/engine!~ModelInput:type"
+                  "text": "ModelDefinition",
+                  "canonicalReference": "@acidic/engine!~ModelDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -547,8 +574,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "MutationInput",
-                  "canonicalReference": "@acidic/engine!~MutationInput:type"
+                  "text": "MutationDefinition",
+                  "canonicalReference": "@acidic/engine!~MutationDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -586,8 +613,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "ObjectInput",
-                  "canonicalReference": "@acidic/engine!~ObjectInput:type"
+                  "text": "ObjectDefinition",
+                  "canonicalReference": "@acidic/engine!~ObjectDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -625,8 +652,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "PluginInput",
-                  "canonicalReference": "@acidic/engine!~PluginInput:type"
+                  "text": "PluginDefinition",
+                  "canonicalReference": "@acidic/engine!~PluginDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -664,8 +691,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "QueryInput",
-                  "canonicalReference": "@acidic/engine!~QueryInput:type"
+                  "text": "QueryDefinition",
+                  "canonicalReference": "@acidic/engine!~QueryDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -703,8 +730,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "SubscriptionInput",
-                  "canonicalReference": "@acidic/engine!~SubscriptionInput:type"
+                  "text": "SubscriptionDefinition",
+                  "canonicalReference": "@acidic/engine!~SubscriptionDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -752,7 +779,7 @@
                 {
                   "kind": "Reference",
                   "text": "ServiceDefinition",
-                  "canonicalReference": "@acidic/engine!~ServiceDefinition:type"
+                  "canonicalReference": "@acidic/engine!~ServiceDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -792,7 +819,7 @@
                 {
                   "kind": "Reference",
                   "text": "ServiceDefinition",
-                  "canonicalReference": "@acidic/engine!~ServiceDefinition:type"
+                  "canonicalReference": "@acidic/engine!~ServiceDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -801,7 +828,7 @@
                 {
                   "kind": "Reference",
                   "text": "ServiceDefinition",
-                  "canonicalReference": "@acidic/engine!~ServiceDefinition:type"
+                  "canonicalReference": "@acidic/engine!~ServiceDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -833,7 +860,7 @@
               "text": "export declare class AcidicEngine "
             }
           ],
-          "fileUrlPath": "packages/engine/src/engine.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/engine.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "AcidicEngine",
@@ -855,7 +882,7 @@
                 {
                   "kind": "Reference",
                   "text": "AcidicConfig",
-                  "canonicalReference": "@acidic/engine!~AcidicConfig:type"
+                  "canonicalReference": "@acidic/engine!~AcidicConfig:interface"
                 },
                 {
                   "kind": "Content",
@@ -863,7 +890,7 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "IStormLog",
+                  "text": "StormTrace",
                   "canonicalReference": "!unknown"
                 },
                 {
@@ -1110,7 +1137,7 @@
               "text": "export interface AcidicEngineOptions "
             }
           ],
-          "fileUrlPath": "packages/engine/src/engine.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/engine.d.ts",
           "releaseTag": "Public",
           "name": "AcidicEngineOptions",
           "preserveMemberOrder": false,
@@ -1195,7 +1222,7 @@
                 {
                   "kind": "Reference",
                   "text": "ServiceDefinition",
-                  "canonicalReference": "@acidic/engine!~ServiceDefinition:type"
+                  "canonicalReference": "@acidic/engine!~ServiceDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -1230,14 +1257,14 @@
             },
             {
               "kind": "Content",
-              "text": " | \"missing_schema\" | \"invalid_schema\" | \"invalid_schema_extension\" | \"codegen_failure\" | \"plugin_not_found\" | \"invalid_plugin\" | \"invalid_attr_arg\" | \"invalid_relationship\""
+              "text": " | \"missing_schema\" | \"invalid_schema\" | \"invalid_schema_extension\" | \"codegen_failure\" | \"plugin_not_found\" | \"invalid_plugin\" | \"invalid_attr_arg\" | \"invalid_relationship\" | \"missing_name\" | \"invalid_bus_payload\""
             },
             {
               "kind": "Content",
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/errors.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/errors.d.ts",
           "releaseTag": "Public",
           "name": "AcidicErrorCode",
           "typeTokenRange": {
@@ -1320,6 +1347,24 @@
             {
               "kind": "Content",
               "text": ";\n    invalid_relationship: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicErrorCode",
+              "canonicalReference": "@acidic/engine!AcidicErrorCode:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    missing_name: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicErrorCode",
+              "canonicalReference": "@acidic/engine!AcidicErrorCode:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    invalid_bus_payload: "
             },
             {
               "kind": "Reference",
@@ -1484,97 +1529,13 @@
               "text": ";\n}"
             }
           ],
-          "fileUrlPath": "packages/engine/src/errors.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/errors.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "AcidicErrorCode",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 52
-          }
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/engine!AcidicPluginHandler:type",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export type AcidicPluginHandler<TOptions extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicPluginOptions",
-              "canonicalReference": "@acidic/engine!~AcidicPluginOptions:type"
-            },
-            {
-              "kind": "Content",
-              "text": " = "
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicPluginOptions",
-              "canonicalReference": "@acidic/engine!~AcidicPluginOptions:type"
-            },
-            {
-              "kind": "Content",
-              "text": "> = "
-            },
-            {
-              "kind": "Content",
-              "text": "(options: TOptions, context: "
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicContext",
-              "canonicalReference": "@acidic/engine!AcidicContext:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ", generator?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "IGenerator",
-              "canonicalReference": "@acidic/engine!IGenerator:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<TOptions>) => "
-            },
-            {
-              "kind": "Reference",
-              "text": "MaybePromise",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": "<void>"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/types.ts",
-          "releaseTag": "Public",
-          "name": "AcidicPluginHandler",
-          "typeParameters": [
-            {
-              "typeParameterName": "TOptions",
-              "constraintTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "defaultTypeTokenRange": {
-                "startIndex": 3,
-                "endIndex": 4
-              }
-            }
-          ],
-          "typeTokenRange": {
-            "startIndex": 5,
-            "endIndex": 12
+            "endIndex": 56
           }
         },
         {
@@ -1591,7 +1552,7 @@
               "text": "{\n    EXTEND_CONTEXT: string;\n    EXTEND_DEFINITION: string;\n    VALIDATE: string;\n    GENERATE: string;\n}"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "AcidicPluginHookNames",
@@ -1647,7 +1608,7 @@
             },
             {
               "kind": "Content",
-              "text": ">;\n    \"validate\"?: "
+              "text": ">;\n    validate?: "
             },
             {
               "kind": "Reference",
@@ -1665,7 +1626,7 @@
             },
             {
               "kind": "Content",
-              "text": ">;\n    \"generate\"?: "
+              "text": ">;\n    generate?: "
             },
             {
               "kind": "Reference",
@@ -1690,235 +1651,13 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "name": "AcidicPluginHooks",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 18
           }
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@acidic/engine!AcidicPluginLoader:class",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare class AcidicPluginLoader extends "
-            },
-            {
-              "kind": "Reference",
-              "text": "PluginLoader",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicContext",
-              "canonicalReference": "@acidic/engine!AcidicContext:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ", "
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicPluginModule",
-              "canonicalReference": "@acidic/engine!AcidicPluginModule:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/plugins/acidic-plugin-loader.ts",
-          "releaseTag": "Public",
-          "isAbstract": false,
-          "name": "AcidicPluginLoader",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicPluginLoader#execute:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "execute: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "(instance: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginInstance",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicPluginModule",
-                  "canonicalReference": "@acidic/engine!AcidicPluginModule:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">, context: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicPluginOptions",
-                  "canonicalReference": "@acidic/engine!~AcidicPluginOptions:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ") => "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<void>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "execute",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 14
-              },
-              "isStatic": false,
-              "isProtected": false,
-              "isAbstract": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@acidic/engine!AcidicPluginLoader#load:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "load: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "(definition: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginDefinition",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Record",
-                  "canonicalReference": "!Record:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<string, any>) => "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PluginInstance",
-                  "canonicalReference": "!unknown"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicPluginModule",
-                  "canonicalReference": "@acidic/engine!AcidicPluginModule:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "load",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 14
-              },
-              "isStatic": false,
-              "isProtected": false,
-              "isAbstract": false
-            }
-          ],
-          "extendsTokenRange": {
-            "startIndex": 1,
-            "endIndex": 7
-          },
-          "implementsTokenRanges": []
         },
         {
           "kind": "Interface",
@@ -1970,7 +1709,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "typeParameters": [
             {
@@ -2013,38 +1752,6 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "@acidic/engine!AcidicPluginModule#execute:member",
-              "docComment": "/**\n * A reference to the plugin runner\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "execute?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicPluginHandler",
-                  "canonicalReference": "@acidic/engine!AcidicPluginHandler:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<TOptions>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "execute",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
               }
             },
             {
@@ -2105,6 +1812,38 @@
                 "startIndex": 1,
                 "endIndex": 2
               }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicPluginModule#process:member",
+              "docComment": "/**\n * A reference to the plugin runner\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "process?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicPluginProcessor",
+                  "canonicalReference": "@acidic/engine!AcidicPluginProcessor:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<TOptions>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "process",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             }
           ],
           "extendsTokenRanges": [
@@ -2113,6 +1852,451 @@
               "endIndex": 9
             }
           ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@acidic/engine!AcidicPluginProcessor:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type AcidicPluginProcessor<TOptions extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPluginOptions",
+              "canonicalReference": "@acidic/engine!~AcidicPluginOptions:type"
+            },
+            {
+              "kind": "Content",
+              "text": " = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPluginOptions",
+              "canonicalReference": "@acidic/engine!~AcidicPluginOptions:type"
+            },
+            {
+              "kind": "Content",
+              "text": ", TGenerator extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "IGenerator",
+              "canonicalReference": "@acidic/engine!IGenerator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<TOptions>"
+            },
+            {
+              "kind": "Content",
+              "text": " = "
+            },
+            {
+              "kind": "Reference",
+              "text": "IGenerator",
+              "canonicalReference": "@acidic/engine!IGenerator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<TOptions>"
+            },
+            {
+              "kind": "Content",
+              "text": "> = "
+            },
+            {
+              "kind": "Content",
+              "text": "(context: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicContext",
+              "canonicalReference": "@acidic/engine!AcidicContext:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", options: TOptions, generator?: TGenerator) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "MaybePromise",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "<void>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
+          "releaseTag": "Public",
+          "name": "AcidicPluginProcessor",
+          "typeParameters": [
+            {
+              "typeParameterName": "TOptions",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "typeParameterName": "TGenerator",
+              "constraintTokenRange": {
+                "startIndex": 5,
+                "endIndex": 7
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 8,
+                "endIndex": 10
+              }
+            }
+          ],
+          "typeTokenRange": {
+            "startIndex": 11,
+            "endIndex": 16
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@acidic/engine!AcidicStore:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AcidicStore "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
+          "releaseTag": "Public",
+          "name": "AcidicStore",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicStore#clearServices:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "clearServices: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "() => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "clearServices",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicStore#deleteService:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "deleteService: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(path: string) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "deleteService",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicStore#getService:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getService: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(path: string) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceStoreItem",
+                  "canonicalReference": "@acidic/engine!ServiceStoreItem:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | null | undefined>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "getService",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicStore#getServices:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getServices: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "() => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceStoreItem",
+                  "canonicalReference": "@acidic/engine!ServiceStoreItem:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "getServices",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicStore#getSetting:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getSetting: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T>(key: string) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T | null | undefined>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "getSetting",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicStore#setService:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "setService: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(path: string, item: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceStoreItem",
+                  "canonicalReference": "@acidic/engine!ServiceStoreItem:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ") => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "setService",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 6
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicStore#setSetting:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "setSetting: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "<T>(key: string, setting: T) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "setSetting",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!AcidicStore#subscribe:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "subscribe: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(callback: (arg: {\n        key: string;\n        store: string;\n        value: any;\n    }) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "MaybePromise",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>) => () => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "subscribe",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 4
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Variable",
@@ -2128,7 +2312,7 @@
               "text": "string[]"
             }
           ],
-          "fileUrlPath": "packages/engine/src/utils/plugin-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/plugin-utils.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "ALL_OPERATION_KINDS",
@@ -2151,13 +2335,113 @@
               "text": "string[]"
             }
           ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/constants.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "AUXILIARY_FIELDS",
           "variableTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/engine!createAcidicConfig:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "createAcidicConfig: "
+            },
+            {
+              "kind": "Content",
+              "text": "(workspaceRoot?: string) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicConfig",
+              "canonicalReference": "@acidic/engine!~AcidicConfig:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/create-acidic-config.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "createAcidicConfig",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/engine!createAcidicStore:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "createAcidicStore: "
+            },
+            {
+              "kind": "Content",
+              "text": "(config: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicConfig",
+              "canonicalReference": "@acidic/engine!~AcidicConfig:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", logger?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "StormTrace",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ") => "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicStore",
+              "canonicalReference": "@acidic/engine!AcidicStore:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/store/create-acidic-store.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "createAcidicStore",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 10
           }
         },
         {
@@ -2189,25 +2473,43 @@
             },
             {
               "kind": "Content",
-              "text": ">(fileName?: string) => "
+              "text": ", TGenerator extends "
             },
             {
               "kind": "Reference",
-              "text": "AcidicPluginHandler",
-              "canonicalReference": "@acidic/engine!AcidicPluginHandler:type"
+              "text": "IGenerator",
+              "canonicalReference": "@acidic/engine!IGenerator:interface"
             },
             {
               "kind": "Content",
-              "text": "<TOptions>"
+              "text": "<TOptions> = "
+            },
+            {
+              "kind": "Reference",
+              "text": "IGenerator",
+              "canonicalReference": "@acidic/engine!IGenerator:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<TOptions>>(fileName?: string) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPluginProcessor",
+              "canonicalReference": "@acidic/engine!AcidicPluginProcessor:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<TOptions, TGenerator>"
             }
           ],
-          "fileUrlPath": "packages/engine/src/plugins/plugin-handler.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/plugins/plugin-handler.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "createPluginHandler",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 8
+            "endIndex": 12
           }
         },
         {
@@ -2239,25 +2541,7 @@
             },
             {
               "kind": "Content",
-              "text": ">(templatePaths: "
-            },
-            {
-              "kind": "Reference",
-              "text": "TemplatePluginPaths",
-              "canonicalReference": "@acidic/engine!TemplatePluginPaths:type"
-            },
-            {
-              "kind": "Content",
-              "text": ", filterTemplates?: ((options: TOptions, context: "
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicContext",
-              "canonicalReference": "@acidic/engine!AcidicContext:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ", generator: "
+              "text": ", TGenerator extends "
             },
             {
               "kind": "Reference",
@@ -2266,43 +2550,52 @@
             },
             {
               "kind": "Content",
-              "text": "<TOptions>, node: "
+              "text": "<TOptions> = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TemplateGenerator",
+              "canonicalReference": "@acidic/engine!TemplateGenerator:class"
+            },
+            {
+              "kind": "Content",
+              "text": "<TOptions>>(templatePaths: "
+            },
+            {
+              "kind": "Reference",
+              "text": "TemplatePluginPaths",
+              "canonicalReference": "@acidic/engine!TemplatePluginPaths:type"
+            },
+            {
+              "kind": "Content",
+              "text": ", filterTemplates?: ((context: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicContext",
+              "canonicalReference": "@acidic/engine!AcidicContext:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", node: "
             },
             {
               "kind": "Reference",
               "text": "NodeDefinition",
-              "canonicalReference": "@acidic/engine!~NodeDefinition:type"
+              "canonicalReference": "@acidic/engine!~NodeDefinition:interface"
             },
             {
               "kind": "Content",
-              "text": " | null, templates: "
+              "text": " | null, options: TOptions, generator: "
             },
             {
               "kind": "Reference",
-              "text": "Array",
-              "canonicalReference": "!Array:interface"
+              "text": "TemplateGenerator",
+              "canonicalReference": "@acidic/engine!TemplateGenerator:class"
             },
             {
               "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "TemplateDetails",
-              "canonicalReference": "@acidic/engine!TemplateDetails:type"
-            },
-            {
-              "kind": "Content",
-              "text": ">) => "
-            },
-            {
-              "kind": "Reference",
-              "text": "Array",
-              "canonicalReference": "!Array:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
+              "text": "<TOptions>, templates: "
             },
             {
               "kind": "Reference",
@@ -2311,19 +2604,28 @@
             },
             {
               "kind": "Content",
-              "text": ">) | undefined) => "
+              "text": "[]) => "
             },
             {
               "kind": "Reference",
-              "text": "AcidicPluginHandler",
-              "canonicalReference": "@acidic/engine!AcidicPluginHandler:type"
+              "text": "TemplateDetails",
+              "canonicalReference": "@acidic/engine!TemplateDetails:type"
             },
             {
               "kind": "Content",
-              "text": "<TOptions>"
+              "text": "[]) | undefined) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPluginProcessor",
+              "canonicalReference": "@acidic/engine!AcidicPluginProcessor:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<TOptions, TGenerator>"
             }
           ],
-          "fileUrlPath": "packages/engine/src/plugins/template-plugin-handler.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/plugins/template-plugin-handler.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "createTemplatePluginHandler",
@@ -2342,7 +2644,7 @@
               "text": "export declare enum CrudFailureReason "
             }
           ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/constants.d.ts",
           "releaseTag": "Public",
           "name": "CrudFailureReason",
           "preserveMemberOrder": false,
@@ -2392,6 +2694,406 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@acidic/engine!DaemonProcess:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface DaemonProcess extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "ServiceStoreItem",
+              "canonicalReference": "@acidic/engine!~ServiceStoreItem_2:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/daemon/daemon-process-manager.d.ts",
+          "releaseTag": "Public",
+          "name": "DaemonProcess",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!DaemonProcess#context:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "context",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/engine!DaemonProcessManager:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class DaemonProcessManager implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "Disposable",
+              "canonicalReference": "!Disposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/daemon/daemon-process-manager.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "DaemonProcessManager",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!DaemonProcessManager#[Symbol.dispose]:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Symbol.dispose",
+                  "canonicalReference": "!SymbolConstructor#dispose"
+                },
+                {
+                  "kind": "Content",
+                  "text": "](): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "[Symbol.dispose]"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!DaemonProcessManager#[Symbol.dispose]:member(2)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Symbol.dispose",
+                  "canonicalReference": "!SymbolConstructor#dispose"
+                },
+                {
+                  "kind": "Content",
+                  "text": "](): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 2,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "[Symbol.dispose]"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!DaemonProcessManager#getProcess:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getProcess(schemaPath: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DaemonProcess",
+                  "canonicalReference": "@acidic/engine!DaemonProcess:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "schemaPath",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "getProcess"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!DaemonProcessManager#onChange:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "onChange: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(handler: (name: string) => void) => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "onChange",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!DaemonProcessManager#onReady:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "onReady: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(handler: () => void) => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "onReady",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!DaemonProcessManager#processes:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get processes(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Map",
+                  "canonicalReference": "!Map:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string, "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DaemonProcess",
+                  "canonicalReference": "@acidic/engine!DaemonProcess:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": true,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "processes",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!DaemonProcessManager.start:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static start: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(config: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicConfig",
+                  "canonicalReference": "@acidic/engine!~AcidicConfig:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", logger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormTrace",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", onReadyFn: () => void) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DaemonProcessManager",
+                  "canonicalReference": "@acidic/engine!DaemonProcessManager:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "start",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 10
+              },
+              "isStatic": true,
+              "isProtected": false,
+              "isAbstract": false
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
           "kind": "Function",
           "canonicalReference": "@acidic/engine!default_alias:function(1)",
           "docComment": "",
@@ -2425,7 +3127,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 5,
             "endIndex": 6
@@ -2466,7 +3168,7 @@
               "text": "12"
             }
           ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/constants.d.ts",
           "initializerTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -2507,7 +3209,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/acidic-definition-wrapper.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/definitions/acidic-definition-wrapper.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -2540,7 +3242,7 @@
               "text": "unique symbol"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "DIRECTORY_TRACKER_SYMBOL",
@@ -2559,7 +3261,7 @@
               "text": "export declare class DirectoryTracker "
             }
           ],
-          "fileUrlPath": "packages/engine/src/generators/directory-tracker.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/generators/directory-tracker.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "DirectoryTracker",
@@ -2807,7 +3509,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/generators/directory-tracker.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/generators/directory-tracker.d.ts",
           "releaseTag": "Public",
           "name": "DirectoryTrackerFile",
           "typeTokenRange": {
@@ -2833,7 +3535,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/generators/directory-tracker.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/generators/directory-tracker.d.ts",
           "releaseTag": "Public",
           "name": "DirectoryTrackerIndexFile",
           "typeTokenRange": {
@@ -2855,7 +3557,7 @@
               "text": "(outputPath?: string) => string | undefined"
             }
           ],
-          "fileUrlPath": "packages/engine/src/utils/plugin-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/plugin-utils.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "ensureOutputFolder",
@@ -2901,7 +3603,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/engine/src/generators/generator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/generators/generator.d.ts",
           "releaseTag": "Public",
           "typeParameters": [
             {
@@ -2920,39 +3622,6 @@
           "name": "Generator_2",
           "preserveMemberOrder": false,
           "members": [
-            {
-              "kind": "Constructor",
-              "canonicalReference": "@acidic/engine!Generator_2:constructor(1)",
-              "docComment": "/**\n * Constructs a new instance of the `Generator` class\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "constructor(context: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ");"
-                }
-              ],
-              "releaseTag": "Public",
-              "isProtected": false,
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "context",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  },
-                  "isOptional": false
-                }
-              ]
-            },
             {
               "kind": "Property",
               "canonicalReference": "@acidic/engine!Generator_2#commentStart:member",
@@ -2990,7 +3659,7 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "protected context: "
+                  "text": "protected context?: "
                 },
                 {
                   "kind": "Reference",
@@ -3003,7 +3672,7 @@
                 }
               ],
               "isReadonly": false,
-              "isOptional": false,
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "context",
               "propertyTypeTokenRange": {
@@ -3051,11 +3720,12 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "abstract generate(options: "
+                  "text": "generate(context: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "TOptions"
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
                 },
                 {
                   "kind": "Content",
@@ -3064,16 +3734,15 @@
                 {
                   "kind": "Reference",
                   "text": "NodeDefinition",
-                  "canonicalReference": "@acidic/engine!~NodeDefinition:type"
+                  "canonicalReference": "@acidic/engine!~NodeDefinition:interface"
                 },
                 {
                   "kind": "Content",
-                  "text": ", context: "
+                  "text": ", options: "
                 },
                 {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
+                  "kind": "Content",
+                  "text": "TOptions"
                 },
                 {
                   "kind": "Content",
@@ -3111,7 +3780,7 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "options",
+                  "parameterName": "context",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
@@ -3127,7 +3796,7 @@
                   "isOptional": false
                 },
                 {
-                  "parameterName": "context",
+                  "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
                     "endIndex": 6
@@ -3144,7 +3813,7 @@
                 }
               ],
               "isOptional": false,
-              "isAbstract": true,
+              "isAbstract": false,
               "name": "generate"
             },
             {
@@ -3206,7 +3875,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "(commentStart?: string) => string"
+                  "text": "(_commentStart?: string) => string"
                 },
                 {
                   "kind": "Content",
@@ -3339,6 +4008,109 @@
             },
             {
               "kind": "Method",
+              "canonicalReference": "@acidic/engine!Generator_2#innerGenerate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected abstract innerGenerate(context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", node: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "NodeDefinition",
+                  "canonicalReference": "@acidic/engine!~NodeDefinition:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "TOptions"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", params: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "isProtected": true,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "context",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "node",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "params",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": true,
+              "name": "innerGenerate"
+            },
+            {
+              "kind": "Method",
               "canonicalReference": "@acidic/engine!Generator_2#innerWrite:member(1)",
               "docComment": "",
               "excerptTokens": [
@@ -3467,6 +4239,36 @@
               "isStatic": false,
               "isProtected": false,
               "isAbstract": true
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!Generator_2#options:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected options?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "TOptions"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "options",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": true,
+              "isAbstract": false
             },
             {
               "kind": "Method",
@@ -3644,7 +4446,7 @@
               "text": "unique symbol"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "GENERATOR_SYMBOL",
@@ -3685,7 +4487,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -3736,7 +4538,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -3787,7 +4589,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -3838,7 +4640,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -3889,7 +4691,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -3940,7 +4742,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -3991,7 +4793,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -4042,7 +4844,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -4119,7 +4921,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 9,
             "endIndex": 11
@@ -4198,7 +5000,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 9,
             "endIndex": 10
@@ -4297,7 +5099,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 7,
             "endIndex": 11
@@ -4348,13 +5150,45 @@
               "text": " | undefined"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/get-data-source-provider.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/get-data-source-provider.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "getDataSource",
           "variableTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 6
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/engine!getDataSourceDirectUrl:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "getDataSourceDirectUrl: "
+            },
+            {
+              "kind": "Content",
+              "text": "(schema: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/engine!~AcidicSchema:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => string"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/get-data-source-provider.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "getDataSourceDirectUrl",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
           }
         },
         {
@@ -4380,7 +5214,7 @@
               "text": ") => string"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/get-data-source-provider.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/get-data-source-provider.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "getDataSourceName",
@@ -4417,13 +5251,45 @@
               "canonicalReference": "@acidic/engine!~DataSourceType:enum"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/get-data-source-provider.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/get-data-source-provider.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "getDataSourceProvider",
           "variableTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 5
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/engine!getDataSourceProxyUrl:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "getDataSourceProxyUrl: "
+            },
+            {
+              "kind": "Content",
+              "text": "(schema: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicSchema",
+              "canonicalReference": "@acidic/engine!~AcidicSchema:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ") => string"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/get-data-source-provider.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "getDataSourceProxyUrl",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
           }
         },
         {
@@ -4449,7 +5315,7 @@
               "text": ") => string"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/get-data-source-provider.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/get-data-source-provider.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "getDataSourceUrl",
@@ -4476,7 +5342,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/utils/plugin-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/plugin-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -4518,7 +5384,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -4566,7 +5432,7 @@
             },
             {
               "kind": "Content",
-              "text": ">(options: TOptions, context: "
+              "text": ">(context: "
             },
             {
               "kind": "Reference",
@@ -4580,11 +5446,11 @@
             {
               "kind": "Reference",
               "text": "NodeDefinition",
-              "canonicalReference": "@acidic/engine!~NodeDefinition:type"
+              "canonicalReference": "@acidic/engine!~NodeDefinition:interface"
             },
             {
               "kind": "Content",
-              "text": ", generator: "
+              "text": ", options: TOptions, generator: "
             },
             {
               "kind": "Reference",
@@ -4614,7 +5480,7 @@
               "text": "<{\n    name: string;\n    content: string;\n}>"
             }
           ],
-          "fileUrlPath": "packages/engine/src/plugins/template-plugin-handler.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/plugins/template-plugin-handler.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "getGeneratedContent",
@@ -4655,7 +5521,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -4706,7 +5572,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 5
@@ -4732,7 +5598,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare function getNodeModulesFolder(startPath?: "
+              "text": "export declare function getNodeModulesFolder(_startPath?: "
             },
             {
               "kind": "Content",
@@ -4751,7 +5617,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/utils/plugin-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/plugin-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -4760,7 +5626,7 @@
           "overloadIndex": 1,
           "parameters": [
             {
-              "parameterName": "startPath",
+              "parameterName": "_startPath",
               "parameterTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -4801,7 +5667,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 4,
             "endIndex": 5
@@ -4860,7 +5726,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -4912,30 +5778,21 @@
             },
             {
               "kind": "Reference",
-              "text": "Array",
-              "canonicalReference": "!Array:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
               "text": "TemplateDetails",
               "canonicalReference": "@acidic/engine!TemplateDetails:type"
             },
             {
               "kind": "Content",
-              "text": ">>"
+              "text": "[]>"
             }
           ],
-          "fileUrlPath": "packages/engine/src/plugins/template-plugin-handler.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/plugins/template-plugin-handler.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "getTemplates",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 10
+            "endIndex": 8
           }
         },
         {
@@ -4956,7 +5813,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/utils/version-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/version-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -4980,7 +5837,7 @@
               "text": "\"acidic_guard\""
             }
           ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/constants.d.ts",
           "initializerTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -5100,7 +5957,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 21,
             "endIndex": 22
@@ -5155,7 +6012,7 @@
               "text": "> "
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "typeParameters": [
             {
@@ -5180,11 +6037,12 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "generate(options: "
+                  "text": "generate(context: "
                 },
                 {
-                  "kind": "Content",
-                  "text": "TOptions"
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
                 },
                 {
                   "kind": "Content",
@@ -5193,16 +6051,15 @@
                 {
                   "kind": "Reference",
                   "text": "NodeDefinition",
-                  "canonicalReference": "@acidic/engine!~NodeDefinition:type"
+                  "canonicalReference": "@acidic/engine!~NodeDefinition:interface"
                 },
                 {
                   "kind": "Content",
-                  "text": ", context: "
+                  "text": ", options: "
                 },
                 {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
+                  "kind": "Content",
+                  "text": "TOptions"
                 },
                 {
                   "kind": "Content",
@@ -5239,7 +6096,7 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "options",
+                  "parameterName": "context",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
@@ -5255,7 +6112,7 @@
                   "isOptional": false
                 },
                 {
-                  "parameterName": "context",
+                  "parameterName": "options",
                   "parameterTypeTokenRange": {
                     "startIndex": 5,
                     "endIndex": 6
@@ -5411,7 +6268,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 6
@@ -5457,7 +6314,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -5503,7 +6360,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/utils/access-policy-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/access-policy-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -5549,7 +6406,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -5595,7 +6452,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -5615,58 +6472,817 @@
           "name": "isRelationshipField"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/engine!PRISMA_MINIMUM_VERSION:var",
-          "docComment": "/**\n * Minimum Prisma version supported\n */\n",
+          "kind": "Function",
+          "canonicalReference": "@acidic/engine!maskSchemaUrls:function(1)",
+          "docComment": "/**\n * Masks the urls in a schema file.\n *\n * @param schema - The schema to mask\n *\n * @returns The masked schema\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "PRISMA_MINIMUM_VERSION = "
+              "text": "export declare function maskSchemaUrls(schema: "
             },
             {
               "kind": "Content",
-              "text": "\"4.8.0\""
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
-          "initializerTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/mask-schema-urls.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
           },
-          "isReadonly": true,
           "releaseTag": "Public",
-          "name": "PRISMA_MINIMUM_VERSION",
-          "variableTypeTokenRange": {
-            "startIndex": 0,
-            "endIndex": 0
-          }
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "schema",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "maskSchemaUrls"
         },
         {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/engine!PRISMA_PROXY_ENHANCER:var",
-          "docComment": "/**\n * Field name for getting current enhancer\n */\n",
+          "kind": "Class",
+          "canonicalReference": "@acidic/engine!NotificationBus:class",
+          "docComment": "/**\n * A simple in-memory bus driver for easy testing\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "PRISMA_PROXY_ENHANCER = "
+              "text": "export declare class NotificationBus implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "BusDriver",
+              "canonicalReference": "!unknown"
             },
             {
               "kind": "Content",
-              "text": "\"$__acidic_enhancer\""
+              "text": " "
             }
           ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
-          "initializerTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          },
-          "isReadonly": true,
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/store/notification-bus.d.ts",
           "releaseTag": "Public",
-          "name": "PRISMA_PROXY_ENHANCER",
-          "variableTypeTokenRange": {
-            "startIndex": 0,
-            "endIndex": 0
-          }
+          "isAbstract": false,
+          "name": "NotificationBus",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!NotificationBus#_logger:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "_logger?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormTrace",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "_logger",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!NotificationBus#disconnect:member(1)",
+              "docComment": "/**\n * Disconnects the bus and clears all subscriptions\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "disconnect(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "disconnect"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!NotificationBus#onReconnect:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "onReconnect(_callback: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "() => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "_callback",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "onReconnect"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!NotificationBus#publish:member(1)",
+              "docComment": "/**\n * Publishes a message to the given channel\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "publish(channelName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", message: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Omit",
+                  "canonicalReference": "!Omit:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CacheBusMessage",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", \"busId\">"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 8,
+                "endIndex": 10
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "channelName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "message",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 7
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "publish"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!NotificationBus#receivedMessages:member",
+              "docComment": "/**\n * List of messages received by this bus\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "receivedMessages: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CacheBusMessage",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "receivedMessages",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!NotificationBus#setId:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "setId(id: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "id",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "setId"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!NotificationBus#setLogger:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "setLogger(logger: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "StormTrace",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "this"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "logger",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "setLogger"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!NotificationBus#subscribe:member(1)",
+              "docComment": "/**\n * Subscribes to the given channel\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "subscribe(channelName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", handler: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(message: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "CacheBusMessage",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ") => void"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "channelName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "handler",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 6
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "subscribe"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/engine!NotificationBus#unsubscribe:member(1)",
+              "docComment": "/**\n * Unsubscribes from the given channel\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "unsubscribe(channelName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "channelName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "unsubscribe"
+            }
+          ],
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@acidic/engine!notificationBusDriver:function(1)",
+          "docComment": "/**\n * Create a new notification bus driver\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function notificationBusDriver(options?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "BusOptions",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "CreateBusDriverResult",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/store/notification-bus-driver.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "options",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "notificationBusDriver"
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@acidic/engine!PluginLoader:class",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class PluginLoader extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "BasePluginLoader",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicContext",
+              "canonicalReference": "@acidic/engine!AcidicContext:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", "
+            },
+            {
+              "kind": "Reference",
+              "text": "AcidicPluginModule",
+              "canonicalReference": "@acidic/engine!AcidicPluginModule:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/plugins/plugin-loader.d.ts",
+          "releaseTag": "Public",
+          "isAbstract": false,
+          "name": "PluginLoader",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!PluginLoader#load:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "load: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(definition: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PluginDefinition",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string, any>) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PluginInstance",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicPluginModule",
+                  "canonicalReference": "@acidic/engine!AcidicPluginModule:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "load",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 14
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!PluginLoader#process:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "process: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", instance: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PluginInstance",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicPluginModule",
+                  "canonicalReference": "@acidic/engine!AcidicPluginModule:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">, options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string, any>) => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "process",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 14
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          },
+          "implementsTokenRanges": []
         },
         {
           "kind": "Variable",
@@ -5682,7 +7298,7 @@
               "text": "\"$__acidic_tx\""
             }
           ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/constants.d.ts",
           "initializerTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -5694,107 +7310,6 @@
             "startIndex": 0,
             "endIndex": 0
           }
-        },
-        {
-          "kind": "Enum",
-          "canonicalReference": "@acidic/engine!PrismaErrorCode:enum",
-          "docComment": "/**\n * Prisma error codes used\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare enum PrismaErrorCode "
-            }
-          ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
-          "releaseTag": "Public",
-          "name": "PrismaErrorCode",
-          "preserveMemberOrder": false,
-          "members": [
-            {
-              "kind": "EnumMember",
-              "canonicalReference": "@acidic/engine!PrismaErrorCode.CONSTRAINED_FAILED:member",
-              "docComment": "/**\n * A constraint failed on the database\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "CONSTRAINED_FAILED = "
-                },
-                {
-                  "kind": "Content",
-                  "text": "\"P2004\""
-                }
-              ],
-              "initializerTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "name": "CONSTRAINED_FAILED"
-            },
-            {
-              "kind": "EnumMember",
-              "canonicalReference": "@acidic/engine!PrismaErrorCode.DEPEND_ON_RECORD_NOT_FOUND:member",
-              "docComment": "/**\n * An operation failed because it depends on one or more records that were required but not found\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "DEPEND_ON_RECORD_NOT_FOUND = "
-                },
-                {
-                  "kind": "Content",
-                  "text": "\"P2025\""
-                }
-              ],
-              "initializerTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "name": "DEPEND_ON_RECORD_NOT_FOUND"
-            },
-            {
-              "kind": "EnumMember",
-              "canonicalReference": "@acidic/engine!PrismaErrorCode.REQUIRED_CONNECTED_RECORD_NOT_FOUND:member",
-              "docComment": "/**\n * The required connected records were not found\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "REQUIRED_CONNECTED_RECORD_NOT_FOUND = "
-                },
-                {
-                  "kind": "Content",
-                  "text": "\"P2018\""
-                }
-              ],
-              "initializerTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "name": "REQUIRED_CONNECTED_RECORD_NOT_FOUND"
-            },
-            {
-              "kind": "EnumMember",
-              "canonicalReference": "@acidic/engine!PrismaErrorCode.UNIQUE_CONSTRAINT_FAILED:member",
-              "docComment": "/**\n * Unique constraint failed\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "UNIQUE_CONSTRAINT_FAILED = "
-                },
-                {
-                  "kind": "Content",
-                  "text": "\"P2002\""
-                }
-              ],
-              "initializerTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "releaseTag": "Public",
-              "name": "UNIQUE_CONSTRAINT_FAILED"
-            }
-          ]
         },
         {
           "kind": "Function",
@@ -5831,7 +7346,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/language-utils.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/utils/language-utils.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 5,
             "endIndex": 6
@@ -5898,7 +7413,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/schema/acidic-definition-wrapper.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/definitions/acidic-definition-wrapper.d.ts",
           "returnTypeTokenRange": {
             "startIndex": 3,
             "endIndex": 4
@@ -5918,6 +7433,138 @@
           "name": "serializeAcidicDefinitionWrapper"
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@acidic/engine!ServiceStoreItem:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ServiceStoreItem "
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
+          "releaseTag": "Public",
+          "name": "ServiceStoreItem",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!ServiceStoreItem#definition:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "definition: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceDefinition",
+                  "canonicalReference": "@acidic/engine!~ServiceDefinition:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "definition",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!ServiceStoreItem#error:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "error: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "error",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!ServiceStoreItem#path:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "path: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "path",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/engine!ServiceStoreItem#status:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "status: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ServiceSchemaStatus",
+                  "canonicalReference": "@acidic/engine!~ServiceSchemaStatus:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "status",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "Variable",
           "canonicalReference": "@acidic/engine!TEMPLATE_EXTENSIONS:var",
           "docComment": "",
@@ -5931,7 +7578,7 @@
               "text": "string[]"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "TEMPLATE_EXTENSIONS",
@@ -5958,7 +7605,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/plugins/template-plugin-handler.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/plugins/template-plugin-handler.d.ts",
           "releaseTag": "Public",
           "name": "TemplateDetails",
           "typeTokenRange": {
@@ -6007,7 +7654,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/engine/src/generators/template-generator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/generators/template-generator.d.ts",
           "releaseTag": "Public",
           "typeParameters": [
             {
@@ -6033,16 +7680,7 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "constructor(context: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", config?: "
+                  "text": "constructor(config: "
                 },
                 {
                   "kind": "Reference",
@@ -6059,20 +7697,12 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "context",
+                  "parameterName": "config",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
                   },
                   "isOptional": false
-                },
-                {
-                  "parameterName": "config",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  },
-                  "isOptional": true
                 }
               ]
             },
@@ -6101,72 +7731,6 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
-              },
-              "isStatic": false,
-              "isProtected": false,
-              "isAbstract": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@acidic/engine!TemplateGenerator#generate:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "generate: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "(options: TOptions, node: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NodeDefinition",
-                  "canonicalReference": "@acidic/engine!~NodeDefinition:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", context: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", params: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "TemplateDetails",
-                  "canonicalReference": "@acidic/engine!TemplateDetails:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ") => "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<string>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "generate",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 10
               },
               "isStatic": false,
               "isProtected": false,
@@ -6269,7 +7833,7 @@
                 {
                   "kind": "Reference",
                   "text": "Handlebars.TemplateDelegate",
-                  "canonicalReference": "!Handlebars.TemplateDelegate:type"
+                  "canonicalReference": "!Handlebars.TemplateDelegate:interface"
                 },
                 {
                   "kind": "Content",
@@ -6308,7 +7872,7 @@
                 {
                   "kind": "Reference",
                   "text": "Handlebars",
-                  "canonicalReference": "!unknown:member"
+                  "canonicalReference": "@acidic/engine!~Handlebars"
                 },
                 {
                   "kind": "Content",
@@ -6322,6 +7886,72 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
+              },
+              "isStatic": false,
+              "isProtected": false,
+              "isAbstract": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@acidic/engine!TemplateGenerator#innerGenerate:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "innerGenerate: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "(context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", node: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "NodeDefinition",
+                  "canonicalReference": "@acidic/engine!~NodeDefinition:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options: TOptions, params: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "TemplateDetails",
+                  "canonicalReference": "@acidic/engine!TemplateDetails:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ") => "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "innerGenerate",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 10
               },
               "isStatic": false,
               "isProtected": false,
@@ -6543,7 +8173,7 @@
                 {
                   "kind": "Reference",
                   "text": "Handlebars.TemplateDelegate",
-                  "canonicalReference": "!Handlebars.TemplateDelegate:type"
+                  "canonicalReference": "!Handlebars.TemplateDelegate:interface"
                 },
                 {
                   "kind": "Content",
@@ -6607,7 +8237,7 @@
             {
               "kind": "Reference",
               "text": "HelperOptions",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "!Handlebars.HelperOptions:interface"
             },
             {
               "kind": "Content",
@@ -6618,7 +8248,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "name": "TemplateGeneratorHelper",
           "typeTokenRange": {
@@ -6667,7 +8297,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "name": "TemplatePluginOptions",
           "typeTokenRange": {
@@ -6693,7 +8323,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "name": "TemplatePluginPaths",
           "typeTokenRange": {
@@ -6715,7 +8345,7 @@
               "text": "\"acidic_transaction\""
             }
           ],
-          "fileUrlPath": "packages/engine/src/constants.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/constants.d.ts",
           "initializerTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -6769,7 +8399,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "packages/engine/src/generators/typescript-generator.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/generators/typescript-generator.d.ts",
           "releaseTag": "Public",
           "typeParameters": [
             {
@@ -6795,16 +8425,7 @@
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "constructor(context: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "AcidicContext",
-                  "canonicalReference": "@acidic/engine!AcidicContext:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", config?: "
+                  "text": "constructor(config?: "
                 },
                 {
                   "kind": "Reference",
@@ -6821,18 +8442,10 @@
               "overloadIndex": 1,
               "parameters": [
                 {
-                  "parameterName": "context",
+                  "parameterName": "config",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
                     "endIndex": 2
-                  },
-                  "isOptional": false
-                },
-                {
-                  "parameterName": "config",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
                   },
                   "isOptional": true
                 }
@@ -7311,7 +8924,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "name": "TypeScriptGeneratorConfig",
           "typeTokenRange": {
@@ -7342,7 +8955,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/engine/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/engine/src/types.d.ts",
           "releaseTag": "Public",
           "name": "TypescriptPluginOptions",
           "typeTokenRange": {

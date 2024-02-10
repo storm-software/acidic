@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.39.0",
+    "toolVersion": "7.38.5",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -195,7 +195,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/errors.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/errors.d.ts",
           "releaseTag": "Public",
           "name": "AcidicDaemonErrorCode",
           "typeTokenRange": {
@@ -397,7 +397,7 @@
               "text": ";\n}"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/errors.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/errors.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "AcidicDaemonErrorCode",
@@ -426,8 +426,8 @@
             },
             {
               "kind": "Reference",
-              "text": "AcidicSchemaWrapper",
-              "canonicalReference": "@acidic/daemon!~AcidicSchemaWrapper:class"
+              "text": "AcidicDefinitionWrapper",
+              "canonicalReference": "@acidic/daemon!~AcidicDefinitionWrapper:class"
             },
             {
               "kind": "Content",
@@ -447,7 +447,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/types.d.ts",
           "releaseTag": "Public",
           "name": "ActiveMessage",
           "typeTokenRange": {
@@ -465,7 +465,7 @@
               "text": "export interface BaseMessagePayload "
             }
           ],
-          "fileUrlPath": "packages/daemon/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/types.d.ts",
           "releaseTag": "Public",
           "name": "BaseMessagePayload",
           "preserveMemberOrder": false,
@@ -501,57 +501,68 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "TypeAlias",
-          "canonicalReference": "@acidic/daemon!DaemonProcess:type",
+          "kind": "Interface",
+          "canonicalReference": "@acidic/daemon!DaemonProcess:interface",
           "docComment": "",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export type DaemonProcess = "
-            },
-            {
-              "kind": "Content",
-              "text": "{\n    path: string;\n    status: "
+              "text": "export interface DaemonProcess extends "
             },
             {
               "kind": "Reference",
-              "text": "ProcessStatus",
-              "canonicalReference": "@acidic/daemon!~ProcessStatus:type"
+              "text": "ServiceStoreItem",
+              "canonicalReference": "@acidic/daemon!~ServiceStoreItem:interface"
             },
             {
               "kind": "Content",
-              "text": ";\n    context?: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Context",
-              "canonicalReference": "@acidic/daemon!~Context:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    error: "
-            },
-            {
-              "kind": "Reference",
-              "text": "StormError",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": " | null;\n}"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
+              "text": " "
             }
           ],
-          "fileUrlPath": "packages/daemon/src/manager/daemon-process-manager.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/manager/daemon-process-manager.d.ts",
           "releaseTag": "Public",
           "name": "DaemonProcess",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 8
-          }
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@acidic/daemon!DaemonProcess#context:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "context: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AcidicContext",
+                  "canonicalReference": "@acidic/daemon!~AcidicContext:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": " | null"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "context",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
         },
         {
           "kind": "Class",
@@ -560,15 +571,104 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare class DaemonProcessManager "
+              "text": "export declare class DaemonProcessManager implements "
+            },
+            {
+              "kind": "Reference",
+              "text": "Disposable",
+              "canonicalReference": "!Disposable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
             }
           ],
-          "fileUrlPath": "packages/daemon/src/manager/daemon-process-manager.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/manager/daemon-process-manager.d.ts",
           "releaseTag": "Public",
           "isAbstract": false,
           "name": "DaemonProcessManager",
           "preserveMemberOrder": false,
           "members": [
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/daemon!DaemonProcessManager#[Symbol.dispose]:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Symbol.dispose",
+                  "canonicalReference": "!SymbolConstructor#dispose"
+                },
+                {
+                  "kind": "Content",
+                  "text": "](): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "[Symbol.dispose]"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@acidic/daemon!DaemonProcessManager#[Symbol.dispose]:member(2)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "["
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Symbol.dispose",
+                  "canonicalReference": "!SymbolConstructor#dispose"
+                },
+                {
+                  "kind": "Content",
+                  "text": "](): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 2,
+              "parameters": [],
+              "isOptional": false,
+              "isAbstract": false,
+              "name": "[Symbol.dispose]"
+            },
             {
               "kind": "Method",
               "canonicalReference": "@acidic/daemon!DaemonProcessManager#getProcess:member(1)",
@@ -589,7 +689,7 @@
                 {
                   "kind": "Reference",
                   "text": "DaemonProcess",
-                  "canonicalReference": "@acidic/daemon!DaemonProcess:type"
+                  "canonicalReference": "@acidic/daemon!DaemonProcess:interface"
                 },
                 {
                   "kind": "Content",
@@ -703,7 +803,7 @@
                 {
                   "kind": "Reference",
                   "text": "DaemonProcess",
-                  "canonicalReference": "@acidic/daemon!DaemonProcess:type"
+                  "canonicalReference": "@acidic/daemon!DaemonProcess:interface"
                 },
                 {
                   "kind": "Content",
@@ -721,45 +821,6 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 5
-              },
-              "isStatic": false,
-              "isProtected": false,
-              "isAbstract": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@acidic/daemon!DaemonProcessManager#start:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "start: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "() => "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<void>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "start",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 4
               },
               "isStatic": false,
               "isProtected": false,
@@ -789,7 +850,7 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "StormLog",
+                  "text": "StormTrace",
                   "canonicalReference": "!unknown"
                 },
                 {
@@ -798,8 +859,21 @@
                 },
                 {
                   "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
                   "text": "DaemonProcessManager",
                   "canonicalReference": "@acidic/daemon!DaemonProcessManager:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -812,44 +886,42 @@
               "name": "start",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 7
+                "endIndex": 10
               },
               "isStatic": true,
               "isProtected": false,
               "isAbstract": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@acidic/daemon!DaemonProcessManager#stop:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "stop: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "() => void"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isReadonly": false,
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "stop",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false,
-              "isProtected": false,
-              "isAbstract": false
             }
           ],
-          "implementsTokenRanges": []
+          "implementsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@acidic/daemon!debounce:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "debounce: "
+            },
+            {
+              "kind": "Content",
+              "text": "(handleFn: (...args: any[]) => any, delay?: number) => (...args: any[]) => void"
+            }
+          ],
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/utilities/debounce.d.ts",
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "debounce",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
         },
         {
           "kind": "TypeAlias",
@@ -892,7 +964,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/types.d.ts",
           "releaseTag": "Public",
           "name": "ErrorMessage",
           "typeTokenRange": {
@@ -932,7 +1004,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/types.d.ts",
           "releaseTag": "Public",
           "name": "LoadingMessage",
           "typeTokenRange": {
@@ -968,7 +1040,7 @@
               "text": "> "
             }
           ],
-          "fileUrlPath": "packages/daemon/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/types.d.ts",
           "releaseTag": "Public",
           "typeParameters": [
             {
@@ -1059,7 +1131,7 @@
             },
             {
               "kind": "Reference",
-              "text": "StormLog",
+              "text": "StormTrace",
               "canonicalReference": "!unknown"
             },
             {
@@ -1103,7 +1175,7 @@
               "text": "<any>"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/utilities/message-bus-helpers.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/utilities/message-bus-helpers.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "messageBusDecorator",
@@ -1130,7 +1202,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/types.d.ts",
           "releaseTag": "Public",
           "name": "MessageBusPacket",
           "typeTokenRange": {
@@ -1156,7 +1228,7 @@
               "text": ";"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/types.d.ts",
           "releaseTag": "Public",
           "name": "MessageIdType",
           "typeTokenRange": {
@@ -1205,45 +1277,13 @@
               "text": ";\n}"
             }
           ],
-          "fileUrlPath": "packages/daemon/src/types.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/daemon/src/types.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "MessageIdType",
           "variableTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 8
-          }
-        },
-        {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/daemon!startDaemonProcess:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "startDaemonProcess: "
-            },
-            {
-              "kind": "Content",
-              "text": "() => "
-            },
-            {
-              "kind": "Reference",
-              "text": "Promise",
-              "canonicalReference": "!Promise:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<void>"
-            }
-          ],
-          "fileUrlPath": "packages/daemon/src/process/process.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "startDaemonProcess",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 4
           }
         }
       ]

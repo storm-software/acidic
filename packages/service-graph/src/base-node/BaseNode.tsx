@@ -1,8 +1,8 @@
-import { NodeKind } from "@acidic/schema";
+import { NodeKind } from "@acidic/definition";
 import clsx from "clsx";
 import React, { ReactNode } from "react";
 import { NodeProps } from "reactflow";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { useEvent } from "../hooks";
 import { getNodeType } from "../utilities";
 

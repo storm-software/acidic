@@ -6,7 +6,7 @@ export interface ControlPanelProps {
   className?: string;
 }
 
-export const ControlPanel = ({ className }: ControlPanelProps) => {
+export const ControlPanel = (_props: ControlPanelProps) => {
   return (
     <Controls position="bottom-left">
       <DownloadControl />

@@ -5,33 +5,28 @@
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": ".",
+    "noUnusedLocals": false,
+    "skipLibCheck": true,
     "paths": {
       "@acidic/cli": ["apps/cli/src/index.ts"],
       "@acidic/cli/*": ["apps/cli/src/*"],
-      "@acidic/config": ["packages/config/src/index.ts"],
-      "@acidic/config/*": ["packages/config/src/*"],
-      "@acidic/daemon": ["packages/daemon/src/index.ts"],
-      "@acidic/daemon/*": ["packages/daemon/src/*"],
-      "@acidic/editor": ["packages/editor/src/index.ts"],
-      "@acidic/editor/*": ["packages/editor/src/*"],
+      "@acidic/definition": ["packages/definition/src/index.ts"],
+      "@acidic/definition/*": ["packages/definition/src/*"],
       "@acidic/engine": ["packages/engine/src/index.ts"],
       "@acidic/engine/*": ["packages/engine/src/*"],
       "@acidic/language": ["packages/language/src/index.ts"],
-      "@acidic/language-server": ["packages/language-server/src/index.ts"],
-      "@acidic/language-server/*": ["packages/language-server/src/*"],
       "@acidic/language/*": ["packages/language/src/*"],
-      "@acidic/schema": ["packages/schema/src/index.ts"],
-      "@acidic/schema/*": ["packages/schema/src/*"],
+      "@acidic/messages": ["packages/messages/src/index.ts"],
+      "@acidic/messages/*": ["packages/messages/src/*"],
+      "@acidic/plugin-drizzle": ["plugins/drizzle/src/index.ts"],
+      "@acidic/plugin-drizzle/*": ["plugins/drizzle/src/*"],
+      "@acidic/plugin-valibot": ["plugins/valibot/src/index.ts"],
+      "@acidic/plugin-valibot/*": ["plugins/valibot/src/*"],
       "@acidic/service-graph": ["packages/service-graph/src/index.ts"],
       "@acidic/service-graph/*": ["packages/service-graph/src/*"],
-      "@acidic/vscode-components": ["packages/vscode/components/src/index.ts"],
-      "@acidic/vscode-components/*": ["packages/vscode-components/src/*"],
-      "@acidic/vscode-rpc": ["packages/vscode/rpc/src/index.ts"],
-      "@acidic/vscode-rpc/*": ["packages/vscode/rpc/src/*"],
-      "@acidic/vscode-state": ["packages/vscode/state/src/index.ts"],
-      "@acidic/vscode-state/*": ["packages/vscode/state/src/*"]
-    },
-    "skipLibCheck": true
+      "@acidic/vscode-state": ["packages/vscode-state/src/index.ts"],
+      "@acidic/vscode-state/*": ["packages/vscode-state/src/*"]
+    }
   },
   "references": []
 }

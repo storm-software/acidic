@@ -1,7 +1,10 @@
-import {
+import type {
   AbstractDeclaration,
   BinaryExpr,
-  ExpressionType
+  ExpressionType,
+  AttributeParam,
+  AcidicObjectField,
+  AcidicOperation
 } from "./__generated__/ast";
 export type { AstNode, Reference } from "langium";
 export * from "./__generated__/ast";
@@ -20,10 +23,7 @@ export type ResolvedType = {
   nullable?: boolean;
 };
 
-export const BinaryExprOperatorPriority: Record<
-  BinaryExpr["operator"],
-  number
-> = {
+export const BinaryExprOperatorPriority: Record<BinaryExpr["operator"], number> = {
   //LogicalExpr
   "||": 1,
   "&&": 1,
@@ -54,21 +54,21 @@ declare module "./__generated__/ast" {
     /**
      * Resolved fields, include inherited fields
      */
-    $resolvedFields: Array<AcidicObjectField>;
+    $resolvedFields: AcidicObjectField[];
   }
 
   interface AcidicModel {
     /**
      * Resolved fields, include inherited fields
      */
-    $resolvedFields: Array<AcidicObjectField>;
+    $resolvedFields: AcidicObjectField[];
   }
 
   interface AcidicEvent {
     /**
      * Resolved fields, include inherited fields
      */
-    $resolvedFields: Array<AcidicObjectField>;
+    $resolvedFields: AcidicObjectField[];
   }
 
   interface AcidicObjectField {
@@ -79,21 +79,21 @@ declare module "./__generated__/ast" {
     /**
      * Resolved fields, include inherited fields
      */
-    $resolvedFields: Array<AcidicOperation>;
+    $resolvedFields: AcidicOperation[];
   }
 
   interface AcidicMutation {
     /**
      * Resolved fields, include inherited fields
      */
-    $resolvedFields: Array<AcidicOperation>;
+    $resolvedFields: AcidicOperation[];
   }
 
   interface AcidicSubscription {
     /**
      * Resolved fields, include inherited fields
      */
-    $resolvedFields: Array<AcidicOperation>;
+    $resolvedFields: AcidicOperation[];
   }
 
   interface AcidicOperation {

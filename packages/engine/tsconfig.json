@@ -3,8 +3,7 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "strict": false,
-    "noEmit": true,
-    "lib": ["esnext", "dom"]
+    "noEmit": true
   },
   "files": [],
   "include": ["src/**/*.ts", "src/**/*.js", "bin/**/*"],

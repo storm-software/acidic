@@ -1,6 +1,6 @@
-import { NodeDefinition, NodeKind, ObjectDefinition } from "@acidic/schema";
+import { NodeDefinition, NodeKind, ObjectDefinition } from "@acidic/definition";
 import React from "react";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { Table, TableProps } from "../table";
 
 export type NodeFieldTableProps = Partial<TableProps> & {

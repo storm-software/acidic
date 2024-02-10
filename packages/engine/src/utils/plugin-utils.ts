@@ -1,14 +1,8 @@
-import { StormLog } from "@storm-stack/logging";
+import { StormTrace } from "@storm-stack/telemetry";
 import fs from "node:fs";
-import path, { join } from "path";
+import path, { join } from "node:path";
 
-export const ALL_OPERATION_KINDS = [
-  "create",
-  "update",
-  "postUpdate",
-  "read",
-  "delete"
-];
+export const ALL_OPERATION_KINDS = ["create", "update", "postUpdate", "read", "delete"];
 
 const MAX_PATH_SEARCH_DEPTH = 30;
 let depth = 0;
@@ -16,18 +10,21 @@ let depth = 0;
 /**
  * Gets the nearest "node_modules" folder by walking up from start path.
  */
-export function getNodeModulesFolder(startPath?: string): string | undefined {
+export function getNodeModulesFolder(_startPath?: string): string | undefined {
+  let startPath = _startPath;
+
   startPath = startPath ?? process.cwd();
-  if (startPath.endsWith("node_modules")) {
+  if (startPath?.endsWith("node_modules")) {
     return startPath;
-  } else if (fs.existsSync(path.join(startPath, "node_modules"))) {
+  }
+  if (fs.existsSync(path.join(startPath, "node_modules"))) {
     return path.join(startPath, "node_modules");
-  } else if (startPath !== "/" && depth++ < MAX_PATH_SEARCH_DEPTH) {
+  }
+  if (startPath !== "/" && depth++ < MAX_PATH_SEARCH_DEPTH) {
     const parent = path.join(startPath, "..");
     return getNodeModulesFolder(parent);
-  } else {
-    return undefined;
   }
+  return undefined;
 }
 
 /**
@@ -60,11 +57,11 @@ export function getDefaultOutputFolder() {
   let modulesFolder = process.env.STORM_RUNTIME_MODULE;
   if (!modulesFolder) {
     const runtimeModuleFolder = "@acidic/runtime";
-    StormLog.debug(`Searching for Acidic Runtime in ${runtimeModuleFolder}`);
+    StormTrace.debug(`Searching for Acidic Runtime in ${runtimeModuleFolder}`);
 
     // Find the real runtime module path, it might be a symlink in pnpm
     let runtimeModulePath = require.resolve(runtimeModuleFolder);
-    StormLog.debug(`Loading Acidic Runtime from ${runtimeModulePath}`);
+    StormTrace.debug(`Loading Acidic Runtime from ${runtimeModulePath}`);
 
     if (runtimeModulePath) {
       // start with the parent folder of @acidic, supposed to be a node_modules folder

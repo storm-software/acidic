@@ -1,5 +1,5 @@
-import { join } from "path";
-import { Uri, Webview } from "vscode";
+import { join } from "node:path";
+import { Uri, type Webview } from "vscode";
 
 /**
  * A helper function which will get the webview URI of a given file or resource.
@@ -12,10 +12,6 @@ import { Uri, Webview } from "vscode";
  * @param pathList An array of strings representing the path to a file/resource
  * @returns A URI pointing to the file/resource
  */
-export function getUri(
-  webview: Webview,
-  extensionPath: string,
-  pathList: string
-) {
+export function getUri(webview: Webview, extensionPath: string, pathList: string) {
   return webview.asWebviewUri(Uri.file(join(extensionPath, pathList)));
 }

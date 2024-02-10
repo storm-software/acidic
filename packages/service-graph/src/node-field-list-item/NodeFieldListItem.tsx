@@ -4,11 +4,11 @@ import {
   ObjectFieldDefinition,
   RelationshipDefinition,
   isObjectDefinition
-} from "@acidic/schema";
+} from "@acidic/definition";
 import clsx from "clsx";
 import React, { useCallback } from "react";
 import { Handle, Position } from "reactflow";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { useGraphStore } from "../state";
 
 export interface NodeFieldListItemProps {

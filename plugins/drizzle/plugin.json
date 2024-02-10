@@ -1,0 +1,7 @@
+{
+  "id": "drizzle",
+  "name": "Drizzle ORM",
+  "description": "Drizzle ORM",
+  "options": {},
+  "tags": ["orm", "typescript"]
+}

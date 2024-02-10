@@ -3,9 +3,9 @@ import {
   NodeKind,
   ObjectDefinition,
   ObjectFieldDefinition
-} from "@acidic/schema";
+} from "@acidic/definition";
 import React from "react";
-import "reactflow/dist/style.css";
+import "packages/service-graph/node_modules/reactflow/dist/style.css";
 import { List, ListProps } from "../list";
 import { NodeFieldListItem } from "../node-field-list-item";
 

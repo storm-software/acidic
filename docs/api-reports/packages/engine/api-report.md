@@ -5,35 +5,44 @@
 ```ts
 
 import { AstNode } from 'langium';
-import { CompilerOptions } from 'ts-morph';
+import type { BusDriver } from 'bentocache/types';
+import type { BusOptions } from 'bentocache/types';
+import type { CacheBusMessage } from 'bentocache/types';
+import type { CompilerOptions } from 'ts-morph';
+import type { CreateBusDriverResult } from 'bentocache/types';
 import { ErrorCode } from '@storm-stack/errors';
 import { ESLint } from 'eslint';
-import * as Handlebars from 'handlebars';
-import { HelperOptions } from 'handlebars/runtime';
-import { IPluginModule } from '@storm-stack/plugin-system';
-import { IStormLog } from '@storm-stack/logging';
+import * as Handlebars_2 from 'handlebars';
+import type { HelperOptions } from 'handlebars/runtime';
+import type { IPluginModule } from '@storm-stack/plugin-system';
 import type { JsonValue } from '@storm-stack/serialization';
-import { MaybePromise } from '@storm-stack/utilities';
+import type { MaybePromise } from '@storm-stack/utilities';
 import { PackageManagers } from '@storm-stack/file-system';
-import { PluginDefinition } from '@storm-stack/plugin-system';
-import { PluginHookFn } from '@storm-stack/plugin-system';
+import { PluginDefinition as PluginDefinition_2 } from '@storm-stack/plugin-system';
+import type { PluginHookFn } from '@storm-stack/plugin-system';
 import { PluginInstance } from '@storm-stack/plugin-system';
-import { PluginLoader } from '@storm-stack/plugin-system';
+import { PluginLoader as PluginLoader_2 } from '@storm-stack/plugin-system';
 import prettier from 'prettier';
 import { Project } from 'ts-morph';
 import type { Reference } from 'langium';
-import { StormConfig } from '@storm-software/config-tools';
+import type { StormConfig } from '@storm-software/config';
 import { StormError } from '@storm-stack/errors';
-import * as v from 'valibot';
+import { StormTrace } from '@storm-stack/telemetry';
+import typia from 'typia';
+
+// @public
+const ACIDIC_PROXY_ENHANCER = "$__acidic_enhancer";
+export { ACIDIC_PROXY_ENHANCER }
+export { ACIDIC_PROXY_ENHANCER as ACIDIC_PROXY_ENHANCER_alias_1 }
 
 // @public (undocumented)
 interface AcidicContext {
     config: AcidicConfig;
-    currentPlugin?: PluginInstance;
-    logger: IStormLog;
+    definition: AcidicDefinitionWrapper;
+    logger: StormTrace;
+    plugin?: PluginInstance;
     schema?: AcidicSchema;
     schemaPath?: string;
-    wrapper: AcidicDefinitionWrapper;
 }
 export { AcidicContext }
 export { AcidicContext as AcidicContext_alias_1 }
@@ -42,21 +51,21 @@ export { AcidicContext as AcidicContext_alias_1 }
 class AcidicDefinitionWrapper {
     constructor(param: AcidicSchema | ServiceDefinition);
     // (undocumented)
-    addEnum: (schemaEnum: EnumInput) => void;
+    addEnum: (schemaEnum: EnumDefinition) => void;
     // (undocumented)
-    addEvent: (schemaEvent: EventInput) => void;
+    addEvent: (schemaEvent: EventDefinition) => void;
     // (undocumented)
-    addModel: (schemaModel: ModelInput) => void;
+    addModel: (schemaModel: ModelDefinition) => void;
     // (undocumented)
-    addMutation: (schemaMutation: MutationInput) => void;
+    addMutation: (schemaMutation: MutationDefinition) => void;
     // (undocumented)
-    addObject: (schemaObject: ObjectInput) => void;
+    addObject: (schemaObject: ObjectDefinition) => void;
     // (undocumented)
-    addPlugin: (pluginDefinition: PluginInput) => void;
+    addPlugin: (pluginDefinition: PluginDefinition) => void;
     // (undocumented)
-    addQuery: (schemaQuery: QueryInput) => void;
+    addQuery: (schemaQuery: QueryDefinition) => void;
     // (undocumented)
-    addSubscription: (schemaSubscription: SubscriptionInput) => void;
+    addSubscription: (schemaSubscription: SubscriptionDefinition) => void;
     // (undocumented)
     static loadDefinition: (param: AcidicSchema | ServiceDefinition) => AcidicDefinitionWrapper;
     // (undocumented)
@@ -70,7 +79,7 @@ export { AcidicDefinitionWrapper as AcidicDefinitionWrapper_alias_2 }
 // @public (undocumented)
 class AcidicEngine {
     // (undocumented)
-    static create: (config: AcidicConfig, logger: IStormLog) => Promise<AcidicEngine>;
+    static create: (config: AcidicConfig, logger: StormTrace) => Promise<AcidicEngine>;
     // (undocumented)
     execute: (options: AcidicEngineOptions) => Promise<StormError | AcidicContext>;
     // (undocumented)
@@ -96,7 +105,7 @@ export { AcidicEngineOptions }
 export { AcidicEngineOptions as AcidicEngineOptions_alias_1 }
 
 // @public (undocumented)
-type AcidicErrorCode = ErrorCode | "missing_schema" | "invalid_schema" | "invalid_schema_extension" | "codegen_failure" | "plugin_not_found" | "invalid_plugin" | "invalid_attr_arg" | "invalid_relationship";
+type AcidicErrorCode = ErrorCode | "missing_schema" | "invalid_schema" | "invalid_schema_extension" | "codegen_failure" | "plugin_not_found" | "invalid_plugin" | "invalid_attr_arg" | "invalid_relationship" | "missing_name" | "invalid_bus_payload";
 
 // @public (undocumented)
 const AcidicErrorCode: {
@@ -108,6 +117,8 @@ const AcidicErrorCode: {
     invalid_plugin: AcidicErrorCode;
     invalid_attr_arg: AcidicErrorCode;
     invalid_relationship: AcidicErrorCode;
+    missing_name: AcidicErrorCode;
+    invalid_bus_payload: AcidicErrorCode;
     success: ErrorCode;
     missing_issue_code: ErrorCode;
     invalid_config: ErrorCode;
@@ -130,11 +141,6 @@ export { AcidicErrorCode }
 export { AcidicErrorCode as AcidicErrorCode_alias_1 }
 
 // @public (undocumented)
-type AcidicPluginHandler<TOptions extends AcidicPluginOptions = AcidicPluginOptions> = (options: TOptions, context: AcidicContext, generator?: IGenerator<TOptions>) => MaybePromise<void>;
-export { AcidicPluginHandler }
-export { AcidicPluginHandler as AcidicPluginHandler_alias_1 }
-
-// @public (undocumented)
 const AcidicPluginHookNames: {
     EXTEND_CONTEXT: string;
     EXTEND_DEFINITION: string;
@@ -148,31 +154,52 @@ export { AcidicPluginHookNames as AcidicPluginHookNames_alias_1 }
 type AcidicPluginHooks = {
     "extend-context"?: PluginHookFn<AcidicContext>;
     "extend-definition"?: PluginHookFn<AcidicContext>;
-    "validate"?: PluginHookFn<AcidicContext>;
-    "generate"?: PluginHookFn<AcidicContext>;
+    validate?: PluginHookFn<AcidicContext>;
+    generate?: PluginHookFn<AcidicContext>;
 };
 export { AcidicPluginHooks }
 export { AcidicPluginHooks as AcidicPluginHooks_alias_1 }
 
-// @public (undocumented)
-class AcidicPluginLoader extends PluginLoader<AcidicContext, AcidicPluginModule> {
-    // (undocumented)
-    execute: (instance: PluginInstance<AcidicContext, AcidicPluginModule>, context: AcidicContext, options: AcidicPluginOptions) => Promise<void>;
-    // (undocumented)
-    load: (definition: PluginDefinition, options?: Record<string, any>) => Promise<PluginInstance<AcidicContext, AcidicPluginModule>>;
-}
-export { AcidicPluginLoader }
-export { AcidicPluginLoader as AcidicPluginLoader_alias_1 }
-
 // @public
 interface AcidicPluginModule<TOptions extends AcidicPluginOptions = AcidicPluginOptions> extends IPluginModule<AcidicContext> {
     dependencies?: string[];
-    execute?: AcidicPluginHandler<TOptions>;
     generator?: IGenerator<TOptions>;
     options?: TOptions;
+    process?: AcidicPluginProcessor<TOptions>;
 }
 export { AcidicPluginModule }
 export { AcidicPluginModule as AcidicPluginModule_alias_1 }
+
+// @public (undocumented)
+type AcidicPluginProcessor<TOptions extends AcidicPluginOptions = AcidicPluginOptions, TGenerator extends IGenerator<TOptions> = IGenerator<TOptions>> = (context: AcidicContext, options: TOptions, generator?: TGenerator) => MaybePromise<void>;
+export { AcidicPluginProcessor }
+export { AcidicPluginProcessor as AcidicPluginProcessor_alias_1 }
+
+// @public (undocumented)
+interface AcidicStore {
+    // (undocumented)
+    clearServices: () => Promise<void>;
+    // (undocumented)
+    deleteService: (path: string) => Promise<void>;
+    // (undocumented)
+    getService: (path: string) => Promise<ServiceStoreItem | null | undefined>;
+    // (undocumented)
+    getServices: () => Promise<ServiceStoreItem[]>;
+    // (undocumented)
+    getSetting: <T>(key: string) => Promise<T | null | undefined>;
+    // (undocumented)
+    setService: (path: string, item: ServiceStoreItem) => Promise<void>;
+    // (undocumented)
+    setSetting: <T>(key: string, setting: T) => Promise<void>;
+    // (undocumented)
+    subscribe: (callback: (arg: {
+        key: string;
+        store: string;
+        value: any;
+    }) => MaybePromise<void>) => () => void;
+}
+export { AcidicStore }
+export { AcidicStore as AcidicStore_alias_1 }
 
 // @public (undocumented)
 const ALL_OPERATION_KINDS: string[];
@@ -185,15 +212,29 @@ const AUXILIARY_FIELDS: string[];
 export { AUXILIARY_FIELDS }
 export { AUXILIARY_FIELDS as AUXILIARY_FIELDS_alias_1 }
 
-// @public
-const createPluginHandler: <TOptions extends AcidicPluginOptions = AcidicPluginOptions>(fileName?: string) => AcidicPluginHandler<TOptions>;
-export { createPluginHandler }
-export { createPluginHandler as createPluginHandler_alias_1 }
+// @public (undocumented)
+const createAcidicConfig: (workspaceRoot?: string) => Promise<AcidicConfig>;
+export { createAcidicConfig }
+export { createAcidicConfig as createAcidicConfig_alias_1 }
+export { createAcidicConfig as createAcidicConfig_alias_2 }
+
+// @public (undocumented)
+const createAcidicStore: (config: AcidicConfig, logger?: StormTrace) => Promise<AcidicStore>;
+export { createAcidicStore }
+export { createAcidicStore as createAcidicStore_alias_1 }
+export { createAcidicStore as createAcidicStore_alias_2 }
 
 // @public
-const createTemplatePluginHandler: <TOptions extends TemplatePluginOptions = TemplatePluginOptions>(templatePaths: TemplatePluginPaths, filterTemplates?: ((options: TOptions, context: AcidicContext, generator: TemplateGenerator<TOptions>, node: NodeDefinition | null, templates: Array<TemplateDetails>) => Array<TemplateDetails>) | undefined) => AcidicPluginHandler<TOptions>;
+const createPluginHandler: <TOptions extends AcidicPluginOptions = AcidicPluginOptions, TGenerator extends IGenerator<TOptions> = IGenerator<TOptions>>(fileName?: string) => AcidicPluginProcessor<TOptions, TGenerator>;
+export { createPluginHandler }
+export { createPluginHandler as createPluginHandler_alias_1 }
+export { createPluginHandler as createPluginHandler_alias_2 }
+
+// @public
+const createTemplatePluginHandler: <TOptions extends TemplatePluginOptions = TemplatePluginOptions, TGenerator extends TemplateGenerator<TOptions> = TemplateGenerator<TOptions>>(templatePaths: TemplatePluginPaths, filterTemplates?: ((context: AcidicContext, node: NodeDefinition | null, options: TOptions, generator: TemplateGenerator<TOptions>, templates: TemplateDetails[]) => TemplateDetails[]) | undefined) => AcidicPluginProcessor<TOptions, TGenerator>;
 export { createTemplatePluginHandler }
 export { createTemplatePluginHandler as createTemplatePluginHandler_alias_1 }
+export { createTemplatePluginHandler as createTemplatePluginHandler_alias_2 }
 
 // @public
 enum CrudFailureReason {
@@ -202,6 +243,36 @@ enum CrudFailureReason {
 }
 export { CrudFailureReason }
 export { CrudFailureReason as CrudFailureReason_alias_1 }
+
+// @public (undocumented)
+interface DaemonProcess extends ServiceStoreItem_2 {
+    // (undocumented)
+    context: AcidicContext | null;
+}
+export { DaemonProcess }
+export { DaemonProcess as DaemonProcess_alias_1 }
+export { DaemonProcess as DaemonProcess_alias_2 }
+
+// @public (undocumented)
+class DaemonProcessManager implements Disposable {
+    // (undocumented)
+    [Symbol.dispose](): void;
+    // (undocumented)
+    [Symbol.dispose](): void;
+    // (undocumented)
+    getProcess(schemaPath: string): DaemonProcess | undefined;
+    // (undocumented)
+    onChange: (handler: (name: string) => void) => void;
+    // (undocumented)
+    onReady: (handler: () => void) => void;
+    // (undocumented)
+    get processes(): Map<string, DaemonProcess>;
+    // (undocumented)
+    static start: (config: AcidicConfig, logger: StormTrace, onReadyFn: () => void) => Promise<DaemonProcessManager>;
+}
+export { DaemonProcessManager }
+export { DaemonProcessManager as DaemonProcessManager_alias_1 }
+export { DaemonProcessManager as DaemonProcessManager_alias_2 }
 
 // @public (undocumented)
 export function default_alias(string: string, count?: number): string;
@@ -257,27 +328,30 @@ export { ensureOutputFolder as ensureOutputFolder_alias_2 }
 
 // @public
 abstract class Generator_2<TOptions extends AcidicPluginOptions = AcidicPluginOptions> implements IGenerator {
-    constructor(context: AcidicContext);
     // (undocumented)
     abstract get commentStart(): string;
     // (undocumented)
-    protected context: AcidicContext;
+    protected context?: AcidicContext;
     // (undocumented)
     abstract get fileExtension(): string | "*";
     // (undocumented)
-    abstract generate(options: TOptions, node: NodeDefinition, context: AcidicContext, params: any): Promise<string>;
+    generate(context: AcidicContext, node: NodeDefinition, options: TOptions, params: any): Promise<string>;
     // (undocumented)
     protected getFileFooter(options: TOptions): string;
     // (undocumented)
-    protected getFileFooterTemplate: (commentStart?: string) => string;
+    protected getFileFooterTemplate: (_commentStart?: string) => string;
     // (undocumented)
     protected getFileHeader(options: TOptions): string;
     // (undocumented)
     protected getFileHeaderTemplate(name: string, commentStart?: string): string;
     // (undocumented)
+    protected abstract innerGenerate(context: AcidicContext, node: NodeDefinition, options: TOptions, params: any): Promise<string>;
+    // (undocumented)
     protected abstract innerWrite(options: TOptions, fileContent: string, fileName: string, fileExtension: string): Promise<void>;
     // (undocumented)
     abstract get name(): string;
+    // (undocumented)
+    protected options?: TOptions;
     // (undocumented)
     abstract save(options: TOptions): Promise<void>;
     // (undocumented)
@@ -285,6 +359,7 @@ abstract class Generator_2<TOptions extends AcidicPluginOptions = AcidicPluginOp
 }
 export { Generator_2 as Generator }
 export { Generator_2 as Generator_alias_1 }
+export { Generator_2 as Generator_alias_2 }
 
 // @public (undocumented)
 const GENERATOR_SYMBOL: unique symbol;
@@ -364,6 +439,12 @@ export { getDataSource as getDataSource_alias_1 }
 export { getDataSource as getDataSource_alias_2 }
 
 // @public (undocumented)
+const getDataSourceDirectUrl: (schema: AcidicSchema) => string;
+export { getDataSourceDirectUrl }
+export { getDataSourceDirectUrl as getDataSourceDirectUrl_alias_1 }
+export { getDataSourceDirectUrl as getDataSourceDirectUrl_alias_2 }
+
+// @public (undocumented)
 const getDataSourceName: (schema: AcidicSchema) => string;
 export { getDataSourceName }
 export { getDataSourceName as getDataSourceName_alias_1 }
@@ -374,6 +455,12 @@ const getDataSourceProvider: (schema: AcidicSchema) => DataSourceType;
 export { getDataSourceProvider }
 export { getDataSourceProvider as getDataSourceProvider_alias_1 }
 export { getDataSourceProvider as getDataSourceProvider_alias_2 }
+
+// @public (undocumented)
+const getDataSourceProxyUrl: (schema: AcidicSchema) => string;
+export { getDataSourceProxyUrl }
+export { getDataSourceProxyUrl as getDataSourceProxyUrl_alias_1 }
+export { getDataSourceProxyUrl as getDataSourceProxyUrl_alias_2 }
 
 // @public (undocumented)
 const getDataSourceUrl: (schema: AcidicSchema) => string;
@@ -394,12 +481,13 @@ export { getFunctionExpressionContext as getFunctionExpressionContext_alias_1 }
 export { getFunctionExpressionContext as getFunctionExpressionContext_alias_2 }
 
 // @public (undocumented)
-const getGeneratedContent: <TOptions extends TemplatePluginOptions = TemplatePluginOptions>(options: TOptions, context: AcidicContext, node: NodeDefinition, generator: TemplateGenerator<TOptions>, template: TemplateDetails) => Promise<{
+const getGeneratedContent: <TOptions extends TemplatePluginOptions = TemplatePluginOptions>(context: AcidicContext, node: NodeDefinition, options: TOptions, generator: TemplateGenerator<TOptions>, template: TemplateDetails) => Promise<{
     name: string;
     content: string;
 }>;
 export { getGeneratedContent }
 export { getGeneratedContent as getGeneratedContent_alias_1 }
+export { getGeneratedContent as getGeneratedContent_alias_2 }
 
 // @public
 function getModelIdFields(model: AcidicModel): AcidicObjectField[];
@@ -414,7 +502,7 @@ export { getModelUniqueFields as getModelUniqueFields_alias_1 }
 export { getModelUniqueFields as getModelUniqueFields_alias_2 }
 
 // @public
-function getNodeModulesFolder(startPath?: string): string | undefined;
+function getNodeModulesFolder(_startPath?: string): string | undefined;
 export { getNodeModulesFolder }
 export { getNodeModulesFolder as getNodeModulesFolder_alias_1 }
 export { getNodeModulesFolder as getNodeModulesFolder_alias_2 }
@@ -432,9 +520,10 @@ export { getServiceId as getServiceId_alias_1 }
 export { getServiceId as getServiceId_alias_2 }
 
 // @public (undocumented)
-const getTemplates: (context: AcidicContext, defaultPath: string | string[], optionsPath?: string | string[]) => Promise<Array<TemplateDetails>>;
+const getTemplates: (context: AcidicContext, defaultPath: string | string[], optionsPath?: string | string[]) => Promise<TemplateDetails[]>;
 export { getTemplates }
 export { getTemplates as getTemplates_alias_1 }
+export { getTemplates as getTemplates_alias_2 }
 
 // @public (undocumented)
 function getVersion(): any;
@@ -456,7 +545,7 @@ export { hasAttribute as hasAttribute_alias_2 }
 // @public (undocumented)
 interface IGenerator<TOptions extends AcidicPluginOptions = AcidicPluginOptions> {
     // (undocumented)
-    generate(options: TOptions, node: NodeDefinition, context: AcidicContext, params?: any): Promise<string>;
+    generate(context: AcidicContext, node: NodeDefinition, options: TOptions, params?: any): Promise<string>;
     // (undocumented)
     write(options: TOptions, fileContent: string, fileName: string, fileExtension?: string): Promise<void>;
 }
@@ -494,29 +583,46 @@ export { isRelationshipField as isRelationshipField_alias_1 }
 export { isRelationshipField as isRelationshipField_alias_2 }
 
 // @public
-const PRISMA_MINIMUM_VERSION = "4.8.0";
-export { PRISMA_MINIMUM_VERSION }
-export { PRISMA_MINIMUM_VERSION as PRISMA_MINIMUM_VERSION_alias_1 }
+function maskSchemaUrls(schema: string): string;
+export { maskSchemaUrls }
+export { maskSchemaUrls as maskSchemaUrls_alias_1 }
+export { maskSchemaUrls as maskSchemaUrls_alias_2 }
 
 // @public
-const PRISMA_PROXY_ENHANCER = "$__acidic_enhancer";
-export { PRISMA_PROXY_ENHANCER }
-export { PRISMA_PROXY_ENHANCER as PRISMA_PROXY_ENHANCER_alias_1 }
+export class NotificationBus implements BusDriver {
+    disconnect(): Promise<void>;
+    // (undocumented)
+    _logger?: StormTrace;
+    // (undocumented)
+    onReconnect(_callback: () => void): Promise<void>;
+    publish(channelName: string, message: Omit<CacheBusMessage, "busId">): Promise<void>;
+    receivedMessages: CacheBusMessage[];
+    // (undocumented)
+    setId(id: string): this;
+    // (undocumented)
+    setLogger(logger: StormTrace): this;
+    subscribe(channelName: string, handler: (message: CacheBusMessage) => void): Promise<void>;
+    unsubscribe(channelName: string): Promise<void>;
+}
+
+// @public
+export function notificationBusDriver(options?: BusOptions): CreateBusDriverResult;
+
+// @public (undocumented)
+class PluginLoader extends PluginLoader_2<AcidicContext, AcidicPluginModule> {
+    // (undocumented)
+    load: (definition: PluginDefinition_2, options?: Record<string, any>) => Promise<PluginInstance<AcidicContext, AcidicPluginModule>>;
+    // (undocumented)
+    process: (context: AcidicContext, instance: PluginInstance<AcidicContext, AcidicPluginModule>, options?: Record<string, any>) => Promise<void>;
+}
+export { PluginLoader }
+export { PluginLoader as PluginLoader_alias_1 }
+export { PluginLoader as PluginLoader_alias_2 }
 
 // @public
 const PRISMA_TX_FLAG = "$__acidic_tx";
 export { PRISMA_TX_FLAG }
 export { PRISMA_TX_FLAG as PRISMA_TX_FLAG_alias_1 }
-
-// @public
-enum PrismaErrorCode {
-    CONSTRAINED_FAILED = "P2004",
-    DEPEND_ON_RECORD_NOT_FOUND = "P2025",
-    REQUIRED_CONNECTED_RECORD_NOT_FOUND = "P2018",
-    UNIQUE_CONSTRAINT_FAILED = "P2002"
-}
-export { PrismaErrorCode }
-export { PrismaErrorCode as PrismaErrorCode_alias_1 }
 
 // @public (undocumented)
 function requireOption<T>(options: AcidicPluginOptions, name: string): T;
@@ -531,6 +637,20 @@ export { serializeAcidicDefinitionWrapper as serializeAcidicDefinitionWrapper_al
 export { serializeAcidicDefinitionWrapper as serializeAcidicDefinitionWrapper_alias_2 }
 
 // @public (undocumented)
+interface ServiceStoreItem {
+    // (undocumented)
+    definition: ServiceDefinition | null;
+    // (undocumented)
+    error: string | null;
+    // (undocumented)
+    path: string;
+    // (undocumented)
+    status: ServiceSchemaStatus;
+}
+export { ServiceStoreItem }
+export { ServiceStoreItem as ServiceStoreItem_alias_1 }
+
+// @public (undocumented)
 const TEMPLATE_EXTENSIONS: string[];
 export { TEMPLATE_EXTENSIONS }
 export { TEMPLATE_EXTENSIONS as TEMPLATE_EXTENSIONS_alias_1 }
@@ -542,22 +662,23 @@ type TemplateDetails = {
 };
 export { TemplateDetails }
 export { TemplateDetails as TemplateDetails_alias_1 }
+export { TemplateDetails as TemplateDetails_alias_2 }
 
 // @public
 class TemplateGenerator<TOptions extends TemplatePluginOptions = TypescriptPluginOptions> extends TypescriptGenerator<TOptions> {
-    constructor(context: AcidicContext, config?: TypeScriptGeneratorConfig);
+    constructor(config: TypeScriptGeneratorConfig);
     // (undocumented)
     get fileExtension(): string;
-    // (undocumented)
-    generate: (options: TOptions, node: NodeDefinition, context: AcidicContext, params: TemplateDetails) => Promise<string>;
     // (undocumented)
     getContext(): AcidicContext;
     // (undocumented)
     getOptions(): TOptions;
     // (undocumented)
-    protected getTemplate: (template: TemplateDetails) => Promise<Handlebars.TemplateDelegate>;
+    protected getTemplate: (template: TemplateDetails) => Promise<Handlebars_2.TemplateDelegate>;
     // (undocumented)
-    get handlebars(): typeof Handlebars;
+    get handlebars(): typeof Handlebars_2;
+    // (undocumented)
+    innerGenerate: (context: AcidicContext, node: NodeDefinition, options: TOptions, params: TemplateDetails) => Promise<string>;
     // (undocumented)
     get name(): string;
     // (undocumented)
@@ -569,10 +690,11 @@ class TemplateGenerator<TOptions extends TemplatePluginOptions = TypescriptPlugi
     // (undocumented)
     registerPartials: (partials: Array<TemplateDetails>) => Promise<void[]>;
     // (undocumented)
-    protected templates: Map<string, Handlebars.TemplateDelegate<any>>;
+    protected templates: Map<string, Handlebars_2.TemplateDelegate<any>>;
 }
 export { TemplateGenerator }
 export { TemplateGenerator as TemplateGenerator_alias_1 }
+export { TemplateGenerator as TemplateGenerator_alias_2 }
 
 // @public (undocumented)
 type TemplateGeneratorHelper = (getContext: () => AcidicContext, getOptions: () => TemplatePluginOptions, context?: any, arg1?: any, arg2?: any, arg3?: any, arg4?: any, arg5?: any, options?: HelperOptions) => any;
@@ -607,7 +729,7 @@ export { TRANSACTION_FIELD_NAME as TRANSACTION_FIELD_NAME_alias_1 }
 
 // @public
 abstract class TypescriptGenerator<TOptions extends TypescriptPluginOptions = TypescriptPluginOptions> extends Generator_2<TOptions> {
-    constructor(context: AcidicContext, config?: TypeScriptGeneratorConfig);
+    constructor(config?: TypeScriptGeneratorConfig);
     // (undocumented)
     get commentStart(): string;
     // (undocumented)
@@ -631,6 +753,7 @@ abstract class TypescriptGenerator<TOptions extends TypescriptPluginOptions = Ty
 }
 export { TypescriptGenerator }
 export { TypescriptGenerator as TypescriptGenerator_alias_1 }
+export { TypescriptGenerator as TypescriptGenerator_alias_2 }
 
 // @public (undocumented)
 type TypeScriptGeneratorConfig = {
