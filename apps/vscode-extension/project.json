@@ -235,5 +235,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["language", "service-graph", "definition"]
 }
