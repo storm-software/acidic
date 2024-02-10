@@ -156,7 +156,7 @@
           "pnpm nx run vscode-extension:build-engine",
           "pnpm nx run vscode-extension:build-client"
         ],
-        "parallel": true
+        "parallel": false
       },
       "configurations": {
         "ci": {
@@ -165,7 +165,7 @@
               "pnpm nx run vscode-extension:build-engine:ci",
               "pnpm nx run vscode-extension:build-client:ci"
             ],
-            "parallel": true
+            "parallel": false
           }
         },
         "development": {
@@ -174,7 +174,7 @@
               "pnpm nx run vscode-extension:build-engine:development",
               "pnpm nx run vscode-extension:build-client:development"
             ],
-            "parallel": true,
+            "parallel": false,
             "sourcemap": true
           }
         },
@@ -184,7 +184,7 @@
               "pnpm nx run vscode-extension:build-engine:production",
               "pnpm nx run vscode-extension:build-client:production"
             ],
-            "parallel": true
+            "parallel": false
           }
         }
       }

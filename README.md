@@ -156,7 +156,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 <br />
 <br />
 <div align="center">
-<img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/logo-banner.png" width="100%" alt="Storm Software" />
+<img src="https://pub-761b436209f44a4d886487c917806c08.r2.dev/storm-banner.gif" width="90%" alt="Storm Software" />
 </div>
 
 <br />
@@ -167,9 +167,10 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 <div align="center">
 <p><b>Fingerprint:</b> 1BD2 7192 7770 2549 F4C9 F238 E6AD C420 DA5C 4C2D</p>
 </div>
+<br />
 
-Storm Software is an open source software development organization and creator of Acidic, StormStack and StormCloud. Our mission is to make software development more accessible. Our ideal future is one where anyone can create software without years of prior development experience serving as a barrier to entry. We hope to achieve this via LLMs, Generative AI, and intuitive, high-level data modeling/programming languages.
+**Storm Software** is an open source software development organization and creator of Acidic, StormStack and StormCloud. Our mission is to make software development more accessible. Our ideal future is one where anyone can create software without years of prior development experience serving as a barrier to entry. We hope to achieve this via LLMs, Generative AI, and intuitive, high-level data modeling/programming languages.
 
-If this sounds interesting, and you would like to help us in creating the next generation of development tools, please reach out on our [website](https://stormsoftware.org/contact)!
+If this sounds interesting, and you would like to help us in creating the next generation of development tools, please reach out on our [website](https://stormsoftware.org)!
 
 <h3 align="center">💻 Visit <a href="https://stormsoftware.org" target="_blank">stormsoftware.org</a> to stay up to date with this developer</h3><br /><br />
