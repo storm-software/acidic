@@ -4,17 +4,8 @@
   "projectType": "library",
   "sourceRoot": "packages/messages/src",
   "targets": {
-    "clean-base": {
-      "cache": true,
-      "executor": "nx:run-commands",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "command": "pnpm exec rimraf packages/messages/src/__generated__/typia"
-      }
-    },
     "build-base": {
       "cache": true,
-      "dependsOn": ["clean-base"],
       "executor": "@storm-software/workspace-tools:typia",
       "outputs": ["{options.outputPath}"],
       "options": {
