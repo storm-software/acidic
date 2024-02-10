@@ -20,7 +20,7 @@
     "sullivanpj",
     "monorepo"
   ],
-  "homepage": "https://stormsoftware.org",
+  "homepage": "https://acidic.io",
   "bugs": {
     "url": "https://stormsoftware.org/support",
     "email": "support@stormsoftware.org"
@@ -56,9 +56,12 @@
     "format": "nx format:write",
     "graph": "nx graph",
     "help": "nx help",
-    "preinstall": "npx -y only-allow pnpm",
+    "preinstall": "npx storm-pre-install || npx -y only-allow pnpm",
     "install:csb": "corepack enable && pnpm install --frozen-lockfile",
-    "lint": "pnpm storm-lint all --skip-cspell",
+    "biome:check": "biome check --apply-unsafe --no-errors-on-unmatched --files-ignore-unknown=true",
+    "biome:lint": "npx biome lint --apply --no-errors-on-unmatched --files-ignore-unknown=true",
+    "biome:format": "npx biome format --write  --no-errors-on-unmatched --files-ignore-unknown=true",
+    "lint": "npx storm-lint all --skip-cspell --alex-config=\"@storm-software/linting-tools/alex/.alexrc\" --alex-config=\"@storm-software/linting-tools/alex/.alexignore\"",
     "local-registry": "nx local-registry @acidic/monorepo",
     "nx": "nx",
     "readme-gen": "pnpm storm-git readme-gen --templates=\"./docs/readme-templates\"",

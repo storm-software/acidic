@@ -6,12 +6,12 @@ module.exports = {
   packageManager: "pnpm",
   owner: "@storm-software/development",
   worker: "stormie-bot",
-  workspaceRoot: "C:\\Development\\acidic",
   runtimeDirectory: "node_modules/.storm",
+  repository: "https://github.com/storm-software/acidic",
   timezone: "America/New_York",
   locale: "en-US",
-  ci: false,
-  logLevel: "info",
+  ci: true,
+  logLevel: "trace",
   externalPackagePatterns: ["@acidic/", "@storm-software/", "@storm-stack/"],
   colors: {
     primary: "#1fb2a6",
@@ -24,6 +24,9 @@ module.exports = {
   },
   extensions: {
     telemetry: {
+      fileName: "storm",
+      fileExtension: "log",
+      path: "tmp/storm/logs",
       stacktrace: true
     }
   }
