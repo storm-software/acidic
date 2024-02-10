@@ -5,6 +5,34 @@
   "sourceRoot": "packages/language/src",
   "targets": {
     "build-base": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/language",
+        "defaultConfiguration": "default",
+        "command": "npx langium generate",
+        "cwd": "packages/language"
+      },
+      "configurations": {
+        "default": {
+          "options": {
+            "command": "npx langium generate",
+            "cwd": "packages/language"
+          }
+        },
+        "watch": {
+          "options": {
+            "command": "npx langium generate --watch",
+            "cwd": "packages/language",
+            "watch": true
+          }
+        }
+      }
+    },
+    "build": {
+      "cache": true,
+      "dependsOn": ["build-base"],
       "executor": "@storm-software/workspace-tools:tsup-node",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -13,7 +41,6 @@
         "tsConfig": "packages/language/tsconfig.json",
         "project": "packages/language/package.json",
         "defaultConfiguration": "production",
-        "skipTypia": true,
         "assets": [
           {
             "input": "packages/language",
@@ -60,53 +87,6 @@
         "development": {
           "debug": true,
           "verbose": true
-        }
-      }
-    },
-    "langium": {
-      "executor": "nx:run-commands",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "packages/language",
-        "defaultConfiguration": "default",
-        "command": "npx langium generate",
-        "cwd": "packages/language"
-      },
-      "configurations": {
-        "default": {
-          "options": {
-            "command": "npx langium generate",
-            "cwd": "packages/language"
-          }
-        },
-        "watch": {
-          "options": {
-            "command": "npx langium generate --watch",
-            "cwd": "packages/language",
-            "watch": true
-          }
-        }
-      }
-    },
-    "build": {
-      "executor": "nx:run-commands",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "project": "packages/language/package.json",
-        "outputPath": "dist/packages/language",
-        "defaultConfiguration": "production",
-        "command": "pnpm nx run language:langium:default && pnpm nx run language:build-base:production"
-      },
-      "configurations": {
-        "production": {
-          "options": {
-            "command": "pnpm nx run language:langium:default && pnpm nx run language:build-base:production"
-          }
-        },
-        "development": {
-          "options": {
-            "command": "pnpm nx run language:langium:default && pnpm nx run language:build-base:development"
-          }
         }
       }
     },
