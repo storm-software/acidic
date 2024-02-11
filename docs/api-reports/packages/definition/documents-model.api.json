@@ -650,7 +650,7 @@
               "canonicalReference": "@acidic/definition!AttributeDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertAttribute_2",
@@ -678,7 +678,7 @@
               "canonicalReference": "@acidic/definition!AttributeDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertAttribute",
@@ -706,7 +706,7 @@
               "canonicalReference": "@acidic/definition!AttributeArgFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertAttributeArgField_2",
@@ -734,7 +734,7 @@
               "canonicalReference": "@acidic/definition!AttributeArgFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertAttributeArgField",
@@ -762,7 +762,7 @@
               "canonicalReference": "@acidic/definition!ObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertBaseObjectField_2",
@@ -790,7 +790,7 @@
               "canonicalReference": "@acidic/definition!ObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertBaseObjectField",
@@ -818,7 +818,7 @@
               "canonicalReference": "@acidic/definition!BigIntObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertBigIntObjectField_2",
@@ -846,7 +846,7 @@
               "canonicalReference": "@acidic/definition!BigIntObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertBigIntObjectField",
@@ -874,7 +874,7 @@
               "canonicalReference": "@acidic/definition!BooleanObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertBooleanObjectField_2",
@@ -902,7 +902,7 @@
               "canonicalReference": "@acidic/definition!BooleanObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertBooleanObjectField",
@@ -930,7 +930,7 @@
               "canonicalReference": "@acidic/definition!BytesObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertBytesObjectField_2",
@@ -958,7 +958,7 @@
               "canonicalReference": "@acidic/definition!BytesObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertBytesObjectField",
@@ -986,7 +986,7 @@
               "canonicalReference": "@acidic/definition!DataSourceDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertDataSource_2",
@@ -1014,7 +1014,7 @@
               "canonicalReference": "@acidic/definition!DataSourceDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertDataSource",
@@ -1042,7 +1042,7 @@
               "canonicalReference": "@acidic/definition!DateObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertDateObjectField_2",
@@ -1070,7 +1070,7 @@
               "canonicalReference": "@acidic/definition!DateObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertDateObjectField",
@@ -1098,7 +1098,7 @@
               "canonicalReference": "@acidic/definition!DateTimeObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertDateTimeObjectField_2",
@@ -1126,7 +1126,7 @@
               "canonicalReference": "@acidic/definition!DateTimeObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertDateTimeObjectField",
@@ -1154,7 +1154,7 @@
               "canonicalReference": "@acidic/definition!DecimalObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertDecimalObjectField_2",
@@ -1182,7 +1182,7 @@
               "canonicalReference": "@acidic/definition!DecimalObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertDecimalObjectField",
@@ -1210,7 +1210,7 @@
               "canonicalReference": "@acidic/definition!EnumDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertEnum_2",
@@ -1238,7 +1238,7 @@
               "canonicalReference": "@acidic/definition!EnumDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertEnum",
@@ -1266,7 +1266,7 @@
               "canonicalReference": "@acidic/definition!EnumFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertEnumField_2",
@@ -1294,7 +1294,7 @@
               "canonicalReference": "@acidic/definition!EnumFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertEnumField",
@@ -1322,7 +1322,7 @@
               "canonicalReference": "@acidic/definition!EventDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertEvent_2",
@@ -1350,7 +1350,7 @@
               "canonicalReference": "@acidic/definition!EventDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertEvent",
@@ -1378,7 +1378,7 @@
               "canonicalReference": "@acidic/definition!FloatObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertFloatObjectField_2",
@@ -1406,7 +1406,7 @@
               "canonicalReference": "@acidic/definition!FloatObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertFloatObjectField",
@@ -1434,7 +1434,7 @@
               "canonicalReference": "@acidic/definition!IntegerObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertIntegerObjectField_2",
@@ -1462,7 +1462,7 @@
               "canonicalReference": "@acidic/definition!IntegerObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertIntegerObjectField",
@@ -1490,7 +1490,7 @@
               "canonicalReference": "@acidic/definition!JsonObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertJsonObjectField_2",
@@ -1518,7 +1518,7 @@
               "canonicalReference": "@acidic/definition!JsonObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertJsonObjectField",
@@ -1546,7 +1546,7 @@
               "canonicalReference": "@acidic/definition!ModelDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertModel_2",
@@ -1574,7 +1574,7 @@
               "canonicalReference": "@acidic/definition!ModelDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertModel",
@@ -1602,7 +1602,7 @@
               "canonicalReference": "@acidic/definition!MutationDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertMutation_2",
@@ -1630,7 +1630,7 @@
               "canonicalReference": "@acidic/definition!MutationDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertMutation",
@@ -1658,7 +1658,7 @@
               "canonicalReference": "@acidic/definition!NumberObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertNumberObjectField_2",
@@ -1686,7 +1686,7 @@
               "canonicalReference": "@acidic/definition!NumberObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertNumberObjectField",
@@ -1714,7 +1714,7 @@
               "canonicalReference": "@acidic/definition!ObjectDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertObject_2",
@@ -1742,7 +1742,7 @@
               "canonicalReference": "@acidic/definition!ObjectDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertObject",
@@ -1770,7 +1770,7 @@
               "canonicalReference": "@acidic/definition!ObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertObjectField_2",
@@ -1798,7 +1798,7 @@
               "canonicalReference": "@acidic/definition!ObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertObjectField",
@@ -1826,7 +1826,7 @@
               "canonicalReference": "@acidic/definition!OperationDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertOperation_2",
@@ -1854,7 +1854,7 @@
               "canonicalReference": "@acidic/definition!OperationDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertOperation",
@@ -1882,7 +1882,7 @@
               "canonicalReference": "@acidic/definition!PluginDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertPlugin_2",
@@ -1910,7 +1910,7 @@
               "canonicalReference": "@acidic/definition!PluginDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertPlugin",
@@ -1938,7 +1938,7 @@
               "canonicalReference": "@acidic/definition!QueryDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertQuery_2",
@@ -1966,7 +1966,7 @@
               "canonicalReference": "@acidic/definition!QueryDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertQuery",
@@ -1994,7 +1994,7 @@
               "canonicalReference": "@acidic/definition!ReferenceObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertReferenceObjectField_2",
@@ -2022,7 +2022,7 @@
               "canonicalReference": "@acidic/definition!ReferenceObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertReferenceObjectField",
@@ -2050,7 +2050,7 @@
               "canonicalReference": "@acidic/definition!RelationshipDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertRelationship_2",
@@ -2078,7 +2078,7 @@
               "canonicalReference": "@acidic/definition!RelationshipDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertRelationship",
@@ -2106,7 +2106,7 @@
               "canonicalReference": "@acidic/definition!ServiceDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertService_2",
@@ -2134,7 +2134,7 @@
               "canonicalReference": "@acidic/definition!ServiceDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertService",
@@ -2162,7 +2162,7 @@
               "canonicalReference": "@acidic/definition!StringObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertStringObjectField_2",
@@ -2190,7 +2190,7 @@
               "canonicalReference": "@acidic/definition!StringObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertStringObjectField",
@@ -2218,7 +2218,7 @@
               "canonicalReference": "@acidic/definition!SubscriptionDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertSubscription_2",
@@ -2246,7 +2246,7 @@
               "canonicalReference": "@acidic/definition!SubscriptionDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertSubscription",
@@ -2274,7 +2274,7 @@
               "canonicalReference": "@acidic/definition!TimeObjectFieldDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertTimeObjectField_2",
@@ -2302,7 +2302,7 @@
               "canonicalReference": "@acidic/definition!TimeObjectFieldDefinition:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "assertTimeObjectField",
@@ -2330,7 +2330,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "AttributeArgDefinition_2",
           "preserveMemberOrder": false,
@@ -2394,7 +2394,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "AttributeArgDefinition",
           "preserveMemberOrder": false,
@@ -2458,7 +2458,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "AttributeArgFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -2545,7 +2545,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "AttributeArgFieldDefinition",
           "preserveMemberOrder": false,
@@ -2632,7 +2632,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "AttributeDefinition_2",
           "preserveMemberOrder": false,
@@ -2696,7 +2696,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "AttributeDefinition",
           "preserveMemberOrder": false,
@@ -2760,7 +2760,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BaseDateTimeObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -3042,7 +3042,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BaseDateTimeObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -3315,7 +3315,7 @@
               "text": "export interface BaseDefinition "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BaseDefinition_2",
           "preserveMemberOrder": false,
@@ -3387,7 +3387,7 @@
               "text": "export interface BaseDefinition "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BaseDefinition",
           "preserveMemberOrder": false,
@@ -3494,7 +3494,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BigIntAttributeArgFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -3581,7 +3581,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BigIntAttributeArgFieldDefinition",
           "preserveMemberOrder": false,
@@ -3668,7 +3668,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BigIntObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -4355,7 +4355,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BigIntObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -5042,7 +5042,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BooleanAttributeArgFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -5129,7 +5129,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BooleanAttributeArgFieldDefinition",
           "preserveMemberOrder": false,
@@ -5216,7 +5216,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BooleanObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -5384,7 +5384,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BooleanObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -5552,7 +5552,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BytesObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -5612,7 +5612,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "BytesObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -5672,7 +5672,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DataSourceDefinition_2",
           "preserveMemberOrder": false,
@@ -5841,7 +5841,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DataSourceDefinition",
           "preserveMemberOrder": false,
@@ -6001,7 +6001,7 @@
               "text": "export declare enum DataSourceType "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DataSourceType_2",
           "preserveMemberOrder": false,
@@ -6186,7 +6186,7 @@
               "text": "export declare enum DataSourceType "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DataSourceType",
           "preserveMemberOrder": false,
@@ -6380,7 +6380,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DateObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -6440,7 +6440,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DateObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -6500,7 +6500,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DateTimeObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -6560,7 +6560,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DateTimeObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -6620,7 +6620,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DecimalAttributeArgFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -6716,7 +6716,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DecimalAttributeArgFieldDefinition",
           "preserveMemberOrder": false,
@@ -6812,7 +6812,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DecimalObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -7301,7 +7301,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "DecimalObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -7790,7 +7790,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "EnumDefinition_2",
           "preserveMemberOrder": false,
@@ -7891,7 +7891,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "EnumDefinition",
           "preserveMemberOrder": false,
@@ -7992,7 +7992,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "EnumFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -8079,7 +8079,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "EnumFieldDefinition",
           "preserveMemberOrder": false,
@@ -8166,7 +8166,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "EventDefinition_2",
           "preserveMemberOrder": false,
@@ -8313,7 +8313,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "EventDefinition",
           "preserveMemberOrder": false,
@@ -8460,7 +8460,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "FieldDefinition_2",
           "preserveMemberOrder": false,
@@ -8547,7 +8547,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "FieldDefinition",
           "preserveMemberOrder": false,
@@ -8625,7 +8625,7 @@
               "text": "export declare enum FieldType "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "FieldType_2",
           "preserveMemberOrder": false,
@@ -8936,7 +8936,7 @@
               "text": "export declare enum FieldType "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "FieldType",
           "preserveMemberOrder": false,
@@ -9256,7 +9256,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "FloatAttributeArgFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -9352,7 +9352,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "FloatAttributeArgFieldDefinition",
           "preserveMemberOrder": false,
@@ -9448,7 +9448,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "FloatObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -9937,7 +9937,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "FloatObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -10461,7 +10461,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "IntegerAttributeArgFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -10557,7 +10557,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "IntegerAttributeArgFieldDefinition",
           "preserveMemberOrder": false,
@@ -10653,7 +10653,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "IntegerObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -11142,7 +11142,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "IntegerObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -11927,7 +11927,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "JsonObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -11987,7 +11987,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "JsonObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -12047,7 +12047,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ModelDefinition_2",
           "preserveMemberOrder": false,
@@ -12194,7 +12194,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ModelDefinition",
           "preserveMemberOrder": false,
@@ -12341,7 +12341,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "MutationDefinition_2",
           "preserveMemberOrder": false,
@@ -12401,7 +12401,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "MutationDefinition",
           "preserveMemberOrder": false,
@@ -12461,7 +12461,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "NodeDefinition_2",
           "preserveMemberOrder": false,
@@ -12548,7 +12548,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "NodeDefinition",
           "preserveMemberOrder": false,
@@ -12626,7 +12626,7 @@
               "text": "export declare enum NodeKind "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "NodeKind_2",
           "preserveMemberOrder": false,
@@ -12853,7 +12853,7 @@
               "text": "export declare enum NodeKind "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "NodeKind",
           "preserveMemberOrder": false,
@@ -13089,7 +13089,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "NumberObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -13662,7 +13662,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "NumberObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -14235,7 +14235,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ObjectDefinition_2",
           "preserveMemberOrder": false,
@@ -14450,7 +14450,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ObjectDefinition",
           "preserveMemberOrder": false,
@@ -14665,7 +14665,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -14810,7 +14810,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -14955,7 +14955,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "OperationDefinition_2",
           "preserveMemberOrder": false,
@@ -15197,7 +15197,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "OperationDefinition",
           "preserveMemberOrder": false,
@@ -15575,7 +15575,7 @@
               "canonicalReference": "@acidic/definition!ServiceDefinition_2:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "parseService_2",
@@ -15616,7 +15616,7 @@
               "text": ">"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "parseService",
@@ -15644,7 +15644,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "PluginDefinition_2",
           "preserveMemberOrder": false,
@@ -15849,7 +15849,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "PluginDefinition",
           "preserveMemberOrder": false,
@@ -16054,7 +16054,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "QueryDefinition_2",
           "preserveMemberOrder": false,
@@ -16141,7 +16141,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "QueryDefinition",
           "preserveMemberOrder": false,
@@ -16228,7 +16228,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ReferenceAttributeArgFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -16353,7 +16353,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ReferenceAttributeArgFieldDefinition",
           "preserveMemberOrder": false,
@@ -16478,7 +16478,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ReferenceObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -16603,7 +16603,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ReferenceObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -16728,7 +16728,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "RelationshipDefinition_2",
           "preserveMemberOrder": false,
@@ -16852,7 +16852,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "RelationshipDefinition",
           "preserveMemberOrder": false,
@@ -16976,7 +16976,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ServiceDefinition_2",
           "preserveMemberOrder": false,
@@ -17442,7 +17442,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "ServiceDefinition",
           "preserveMemberOrder": false,
@@ -17904,7 +17904,7 @@
               "canonicalReference": "typia!IJsonApplication:interface"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "ServiceJsonSchema_2",
@@ -17927,7 +17927,7 @@
               "text": "{\n    schemas: {\n        $ref: string;\n    }[];\n    components: {\n        schemas: {\n            ServiceDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    baseUrl: {\n                        type: string;\n                        format: string;\n                    };\n                    owner: {\n                        type: string;\n                    };\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    imports: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                    dataSource: {\n                        $ref: string;\n                    };\n                    plugins: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    enums: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    objects: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    models: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    events: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    queries: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    mutations: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    subscriptions: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n                description: string;\n            };\n            DataSourceDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    provider: {\n                        $ref: string;\n                    };\n                    url: {\n                        type: string;\n                    };\n                    directUrl: {\n                        type: string;\n                    };\n                    proxyUrl: {\n                        type: string;\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            DataSourceType: {\n                $id: string;\n                type: string;\n                enum: string[];\n                description: string;\n            };\n            PluginDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    provider: {\n                        type: string;\n                    };\n                    dependencies: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                    output: {\n                        type: string;\n                    };\n                    options: {\n                        $ref: string;\n                    };\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n                description: string;\n            };\n            Recordstringany: {\n                $id: string;\n                type: string;\n                properties: {};\n                description: string;\n                additionalProperties: {};\n            };\n            AttributeDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    args: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            AttributeArgDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    fields: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            AttributeArgFieldDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    type: {\n                        $ref: string;\n                    };\n                    value: {};\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            FieldType: {\n                $id: string;\n                type: string;\n                enum: string[];\n            };\n            EnumDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    fields: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                        minItems: number;\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            EnumFieldDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    type: {\n                        type: string;\n                        enum: string[];\n                    };\n                    value: {\n                        type: string;\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n                description: string;\n            };\n            ObjectDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    fields: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    extends: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    isExtending: {\n                        type: string;\n                    };\n                    relationships: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            ObjectFieldDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    isRequired: {\n                        type: string;\n                    };\n                    isArray: {\n                        type: string;\n                    };\n                    defaultValue: {};\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    type: {\n                        $ref: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n                description: string;\n            };\n            NodeDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    name: {\n                        type: string;\n                    };\n                    kind: {\n                        $ref: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            NodeKind: {\n                $id: string;\n                type: string;\n                enum: string[];\n            };\n            RelationshipDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    fields: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    ref: {\n                        $ref: string;\n                    };\n                    references: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            FieldDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    name: {\n                        type: string;\n                    };\n                    type: {\n                        $ref: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            ModelDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    tableName: {\n                        type: string;\n                    };\n                    data: {\n                        $ref: string;\n                    };\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n                description: string;\n            };\n            EventDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    topic: {\n                        type: string;\n                    };\n                    data: {\n                        $ref: string;\n                    };\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n                description: string;\n            };\n            QueryDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    isLive: {\n                        type: string;\n                    };\n                    request: {\n                        $ref: string;\n                    };\n                    response: {\n                        type: string;\n                        properties: {\n                            ref: {\n                                $ref: string;\n                            };\n                            isArray: {\n                                type: string;\n                            };\n                        };\n                        required: string[];\n                    };\n                    url: {\n                        type: string;\n                        format: string;\n                    };\n                    emits: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            MutationDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    request: {\n                        $ref: string;\n                    };\n                    response: {\n                        type: string;\n                        properties: {\n                            ref: {\n                                $ref: string;\n                            };\n                            isArray: {\n                                type: string;\n                            };\n                        };\n                        required: string[];\n                    };\n                    url: {\n                        type: string;\n                        format: string;\n                    };\n                    emits: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n            SubscriptionDefinition: {\n                $id: string;\n                type: string;\n                properties: {\n                    kind: {\n                        type: string;\n                        enum: string[];\n                    };\n                    request: {\n                        $ref: string;\n                    };\n                    response: {\n                        type: string;\n                        properties: {\n                            ref: {\n                                $ref: string;\n                            };\n                            isArray: {\n                                type: string;\n                            };\n                        };\n                        required: string[];\n                    };\n                    url: {\n                        type: string;\n                        format: string;\n                    };\n                    emits: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    attributes: {\n                        type: string;\n                        items: {\n                            $ref: string;\n                        };\n                    };\n                    name: {\n                        type: string;\n                    };\n                    comments: {\n                        type: string;\n                        items: {\n                            type: string;\n                        };\n                    };\n                };\n                required: string[];\n            };\n        };\n    };\n    purpose: string;\n    surplus: boolean;\n}"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "ServiceJsonSchema",
@@ -17955,7 +17955,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "StringAttributeArgFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -18042,7 +18042,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "StringAttributeArgFieldDefinition",
           "preserveMemberOrder": false,
@@ -18197,7 +18197,7 @@
               "text": ") => string"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "stringifyService_2",
@@ -18229,7 +18229,7 @@
               "text": ") => string"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "stringifyService",
@@ -18257,7 +18257,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "StringObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -19091,7 +19091,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "StringObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -19925,7 +19925,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "SubscriptionDefinition_2",
           "preserveMemberOrder": false,
@@ -19985,7 +19985,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "SubscriptionDefinition",
           "preserveMemberOrder": false,
@@ -20045,7 +20045,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "TimeObjectFieldDefinition_2",
           "preserveMemberOrder": false,
@@ -20105,7 +20105,7 @@
               "text": " "
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "releaseTag": "Public",
           "name": "TimeObjectFieldDefinition",
           "preserveMemberOrder": false,
@@ -20260,7 +20260,7 @@
               "text": ">"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/definitions/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "validateService_2",
@@ -20301,7 +20301,7 @@
               "text": ">"
             }
           ],
-          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/schema-definition.d.ts",
+          "fileUrlPath": "tmp/.tsup/declaration/packages/definition/src/__generated__/typia/service-definition.d.ts",
           "isReadonly": true,
           "releaseTag": "Public",
           "name": "validateService",

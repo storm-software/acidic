@@ -13,6 +13,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@storm-stack/errors": "^1.13.3"
+    "@storm-stack/errors": "latest"
   }
 }
