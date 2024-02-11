@@ -34,8 +34,8 @@ importers:
         specifier: 17.2.8
         version: 17.2.8(@swc-node/register@1.6.8)(@swc/core@1.3.101)(@types/node@20.9.0)(cypress@13.6.2)(eslint@8.56.0)(nx@17.2.8)(typescript@5.2.2)(verdaccio@5.29.0)
       '@nx/devkit':
-        specifier: 17.2.8
-        version: 17.2.8(nx@17.2.8)
+        specifier: 18.0.4
+        version: 18.0.4(nx@17.2.8)
       '@nx/esbuild':
         specifier: 17.2.8
         version: 17.2.8(@swc-node/register@1.6.8)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.18.20)(nx@17.2.8)(typescript@5.2.2)(verdaccio@5.29.0)
@@ -71,7 +71,7 @@ importers:
         version: 1.2.12
       '@storm-software/git-tools':
         specifier: latest
-        version: 1.36.12(@nx/devkit@17.2.8)(@types/node@20.9.0)(nx@17.2.8)(typescript@5.2.2)
+        version: 1.36.12(@nx/devkit@18.0.4)(@types/node@20.9.0)(nx@17.2.8)(typescript@5.2.2)
       '@storm-software/linting-tools':
         specifier: latest
         version: 1.38.12(prettier@3.2.4)
@@ -2992,7 +2992,7 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
     dependencies:
-      eslint: 8.56.0
+      eslint: 8.56.0(supports-color@9.4.0)
       eslint-visitor-keys: 3.4.3
     dev: false
 
@@ -4026,6 +4026,14 @@ packages:
     transitivePeerDependencies:
       - nx
 
+  /@nrwl/devkit@18.0.4(nx@17.2.8):
+    resolution: {integrity: sha512-fKHnjg4/9MdFd2U4e8p6ja9fRa864DCyF70kB4YUB9NuUIgWLQ15Uj6wXC3xjdXmxQRyHDa7ORodVoFzdo4UCg==}
+    dependencies:
+      '@nx/devkit': 18.0.4(nx@17.2.8)
+    transitivePeerDependencies:
+      - nx
+    dev: false
+
   /@nrwl/esbuild@17.2.8(@swc-node/register@1.6.8)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.18.20)(nx@17.2.8)(typescript@5.2.2)(verdaccio@5.29.0):
     resolution: {integrity: sha512-GvjPu3+Jl5O7jAKyisayh3w84syI+ZVfEqSxxb+tpXDlsvex6OpF7MUw2ZHk2MEadFeI8ASt+JkpDZBzABOgWg==}
     dependencies:
@@ -4257,6 +4265,22 @@ packages:
       semver: 7.5.3
       tmp: 0.2.1
       tslib: 2.6.2
+
+  /@nx/devkit@18.0.4(nx@17.2.8):
+    resolution: {integrity: sha512-Vs1AXgOjMJyaWpKopD04dy0FwQ22n5ZR1bFf98Ab4Ht0WJwJE90IpUVAkwI03n5BYxAKOlQnFltsB4gu6Y8mZQ==}
+    peerDependencies:
+      nx: '>= 16 <= 18'
+    dependencies:
+      '@nrwl/devkit': 18.0.4(nx@17.2.8)
+      ejs: 3.1.9
+      enquirer: 2.3.6
+      ignore: 5.3.0
+      nx: 17.2.8(@swc-node/register@1.6.8)(@swc/core@1.3.101)
+      semver: 7.5.4
+      tmp: 0.2.1
+      tslib: 2.6.2
+      yargs-parser: 21.1.1
+    dev: false
 
   /@nx/esbuild@17.2.8(@swc-node/register@1.6.8)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.18.20)(nx@17.2.8)(typescript@5.2.2)(verdaccio@5.29.0):
     resolution: {integrity: sha512-C+WQTb16GZ7ttTRFmKE9mvgHGE+7+DO6ms93QZIoAwUWqbnn3SJswe4iFImbZFWr+NZ4cSE8BT5SAkuxI+cdIg==}
@@ -5811,7 +5835,7 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@storm-software/git-tools@1.36.12(@nx/devkit@17.2.8)(@types/node@20.9.0)(nx@17.2.8)(typescript@5.2.2):
+  /@storm-software/git-tools@1.36.12(@nx/devkit@18.0.4)(@types/node@20.9.0)(nx@17.2.8)(typescript@5.2.2):
     resolution: {integrity: sha512-BAciRuV9je2HS1gTsSRSnmuWsPbysqotartEmurckTM1IswLVi9u38jqdd8YmRm9kqncPtBTmswcxGQNMbxL+g==}
     hasBin: true
     peerDependencies:
@@ -5822,7 +5846,7 @@ packages:
       '@commitlint/config-conventional': 18.6.0
       '@commitlint/lint': 18.6.0
       '@commitlint/types': 18.6.0
-      '@nx/devkit': 17.2.8(nx@17.2.8)
+      '@nx/devkit': 18.0.4(nx@17.2.8)
       any-shell-escape: 0.1.1
       axios: 1.6.7
       chalk: 4.1.0
