@@ -26,6 +26,7 @@ env:
   STORM_WORKER: stormie-bot
   GITHUB_ACTOR: ${{ github.actor }}
   GITHUB_TOKEN: ${{ github.token }}
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
   analyze:
