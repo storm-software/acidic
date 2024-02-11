@@ -20,6 +20,13 @@ on:
   schedule:
     - cron: "37 16 * * 6"
 
+env:
+  CI: true
+  NX_VERBOSE_LOGGING: true
+  STORM_WORKER: stormie-bot
+  GITHUB_ACTOR: ${{ github.actor }}
+  GITHUB_TOKEN: ${{ github.token }}
+
 jobs:
   analyze:
     name: Analyze
@@ -50,6 +57,9 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.STORMIE_GITHUB_TOKEN }}
+        env:
+          GITHUB_ACTOR: ${{env.STORM_WORKER}}
+          GITHUB_TOKEN: ${{secrets.STORMIE_GITHUB_TOKEN}}
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
