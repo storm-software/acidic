@@ -78,6 +78,5 @@
         "registry": "https://registry.npmjs.org/"
       }
     }
-  },
-  "implicitDependencies": ["definition"]
+  }
 }

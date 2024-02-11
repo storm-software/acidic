@@ -140,7 +140,7 @@
     "typescript": "~5.2.2",
     "typia": "^5.3.11",
     "verdaccio": "^5.29.0",
-    "vite": "^5.0.10",
+    "vite": "^5.1.1",
     "vite-plugin-dts": "~2.3.0",
     "vitest": "^1.0.4"
   },
@@ -155,7 +155,11 @@
   },
   "pnpm": {
     "overrides": {
+      "ip": ">1.1.8",
+      "simple-git": ">=3.16.0",
+      "parse-url": ">=8.1.0",
       "minimist": ">=1.2.5",
+      "shell-quote": ">=1.7.3",
       "@acidic/language": "workspace:*",
       "@acidic/engine": "workspace:*",
       "@acidic/cli": "workspace:*",
