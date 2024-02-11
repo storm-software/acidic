@@ -5,8 +5,8 @@ on: [push, pull_request]
 env:
   CI: true
   NX_VERBOSE_LOGGING: true
-  GITHUB_ACTOR: ${{ github.actor }}
-  GITHUB_TOKEN: ${{ github.token }}
+  GITHUB_ACTOR: stormie-bot
+  GITHUB_TOKEN: ${{ secrets.STORMIE_GITHUB_TOKEN }}
 
 jobs:
   scanning:
