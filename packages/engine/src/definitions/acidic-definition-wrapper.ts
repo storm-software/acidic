@@ -1,31 +1,4 @@
 import {
-  type AcidicEnum,
-  type AcidicEnumField,
-  type AcidicEvent,
-  type AcidicFieldAttribute,
-  type AcidicModel,
-  type AcidicObject,
-  type AcidicObjectAttribute,
-  type AcidicObjectField,
-  type AcidicOperation,
-  type AcidicPlugin,
-  type AcidicPluginField,
-  type AcidicSchema,
-  type AttributeArg,
-  type Expression,
-  isAcidicEnum,
-  isAcidicEnumField,
-  isAcidicModel,
-  isAcidicMutation,
-  isAcidicObject,
-  isAcidicQuery,
-  isAcidicSchema,
-  isArrayExpr,
-  isInvocationExpr,
-  isLiteralExpr,
-  isReferenceExpr
-} from "@acidic/language";
-import {
   AcidicDefinitionErrorCode,
   type AttributeArgDefinition,
   type AttributeArgFieldDefinition,
@@ -63,6 +36,33 @@ import {
   assertService,
   assertSubscription
 } from "@acidic/definition";
+import {
+  type AcidicEnum,
+  type AcidicEnumField,
+  type AcidicEvent,
+  type AcidicFieldAttribute,
+  type AcidicModel,
+  type AcidicObject,
+  type AcidicObjectAttribute,
+  type AcidicObjectField,
+  type AcidicOperation,
+  type AcidicPlugin,
+  type AcidicPluginField,
+  type AcidicSchema,
+  type AttributeArg,
+  type Expression,
+  isAcidicEnum,
+  isAcidicEnumField,
+  isAcidicModel,
+  isAcidicMutation,
+  isAcidicObject,
+  isAcidicQuery,
+  isAcidicSchema,
+  isArrayExpr,
+  isInvocationExpr,
+  isLiteralExpr,
+  isReferenceExpr
+} from "@acidic/language";
 import { StormError } from "@storm-stack/errors";
 import type { JsonValue } from "@storm-stack/serialization";
 import { Serializable, StormParser } from "@storm-stack/serialization";
@@ -142,17 +142,17 @@ const stringifyObject = (record: Record<string, any>) => {
  */
 @Serializable()
 export class AcidicDefinitionWrapper {
-  private _schema: AcidicSchema | undefined;
+  #schema: AcidicSchema | undefined;
 
-  private _service!: ServiceDefinition;
-  private _plugins: PluginDefinition[] = [];
-  private _objects: ObjectDefinition[] = [];
-  private _models: ModelDefinition[] = [];
-  private _enums: EnumDefinition[] = [];
-  private _queries: QueryDefinition[] = [];
-  private _mutations: MutationDefinition[] = [];
-  private _subscriptions: SubscriptionDefinition[] = [];
-  private _events: EventDefinition[] = [];
+  #service!: ServiceDefinition;
+  #plugins: PluginDefinition[] = [];
+  #objects: ObjectDefinition[] = [];
+  #models: ModelDefinition[] = [];
+  #enums: EnumDefinition[] = [];
+  #queries: QueryDefinition[] = [];
+  #mutations: MutationDefinition[] = [];
+  #subscriptions: SubscriptionDefinition[] = [];
+  #events: EventDefinition[] = [];
 
   public static loadDefinition = (
     param: AcidicSchema | ServiceDefinition
@@ -162,7 +162,7 @@ export class AcidicDefinitionWrapper {
 
   public constructor(param: AcidicSchema | ServiceDefinition) {
     if (isAcidicSchema(param)) {
-      this._schema = param;
+      this.#schema = param;
       this.service = this._mapAcidicSchemaToDefinition(param);
     } else {
       this.service = param;
@@ -170,101 +170,101 @@ export class AcidicDefinitionWrapper {
   }
 
   public get service(): ServiceDefinition {
-    return this._service;
+    return this.#service;
   }
 
-  public set service(_service: ServiceDefinition) {
-    this._service = _service;
+  public set service(service: ServiceDefinition) {
+    this.#service = service;
 
-    this._plugins = this._service.plugins;
-    this._objects = this._service.objects;
-    this._models = this._service.models;
-    this._enums = this._service.enums;
-    this._queries = this._service.queries;
-    this._mutations = this._service.mutations;
-    this._subscriptions = this._service.subscriptions;
-    this._events = this._service.events;
+    this.#plugins = this.#service.plugins;
+    this.#objects = this.#service.objects;
+    this.#models = this.#service.models;
+    this.#enums = this.#service.enums;
+    this.#queries = this.#service.queries;
+    this.#mutations = this.#service.mutations;
+    this.#subscriptions = this.#service.subscriptions;
+    this.#events = this.#service.events;
   }
 
   public addPlugin = (pluginDefinition: PluginDefinition) => {
     if (
-      !this._plugins.some(
+      !this.#plugins.some(
         (existing) => existing.name?.toUpperCase() === pluginDefinition.name?.toUpperCase()
       )
     ) {
-      this._plugins.push(assertPlugin(pluginDefinition));
+      this.#plugins.push(assertPlugin(pluginDefinition));
     }
   };
 
   public addObject = (schemaObject: ObjectDefinition) => {
     if (
-      !this._objects.some(
+      !this.#objects.some(
         (existing) => existing.name?.toUpperCase() === schemaObject.name?.toUpperCase()
       )
     ) {
-      this._objects.push(assertObject(schemaObject));
+      this.#objects.push(assertObject(schemaObject));
     }
   };
 
   public addModel = (schemaModel: ModelDefinition) => {
     if (
-      !this._models.some(
+      !this.#models.some(
         (existing) => existing.data.name?.toUpperCase() === schemaModel.data.name?.toUpperCase()
       )
     ) {
-      this._models.push(assertModel(schemaModel));
+      this.#models.push(assertModel(schemaModel));
     }
     this.addObject(schemaModel.data);
   };
 
   public addEvent = (schemaEvent: EventDefinition) => {
     if (
-      !this._events.some(
+      !this.#events.some(
         (existing) => existing.data.name?.toUpperCase() === schemaEvent.data.name?.toUpperCase()
       )
     ) {
-      this._events.push(assertEvent(schemaEvent));
+      this.#events.push(assertEvent(schemaEvent));
     }
     this.addObject(schemaEvent.data as ObjectDefinition);
   };
 
   public addEnum = (schemaEnum: EnumDefinition) => {
     if (
-      !this._enums.some(
+      !this.#enums.some(
         (existing) => existing.name?.toUpperCase() === schemaEnum.name?.toUpperCase()
       )
     ) {
-      this._enums.push(assertEnum(schemaEnum));
+      this.#enums.push(assertEnum(schemaEnum));
     }
   };
 
   public addQuery = (schemaQuery: QueryDefinition) => {
     if (
-      !this._queries.some(
+      !this.#queries.some(
         (existing) => existing.name?.toUpperCase() === schemaQuery.name?.toUpperCase()
       )
     ) {
-      this._queries.push(assertQuery(schemaQuery));
+      this.#queries.push(assertQuery(schemaQuery));
     }
   };
 
   public addMutation = (schemaMutation: MutationDefinition) => {
     if (
-      !this._mutations.some(
+      !this.#mutations.some(
         (existing) => existing.name?.toUpperCase() === schemaMutation.name?.toUpperCase()
       )
     ) {
-      this._mutations.push(assertMutation(schemaMutation));
+      this.#mutations.push(assertMutation(schemaMutation));
     }
   };
 
   public addSubscription = (schemaSubscription: SubscriptionDefinition) => {
     if (
-      !this._subscriptions.some(
+      !this.#subscriptions.some(
         (existing) => existing.name?.toUpperCase() === schemaSubscription.name?.toUpperCase()
       )
     ) {
-      this._subscriptions.push(assertSubscription(schemaSubscription));
+      this.#subscriptions.push(assertSubscription(schemaSubscription));
     }
   };
 
@@ -304,12 +304,30 @@ export class AcidicDefinitionWrapper {
       for (const acidicObject of acidicObjects) {
         this.addObject(this._mapObject(acidicObject));
       }
+
+      for (const acidicObject of acidicObjects) {
+        const objectDefinition = this.#objects.find(
+          (existing) => existing.name?.toUpperCase() === acidicObject.name?.toUpperCase()
+        );
+        if (objectDefinition) {
+          objectDefinition.attributes = acidicObject.attributes.map(this._mapAttribute);
+        }
+      }
     }
 
     const acidicModels = getAcidicModels(schema);
     if (acidicModels.length > 0) {
       for (const acidicModel of acidicModels) {
         this.addModel(this._mapModel(acidicModel));
+      }
+
+      for (const acidicModel of acidicModels) {
+        const modelDefinition = this.#objects.find(
+          (existing) => existing.name?.toUpperCase() === acidicModel.name?.toUpperCase()
+        );
+        if (modelDefinition) {
+          modelDefinition.attributes = acidicModel.attributes.map(this._mapAttribute);
+        }
       }
     }
 
@@ -320,7 +338,7 @@ export class AcidicDefinitionWrapper {
       }
     }
 
-    for (const objectDefinition of this._objects) {
+    for (const objectDefinition of this.#objects) {
       objectDefinition.relationships = this._getRelationships(objectDefinition);
     }
 
@@ -351,25 +369,25 @@ export class AcidicDefinitionWrapper {
       }
     }
 
-    this._service = assertService({
+    this.#service = assertService({
       kind: NodeKind.SERVICE,
       name: getServiceId(schema),
       comments: [],
       imports: schema.imports.map((acidicImport) => acidicImport.path),
       // biome-ignore lint/style/noNonNullAssertion: <explanation>
       dataSource: dataSourceDefinition!,
-      plugins: this._plugins,
-      enums: this._enums,
-      objects: this._objects,
-      models: this._models,
-      queries: this._queries,
-      mutations: this._mutations,
-      subscriptions: this._subscriptions,
-      events: this._events,
+      plugins: this.#plugins,
+      enums: this.#enums,
+      objects: this.#objects,
+      models: this.#models,
+      queries: this.#queries,
+      mutations: this.#mutations,
+      subscriptions: this.#subscriptions,
+      events: this.#events,
       attributes: []
     });
 
-    return this._service;
+    return this.#service;
   };
 
   private _mapQuery = (acidicOperation: AcidicOperation): QueryDefinition => {
@@ -475,7 +493,7 @@ export class AcidicDefinitionWrapper {
 
   private _mapObjectField = (acidicField: AcidicObjectField): ObjectFieldDefinition => {
     if (isAcidicObject(acidicField.$container)) {
-      const objectDefinition = this._objects.find(
+      const objectDefinition = this.#objects.find(
         (existing) => existing.name?.toUpperCase() === acidicField.$container.name?.toUpperCase()
       );
       if (objectDefinition) {
@@ -1278,7 +1296,7 @@ export class AcidicDefinitionWrapper {
                   const fieldNames = fieldsArg.fields.map((field) => field.name);
                   const referenceNames = referencesArg.fields.map((field) => field.name);
                   if (fieldNames.every(isString) && referenceNames.every(isString)) {
-                    const relationshipObject: ObjectDefinition | undefined = this._objects.find(
+                    const relationshipObject: ObjectDefinition | undefined = this.#objects.find(
                       (obj) => obj.name === relationshipField.name
                     );
                     if (relationshipObject) {
@@ -1379,7 +1397,7 @@ export class AcidicDefinitionWrapper {
   };
 
   private _mapObject = (acidicObject: AcidicObject): ObjectDefinition => {
-    let objectInput: ObjectDefinition | undefined = this._objects.find(
+    let objectInput: ObjectDefinition | undefined = this.#objects.find(
       (existing) => existing.name?.toUpperCase() === acidicObject.name?.toUpperCase()
     );
     if (objectInput) {
@@ -1402,9 +1420,7 @@ export class AcidicDefinitionWrapper {
       relationships: [],
       extends: [],
       isExtending: acidicObject.isExtending,
-      attributes: acidicObject.attributes
-        .filter((attribute) => attribute.decl.ref?.name?.replaceAll("@", "") !== "unique")
-        .map(this._mapAttribute)
+      attributes: []
     };
 
     // const name = acidicAttribute.decl.ref?.name?.replaceAll("@", "") as string;
@@ -1415,7 +1431,7 @@ export class AcidicDefinitionWrapper {
   };
 
   private _mapPlugin = (acidicPlugin: AcidicPlugin): PluginDefinition => {
-    let pluginInput: PluginDefinition | undefined = this._plugins.find(
+    let pluginInput: PluginDefinition | undefined = this.#plugins.find(
       (existing) => existing.name?.toUpperCase() === acidicPlugin.name?.toUpperCase()
     );
     if (pluginInput) {
@@ -1449,7 +1465,7 @@ export class AcidicDefinitionWrapper {
   };
 
   private _mapEnum = (acidicEnum: AcidicEnum): EnumDefinition => {
-    let enumInput: EnumDefinition | undefined = this._enums.find(
+    let enumInput: EnumDefinition | undefined = this.#enums.find(
       (existing) => existing.name?.toUpperCase() === acidicEnum.name?.toUpperCase()
     );
     if (enumInput) {

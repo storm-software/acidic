@@ -1,9 +1,5 @@
 {
   "extends": "@storm-software/workspace-tools/config/nx.json",
-  "workspaceLayout": {
-    "appsDir": "apps",
-    "libsDir": "packages"
-  },
   "namedInputs": {
     "production": [
       "default",

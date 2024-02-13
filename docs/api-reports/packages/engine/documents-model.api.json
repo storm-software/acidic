@@ -823,7 +823,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ";\n\nset service(_service: "
+                  "text": ";\n\nset service(service: "
                 },
                 {
                   "kind": "Reference",

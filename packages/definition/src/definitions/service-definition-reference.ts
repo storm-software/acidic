@@ -1,4 +1,5 @@
 // import typia from "typia";
+// import type { BaseDefinition, DataSourceDefinition, FieldDefinition, NodeDefinition } from "./service-definition";
 
 // export enum NodeKind {
 //   OBJECT = "object",
@@ -30,56 +31,6 @@
 //   ANY = "any"
 // }
 
-// export interface BaseDefinition {
-//   name?: string;
-//   comments: string[];
-// }
-
-// export interface NodeDefinition extends BaseDefinition {
-//   name: string;
-//   kind: NodeKind;
-// }
-
-// export interface FieldDefinition extends BaseDefinition {
-//   name: string;
-//   type: FieldType;
-// }
-
-// export interface AttributeArgFieldDefinition extends BaseDefinition {
-//   type: FieldType;
-//   value: any;
-// }
-
-// export interface StringAttributeArgFieldDefinition extends AttributeArgFieldDefinition {
-//   type: FieldType.STRING;
-//   value: string;
-// }
-
-// export interface DecimalAttributeArgFieldDefinition extends AttributeArgFieldDefinition {
-//   type: FieldType.DECIMAL;
-//   value: number & typia.tags.Type<"float">;
-// }
-
-// export interface FloatAttributeArgFieldDefinition extends AttributeArgFieldDefinition {
-//   type: FieldType.FLOAT;
-//   value: number & typia.tags.Type<"float">;
-// }
-
-// export interface IntegerAttributeArgFieldDefinition extends AttributeArgFieldDefinition {
-//   type: FieldType.INTEGER;
-//   value: number & typia.tags.Type<"int32">;
-// }
-
-// export interface BigIntAttributeArgFieldDefinition extends AttributeArgFieldDefinition {
-//   type: FieldType.INTEGER;
-//   value: bigint;
-// }
-
-// export interface BooleanAttributeArgFieldDefinition extends AttributeArgFieldDefinition {
-//   type: FieldType.BOOLEAN;
-//   value: boolean;
-// }
-
 // export interface NodeReference {
 //   name: string;
 //   kind: NodeKind;
@@ -91,23 +42,58 @@
 //   type: FieldType;
 // }
 
-// export interface ReferenceAttributeArgFieldDefinition extends AttributeArgFieldDefinition {
+// export interface AttributeArgFieldDefinitionReference extends BaseDefinition {
+//   type: FieldType;
+//   value: any;
+// }
+
+// export interface StringAttributeArgFieldDefinitionReference extends AttributeArgFieldDefinitionReference {
+//   type: FieldType.STRING;
+//   value: string;
+// }
+
+// export interface DecimalAttributeArgFieldDefinitionReference extends AttributeArgFieldDefinitionReference {
+//   type: FieldType.DECIMAL;
+//   value: number & typia.tags.Type<"float">;
+// }
+
+// export interface FloatAttributeArgFieldDefinitionReference extends AttributeArgFieldDefinitionReference {
+//   type: FieldType.FLOAT;
+//   value: number & typia.tags.Type<"float">;
+// }
+
+// export interface IntegerAttributeArgFieldDefinitionReference extends AttributeArgFieldDefinitionReference {
+//   type: FieldType.INTEGER;
+//   value: number & typia.tags.Type<"int32">;
+// }
+
+// export interface BigIntAttributeArgFieldDefinitionReference extends AttributeArgFieldDefinitionReference {
+//   type: FieldType.INTEGER;
+//   value: bigint;
+// }
+
+// export interface BooleanAttributeArgFieldDefinitionReference extends AttributeArgFieldDefinitionReference {
+//   type: FieldType.BOOLEAN;
+//   value: boolean;
+// }
+
+// export interface ReferenceAttributeArgFieldDefinitionReference extends AttributeArgFieldDefinitionReference {
 //   type: FieldType.REFERENCE;
 //   ref: NodeReference;
 //   value: NodeReference | FieldReference;
 // }
 
-// export const assertAttributeArgField = typia.createAssert<AttributeArgFieldDefinition>();
+// export const assertAttributeArgField = typia.createAssert<AttributeArgFieldDefinitionReference>();
 
-// export interface AttributeArgDefinition extends BaseDefinition {
-//   fields: AttributeArgFieldDefinition[];
+// export interface AttributeArgDefinitionReference extends BaseDefinition {
+//   fields: AttributeArgFieldDefinitionReference[];
 // }
 
-// export interface AttributeDefinition extends BaseDefinition {
-//   args: AttributeArgDefinition[];
+// export interface AttributeDefinitionReference extends BaseDefinition {
+//   args: AttributeArgDefinitionReference[];
 // }
 
-// export const assertAttribute = typia.createAssert<AttributeDefinition>();
+// export const assertAttributeReference = typia.createAssert<AttributeDefinitionReference>();
 
 // /**
 //  * Enum Definitions
@@ -135,7 +121,7 @@
 //   isRequired: boolean;
 //   isArray: boolean;
 //   defaultValue?: any;
-//   attributes: AttributeDefinition[];
+//   attributes: AttributeDefinitionReference[];
 // }
 
 // export const assertBaseObjectField = typia.createAssert<ObjectFieldDefinition>();
@@ -326,29 +312,29 @@
 
 // export interface ReferenceObjectFieldDefinition extends ObjectFieldDefinition {
 //   type: FieldType.REFERENCE;
-//   ref: NodeDefinition;
-//   defaultValue?: NodeDefinition | FieldDefinition;
+//   ref: NodeReference;
+//   defaultValue?: NodeReference | FieldReference;
 // }
 
 // export const assertReferenceObjectField = typia.createAssert<ReferenceObjectFieldDefinition>();
 
 // export const assertObjectField = typia.createAssert<ObjectFieldDefinition>();
 
-// export interface RelationshipDefinition extends BaseDefinition {
-//   fields: FieldDefinition[];
-//   ref: NodeDefinition;
-//   references: FieldDefinition[];
+// export interface RelationshipDefinitionReference extends BaseDefinition {
+//   fields: FieldReference[];
+//   ref: NodeReference;
+//   references: FieldReference[];
 // }
 
-// export const assertRelationship = typia.createAssert<RelationshipDefinition>();
+// export const assertRelationship = typia.createAssert<RelationshipDefinitionReference>();
 
 // export interface ObjectDefinition extends NodeDefinition {
 //   kind: NodeKind.OBJECT;
 //   fields: ObjectFieldDefinition[];
 //   extends: NodeDefinition[];
 //   isExtending: boolean;
-//   relationships: RelationshipDefinition[];
-//   attributes: AttributeDefinition[];
+//   relationships: RelationshipDefinitionReference[];
+//   attributes: AttributeDefinitionReference[];
 // }
 
 // export const assertObject = typia.createAssert<ObjectDefinition>();
@@ -360,8 +346,8 @@
 // export interface ModelDefinition extends NodeDefinition {
 //   kind: NodeKind.MODEL;
 //   tableName: string;
-//   data: ObjectDefinition;
-//   attributes: AttributeDefinition[];
+//   data: NodeReference;
+//   attributes: AttributeDefinitionReference[];
 // }
 
 // export const assertModel = typia.createAssert<ModelDefinition>();
@@ -373,8 +359,8 @@
 // export interface EventDefinition extends NodeDefinition {
 //   kind: NodeKind.EVENT;
 //   topic: string;
-//   data: ObjectDefinition;
-//   attributes: AttributeDefinition[];
+//   data: NodeReference;
+//   attributes: AttributeDefinitionReference[];
 // }
 
 // export const assertEvent = typia.createAssert<EventDefinition>();
@@ -385,14 +371,14 @@
 
 // export interface OperationDefinition extends NodeDefinition {
 //   kind: NodeKind.QUERY | NodeKind.MUTATION | NodeKind.SUBSCRIPTION;
-//   request: ObjectDefinition;
+//   request: NodeReference;
 //   response: {
-//     ref: ObjectDefinition;
+//     ref: NodeReference;
 //     isArray: boolean;
 //   };
 //   url?: string & typia.tags.Format<"url">;
 //   emits: EventDefinition[];
-//   attributes: AttributeDefinition[];
+//   attributes: AttributeDefinitionReference[];
 // }
 
 // export const assertOperation = typia.createAssert<OperationDefinition>();
@@ -431,16 +417,6 @@
 //   JDBC_SQL_SERVER = "jdbc:sqlserver"
 // }
 
-// export interface DataSourceDefinition extends NodeDefinition {
-//   kind: NodeKind.DATA_SOURCE;
-//   provider: DataSourceType;
-//   url: string;
-//   directUrl?: string;
-//   proxyUrl?: string;
-// }
-
-// export const assertDataSource = typia.createAssert<DataSourceDefinition>();
-
 // /**
 //  * Plugin Definitions
 //  */
@@ -451,7 +427,7 @@
 //   dependencies: string[];
 //   output?: string;
 //   options: Record<string, any>;
-//   attributes: AttributeDefinition[];
+//   attributes: AttributeDefinitionReference[];
 // }
 
 // export const assertPlugin = typia.createAssert<PluginDefinition>();
@@ -474,7 +450,7 @@
 //   queries: QueryDefinition[];
 //   mutations: MutationDefinition[];
 //   subscriptions: SubscriptionDefinition[];
-//   attributes: AttributeDefinition[];
+//   attributes: AttributeDefinitionReference[];
 // }
 
 // export const assertService = typia.createAssert<ServiceDefinition>();

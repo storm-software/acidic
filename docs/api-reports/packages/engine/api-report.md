@@ -72,7 +72,7 @@ class AcidicDefinitionWrapper {
     static loadDefinition: (param: AcidicSchema | ServiceDefinition) => AcidicDefinitionWrapper;
     // (undocumented)
     get service(): ServiceDefinition;
-    set service(_service: ServiceDefinition);
+    set service(service: ServiceDefinition);
 }
 export { AcidicDefinitionWrapper }
 export { AcidicDefinitionWrapper as AcidicDefinitionWrapper_alias_1 }
