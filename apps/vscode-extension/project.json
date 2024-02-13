@@ -13,7 +13,7 @@
       }
     },
     "build-engine": {
-      "cache": true,
+      "cache": false,
       "dependsOn": ["clean"],
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
@@ -113,7 +113,7 @@
       }
     },
     "build-client": {
-      "cache": true,
+      "cache": false,
       "dependsOn": ["clean"],
       "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
@@ -145,7 +145,7 @@
       }
     },
     "build": {
-      "cache": true,
+      "cache": false,
       "dependsOn": ["build-engine", "build-client"],
       "executor": "nx:run-commands",
       "outputs": ["{options.outputPath}"],

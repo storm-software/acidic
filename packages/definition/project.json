@@ -24,7 +24,7 @@
       }
     },
     "build": {
-      "cache": true,
+      "cache": false,
       "dependsOn": ["build-base"],
       "executor": "@storm-software/workspace-tools:tsup-neutral",
       "outputs": ["{options.outputPath}"],

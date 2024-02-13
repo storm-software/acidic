@@ -6345,7 +6345,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",

@@ -390,7 +390,7 @@
             {
               "kind": "Reference",
               "text": "AbstractAstReflection",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AbstractAstReflection:class"
             },
             {
               "kind": "Content",
@@ -510,7 +510,7 @@
                 {
                   "kind": "Reference",
                   "text": "ReferenceInfo",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ReferenceInfo:interface"
                 },
                 {
                   "kind": "Content",
@@ -567,7 +567,7 @@
                 {
                   "kind": "Reference",
                   "text": "TypeMetaData",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!TypeMetaData:interface"
                 },
                 {
                   "kind": "Content",
@@ -1127,7 +1127,7 @@
             {
               "kind": "Reference",
               "text": "CodeActionProvider",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!CodeActionProvider:interface"
             },
             {
               "kind": "Content",
@@ -1152,7 +1152,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumServices",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumServices:type"
                 },
                 {
                   "kind": "Content",
@@ -1185,7 +1185,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocuments",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocuments:interface"
                 },
                 {
                   "kind": "Content",
@@ -1247,7 +1247,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocument",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocument:interface"
                 },
                 {
                   "kind": "Content",
@@ -1265,7 +1265,7 @@
                 {
                   "kind": "Reference",
                   "text": "MaybePromise",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!MaybePromise:type"
                 },
                 {
                   "kind": "Content",
@@ -1345,7 +1345,7 @@
                 {
                   "kind": "Reference",
                   "text": "IndexManager",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!IndexManager:interface"
                 },
                 {
                   "kind": "Content",
@@ -1376,7 +1376,7 @@
                 {
                   "kind": "Reference",
                   "text": "AstReflection",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!AstReflection:interface"
                 },
                 {
                   "kind": "Content",
@@ -1415,7 +1415,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -1630,7 +1630,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -1850,7 +1850,7 @@
             {
               "kind": "Reference",
               "text": "DefaultDefinitionProvider",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!DefaultDefinitionProvider:class"
             },
             {
               "kind": "Content",
@@ -1875,7 +1875,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumServices",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumServices:type"
                 },
                 {
                   "kind": "Content",
@@ -1908,7 +1908,7 @@
                 {
                   "kind": "Reference",
                   "text": "LeafCstNode",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LeafCstNode:interface"
                 },
                 {
                   "kind": "Content",
@@ -1926,7 +1926,7 @@
                 {
                   "kind": "Reference",
                   "text": "MaybePromise",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!MaybePromise:type"
                 },
                 {
                   "kind": "Content",
@@ -1988,7 +1988,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocuments",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocuments:interface"
                 },
                 {
                   "kind": "Content",
@@ -2026,7 +2026,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -2282,7 +2282,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -2497,7 +2497,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -2781,7 +2781,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -2857,7 +2857,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -2995,7 +2995,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -3097,7 +3097,7 @@
             {
               "kind": "Reference",
               "text": "AbstractFormatter",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AbstractFormatter:class"
             },
             {
               "kind": "Content",
@@ -3122,7 +3122,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocument",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocument:interface"
                 },
                 {
                   "kind": "Content",
@@ -3131,7 +3131,7 @@
                 {
                   "kind": "Reference",
                   "text": "AstNode",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!AstNode:interface"
                 },
                 {
                   "kind": "Content",
@@ -3227,7 +3227,7 @@
                 {
                   "kind": "Reference",
                   "text": "AstNode",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!AstNode:interface"
                 },
                 {
                   "kind": "Content",
@@ -3350,7 +3350,7 @@
             {
               "kind": "Reference",
               "text": "Module",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!Module:type"
             },
             {
               "kind": "Content",
@@ -3359,7 +3359,7 @@
             {
               "kind": "Reference",
               "text": "LangiumServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumServices:type"
             },
             {
               "kind": "Content",
@@ -3368,7 +3368,7 @@
             {
               "kind": "Reference",
               "text": "LangiumGeneratedServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumGeneratedServices:type"
             },
             {
               "kind": "Content",
@@ -3396,7 +3396,7 @@
             {
               "kind": "Reference",
               "text": "Module",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!Module:type"
             },
             {
               "kind": "Content",
@@ -3405,7 +3405,7 @@
             {
               "kind": "Reference",
               "text": "LangiumSharedServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumSharedServices:type"
             },
             {
               "kind": "Content",
@@ -3414,7 +3414,7 @@
             {
               "kind": "Reference",
               "text": "LangiumGeneratedSharedServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumGeneratedSharedServices:type"
             },
             {
               "kind": "Content",
@@ -3446,7 +3446,7 @@
             {
               "kind": "Reference",
               "text": "Grammar",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!Grammar:interface"
             }
           ],
           "fileUrlPath": "tmp/.tsup/declaration/packages/language/src/__generated__/grammar.d.ts",
@@ -3470,7 +3470,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -3611,7 +3611,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -3740,7 +3740,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -3865,7 +3865,7 @@
             {
               "kind": "Reference",
               "text": "DefaultLinker",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!DefaultLinker:class"
             },
             {
               "kind": "Content",
@@ -3890,7 +3890,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumServices",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumServices:type"
                 },
                 {
                   "kind": "Content",
@@ -3923,7 +3923,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocument",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocument:interface"
                 },
                 {
                   "kind": "Content",
@@ -4001,7 +4001,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -4312,7 +4312,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -4388,7 +4388,7 @@
             {
               "kind": "Reference",
               "text": "Module",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!Module:type"
             },
             {
               "kind": "Content",
@@ -4406,7 +4406,7 @@
             {
               "kind": "Reference",
               "text": "PartialLangiumServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!PartialLangiumServices:type"
             },
             {
               "kind": "Content",
@@ -4443,7 +4443,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -4700,7 +4700,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -4802,7 +4802,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -5095,7 +5095,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -5171,7 +5171,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -5345,7 +5345,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -5447,7 +5447,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -5708,7 +5708,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -5850,7 +5850,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -5982,7 +5982,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -6284,7 +6284,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -6536,7 +6536,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -6751,7 +6751,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -6971,7 +6971,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -7228,7 +7228,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -7330,7 +7330,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -7498,7 +7498,7 @@
             {
               "kind": "Reference",
               "text": "DefaultScopeComputation",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!DefaultScopeComputation:class"
             },
             {
               "kind": "Content",
@@ -7523,7 +7523,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumServices",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumServices:type"
                 },
                 {
                   "kind": "Content",
@@ -7556,7 +7556,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocument",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocument:interface"
                 },
                 {
                   "kind": "Content",
@@ -7565,7 +7565,7 @@
                 {
                   "kind": "Reference",
                   "text": "AstNode",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!AstNode:interface"
                 },
                 {
                   "kind": "Content",
@@ -7600,7 +7600,7 @@
                 {
                   "kind": "Reference",
                   "text": "AstNodeDescription",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!AstNodeDescription:interface"
                 },
                 {
                   "kind": "Content",
@@ -7653,7 +7653,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocument",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocument:interface"
                 },
                 {
                   "kind": "Content",
@@ -7662,7 +7662,7 @@
                 {
                   "kind": "Reference",
                   "text": "AstNode",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!AstNode:interface"
                 },
                 {
                   "kind": "Content",
@@ -7697,7 +7697,7 @@
                 {
                   "kind": "Reference",
                   "text": "PrecomputedScopes",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!PrecomputedScopes:type"
                 },
                 {
                   "kind": "Content",
@@ -7757,7 +7757,7 @@
             {
               "kind": "Reference",
               "text": "DefaultScopeProvider",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!DefaultScopeProvider:class"
             },
             {
               "kind": "Content",
@@ -7782,7 +7782,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumServices",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumServices:type"
                 },
                 {
                   "kind": "Content",
@@ -7823,7 +7823,7 @@
                 {
                   "kind": "Reference",
                   "text": "ReferenceInfo",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ReferenceInfo:interface"
                 },
                 {
                   "kind": "Content",
@@ -7832,7 +7832,7 @@
                 {
                   "kind": "Reference",
                   "text": "Scope",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Scope:interface"
                 },
                 {
                   "kind": "Content",
@@ -7888,7 +7888,7 @@
             {
               "kind": "Reference",
               "text": "LangiumServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumServices:type"
             },
             {
               "kind": "Content",
@@ -7924,7 +7924,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -8181,7 +8181,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -8387,7 +8387,7 @@
             {
               "kind": "Reference",
               "text": "ValidationRegistry",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!ValidationRegistry:class"
             },
             {
               "kind": "Content",
@@ -8510,7 +8510,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -8576,7 +8576,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -8642,7 +8642,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -8708,7 +8708,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -8774,7 +8774,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -8840,7 +8840,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -8906,7 +8906,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -8972,7 +8972,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -9038,7 +9038,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -9104,7 +9104,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -9170,7 +9170,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -9236,7 +9236,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -9302,7 +9302,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -9457,7 +9457,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -9627,7 +9627,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -9970,7 +9970,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -10015,7 +10015,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -10072,7 +10072,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -10296,7 +10296,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -10484,7 +10484,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -10681,7 +10681,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -10814,7 +10814,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -10922,7 +10922,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -11096,7 +11096,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -11445,7 +11445,7 @@
             {
               "kind": "Reference",
               "text": "LangiumServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumServices:type"
             },
             {
               "kind": "Content",
@@ -11454,7 +11454,7 @@
             {
               "kind": "Reference",
               "text": "LangiumParser",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumParser:class"
             },
             {
               "kind": "Content",
@@ -11492,7 +11492,7 @@
             {
               "kind": "Reference",
               "text": "DefaultSharedModuleContext",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!DefaultSharedModuleContext:interface"
             },
             {
               "kind": "Content",
@@ -11505,7 +11505,7 @@
             {
               "kind": "Reference",
               "text": "LangiumSharedServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumSharedServices:type"
             },
             {
               "kind": "Content",
@@ -11556,7 +11556,7 @@
             {
               "kind": "Reference",
               "text": "DefaultModuleContext",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!DefaultModuleContext:interface"
             },
             {
               "kind": "Content",
@@ -11565,7 +11565,7 @@
             {
               "kind": "Reference",
               "text": "Module",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!Module:type"
             },
             {
               "kind": "Content",
@@ -11574,7 +11574,7 @@
             {
               "kind": "Reference",
               "text": "LangiumServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumServices:type"
             },
             {
               "kind": "Content",
@@ -11583,7 +11583,7 @@
             {
               "kind": "Reference",
               "text": "LangiumDefaultServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumDefaultServices:type"
             },
             {
               "kind": "Content",
@@ -11625,7 +11625,7 @@
             {
               "kind": "Reference",
               "text": "DefaultSharedModuleContext",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!DefaultSharedModuleContext:interface"
             },
             {
               "kind": "Content",
@@ -11634,7 +11634,7 @@
             {
               "kind": "Reference",
               "text": "Module",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!Module:type"
             },
             {
               "kind": "Content",
@@ -11643,7 +11643,7 @@
             {
               "kind": "Reference",
               "text": "LangiumSharedServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumSharedServices:type"
             },
             {
               "kind": "Content",
@@ -11652,7 +11652,7 @@
             {
               "kind": "Reference",
               "text": "LangiumDefaultSharedServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumDefaultSharedServices:type"
             },
             {
               "kind": "Content",
@@ -11741,7 +11741,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -11853,7 +11853,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -11965,7 +11965,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -12077,7 +12077,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -12189,7 +12189,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -12396,7 +12396,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -12508,7 +12508,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -12620,7 +12620,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -12732,7 +12732,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -12844,7 +12844,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -12956,7 +12956,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -13059,7 +13059,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocuments",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocuments:interface"
                 },
                 {
                   "kind": "Content",
@@ -13092,7 +13092,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocuments",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocuments:interface"
                 },
                 {
                   "kind": "Content",
@@ -13132,7 +13132,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -13244,7 +13244,7 @@
                 {
                   "kind": "Reference",
                   "text": "ValidationAcceptor",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!ValidationAcceptor:type"
                 },
                 {
                   "kind": "Content",
@@ -13309,7 +13309,7 @@
             {
               "kind": "Reference",
               "text": "DefaultWorkspaceManager",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!DefaultWorkspaceManager:class"
             },
             {
               "kind": "Content",
@@ -13426,7 +13426,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocument",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocument:interface"
                 },
                 {
                   "kind": "Content",
@@ -13527,7 +13527,7 @@
                 {
                   "kind": "Reference",
                   "text": "LangiumDocument",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!LangiumDocument:interface"
                 },
                 {
                   "kind": "Content",
@@ -13943,7 +13943,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -14113,7 +14113,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -14393,7 +14393,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -14590,7 +14590,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -14705,7 +14705,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -15235,7 +15235,7 @@
             {
               "kind": "Reference",
               "text": "LangiumDocuments",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumDocuments:interface"
             },
             {
               "kind": "Content",
@@ -15362,7 +15362,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -15818,7 +15818,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -15983,7 +15983,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -16175,7 +16175,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -16581,7 +16581,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -18232,7 +18232,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -18663,7 +18663,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -19792,7 +19792,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -20092,7 +20092,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -20234,7 +20234,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -21140,7 +21140,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -21344,7 +21344,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -21580,7 +21580,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -21781,7 +21781,7 @@
             {
               "kind": "Reference",
               "text": "LangiumServices",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumServices:type"
             },
             {
               "kind": "Content",
@@ -21790,7 +21790,7 @@
             {
               "kind": "Reference",
               "text": "LangiumParser",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumParser:class"
             },
             {
               "kind": "Content",
@@ -21854,7 +21854,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -22022,7 +22022,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -22205,7 +22205,7 @@
                 {
                   "kind": "Reference",
                   "text": "Reference",
-                  "canonicalReference": "!unknown"
+                  "canonicalReference": "langium!Reference:interface"
                 },
                 {
                   "kind": "Content",
@@ -22412,7 +22412,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -22421,7 +22421,7 @@
             {
               "kind": "Reference",
               "text": "Reference",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!Reference:interface"
             },
             {
               "kind": "Content",
@@ -22555,7 +22555,7 @@
             {
               "kind": "Reference",
               "text": "LangiumDocuments",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumDocuments:interface"
             },
             {
               "kind": "Content",
@@ -22674,7 +22674,7 @@
             {
               "kind": "Reference",
               "text": "LangiumDocuments",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!LangiumDocuments:interface"
             },
             {
               "kind": "Content",
@@ -22765,7 +22765,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -22989,7 +22989,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -23381,7 +23381,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -23613,7 +23613,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -23782,7 +23782,7 @@
             {
               "kind": "Reference",
               "text": "ValidationAcceptor",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!ValidationAcceptor:type"
             },
             {
               "kind": "Content",
@@ -23845,7 +23845,7 @@
             {
               "kind": "Reference",
               "text": "AstNode",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!AstNode:interface"
             },
             {
               "kind": "Content",
@@ -23858,7 +23858,7 @@
             {
               "kind": "Reference",
               "text": "ValidationAcceptor",
-              "canonicalReference": "!unknown"
+              "canonicalReference": "langium!ValidationAcceptor:type"
             },
             {
               "kind": "Content",
