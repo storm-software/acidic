@@ -4,6 +4,35 @@
     "appsDir": "apps",
     "libsDir": "packages"
   },
+  "namedInputs": {
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s"
+    ]
+  },
+  "targetDefaults": {
+    "nx-release-publish": {
+      "cache": false,
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "executor": "@storm-software/workspace-tools:npm-publish",
+      "options": {
+        "packageRoot": "dist/{projectRoot}",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
+  },
   "generators": {
     "@nx/react": {
       "application": {
