@@ -29,6 +29,10 @@
     "type": "github",
     "url": "https://github.com/storm-software/acidic.git"
   },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/storm-software"
+  },
   "license": "Apache License 2.0",
   "author": {
     "name": "Storm Software",
