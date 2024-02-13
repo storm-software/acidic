@@ -4,6 +4,8 @@
 
 ```ts
 
+/// <reference types="node_modules/.pnpm/vscode@1.1.37/node_modules/vscode/vscode" />
+
 import type { AsyncStringStorage } from 'jotai/vanilla/utils/atomWithStorage';
 import { Event as Event_2 } from 'vscode';
 import { ExtensionContext } from 'vscode';

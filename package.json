@@ -152,14 +152,12 @@
   },
   "namespace": "@acidic",
   "nx": {
-    "includedScripts": [
-      "lint",
-      "format"
-    ]
+    "includedScripts": ["lint", "format"]
   },
   "pnpm": {
     "overrides": {
       "ip": ">1.1.8",
+      "loader-utils": ">=1.4.2",
       "simple-git": ">=3.16.0",
       "parse-url": ">=8.1.0",
       "minimist": ">=1.2.5",
@@ -175,5 +173,8 @@
       "@acidic/plugin-valibot": "workspace:*"
     }
   },
-  "triggerEmptyDevReleaseByIncrementingThisNumber": 0
+  "triggerEmptyDevReleaseByIncrementingThisNumber": 0,
+  "devDependencies": {
+    "@types/eslint": "^8.56.2"
+  }
 }

@@ -2769,7 +2769,7 @@
             {
               "kind": "Reference",
               "text": "Disposable",
-              "canonicalReference": "!Disposable:interface"
+              "canonicalReference": "@types/node!__global.Disposable:interface"
             },
             {
               "kind": "Content",
@@ -2794,7 +2794,7 @@
                 {
                   "kind": "Reference",
                   "text": "Symbol.dispose",
-                  "canonicalReference": "!SymbolConstructor#dispose"
+                  "canonicalReference": "@types/node!__global.SymbolConstructor#dispose"
                 },
                 {
                   "kind": "Content",
@@ -2834,7 +2834,7 @@
                 {
                   "kind": "Reference",
                   "text": "Symbol.dispose",
-                  "canonicalReference": "!SymbolConstructor#dispose"
+                  "canonicalReference": "@types/node!__global.SymbolConstructor#dispose"
                 },
                 {
                   "kind": "Content",
