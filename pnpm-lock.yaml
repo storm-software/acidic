@@ -81,7 +81,7 @@ importers:
         version: 1.33.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(nx@18.0.4)(ts-node@10.9.2)(typescript@5.3.3)(verdaccio@5.29.0)
       '@storm-software/workspace-tools':
         specifier: latest
-        version: 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.18.20)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.3.3)(verdaccio@5.29.0)
+        version: 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.18.20)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.3.3)(verdaccio@5.29.0)
       '@storybook/addon-essentials':
         specifier: ^7.6.6
         version: 7.6.6(@types/react-dom@18.2.18)(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
@@ -262,7 +262,7 @@ importers:
         version: 1.17.2(typescript@5.2.2)
       '@storm-stack/errors':
         specifier: latest
-        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
+        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
       '@storm-stack/file-system':
         specifier: latest
         version: 1.21.2(typescript@5.2.2)
@@ -381,8 +381,11 @@ importers:
     dependencies:
       '@storm-stack/errors':
         specifier: latest
-        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
+        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
       '@storm-stack/serialization':
+        specifier: latest
+        version: 1.18.2
+      '@storm-stack/utilities':
         specifier: latest
         version: 1.17.2
       typia:
@@ -403,10 +406,16 @@ importers:
         version: 1.18.2
       '@storm-stack/errors':
         specifier: latest
-        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
+        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
       '@storm-stack/file-system':
         specifier: latest
         version: 1.21.2(typescript@5.2.2)
+      '@storm-stack/logging':
+        specifier: latest
+        version: 1.20.2
+      '@storm-stack/plugin-system':
+        specifier: latest
+        version: 1.8.2
       '@storm-stack/serialization':
         specifier: latest
         version: 1.18.2
@@ -467,7 +476,7 @@ importers:
         version: 1.33.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(nx@18.0.4)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
       '@storm-software/workspace-tools':
         specifier: latest
-        version: 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
+        version: 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
       '@types/node':
         specifier: 20.9.0
         version: 20.9.0
@@ -479,8 +488,11 @@ importers:
     dependencies:
       '@storm-stack/errors':
         specifier: latest
-        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
+        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
       chevrotain:
+        specifier: ^11.0.3
+        version: 11.0.3
+      langium:
         specifier: ^2.1.3
         version: 2.1.3
       lodash-es:
@@ -513,7 +525,7 @@ importers:
         version: 1.33.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(nx@18.0.4)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
       '@storm-software/workspace-tools':
         specifier: latest
-        version: 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
+        version: 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
       '@types/node':
         specifier: 20.9.0
         version: 20.9.0
@@ -632,7 +644,7 @@ importers:
     dependencies:
       '@storm-stack/errors':
         specifier: latest
-        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
+        version: 1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
 
   plugins/valibot: {}
 
@@ -2988,7 +3000,7 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
     dependencies:
-      eslint: 8.56.0(supports-color@9.4.0)
+      eslint: 8.56.0
       eslint-visitor-keys: 3.4.3
     dev: false
 
@@ -6716,7 +6728,7 @@ packages:
       - typescript
       - verdaccio
 
-  /@storm-software/workspace-tools@1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.18.20)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.3.3)(verdaccio@5.29.0):
+  /@storm-software/workspace-tools@1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.18.20)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.3.3)(verdaccio@5.29.0):
     resolution: {integrity: sha512-CWujTndBxlHtTGjX9oXzKc9oVnbgjzZAlPe3hVB/kJx/1JbK2YnSHx8oh0CYEd+rPHnhLCFvHZC67DODoaw2Mw==}
     dependencies:
       '@anatine/esbuild-decorators': 0.2.19(esbuild@0.18.20)
@@ -6742,7 +6754,7 @@ packages:
       style-dictionary: 3.9.2
       terser: 5.24.0
       tslib: 2.6.2
-      tsup: 8.0.0(@microsoft/api-extractor@7.38.5)(@swc/core@1.3.101)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.3.3)
+      tsup: 8.0.0(@microsoft/api-extractor@7.38.5)(@swc/core@1.3.101)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.3.3)
       typia: 5.4.1(typescript@5.3.3)
       zod: 3.22.4
       zod-to-json-schema: 3.22.3(zod@3.22.4)
@@ -6762,7 +6774,7 @@ packages:
       - verdaccio
     dev: false
 
-  /@storm-software/workspace-tools@1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0):
+  /@storm-software/workspace-tools@1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0):
     resolution: {integrity: sha512-CWujTndBxlHtTGjX9oXzKc9oVnbgjzZAlPe3hVB/kJx/1JbK2YnSHx8oh0CYEd+rPHnhLCFvHZC67DODoaw2Mw==}
     dependencies:
       '@anatine/esbuild-decorators': 0.2.19(esbuild@0.19.11)
@@ -6807,51 +6819,6 @@ packages:
       - typescript
       - verdaccio
     dev: false
-
-  /@storm-software/workspace-tools@1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0):
-    resolution: {integrity: sha512-CWujTndBxlHtTGjX9oXzKc9oVnbgjzZAlPe3hVB/kJx/1JbK2YnSHx8oh0CYEd+rPHnhLCFvHZC67DODoaw2Mw==}
-    dependencies:
-      '@anatine/esbuild-decorators': 0.2.19(esbuild@0.19.11)
-      '@microsoft/api-extractor': 7.38.5(@types/node@20.9.0)
-      '@nx/devkit': 17.2.8(nx@18.0.4)
-      '@nx/esbuild': 17.2.8(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(typescript@5.2.2)(verdaccio@5.29.0)
-      '@nxkit/style-dictionary': 4.0.0(@swc/core@1.3.101)(@types/node@20.9.0)(style-dictionary@3.9.2)(typescript@5.2.2)
-      '@rollup/plugin-json': 6.1.0(rollup@4.5.2)
-      chalk: 4.1.0
-      decky: 1.1.1
-      esbuild-plugin-environment: 0.3.0(esbuild@0.19.11)
-      esbuild-plugin-handlebars: 1.0.2
-      esbuild-plugin-pino: 2.1.0(esbuild@0.19.11)
-      fs-extra: 11.2.0
-      glob: 10.3.10
-      npm-run-path: 5.2.0
-      prettier: 3.2.4
-      prettier-plugin-packagejson: 2.4.9(prettier@3.2.4)
-      resolve: 1.22.8
-      resolve-from: 5.0.0
-      rollup: 4.5.2
-      rollup-plugin-dts: 6.1.0(rollup@4.5.2)(typescript@5.2.2)
-      style-dictionary: 3.9.2
-      terser: 5.24.0
-      tslib: 2.6.2
-      tsup: 8.0.0(@microsoft/api-extractor@7.38.5)(@swc/core@1.3.101)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)
-      typia: 5.4.1(typescript@5.2.2)
-      zod: 3.22.4
-      zod-to-json-schema: 3.22.3(zod@3.22.4)
-    transitivePeerDependencies:
-      - '@babel/traverse'
-      - '@swc-node/register'
-      - '@swc/core'
-      - '@swc/wasm'
-      - '@types/node'
-      - debug
-      - esbuild
-      - nx
-      - postcss
-      - supports-color
-      - ts-node
-      - typescript
-      - verdaccio
 
   /@storm-software/workspace-tools@1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0):
     resolution: {integrity: sha512-CWujTndBxlHtTGjX9oXzKc9oVnbgjzZAlPe3hVB/kJx/1JbK2YnSHx8oh0CYEd+rPHnhLCFvHZC67DODoaw2Mw==}
@@ -6919,34 +6886,11 @@ packages:
       '@js-temporal/polyfill': 0.4.4
     dev: false
 
-  /@storm-stack/errors@1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0):
+  /@storm-stack/errors@1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0):
     resolution: {integrity: sha512-u3VfhESd8mKZ+tdCU+BTSKdEM7n2N1VOK5o4qL8p6Qx+MEhjXTue92MOFCYEmfDt+0UomOV2sgpF8Hr71G9r6w==}
     dependencies:
       '@storm-software/testing-tools': 1.33.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(nx@18.0.4)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
-      '@storm-software/workspace-tools': 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
-    transitivePeerDependencies:
-      - '@babel/traverse'
-      - '@swc-node/register'
-      - '@swc/core'
-      - '@swc/wasm'
-      - '@types/node'
-      - babel-plugin-macros
-      - debug
-      - esbuild
-      - node-notifier
-      - nx
-      - postcss
-      - supports-color
-      - ts-node
-      - typescript
-      - verdaccio
-    dev: false
-
-  /@storm-stack/errors@1.18.2(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0):
-    resolution: {integrity: sha512-u3VfhESd8mKZ+tdCU+BTSKdEM7n2N1VOK5o4qL8p6Qx+MEhjXTue92MOFCYEmfDt+0UomOV2sgpF8Hr71G9r6w==}
-    dependencies:
-      '@storm-software/testing-tools': 1.33.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(nx@18.0.4)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
-      '@storm-software/workspace-tools': 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@20.9.0)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
+      '@storm-software/workspace-tools': 1.56.12(@swc-node/register@1.8.0)(@swc/core@1.3.101)(@types/node@18.19.4)(esbuild@0.19.11)(nx@18.0.4)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2)(verdaccio@5.29.0)
     transitivePeerDependencies:
       - '@babel/traverse'
       - '@swc-node/register'
@@ -13010,8 +12954,8 @@ packages:
       '@types/sass': 1.45.0
       '@types/stylus': 0.48.42
       glob: 10.3.10
-      postcss: 8.4.31
-      postcss-modules: 6.0.0(postcss@8.4.31)
+      postcss: 8.4.35
+      postcss-modules: 6.0.0(postcss@8.4.35)
     dev: true
 
   /esbuild@0.18.20:
@@ -15086,13 +15030,13 @@ packages:
       safer-buffer: 2.1.2
     dev: false
 
-  /icss-utils@5.1.0(postcss@8.4.31):
+  /icss-utils@5.1.0(postcss@8.4.35):
     resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.31
+      postcss: 8.4.35
     dev: true
 
   /identity-obj-proxy@3.0.0:
@@ -20311,27 +20255,10 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.31
+      postcss: 8.4.35
       ts-node: 10.9.2(@swc/core@1.3.101)(@types/node@18.19.4)(typescript@5.3.3)
       yaml: 1.10.2
     dev: false
-
-  /postcss-load-config@4.0.2(postcss@8.4.31)(ts-node@10.9.2):
-    resolution: {integrity: sha512-bSVhyJGL00wMVoPUzAVAnbEoWyqRxkjv64tUl427SKnPrENtq6hJwUojroMz2VB+Q1edmi4IfrAPpami5VVgMQ==}
-    engines: {node: '>= 14'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 3.0.0
-      postcss: 8.4.31
-      ts-node: 10.9.2(@swc/core@1.3.101)(@types/node@18.19.4)(typescript@5.3.3)
-      yaml: 2.3.4
 
   /postcss-load-config@4.0.2(postcss@8.4.35)(ts-node@10.9.2):
     resolution: {integrity: sha512-bSVhyJGL00wMVoPUzAVAnbEoWyqRxkjv64tUl427SKnPrENtq6hJwUojroMz2VB+Q1edmi4IfrAPpami5VVgMQ==}
@@ -20350,60 +20277,60 @@ packages:
       ts-node: 10.9.2(@swc/core@1.3.101)(@types/node@18.19.4)(typescript@5.3.3)
       yaml: 2.3.4
 
-  /postcss-modules-extract-imports@3.0.0(postcss@8.4.31):
+  /postcss-modules-extract-imports@3.0.0(postcss@8.4.35):
     resolution: {integrity: sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.31
+      postcss: 8.4.35
     dev: true
 
-  /postcss-modules-local-by-default@4.0.3(postcss@8.4.31):
+  /postcss-modules-local-by-default@4.0.3(postcss@8.4.35):
     resolution: {integrity: sha512-2/u2zraspoACtrbFRnTijMiQtb4GW4BvatjaG/bCjYQo8kLTdevCUlwuBHx2sCnSyrI3x3qj4ZK1j5LQBgzmwA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.31)
-      postcss: 8.4.31
+      icss-utils: 5.1.0(postcss@8.4.35)
+      postcss: 8.4.35
       postcss-selector-parser: 6.0.15
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-modules-scope@3.1.0(postcss@8.4.31):
+  /postcss-modules-scope@3.1.0(postcss@8.4.35):
     resolution: {integrity: sha512-SaIbK8XW+MZbd0xHPf7kdfA/3eOt7vxJ72IRecn3EzuZVLr1r0orzf0MX/pN8m+NMDoo6X/SQd8oeKqGZd8PXg==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      postcss: 8.4.31
+      postcss: 8.4.35
       postcss-selector-parser: 6.0.15
     dev: true
 
-  /postcss-modules-values@4.0.0(postcss@8.4.31):
+  /postcss-modules-values@4.0.0(postcss@8.4.35):
     resolution: {integrity: sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      icss-utils: 5.1.0(postcss@8.4.31)
-      postcss: 8.4.31
+      icss-utils: 5.1.0(postcss@8.4.35)
+      postcss: 8.4.35
     dev: true
 
-  /postcss-modules@6.0.0(postcss@8.4.31):
+  /postcss-modules@6.0.0(postcss@8.4.35):
     resolution: {integrity: sha512-7DGfnlyi/ju82BRzTIjWS5C4Tafmzl3R79YP/PASiocj+aa6yYphHhhKUOEoXQToId5rgyFgJ88+ccOUydjBXQ==}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
       generic-names: 4.0.0
-      icss-utils: 5.1.0(postcss@8.4.31)
+      icss-utils: 5.1.0(postcss@8.4.35)
       lodash.camelcase: 4.3.0
-      postcss: 8.4.31
-      postcss-modules-extract-imports: 3.0.0(postcss@8.4.31)
-      postcss-modules-local-by-default: 4.0.3(postcss@8.4.31)
-      postcss-modules-scope: 3.1.0(postcss@8.4.31)
-      postcss-modules-values: 4.0.0(postcss@8.4.31)
+      postcss: 8.4.35
+      postcss-modules-extract-imports: 3.0.0(postcss@8.4.35)
+      postcss-modules-local-by-default: 4.0.3(postcss@8.4.35)
+      postcss-modules-scope: 3.1.0(postcss@8.4.35)
+      postcss-modules-values: 4.0.0(postcss@8.4.35)
       string-hash: 1.1.3
     dev: true
 
@@ -20435,14 +20362,6 @@ packages:
       nanoid: 3.3.7
       source-map: 0.6.1
     dev: false
-
-  /postcss@8.4.31:
-    resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.7
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
 
   /postcss@8.4.35:
     resolution: {integrity: sha512-u5U8qYpBCpN13BsiEB0CbR1Hhh4Gc0zLFuedrHJKMctHCHAGrMdG0PRM/KErzAL3CU6/eckEtmHNB3x6e3c0vA==}
@@ -23588,89 +23507,6 @@ packages:
     resolution: {integrity: sha512-LxhtAkPDTkVCMQjt2h6eBVY28KCjikZqZfMcC15YBeNjkgUpdCfBu5HoiOTDu86v6smE8yOjyEktJ8hlbANHQA==}
     engines: {node: '>=0.6.x'}
 
-  /tsup@8.0.0(@microsoft/api-extractor@7.38.5)(@swc/core@1.3.101)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2):
-    resolution: {integrity: sha512-9rOGn8LsFn2iAg2pCB1jnH7ygVuGjlzIomjw0jKXUxAii3iL5cXgm0jZMPKfFH1bSAjQovJ1DUVPSw+oDuIu8A==}
-    engines: {node: '>=18'}
-    hasBin: true
-    peerDependencies:
-      '@microsoft/api-extractor': ^7.36.0
-      '@swc/core': ^1
-      postcss: ^8.4.12
-      typescript: '>=4.5.0'
-    peerDependenciesMeta:
-      '@microsoft/api-extractor':
-        optional: true
-      '@swc/core':
-        optional: true
-      postcss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@microsoft/api-extractor': 7.38.5(@types/node@20.9.0)
-      '@swc/core': 1.3.101(@swc/helpers@0.5.3)
-      bundle-require: 4.0.2(esbuild@0.19.11)
-      cac: 6.7.14
-      chokidar: 3.5.3
-      debug: 4.3.4(supports-color@8.1.1)
-      esbuild: 0.19.11
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      postcss: 8.4.31
-      postcss-load-config: 4.0.2(postcss@8.4.31)(ts-node@10.9.2)
-      resolve-from: 5.0.0
-      rollup: 4.9.2
-      source-map: 0.8.0-beta.0
-      sucrase: 3.35.0
-      tree-kill: 1.2.2
-      typescript: 5.2.2
-    transitivePeerDependencies:
-      - supports-color
-      - ts-node
-
-  /tsup@8.0.0(@microsoft/api-extractor@7.38.5)(@swc/core@1.3.101)(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.3.3):
-    resolution: {integrity: sha512-9rOGn8LsFn2iAg2pCB1jnH7ygVuGjlzIomjw0jKXUxAii3iL5cXgm0jZMPKfFH1bSAjQovJ1DUVPSw+oDuIu8A==}
-    engines: {node: '>=18'}
-    hasBin: true
-    peerDependencies:
-      '@microsoft/api-extractor': ^7.36.0
-      '@swc/core': ^1
-      postcss: ^8.4.12
-      typescript: '>=4.5.0'
-    peerDependenciesMeta:
-      '@microsoft/api-extractor':
-        optional: true
-      '@swc/core':
-        optional: true
-      postcss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@microsoft/api-extractor': 7.38.5(@types/node@18.19.4)
-      '@swc/core': 1.3.101(@swc/helpers@0.5.3)
-      bundle-require: 4.0.2(esbuild@0.19.11)
-      cac: 6.7.14
-      chokidar: 3.5.3
-      debug: 4.3.4(supports-color@8.1.1)
-      esbuild: 0.19.11
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      postcss: 8.4.31
-      postcss-load-config: 4.0.2(postcss@8.4.31)(ts-node@10.9.2)
-      resolve-from: 5.0.0
-      rollup: 4.9.2
-      source-map: 0.8.0-beta.0
-      sucrase: 3.35.0
-      tree-kill: 1.2.2
-      typescript: 5.3.3
-    transitivePeerDependencies:
-      - supports-color
-      - ts-node
-    dev: false
-
   /tsup@8.0.0(@microsoft/api-extractor@7.38.5)(@swc/core@1.3.101)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.2.2):
     resolution: {integrity: sha512-9rOGn8LsFn2iAg2pCB1jnH7ygVuGjlzIomjw0jKXUxAii3iL5cXgm0jZMPKfFH1bSAjQovJ1DUVPSw+oDuIu8A==}
     engines: {node: '>=18'}
@@ -23711,6 +23547,48 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - ts-node
+
+  /tsup@8.0.0(@microsoft/api-extractor@7.38.5)(@swc/core@1.3.101)(postcss@8.4.35)(ts-node@10.9.2)(typescript@5.3.3):
+    resolution: {integrity: sha512-9rOGn8LsFn2iAg2pCB1jnH7ygVuGjlzIomjw0jKXUxAii3iL5cXgm0jZMPKfFH1bSAjQovJ1DUVPSw+oDuIu8A==}
+    engines: {node: '>=18'}
+    hasBin: true
+    peerDependencies:
+      '@microsoft/api-extractor': ^7.36.0
+      '@swc/core': ^1
+      postcss: ^8.4.12
+      typescript: '>=4.5.0'
+    peerDependenciesMeta:
+      '@microsoft/api-extractor':
+        optional: true
+      '@swc/core':
+        optional: true
+      postcss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@microsoft/api-extractor': 7.38.5(@types/node@18.19.4)
+      '@swc/core': 1.3.101(@swc/helpers@0.5.3)
+      bundle-require: 4.0.2(esbuild@0.19.11)
+      cac: 6.7.14
+      chokidar: 3.5.3
+      debug: 4.3.4(supports-color@8.1.1)
+      esbuild: 0.19.11
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      postcss: 8.4.35
+      postcss-load-config: 4.0.2(postcss@8.4.35)(ts-node@10.9.2)
+      resolve-from: 5.0.0
+      rollup: 4.9.2
+      source-map: 0.8.0-beta.0
+      sucrase: 3.35.0
+      tree-kill: 1.2.2
+      typescript: 5.3.3
+    transitivePeerDependencies:
+      - supports-color
+      - ts-node
+    dev: false
 
   /tsx@4.7.0:
     resolution: {integrity: sha512-I+t79RYPlEYlHn9a+KzwrvEwhJg35h/1zHsLC2JXvhC2mdynMv6Zxzvhv5EMV6VF5qJlLlkSnMVvdZV3PSIGcg==}
