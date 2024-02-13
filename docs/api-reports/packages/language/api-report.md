@@ -1447,7 +1447,7 @@ export { getFunctionExpressionContext as getFunctionExpressionContext_alias_2 }
 export { getFunctionExpressionContext as getFunctionExpressionContext_alias_3 }
 
 // @public (undocumented)
-function getIdFields(model: AcidicModel | AcidicObject): AcidicObjectField[] | undefined;
+function getIdFields(model: AcidicModel | AcidicObject): AcidicObjectField[];
 export { getIdFields }
 export { getIdFields as getIdFields_alias_1 }
 export { getIdFields as getIdFields_alias_2 }

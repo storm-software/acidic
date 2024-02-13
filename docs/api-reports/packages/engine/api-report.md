@@ -4,6 +4,8 @@
 
 ```ts
 
+/// <reference types="node_modules/.pnpm/handlebars@4.7.8/node_modules/handlebars/types" />
+
 import { AstNode } from 'langium';
 import type { BusDriver } from 'bentocache/types';
 import type { BusOptions } from 'bentocache/types';
