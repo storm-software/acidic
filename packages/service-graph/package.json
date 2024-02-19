@@ -17,18 +17,18 @@
   "module": "index.js",
   "files": ["**/*"],
   "dependencies": {
-    "@dagrejs/dagre": "^1.0.4",
+    "@dagrejs/dagre": "1.0.4",
     "@storm-stack/jotai": "latest",
     "@storm-stack/serialization": "latest",
     "@storm-stack/unique-identifier": "latest",
     "@storm-stack/utilities": "latest",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
-    "dagre": "^0.8.5",
-    "jotai": "^2.6.0",
-    "html-to-image": "^1.11.11",
-    "reactflow": "^11.10.3",
-    "tailwind-merge": "^2.2.0"
+    "class-variance-authority": "0.7.0",
+    "clsx": "2.1.0",
+    "dagre": "0.8.5",
+    "jotai": "2.6.1",
+    "html-to-image": "1.11.11",
+    "reactflow": "11.10.3",
+    "tailwind-merge": "2.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.55"

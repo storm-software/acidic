@@ -15,12 +15,12 @@
     "@storm-stack/logging": "latest",
     "@storm-stack/telemetry": "latest",
     "@storm-stack/utilities": "latest",
-    "glob": "^10.3.10",
-    "jotai": "^2.6.0",
-    "pino-pretty": "^10.3.0",
-    "vscode": "^1.1.37",
-    "vscode-languageserver": "^9.0.1",
-    "vscode-uri": "^3.0.8"
+    "glob": "10.3.10",
+    "jotai": "2.6.1",
+    "pino-pretty": "10.3.1",
+    "vscode": "1.1.37",
+    "vscode-languageserver": "9.0.1",
+    "vscode-uri": "3.0.8"
   },
   "devDependencies": {
     "@types/node": "20.9.0",
