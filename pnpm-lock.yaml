@@ -345,8 +345,8 @@ importers:
         specifier: ^4.0.12
         version: 4.0.12(react@18.2.0)
       ts-pattern:
-        specifier: ^5.0.5
-        version: 5.0.6
+        specifier: ^5.0.8
+        version: 5.0.8
       vscode-languageclient:
         specifier: ^9.0.1
         version: 9.0.1
@@ -511,8 +511,8 @@ importers:
         specifier: ^3.0.0
         version: 3.2.4
       ts-pattern:
-        specifier: ^5.0.5
-        version: 5.0.6
+        specifier: ^5.0.8
+        version: 5.0.8
       vscode-jsonrpc:
         specifier: ^8.2.0
         version: 8.2.0
@@ -933,6 +933,7 @@ packages:
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
@@ -22724,8 +22725,8 @@ packages:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  /ts-pattern@5.0.6:
-    resolution: {integrity: sha512-Y+jOjihlFriWzcBjncPCf2/am+Hgz7LtsWs77pWg5vQQKLQj07oNrJryo/wK2G0ndNaoVn2ownFMeoeAuReu3Q==}
+  /ts-pattern@5.0.8:
+    resolution: {integrity: sha512-aafbuAQOTEeWmA7wtcL94w6I89EgLD7F+IlWkr596wYxeb0oveWDO5dQpv85YP0CGbxXT/qXBIeV6IYLcoZ2uA==}
     dev: false
 
   /tsconfig-paths@4.2.0:
