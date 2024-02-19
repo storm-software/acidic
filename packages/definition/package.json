@@ -17,5 +17,5 @@
   "publishConfig": { "access": "public" },
   "peerDependencies": { "typia": "^5.3.9" },
   "peerDependenciesMeta": { "typia": { "optional": true } },
-  "devDependencies": { "@types/node": "20.9.0" }
+  "devDependencies": { "@types/node": "20.9.5" }
 }

@@ -23,7 +23,7 @@
     "vscode-uri": "^3.0.8"
   },
   "devDependencies": {
-    "@types/node": "20.9.0",
+    "@types/node": "20.9.5",
     "@types/vscode": "^1.85.0"
   },
   "engines": {
