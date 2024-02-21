@@ -933,6 +933,7 @@ packages:
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
@@ -7425,7 +7426,7 @@ packages:
       express: 4.18.2
       fs-extra: 11.2.0
       globby: 11.1.0
-      ip: 2.0.0
+      ip: 2.0.1
       lodash: 4.17.21
       open: 8.4.2
       pretty-hrtime: 1.0.3
@@ -14835,8 +14836,8 @@ packages:
       loose-envify: 1.4.0
     dev: false
 
-  /ip@2.0.0:
-    resolution: {integrity: sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ==}
+  /ip@2.0.1:
+    resolution: {integrity: sha512-lJUL9imLTNi1ZfXT+DU6rBBdbiKGBuay9B6xGSPVjUeQwaH1RIGqef8RZkUtHioLmSNpPR5M4HVKJGm1j8FWVQ==}
     dev: false
 
   /ipaddr.js@1.9.1:
@@ -19148,7 +19149,7 @@ packages:
     engines: {node: '>= 14'}
     dependencies:
       degenerator: 5.0.1
-      ip: 2.0.0
+      ip: 2.0.1
       netmask: 2.0.2
     dev: false
 
@@ -21612,7 +21613,7 @@ packages:
     resolution: {integrity: sha512-7maUZy1N7uo6+WVEX6psASxtNlKaNVMlGQKkG/63nEDdLOWNbiUMoLK7X4uYoLhQstau72mLgfEWcXcwsaHbYQ==}
     engines: {node: '>= 10.13.0', npm: '>= 3.0.0'}
     dependencies:
-      ip: 2.0.0
+      ip: 2.0.1
       smart-buffer: 4.2.0
     dev: false
 
