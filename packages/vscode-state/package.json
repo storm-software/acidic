@@ -16,7 +16,7 @@
     "@storm-stack/telemetry": "latest",
     "@storm-stack/utilities": "latest",
     "glob": "^10.3.10",
-    "jotai": "^2.6.0",
+    "jotai": "^2.6.1",
     "pino-pretty": "^10.3.0",
     "vscode": "^1.1.37",
     "vscode-languageserver": "^9.0.1",
