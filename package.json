@@ -186,6 +186,6 @@
   },
   "triggerEmptyDevReleaseByIncrementingThisNumber": 0,
   "devDependencies": {
-    "@types/eslint": "^8.56.2"
+    "@types/eslint": "8.56.2"
   }
 }
