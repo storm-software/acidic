@@ -25,10 +25,10 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "dagre": "^0.8.5",
-    "jotai": "^2.6.0",
+    "jotai": "^2.6.1",
     "html-to-image": "^1.11.11",
     "reactflow": "^11.10.3",
-    "tailwind-merge": "^2.2.0"
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.55"
