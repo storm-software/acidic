@@ -25,8 +25,8 @@
   "devDependencies": {
     "@storm-software/testing-tools": "latest",
     "@storm-software/workspace-tools": "latest",
-    "@types/node": "20.9.0",
-    "@types/prettier": "^3.0.0",
+    "@types/node": "20.11.30",
+    "@types/prettier": "3.0.0",
     "langium-cli": "^2.1.0"
   },
   "engines": {
