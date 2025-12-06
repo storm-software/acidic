@@ -1,0 +1,61 @@
+{
+  "name": "syntax",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/syntax/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-neutral",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "entry": "packages/syntax/src/index.ts",
+        "outputPath": "dist/packages/syntax",
+        "tsConfig": "packages/syntax/tsconfig.json",
+        "project": "packages/syntax/package.json",
+        "defaultConfiguration": "production",
+        "assets": [
+          {
+            "input": "packages/syntax",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          },
+          {
+            "input": "packages/syntax/src",
+            "glob": "editors/**/*",
+            "output": "/"
+          },
+          {
+            "input": "packages/syntax/src",
+            "glob": "examples/example.acid",
+            "output": "/"
+          },
+          {
+            "input": "packages/syntax/src",
+            "glob": "resources/**/*",
+            "output": "/"
+          }
+        ],
+        "platform": "neutral"
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    },
+    "lint": {},
+    "test": {}
+  }
+}

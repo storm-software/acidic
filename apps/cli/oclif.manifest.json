@@ -1,0 +1,69 @@
+{
+  "commands": {
+    "hello": {
+      "aliases": [],
+      "args": {
+        "person": {
+          "description": "Person to say hello to",
+          "name": "person",
+          "required": true
+        }
+      },
+      "description": "Say hello",
+      "examples": [
+        "$ oex hello friend --from oclif\nhello friend from oclif! (./src/commands/hello/index.ts)\n"
+      ],
+      "flags": {
+        "from": {
+          "char": "f",
+          "description": "Who is saying hello",
+          "name": "from",
+          "required": true,
+          "hasDynamicHelp": false,
+          "multiple": false,
+          "type": "option"
+        }
+      },
+      "hasDynamicHelp": false,
+      "hiddenAliases": [],
+      "id": "hello",
+      "pluginAlias": "@acidic/cli",
+      "pluginName": "@acidic/cli",
+      "pluginType": "core",
+      "strict": true,
+      "enableJsonFlag": false,
+      "isESM": true,
+      "relativePath": [
+        "dist",
+        "commands",
+        "hello",
+        "index.js"
+      ]
+    },
+    "hello:world": {
+      "aliases": [],
+      "args": {},
+      "description": "Say hello world",
+      "examples": [
+        "<%= config.bin %> <%= command.id %>\nhello world! (./src/commands/hello/world.ts)\n"
+      ],
+      "flags": {},
+      "hasDynamicHelp": false,
+      "hiddenAliases": [],
+      "id": "hello:world",
+      "pluginAlias": "@acidic/cli",
+      "pluginName": "@acidic/cli",
+      "pluginType": "core",
+      "strict": true,
+      "enableJsonFlag": false,
+      "isESM": true,
+      "relativePath": [
+        "dist",
+        "commands",
+        "hello",
+        "world.js"
+      ]
+    }
+  },
+  "version": "0.0.1"
+}

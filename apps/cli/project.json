@@ -4,16 +4,39 @@
   "projectType": "application",
   "sourceRoot": "apps/cli/src",
   "targets": {
+    "refresh-manifests": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm oclif manifest",
+        "cwd": "apps/cli"
+      }
+    },
+    "refresh-readme": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm oclif readme",
+        "cwd": "apps/cli"
+      }
+    },
     "build": {
       "executor": "@storm-software/workspace-tools:tsup-node",
-      "outputs": ["{options.outputPath}"],
+      "dependsOn": [
+        "refresh-manifests",
+        "refresh-readme",
+        "^build"
+      ],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/cli",
         "main": "apps/cli/bin/acidic.ts",
         "tsConfig": "apps/cli/tsconfig.json",
         "project": "apps/cli/package.json",
         "defaultConfiguration": "production",
-        "external": ["pnpapi"]
+        "external": [
+          "pnpapi"
+        ]
       },
       "configurations": {
         "production": {
@@ -26,17 +49,5 @@
         }
       }
     },
-    "lint": {},
-    "test": {},
-    "nx-release-publish": {
-      "cache": false,
-      "inputs": ["default", "^production"],
-      "dependsOn": ["^build"],
-      "executor": "@storm-software/workspace-tools:npm-publish",
-      "options": {
-        "packageRoot": "dist/{projectRoot}",
-        "registry": "https://registry.npmjs.org/"
-      }
-    }
   }
 }

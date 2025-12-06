@@ -75,22 +75,22 @@
             "output": "assets/logos"
           },
           {
-            "input": "packages/language/syntaxes",
+            "input": "packages/syntax/src/editors",
             "glob": "*.*",
             "output": "syntaxes"
           },
           {
-            "input": "packages/language/res",
+            "input": "packages/syntax/src/resources",
             "glob": "*.*",
             "output": "res"
           },
           {
-            "input": "packages/language",
+            "input": "packages/syntax/src/editors",
             "glob": "language-configuration.json",
             "output": "."
           },
           {
-            "input": "packages/language/examples",
+            "input": "packages/syntax/src/examples",
             "glob": "*.*",
             "output": "examples"
           }

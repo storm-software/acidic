@@ -1,3 +1,11 @@
-import { getJestConfig } from "@storm-software/testing-tools";
-
-export default getJestConfig("packages/schema", true, 'definition');
+/* eslint-disable */
+export default {
+  displayName: 'schema',
+  preset: '../../jest.preset.js',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../../coverage/packages/schema'
+};

@@ -7,16 +7,22 @@
     "clean-base": {
       "cache": true,
       "executor": "nx:run-commands",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "command": "pnpm exec rimraf packages/definition/src/__generated__/typia"
       }
     },
     "build-base": {
       "cache": true,
-      "dependsOn": ["clean-base"],
+      "dependsOn": [
+        "clean-base"
+      ],
       "executor": "@storm-software/workspace-tools:typia",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "entryPath": "packages/definition/src/definitions",
         "outputPath": "packages/definition/src/__generated__/typia",
@@ -25,9 +31,13 @@
     },
     "build": {
       "cache": false,
-      "dependsOn": ["build-base"],
-      "executor": "@storm-software/workspace-tools:tsup-neutral",
-      "outputs": ["{options.outputPath}"],
+      "dependsOn": [
+        "build-base"
+      ],
+      "executor": "@storm-software/workspace-tools:rolldown",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "main": "packages/definition/src/index.ts",
         "outputPath": "dist/packages/definition",
@@ -50,8 +60,13 @@
     "test": {},
     "nx-release-publish": {
       "cache": false,
-      "inputs": ["default", "^production"],
-      "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^production"
+      ],
+      "dependsOn": [
+        "^build"
+      ],
       "executor": "@storm-software/workspace-tools:npm-publish",
       "options": {
         "packageRoot": "dist/{projectRoot}",

@@ -57,7 +57,7 @@ jobs:
           echo "HEAD: ${{ env.NX_HEAD }}"
 
       - name: Build repository packages
-        run: pnpm build:all
+        run: pnpm build-all
 
       # - name: Run Linters
       #   run: pnpm lint

@@ -1,0 +1,44 @@
+{
+  "name": "plugin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/plugin/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-node",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "entry": "packages/plugin/src/index.ts",
+        "outputPath": "dist/packages/plugin",
+        "tsConfig": "packages/plugin/tsconfig.json",
+        "project": "packages/plugin/package.json",
+        "defaultConfiguration": "production",
+        "assets": [
+          {
+            "input": "packages/plugin",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "production": {
+          "debug": true,
+          "verbose": true
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    }
+  }
+}

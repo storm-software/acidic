@@ -1,0 +1,52 @@
+{
+  "name": "binding",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/binding/src",
+  "targets": {
+    "build": {
+      "executor": "@monodon/rust:napi",
+      "options": {
+        "dist": "packages/binding",
+        "jsFile": "index.js"
+      },
+      "configurations": {
+        "production": {
+          "dist": "dist/binding",
+          "release": true
+        }
+      }
+    },
+    "test": {
+      "executor": "@monodon/rust:test",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/binding"
+      },
+      "configurations": {
+        "production": {
+          "release": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@monodon/rust:lint",
+      "outputs": ["{options.target-dir}"],
+      "options": {
+        "target-dir": "dist/target/binding"
+      }
+    },
+    "nx-release-publish": {
+      "cache": false,
+      "inputs": [
+        "default",
+        "^production"
+      ],
+      "dependsOn": [
+        "^build"
+      ],
+      "executor": "@storm-software/workspace-tools:crates-publish"
+    }
+  },
+  "tags": []
+}

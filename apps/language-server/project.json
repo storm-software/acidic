@@ -1,0 +1,63 @@
+{
+  "name": "language-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/language-server/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "main": "apps/language-server/src/index.ts",
+        "additionalEntryPoints": [
+          "apps/language-server/src/server.ts",
+          "apps/language-server/bin/run.ts"
+        ],
+        "tsConfig": "apps/language-server/tsconfig.app.json",
+        "outputPath": "dist/apps/language-server",
+        "project": "apps/language-server/package.json",
+        "defaultConfiguration": "production",
+        "external": [
+          "vscode"
+        ],
+        "bundle": true,
+        "thirdParty": true,
+        "format": [
+          "cjs"
+        ],
+        "generatePackageJson": false,
+        "deleteOutputPath": false
+      },
+      "configurations": {
+        "development": {
+          "sourcemap": true,
+          "minify": false
+        },
+        "production": {
+          "sourcemap": false,
+          "minify": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "language-server:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "language-server:build:development"
+        },
+        "production": {
+          "buildTarget": "language-server:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

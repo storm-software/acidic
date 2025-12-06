@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": [
+      "prettier",
+    ],
+    "noEmit": true
+  },
+  "files": [],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "../../node_modules/typescript/**/*.d.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ],
+  "composite": true
+}

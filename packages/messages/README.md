@@ -7,7 +7,7 @@
 
 <br />
 <div align="center">
-<a href="https://stormsoftware.org" target="_blank">Website</a>  |  <a href="https://stormsoftware.org/contact" target="_blank">Contact</a>  |  <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=Feature Request%3A+">Request a Feature</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=documentation&template=documentation.yml&title=Documentation Request%3A+">Request Documentation</a> | <a href="https://github.com/storm-software/storm-ops/discussions">Ask a Question</a>
+<a href="https://stormsoftware.com" target="_blank">Website</a>  |  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  |  <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=Feature Request%3A+">Request a Feature</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=documentation&template=documentation.yml&title=Documentation Request%3A+">Request Documentation</a> | <a href="https://github.com/storm-software/storm-ops/discussions">Ask a Question</a>
 </div>
 
 <br />
@@ -126,9 +126,9 @@ See the [open issues](https://github.com/storm-software/acidic/issues) for a lis
 
 Reach out to the maintainer at one of the following places:
 
-- [Contact](https://stormsoftware.org/contact)
+- [Contact](https://stormsoftware.com/contact)
 - [GitHub discussions](https://github.com/storm-software/acidic/discussions)
-- <support@stormsoftware.org>
+- <support@stormsoftware.com>
 
 ## License
 
@@ -166,7 +166,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://www.sullypat.com/"><img src="https://avatars.githubusercontent.com/u/99053093?v=4?s=100" width="100px;" alt="Patrick Sullivan"/><br /><sub><b>Patrick Sullivan</b></sub></a><br /><a href="#design-sullivanpj" title="Design">🎨</a> <a href="https://github.com/storm-software/storm-ops/commits?author=sullivanpj" title="Code">💻</a> <a href="#tool-sullivanpj" title="Tools">🔧</a> <a href="https://github.com/storm-software/storm-ops/commits?author=sullivanpj" title="Documentation">📖</a> <a href="https://github.com/storm-software/storm-ops/commits?author=sullivanpj" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://tylerbenning.com/"><img src="https://avatars.githubusercontent.com/u/7265547?v=4?s=100" width="100px;" alt="Tyler Benning"/><br /><sub><b>Tyler Benning</b></sub></a><br /><a href="#design-tbenning" title="Design">🎨</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://stormsoftware.org"><img src="https://avatars.githubusercontent.com/u/149802440?v=4?s=100" width="100px;" alt="Stormie"/><br /><sub><b>Stormie</b></sub></a><br /><a href="#maintenance-stormie-bot" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://stormsoftware.com"><img src="https://avatars.githubusercontent.com/u/149802440?v=4?s=100" width="100px;" alt="Stormie"/><br /><sub><b>Stormie</b></sub></a><br /><a href="#maintenance-stormie-bot" title="Maintenance">🚧</a></td>
     </tr>
   </tbody>
   <tfoot>
@@ -192,7 +192,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 <br />
 <div align="center">
-<a href="https://stormsoftware.org" target="_blank">Website</a>  |  <a href="https://stormsoftware.org/contact" target="_blank">Contact</a>  |  <a href="https://linkedin.com/in/patrick-sullivan-865526b0" target="_blank">LinkedIn</a>  |  <a href="https://medium.com/@pat.joseph.sullivan" target="_blank">Medium</a>  | <a href="https://github.com/storm-software" target="_blank">GitHub</a>  |  <a href="https://keybase.io/sullivanp" target="_blank">OpenPGP Key</a>
+<a href="https://stormsoftware.com" target="_blank">Website</a>  |  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  |  <a href="https://linkedin.com/in/patrick-sullivan-865526b0" target="_blank">LinkedIn</a>  |  <a href="https://medium.com/@pat.joseph.sullivan" target="_blank">Medium</a>  | <a href="https://github.com/storm-software" target="_blank">GitHub</a>  |  <a href="https://keybase.io/sullivanp" target="_blank">OpenPGP Key</a>
 </div>
 
 <div align="center">
@@ -202,9 +202,9 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 **Storm Software** is an open source software development organization and creator of Acidic, StormStack and StormCloud. Our mission is to make software development more accessible. Our ideal future is one where anyone can create software without years of prior development experience serving as a barrier to entry. We hope to achieve this via LLMs, Generative AI, and intuitive, high-level data modeling/programming languages.
 
-If this sounds interesting, and you would like to help us in creating the next generation of development tools, please reach out on our [website](https://stormsoftware.org)!
+If this sounds interesting, and you would like to help us in creating the next generation of development tools, please reach out on our [website](https://stormsoftware.com)!
 
-<h3 align="center">💻 Visit <a href="https://stormsoftware.org" target="_blank">stormsoftware.org</a> to stay up to date with this developer</h3><br /><br />
+<h3 align="center">💻 Visit <a href="https://stormsoftware.com" target="_blank">stormsoftware.com</a> to stay up to date with this developer</h3><br /><br />
 
 
 <!-- markdownlint-restore -->

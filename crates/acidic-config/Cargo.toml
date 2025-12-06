@@ -1,0 +1,22 @@
+[package]
+name = "acidic-config"
+description = "A crate used to determine the Acidic configuration options during execution."
+version = { workspace = true }
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/acidic-config"
+readme = "./README.md"
+
+[dependencies]
+directories = { workspace = true }
+lazy_static = { workspace = true }
+serde = { workspace = true }
+serde_derive = { workspace = true }
+serde_json = { workspace = true }
+storm-config = { workspace = true }
+storm-workspace = { workspace = true }

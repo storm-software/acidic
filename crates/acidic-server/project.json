@@ -1,0 +1,61 @@
+{
+  "name": "acidic-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "crates/server/src",
+  "targets": {
+    "build": {
+      "executor": "@monodon/rust:check",
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{options.target-dir}"
+      ],
+      "options": {
+        "target-dir": "dist/target/server"
+      }
+    },
+    "codegen": {
+      "executor": "@monodon/rust:build",
+      "dependsOn": [
+        "build"
+      ],
+      "outputs": [
+        "{options.target-dir}"
+      ],
+      "options": {
+        "target-dir": "dist/target/server"
+      },
+      "configurations": {
+        "production": {
+          "release": true
+        }
+      }
+    },
+    "test": {
+      "executor": "@monodon/rust:test",
+      "outputs": [
+        "{options.target-dir}"
+      ],
+      "options": {
+        "target-dir": "dist/target/server"
+      },
+      "configurations": {
+        "production": {
+          "release": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@monodon/rust:lint",
+      "outputs": [
+        "{options.target-dir}"
+      ],
+      "options": {
+        "target-dir": "dist/target/server"
+      }
+    }
+  },
+  "tags": []
+}

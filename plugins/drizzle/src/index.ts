@@ -11,7 +11,7 @@ import {
   type AcidicPluginProcessor,
   TemplateGenerator,
   createTemplatePluginHandler
-} from "@acidic/engine";
+} from "@acidic/node-engine";
 import type { DrizzlePluginOptions } from "./types";
 import { filterDrizzleTemplates } from "./utils";
 

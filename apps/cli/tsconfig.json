@@ -1,11 +1,23 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
-    "strict": false,
-    "noEmit": true
+    "outDir": "./dist",
+    "declaration": true,
+    "module": "Node16",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "target": "es2022",
+    "moduleResolution": "node16"
   },
   "files": [],
-  "include": ["src/**/*.ts", "src/**/*.js", "bin/**/*"],
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
 }

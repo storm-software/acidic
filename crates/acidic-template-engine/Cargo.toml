@@ -1,0 +1,23 @@
+[package]
+name = "acidic-template-engine"
+description = "A core crate containing the Acidic Template Engine."
+version = { workspace = true }
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/acidic-template-engine"
+readme = "./README.md"
+
+[dependencies]
+acidic-sdl = { workspace = true }
+
+indoc = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+strum_macros = { workspace = true }
+strum = { workspace = true }
+thiserror = { workspace = true }
+handlebars = { workspace = true }

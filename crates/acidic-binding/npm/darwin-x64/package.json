@@ -1,0 +1,26 @@
+{
+  "name": "@acidic/binding-darwin-x64",
+  "version": "0.0.0",
+  "private": false,
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/binding/npm/darwin-x64"
+  },
+  "main": "acidic-binding.darwin-x64.node",
+  "files": [
+    "acidic-binding.darwin-x64.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  },
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

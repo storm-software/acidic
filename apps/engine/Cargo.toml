@@ -1,0 +1,34 @@
+[package]
+name = "acidic-engine"
+description = "A core crate containing the Acidic schema definitions and validation logic."
+edition = "2021"
+version = "0.1.0"
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/acidic-engine"
+readme = "./README.md"
+
+[dependencies]
+acidic-config = { path = "../../crates/config" }
+acidic-rpc = { path = "../../crates/rpc" }
+tokio = { version = "1.37.0", features = ["rt-multi-thread", "macros"] }
+tokio-stream = "0.1.15"
+tokio-util = "0.7.10"
+tonic = "0.11.0"
+tonic-health = "0.11.0"
+tonic-types = "0.11.0"
+tonic-web = "0.11.0"
+tower-http = "0.5.2"
+tower-lsp-macros = "0.9.0"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["tracing-log", "fmt"] }
+
+[[bin]]
+name = "acidic-engine"
+path = "src/main.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

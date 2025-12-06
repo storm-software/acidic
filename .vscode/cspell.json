@@ -9,6 +9,7 @@
     "bentostore",
     "Dagre",
     "langium",
+    "napi",
     "nonpositive",
     "rankdir",
     "reactflow"

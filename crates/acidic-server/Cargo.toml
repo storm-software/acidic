@@ -1,0 +1,23 @@
+[package]
+name = "acidic-server"
+description = "A core crate containing the Acidic schema definitions and validation logic."
+version = { workspace = true }
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/acidic-server"
+readme = "./README.md"
+
+[dependencies]
+acidic-config = { workspace = true }
+acidic-parser = { workspace = true }
+acidic-diagnostics = { workspace = true }
+
+cacache = { workspace = true }
+backtrace = { workspace = true }
+storm-workspace = { workspace = true }
+serde_json = { workspace = true }

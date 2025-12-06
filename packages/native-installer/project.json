@@ -1,0 +1,44 @@
+{
+  "name": "native-installer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/native-installer/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-node",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "entry": "packages/native-installer/src/index.ts",
+        "outputPath": "dist/packages/native-installer",
+        "tsConfig": "packages/native-installer/tsconfig.json",
+        "project": "packages/native-installer/package.json",
+        "defaultConfiguration": "production",
+        "assets": [
+          {
+            "input": "packages/native-installer",
+            "glob": "*.md",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ],
+        "platform": "node"
+      },
+      "configurations": {
+        "production": {
+          "debug": false,
+          "verbose": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    }
+  }
+}

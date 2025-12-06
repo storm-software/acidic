@@ -1,13 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@storm-software/linting-tools/tsconfig/tsconfig.root.json",
-  "display": "Storm Software - Acidic",
+  "extends": "@storm-software/tsconfig/base.json",
+  "display": "Storm Software - Acidic Monorepo",
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": ".",
-    "noUnusedLocals": false,
-    "skipLibCheck": true,
+    "preserveSymlinks": true,
     "paths": {
+      "@acidic/binding": [
+        "crates/acidic-binding/index.js"
+      ],
       "@acidic/cli": [
         "apps/cli/src/index.ts"
       ],
@@ -20,23 +22,29 @@
       "@acidic/definition/*": [
         "packages/definition/src/*"
       ],
-      "@acidic/engine": [
-        "packages/engine/src/index.ts"
+      "@acidic/language-server": [
+        "apps/language-server/src/index.ts"
       ],
-      "@acidic/engine/*": [
-        "packages/engine/src/*"
-      ],
-      "@acidic/language": [
-        "packages/language/src/index.ts"
-      ],
-      "@acidic/language/*": [
-        "packages/language/src/*"
+      "@acidic/language-server/*": [
+        "apps/language-server/src/*"
       ],
       "@acidic/messages": [
         "packages/messages/src/index.ts"
       ],
       "@acidic/messages/*": [
         "packages/messages/src/*"
+      ],
+      "@acidic/native-installer": [
+        "packages/native-installer/src/index.ts"
+      ],
+      "@acidic/native-installer/*": [
+        "packages/native-installer/src/*"
+      ],
+      "@acidic/node-engine": [
+        "packages/node-engine/src/index.ts"
+      ],
+      "@acidic/node-engine/*": [
+        "packages/node-engine/src/*"
       ],
       "@acidic/plugin-drizzle": [
         "plugins/drizzle/src/index.ts"
@@ -50,11 +58,23 @@
       "@acidic/plugin-valibot/*": [
         "plugins/valibot/src/*"
       ],
+      "@acidic/plugin": [
+        "packages/plugin/src/index.ts"
+      ],
+      "@acidic/plugin/*": [
+        "packages/plugin/src/*"
+      ],
       "@acidic/service-graph": [
         "packages/service-graph/src/index.ts"
       ],
       "@acidic/service-graph/*": [
         "packages/service-graph/src/*"
+      ],
+      "@acidic/syntax": [
+        "packages/syntax/src/index.ts"
+      ],
+      "@acidic/syntax/*": [
+        "packages/syntax/src/*"
       ],
       "@acidic/vscode-state": [
         "packages/vscode-state/src/index.ts"

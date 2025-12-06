@@ -1,0 +1,26 @@
+{
+  "name": "@acidic/binding-linux-arm-gnueabihf",
+  "version": "0.0.0",
+  "private": false,
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/binding/npm/linux-arm-gnueabihf"
+  },
+  "main": "acidic-binding.linux-arm-gnueabihf.node",
+  "files": [
+    "acidic-binding.linux-arm-gnueabihf.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

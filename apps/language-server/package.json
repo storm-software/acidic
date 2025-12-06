@@ -1,0 +1,49 @@
+{
+  "name": "@acidic/language-server",
+  "version": "0.0.1",
+  "private": false,
+  "description": "The Acidic Language Server used to handle code completion, hover, and diagnostics while using Acidic schema files in a text editor.",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "apps/language-server"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "bin": {
+    "acidic-language-server": "./bin/run.js"
+  },
+  "dependencies": {
+    "@storm-software/config-tools": "latest",
+    "@storm-stack/cli": "latest",
+    "@storm-stack/errors": "latest",
+    "@storm-stack/file-system": "latest",
+    "@storm-stack/logging": "latest",
+    "@storm-stack/telemetry": "latest",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11",
+    "@acidic/binding-darwin-arm64": "workspace:*",
+    "@acidic/binding-darwin-x64": "workspace:*",
+    "@acidic/binding-freebsd-x64": "workspace:*",
+    "@acidic/binding-linux-arm-gnueabihf": "workspace:*",
+    "@acidic/binding-linux-arm64-gnu": "workspace:*",
+    "@acidic/binding-linux-arm64-musl": "workspace:*",
+    "@acidic/binding-linux-x64-gnu": "workspace:*",
+    "@acidic/binding-linux-x64-musl": "workspace:*",
+    "@acidic/binding-win32-arm64-msvc": "workspace:*",
+    "@acidic/binding-win32-x64-msvc": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

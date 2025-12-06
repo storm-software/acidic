@@ -4,7 +4,10 @@
   "version": "0.0.1",
   "private": true,
   "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
-  "categories": ["Programming Languages", "Data Science"],
+  "categories": [
+    "Programming Languages",
+    "Data Science"
+  ],
   "keywords": [
     "acidic",
     "storm",
@@ -22,8 +25,8 @@
   ],
   "homepage": "https://acidic.io/acidic-workspace",
   "bugs": {
-    "url": "https://stormsoftware.org/support",
-    "email": "support@stormsoftware.org"
+    "url": "https://stormsoftware.com/support",
+    "email": "support@stormsoftware.com"
   },
   "repository": {
     "type": "github",
@@ -33,8 +36,8 @@
   "license": "Apache License 2.0",
   "author": {
     "name": "Storm Software",
-    "email": "contact@stormsoftware.org",
-    "url": "https://stormsoftware.org"
+    "email": "contact@stormsoftware.com",
+    "url": "https://stormsoftware.com"
   },
   "publisher": "storm-software",
   "type": "commonjs",
@@ -114,8 +117,17 @@
     "languages": [
       {
         "id": "acidic",
-        "aliases": ["storm", "acidic language", "acidic schema", "acidic model", "storm acidic"],
-        "extensions": [".acid", ".acidic"],
+        "aliases": [
+          "storm",
+          "acidic language",
+          "acidic schema",
+          "acidic model",
+          "storm acidic"
+        ],
+        "extensions": [
+          ".acid",
+          ".acidic"
+        ],
         "configuration": "./language-configuration.json",
         "icon": {
           "light": "./assets/logos/test-tube.png",
@@ -262,9 +274,11 @@
       }
     ]
   },
-  "activationEvents": ["onStartupFinished", "onLanguage:acidic"],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:acidic"
+  ],
   "dependencies": {
-    "@acidic/service-graph": "workspace:*",
     "@anatine/esbuild-decorators": "^0.2.19",
     "@storm-software/config-tools": "latest",
     "@storm-stack/errors": "latest",

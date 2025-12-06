@@ -1,0 +1,103 @@
+
+[workspace]
+members = ['crates/*', 'apps/engine']
+resolver = '3'
+
+[workspace.package]
+version = '0.0.1'
+description = '🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!'
+repository = 'https://github.com/storm-software/acidic'
+edition = '2024'
+authors = ['storm-software']
+license = 'Apache-2.0'
+documentation = 'https://acidic.io/docs'
+homepage = 'https://acidic.io'
+categories = ['config', 'development-tools']
+keywords = ['acidic', 'storm', 'storm-software', 'acidic-lang', 'acidic-engine']
+
+[workspace.metadata.release]
+pre-release-commit-message = 'Release Acidic Engine v{{version}}'
+shared-version = true
+tag-prefix = ''
+publish = false
+
+[workspace.dependencies]
+# Acidic Crates
+acidic-binding = { path = "./crates/acidic-binding" }
+acidic-config = { path = "./crates/acidic-config" }
+acidic-diagnostics = { path = "./crates/acidic-diagnostics" }
+acidic-parser = { path = "./crates/acidic-parser" }
+acidic-rpc = { path = "./crates/acidic-rpc" }
+acidic-sdl = { path = "./crates/acidic-sdl" }
+acidic-server = { path = "./crates/acidic-server" }
+acidic-template-engine = { path = "./crates/acidic-template-engine" }
+
+# Storm Software Crates
+storm-config = "0.2.8"
+storm-workspace = "0.19.59"
+
+# Other Dependencies
+indoc = "2.0.4"
+itertools = "0.12.1"
+indexmap = { version = "2.2.6", features = ["serde"] }
+thiserror = "2.0.17"
+tempfile = "3.10.1"
+directories = "5.0.1"
+lazy_static = "1.4.0"
+handlebars = "6.3.2"
+colored = "2.1.0"
+cacache = "13.0.0"
+backtrace = "0.3.71"
+protoc-bin-vendored = "3.0.0"
+
+napi = { version = '2.10.2', default-features = false, features = ['napi4'] }
+napi-build = '2.0.1'
+napi-derive = '2.9.3'
+
+pest = "2.7.8"
+pest_derive = "2.7.8"
+
+prost = "0.12.3"
+prost-types = "0.12.3"
+
+serde = { version = "1.0.197", features = ["derive"] }
+serde_derive = "1.0.197"
+serde_json = "1.0.115"
+
+strum = "0.27.2"
+strum_macros = "0.27.2"
+
+tonic = "0.11.0"
+tonic-build = { version = "0.11.0", default-features = false, features = [
+    "prost",
+    "cleanup-markdown",
+] }
+tonic-reflection = "0.6.0"
+
+[profile.release]
+# configuration adapted from oxc
+# https://github.com/Boshen/oxc/blob/ea85ee9f2d64dd284c5b7410f491d81fb879abae/Cargo.toml#L89-L97
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = "symbols"
+debug = false
+panic = "abort"   # Let it crash and force ourselves to write safe Rust.
+
+[profile.dev.build-override]
+strip = 'debuginfo'
+incremental = false
+
+[profile.release-dhat]
+inherits = 'release'
+debug = 1
+
+# Make insta run faster by compiling with release mode optimizations
+# https://docs.rs/insta/latest/insta/#optional-faster-runs
+[profile.dev.package.insta]
+opt-level = 3
+
+# Make insta diffing libary faster by compiling with release mode optimizations
+# https://docs.rs/insta/latest/insta/#optional-faster-runs
+[profile.dev.package.similar]
+opt-level = 3

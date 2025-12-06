@@ -10,6 +10,7 @@
     "davidanson.vscode-markdownlint",
     "biomejs.biome",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "peterj.proto"
   ]
 }

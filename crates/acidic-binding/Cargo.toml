@@ -1,0 +1,28 @@
+
+[package]
+name = 'acidic-binding'
+description = "A crate containing bindings for the Acidic engine."
+version = { workspace = true }
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+readme = "./README.md"
+
+[dependencies]
+napi = { workspace = true }
+napi-derive = { workspace = true }
+handlebars = { workspace = true }
+thiserror = { workspace = true }
+acidic-sdl = { workspace = true }
+acidic-template-engine = { workspace = true }
+serde_json = { workspace = true }
+
+[lib]
+crate-type = ['cdylib']
+
+[build-dependencies]
+napi-build = { workspace = true }

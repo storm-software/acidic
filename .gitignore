@@ -429,3 +429,5 @@ MigrationBackup/
 
 # Sentry Auth Token
 .sentryclirc
+
+*.node

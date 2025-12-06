@@ -1,3 +1,11 @@
-import { getJestConfig } from "@storm-software/testing-tools";
-
-export default getJestConfig("packages/state", true, 'messages');
+/* eslint-disable */
+export default {
+  displayName: 'messages',
+  preset: '../../jest.preset.js',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../../coverage/packages/messages'
+};

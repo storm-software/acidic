@@ -7,7 +7,7 @@
 
 <br />
 <div align="center">
-<a href="https://stormsoftware.org" target="_blank">Website</a>  |  <a href="https://stormsoftware.org/contact" target="_blank">Contact</a>  |  <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=Feature Request%3A+">Request a Feature</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=documentation&template=documentation.yml&title=Documentation Request%3A+">Request Documentation</a> | <a href="https://github.com/storm-software/storm-ops/discussions">Ask a Question</a>
+<a href="https://stormsoftware.com" target="_blank">Website</a>  |  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  |  <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=bug&template=bug-report.yml&title=Bug Report%3A+">Report a Bug</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=enhancement&template=feature-request.yml&title=Feature Request%3A+">Request a Feature</a> | <a href="https://github.com/storm-software/storm-ops/issues/new?assignees=&labels=documentation&template=documentation.yml&title=Documentation Request%3A+">Request Documentation</a> | <a href="https://github.com/storm-software/storm-ops/discussions">Ask a Question</a>
 </div>
 
 <br />
@@ -36,8 +36,403 @@
 
 Package containing the Acidic Engine command line interface
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- toc -->
+
+- [Acidic CLI Application](#acidic-cli-application)
+- [Usage](#usage)
+- [Commands](#commands)
+<!-- tocstop -->
+
+# Usage
+
+<!-- usage -->
+
+```sh-session
+$ npm install -g @acidic/cli
+$ acidic COMMAND
+running command...
+$ acidic (--version)
+@acidic/cli/0.0.1 win32-x64 node-v20.11.0
+$ acidic --help [COMMAND]
+USAGE
+  $ acidic COMMAND
+...
+```
+
+<!-- usagestop -->
+
+# Commands
+
+<!-- commands -->
+
+- [`acidic hello PERSON`](#acidic-hello-person)
+- [`acidic hello world`](#acidic-hello-world)
+- [`acidic help [COMMAND]`](#acidic-help-command)
+- [`acidic plugins`](#acidic-plugins)
+- [`acidic plugins add PLUGIN`](#acidic-plugins-add-plugin)
+- [`acidic plugins:inspect PLUGIN...`](#acidic-pluginsinspect-plugin)
+- [`acidic plugins install PLUGIN`](#acidic-plugins-install-plugin)
+- [`acidic plugins link PATH`](#acidic-plugins-link-path)
+- [`acidic plugins remove [PLUGIN]`](#acidic-plugins-remove-plugin)
+- [`acidic plugins reset`](#acidic-plugins-reset)
+- [`acidic plugins uninstall [PLUGIN]`](#acidic-plugins-uninstall-plugin)
+- [`acidic plugins unlink [PLUGIN]`](#acidic-plugins-unlink-plugin)
+- [`acidic plugins update`](#acidic-plugins-update)
+
+## `acidic hello PERSON`
+
+Say hello
+
+```
+USAGE
+  $ acidic hello PERSON -f <value>
+
+ARGUMENTS
+  PERSON  Person to say hello to
+
+FLAGS
+  -f, --from=<value>  (required) Who is saying hello
+
+DESCRIPTION
+  Say hello
+
+EXAMPLES
+  $ oex hello friend --from oclif
+  hello friend from oclif! (./src/commands/hello/index.ts)
+```
+
+_See code: [dist/commands/hello/index.js](https://github.com/storm-software/acidic/blob/v0.0.1/dist/commands/hello/index.js)_
+
+## `acidic hello world`
+
+Say hello world
+
+```
+USAGE
+  $ acidic hello world
+
+DESCRIPTION
+  Say hello world
+
+EXAMPLES
+  $ acidic hello world
+  hello world! (./src/commands/hello/world.ts)
+```
+
+_See code: [dist/commands/hello/world.js](https://github.com/storm-software/acidic/blob/v0.0.1/dist/commands/hello/world.js)_
+
+## `acidic help [COMMAND]`
+
+Display help for acidic.
+
+```
+USAGE
+  $ acidic help [COMMAND...] [-n]
+
+ARGUMENTS
+  COMMAND...  Command to show help for.
+
+FLAGS
+  -n, --nested-commands  Include all nested commands in the output.
+
+DESCRIPTION
+  Display help for acidic.
+```
+
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.0.20/src/commands/help.ts)_
+
+## `acidic plugins`
+
+List installed plugins.
+
+```
+USAGE
+  $ acidic plugins [--json] [--core]
+
+FLAGS
+  --core  Show core plugins.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  List installed plugins.
+
+EXAMPLES
+  $ acidic plugins
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.1/src/commands/plugins/index.ts)_
+
+## `acidic plugins add PLUGIN`
+
+Installs a plugin into acidic.
+
+```
+USAGE
+  $ acidic plugins add PLUGIN... [--json] [-f] [-h] [-s | -v]
+
+ARGUMENTS
+  PLUGIN...  Plugin to install.
+
+FLAGS
+  -f, --force    Force npm to fetch remote resources even if a local copy exists on disk.
+  -h, --help     Show CLI help.
+  -s, --silent   Silences npm output.
+  -v, --verbose  Show verbose npm output.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Installs a plugin into acidic.
+
+  Uses bundled npm executable to install plugins into C:\Users\patjo\AppData\Local\acidic
+
+  Installation of a user-installed plugin will override a core plugin.
+
+  Use the ACIDIC_NPM_LOG_LEVEL environment variable to set the npm loglevel.
+  Use the ACIDIC_NPM_REGISTRY environment variable to set the npm registry.
+
+ALIASES
+  $ acidic plugins add
+
+EXAMPLES
+  Install a plugin from npm registry.
+
+    $ acidic plugins add myplugin
+
+  Install a plugin from a github url.
+
+    $ acidic plugins add https://github.com/someuser/someplugin
+
+  Install a plugin from a github slug.
+
+    $ acidic plugins add someuser/someplugin
+```
+
+## `acidic plugins:inspect PLUGIN...`
+
+Displays installation properties of a plugin.
+
+```
+USAGE
+  $ acidic plugins inspect PLUGIN...
+
+ARGUMENTS
+  PLUGIN...  [default: .] Plugin to inspect.
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Displays installation properties of a plugin.
+
+EXAMPLES
+  $ acidic plugins inspect myplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.1/src/commands/plugins/inspect.ts)_
+
+## `acidic plugins install PLUGIN`
+
+Installs a plugin into acidic.
+
+```
+USAGE
+  $ acidic plugins install PLUGIN... [--json] [-f] [-h] [-s | -v]
+
+ARGUMENTS
+  PLUGIN...  Plugin to install.
+
+FLAGS
+  -f, --force    Force npm to fetch remote resources even if a local copy exists on disk.
+  -h, --help     Show CLI help.
+  -s, --silent   Silences npm output.
+  -v, --verbose  Show verbose npm output.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Installs a plugin into acidic.
+
+  Uses bundled npm executable to install plugins into C:\Users\patjo\AppData\Local\acidic
+
+  Installation of a user-installed plugin will override a core plugin.
+
+  Use the ACIDIC_NPM_LOG_LEVEL environment variable to set the npm loglevel.
+  Use the ACIDIC_NPM_REGISTRY environment variable to set the npm registry.
+
+ALIASES
+  $ acidic plugins add
+
+EXAMPLES
+  Install a plugin from npm registry.
+
+    $ acidic plugins install myplugin
+
+  Install a plugin from a github url.
+
+    $ acidic plugins install https://github.com/someuser/someplugin
+
+  Install a plugin from a github slug.
+
+    $ acidic plugins install someuser/someplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.1/src/commands/plugins/install.ts)_
+
+## `acidic plugins link PATH`
+
+Links a plugin into the CLI for development.
+
+```
+USAGE
+  $ acidic plugins link PATH [-h] [--install] [-v]
+
+ARGUMENTS
+  PATH  [default: .] path to plugin
+
+FLAGS
+  -h, --help          Show CLI help.
+  -v, --verbose
+      --[no-]install  Install dependencies after linking the plugin.
+
+DESCRIPTION
+  Links a plugin into the CLI for development.
+  Installation of a linked plugin will override a user-installed or core plugin.
+
+  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a
+  linked plugin with a 'hello' command will override the user-installed or core plugin
+  implementation. This is useful for development work.
+
+
+EXAMPLES
+  $ acidic plugins link myplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.1/src/commands/plugins/link.ts)_
+
+## `acidic plugins remove [PLUGIN]`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ acidic plugins remove [PLUGIN...] [-h] [-v]
+
+ARGUMENTS
+  PLUGIN...  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ acidic plugins unlink
+  $ acidic plugins remove
+
+EXAMPLES
+  $ acidic plugins remove myplugin
+```
+
+## `acidic plugins reset`
+
+Remove all user-installed and linked plugins.
+
+```
+USAGE
+  $ acidic plugins reset [--hard] [--reinstall]
+
+FLAGS
+  --hard       Delete node_modules and package manager related files in addition to
+               uninstalling plugins.
+  --reinstall  Reinstall all plugins after uninstalling.
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.1/src/commands/plugins/reset.ts)_
+
+## `acidic plugins uninstall [PLUGIN]`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ acidic plugins uninstall [PLUGIN...] [-h] [-v]
+
+ARGUMENTS
+  PLUGIN...  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ acidic plugins unlink
+  $ acidic plugins remove
+
+EXAMPLES
+  $ acidic plugins uninstall myplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.1/src/commands/plugins/uninstall.ts)_
+
+## `acidic plugins unlink [PLUGIN]`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ acidic plugins unlink [PLUGIN...] [-h] [-v]
+
+ARGUMENTS
+  PLUGIN...  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ acidic plugins unlink
+  $ acidic plugins remove
+
+EXAMPLES
+  $ acidic plugins unlink myplugin
+```
+
+## `acidic plugins update`
+
+Update installed plugins.
+
+```
+USAGE
+  $ acidic plugins update [-h] [-v]
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Update installed plugins.
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.1/src/commands/plugins/update.ts)_
+
+<!-- commandsstop -->
 
 ## Reduced Package Size
 
@@ -100,9 +495,9 @@ See the [open issues](https://github.com/storm-software/acidic/issues) for a lis
 
 Reach out to the maintainer at one of the following places:
 
-- [Contact](https://stormsoftware.org/contact)
+- [Contact](https://stormsoftware.com/contact)
 - [GitHub discussions](https://github.com/storm-software/acidic/discussions)
-- <support@stormsoftware.org>
+- <support@stormsoftware.com>
 
 ## License
 
@@ -140,7 +535,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://www.sullypat.com/"><img src="https://avatars.githubusercontent.com/u/99053093?v=4?s=100" width="100px;" alt="Patrick Sullivan"/><br /><sub><b>Patrick Sullivan</b></sub></a><br /><a href="#design-sullivanpj" title="Design">🎨</a> <a href="https://github.com/storm-software/storm-ops/commits?author=sullivanpj" title="Code">💻</a> <a href="#tool-sullivanpj" title="Tools">🔧</a> <a href="https://github.com/storm-software/storm-ops/commits?author=sullivanpj" title="Documentation">📖</a> <a href="https://github.com/storm-software/storm-ops/commits?author=sullivanpj" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://tylerbenning.com/"><img src="https://avatars.githubusercontent.com/u/7265547?v=4?s=100" width="100px;" alt="Tyler Benning"/><br /><sub><b>Tyler Benning</b></sub></a><br /><a href="#design-tbenning" title="Design">🎨</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://stormsoftware.org"><img src="https://avatars.githubusercontent.com/u/149802440?v=4?s=100" width="100px;" alt="Stormie"/><br /><sub><b>Stormie</b></sub></a><br /><a href="#maintenance-stormie-bot" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://stormsoftware.com"><img src="https://avatars.githubusercontent.com/u/149802440?v=4?s=100" width="100px;" alt="Stormie"/><br /><sub><b>Stormie</b></sub></a><br /><a href="#maintenance-stormie-bot" title="Maintenance">🚧</a></td>
     </tr>
   </tbody>
   <tfoot>
@@ -166,7 +561,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 <br />
 <div align="center">
-<a href="https://stormsoftware.org" target="_blank">Website</a>  |  <a href="https://stormsoftware.org/contact" target="_blank">Contact</a>  |  <a href="https://linkedin.com/in/patrick-sullivan-865526b0" target="_blank">LinkedIn</a>  |  <a href="https://medium.com/@pat.joseph.sullivan" target="_blank">Medium</a>  | <a href="https://github.com/storm-software" target="_blank">GitHub</a>  |  <a href="https://keybase.io/sullivanp" target="_blank">OpenPGP Key</a>
+<a href="https://stormsoftware.com" target="_blank">Website</a>  |  <a href="https://stormsoftware.com/contact" target="_blank">Contact</a>  |  <a href="https://linkedin.com/in/patrick-sullivan-865526b0" target="_blank">LinkedIn</a>  |  <a href="https://medium.com/@pat.joseph.sullivan" target="_blank">Medium</a>  | <a href="https://github.com/storm-software" target="_blank">GitHub</a>  |  <a href="https://keybase.io/sullivanp" target="_blank">OpenPGP Key</a>
 </div>
 
 <div align="center">
@@ -176,9 +571,9 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 **Storm Software** is an open source software development organization and creator of Acidic, StormStack and StormCloud. Our mission is to make software development more accessible. Our ideal future is one where anyone can create software without years of prior development experience serving as a barrier to entry. We hope to achieve this via LLMs, Generative AI, and intuitive, high-level data modeling/programming languages.
 
-If this sounds interesting, and you would like to help us in creating the next generation of development tools, please reach out on our [website](https://stormsoftware.org)!
+If this sounds interesting, and you would like to help us in creating the next generation of development tools, please reach out on our [website](https://stormsoftware.com)!
 
-<h3 align="center">💻 Visit <a href="https://stormsoftware.org" target="_blank">stormsoftware.org</a> to stay up to date with this developer</h3><br /><br />
+<h3 align="center">💻 Visit <a href="https://stormsoftware.com" target="_blank">stormsoftware.com</a> to stay up to date with this developer</h3><br /><br />
 
 
 <!-- markdownlint-restore -->

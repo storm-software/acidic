@@ -1,0 +1,35 @@
+{
+  "name": "@acidic/binding",
+  "version": "0.0.0",
+  "private": false,
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "crates/acidic-binding"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "engines": {
+    "node": ">= 10"
+  },
+  "napi": {
+    "name": "acidic-binding",
+    "packageName": "@acidic/binding",
+    "triples": {
+      "additional": [
+        "aarch64-apple-darwin",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-unknown-linux-musl",
+        "aarch64-pc-windows-msvc",
+        "armv7-unknown-linux-gnueabihf",
+        "x86_64-unknown-linux-musl",
+        "x86_64-unknown-freebsd",
+        "x86_64-apple-darwin",
+        "i686-pc-windows-msvc"
+      ]
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

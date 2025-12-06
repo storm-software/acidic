@@ -1,24 +1,33 @@
 #!/usr/bin/env node
 
-import { exitWithError, exitWithSuccess, handleProcess } from "@storm-software/config-tools";
-import { StormTrace } from "@storm-stack/telemetry";
-import { createCLIAcidicProgram } from "@acidic/cli";
-import { createAcidicConfig } from "@acidic/engine";
+import {
+  loadStormConfig,
+  exitWithSuccess,
+  handleProcess,
+  writeFatal,
+  writeSuccess,
+  exitWithError,
+} from '@storm-software/config-tools'
+import {createCLIAcidicProgram} from '@acidic/cli'
+import {createAcidicConfig} from '@acidic/node-engine'
+import {StormTrace} from '@storm-stack/telemetry'
 
-const config = await createAcidicConfig();
-const logger = StormTrace.create(config, "Acidic CLI");
+void (async () => {
+  const config = await loadStormConfig()
+  const logger = StormTrace.create(config, 'Acidic CLI')
 
-handleProcess(config);
+  try {
+    handleProcess(config)
 
-try {
-  await createCLIAcidicProgram(config, logger);
-} catch (error) {
-  logger.fatal(
-    `An error occured while running the Acidic Engine CLI application.\n\nError: ${
-      (error as Error)?.message
-    }`
-  );
-  exitWithError(config);
-}
+    await createCLIAcidicProgram(await createAcidicConfig(), logger)
 
-exitWithSuccess(config);
+    logger.success(`Completed execution of the Acidic Engine CLI application.`)
+    exitWithSuccess(config)
+  } catch (error) {
+    logger.fatal(
+      `An error occured while running the Acidic Engine CLI application.\n\nError: ${(error as Error)?.message}`,
+    )
+    exitWithError(config)
+    process.exit(1)
+  }
+})()

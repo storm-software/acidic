@@ -10,9 +10,8 @@ import {
 import { SupportTreeItem } from "./support-tree-item";
 
 export class SupportTreeProvider implements TreeDataProvider<SupportTreeItem> {
-  #onDidChangeTreeData: EventEmitter<SupportTreeItem | undefined> = new EventEmitter<
-    SupportTreeItem | undefined
-  >();
+  #onDidChangeTreeData: EventEmitter<SupportTreeItem | undefined> =
+    new EventEmitter<SupportTreeItem | undefined>();
 
   constructor(private readonly context: ExtensionContext) {}
 
@@ -37,39 +36,79 @@ export class SupportTreeProvider implements TreeDataProvider<SupportTreeItem> {
         [
           "Website",
           "https://acidic.io",
-          Uri.file(joinPaths(this.context.extensionPath, "assets", "vscode", "acidic.svg"))
+          Uri.file(
+            joinPaths(
+              this.context.extensionPath,
+              "assets",
+              "vscode",
+              "acidic.svg"
+            )
+          )
         ],
         [
           "Documentation",
           "https://acidic.io/docs",
-          Uri.file(joinPaths(this.context.extensionPath, "assets", "vscode", "book.svg"))
+          Uri.file(
+            joinPaths(
+              this.context.extensionPath,
+              "assets",
+              "vscode",
+              "book.svg"
+            )
+          )
         ],
         [
           "Learn to use Acidic",
           "https://acidic.io/docs/acidic-workspace",
           {
             light: Uri.file(
-              joinPaths(this.context.extensionPath, "assets", "vscode", "graduation.light.svg")
+              joinPaths(
+                this.context.extensionPath,
+                "assets",
+                "vscode",
+                "graduation.light.svg"
+              )
             ),
             dark: Uri.file(
-              joinPaths(this.context.extensionPath, "assets", "vscode", "graduation.dark.svg")
+              joinPaths(
+                this.context.extensionPath,
+                "assets",
+                "vscode",
+                "graduation.dark.svg"
+              )
             )
           }
         ],
         [
           "Report a Bug",
-          "https://stormsoftware.org/issues",
-          Uri.file(joinPaths(this.context.extensionPath, "assets", "vscode", "bug.svg"))
+          "https://stormsoftware.com/issues",
+          Uri.file(
+            joinPaths(this.context.extensionPath, "assets", "vscode", "bug.svg")
+          )
         ],
         [
           "Suggest a Feature",
-          "https://stormsoftware.org/suggestions/acidic",
-          Uri.file(joinPaths(this.context.extensionPath, "assets", "vscode", "lightbulb.svg"))
+          "https://stormsoftware.com/suggestions/acidic",
+          Uri.file(
+            joinPaths(
+              this.context.extensionPath,
+              "assets",
+              "vscode",
+              "lightbulb.svg"
+            )
+          )
         ],
         [
           "Storm Software",
-          "https://stormsoftware.org",
-          Uri.file(joinPaths(this.context.extensionPath, "assets", "vscode", "storm.svg"))
+          "https://stormsoftware.com",
+          Uri.file(
+            joinPaths(
+              this.context.extensionPath,
+              "assets",
+              "vscode",
+              "storm.svg"
+            )
+          )
         ]
       ] as const
     ).map(([title, link, icon]) => new SupportTreeItem(title, link, icon));

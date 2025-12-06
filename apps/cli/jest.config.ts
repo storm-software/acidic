@@ -1,3 +1,11 @@
-import { getJestConfig } from "@storm-software/testing-tools";
-
-export default getJestConfig("apps/cli", true, "cli");
+/* eslint-disable */
+export default {
+  displayName: 'acidic-ls',
+  preset: '../../jest.preset.js',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../../coverage/apps/cli'
+};

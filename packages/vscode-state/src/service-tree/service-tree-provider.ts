@@ -1,8 +1,14 @@
-import { DaemonProcessManager } from "@acidic/engine";
+import { DaemonProcessManager } from "@acidic/node-engine";
 import type { AcidicConfig } from "@acidic/definition";
 import type { StormTrace } from "@storm-stack/telemetry";
 import { EMPTY_STRING } from "@storm-stack/utilities";
-import { type Event, EventEmitter, type TreeDataProvider, type TreeItem, Uri } from "vscode";
+import {
+  type Event,
+  EventEmitter,
+  type TreeDataProvider,
+  type TreeItem,
+  Uri
+} from "vscode";
 import { ServiceTreeItemType } from "../types";
 import { ServiceTreeItem } from "./service-tree-item";
 import { ServiceSchemaStatus } from "@acidic/messages";
@@ -13,9 +19,8 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
   private _config: AcidicConfig;
   private _logger: StormTrace;
 
-  #onDidChangeTreeData: EventEmitter<ServiceTreeItem | undefined> = new EventEmitter<
-    ServiceTreeItem | undefined
-  >();
+  #onDidChangeTreeData: EventEmitter<ServiceTreeItem | undefined> =
+    new EventEmitter<ServiceTreeItem | undefined>();
 
   public static create = async (
     config: AcidicConfig,
@@ -26,14 +31,22 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
 
     logger.info("Starting Daemon Process Manager");
     if (provider._workspaceRoot) {
-      provider._daemon = await DaemonProcessManager.start(config, logger, onReadyFn);
+      provider._daemon = await DaemonProcessManager.start(
+        config,
+        logger,
+        onReadyFn
+      );
       provider._daemon.onChange(provider.refresh);
     }
 
     return provider;
   };
 
-  public constructor(config: AcidicConfig, logger: StormTrace, _onReadyFn: () => void) {
+  public constructor(
+    config: AcidicConfig,
+    logger: StormTrace,
+    _onReadyFn: () => void
+  ) {
     this._config = config;
     this._logger = logger;
     this._workspaceRoot = this._config.workspaceRoot;
@@ -84,7 +97,7 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
       if (element?.type === ServiceTreeItemType.WORKSPACE) {
         return Promise.resolve(
           Array.from(this._daemon.processes.values()).map(
-            (process) =>
+            process =>
               new ServiceTreeItem(
                 Uri.file(process.path),
                 process.path,
@@ -110,7 +123,7 @@ export class ServiceTreeProvider implements TreeDataProvider<ServiceTreeItem> {
         if (process && Array.isArray(plugins)) {
           return Promise.resolve(
             plugins.map(
-              (plugin) =>
+              plugin =>
                 new ServiceTreeItem(
                   Uri.file(process.path),
                   plugin.name,

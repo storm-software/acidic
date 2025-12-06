@@ -1,0 +1,24 @@
+[package]
+name = "acidic-parser"
+description = "A core crate containing the Acidic schema definitions and validation logic."
+version = { workspace = true }
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/acidic-parser"
+readme = "./README.md"
+
+[dependencies]
+acidic-diagnostics = { workspace = true }
+
+cacache = { workspace = true }
+pest = { workspace = true }
+pest_derive = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+indoc = { workspace = true }
+indexmap = { workspace = true }

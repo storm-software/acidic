@@ -1,7 +1,4 @@
-import type {
-   TypescriptPluginOptions
-} from "@acidic/engine";
-
+import type { TypescriptPluginOptions } from "@acidic/node-engine";
 
 export type ValibotPluginOptions = TypescriptPluginOptions & {
   /**

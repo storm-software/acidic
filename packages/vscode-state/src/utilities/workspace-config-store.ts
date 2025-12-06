@@ -1,5 +1,5 @@
 import type { AcidicConfig } from "@acidic/definition";
-import { createAcidicConfig } from "@acidic/engine";
+import { createAcidicConfig } from "@acidic/node-engine";
 import type { StormTrace } from "@storm-stack/telemetry";
 import type { ExtensionContext, Memento } from "vscode";
 
@@ -14,8 +14,15 @@ export class WorkspaceConfigStore {
   #logger: StormTrace;
   #context: ExtensionContext;
 
-  public static fromContext(context: ExtensionContext, logger: StormTrace): WorkspaceConfigStore {
-    CONFIG_STORE = new WorkspaceConfigStore(context.workspaceState, context, logger);
+  public static fromContext(
+    context: ExtensionContext,
+    logger: StormTrace
+  ): WorkspaceConfigStore {
+    CONFIG_STORE = new WorkspaceConfigStore(
+      context.workspaceState,
+      context,
+      logger
+    );
     return CONFIG_STORE;
   }
 
@@ -24,7 +31,9 @@ export class WorkspaceConfigStore {
    */
   public static get instance() {
     if (!CONFIG_STORE) {
-      throw Error("Please create a configuration store with `fromContext` first");
+      throw Error(
+        "Please create a configuration store with `fromContext` first"
+      );
     }
     return CONFIG_STORE;
   }

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.38.5",
+    "toolVersion": "7.40.1",
     "schemaVersion": 1011,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -171,58 +171,7 @@
       "canonicalReference": "@acidic/cli!",
       "name": "",
       "preserveMemberOrder": false,
-      "members": [
-        {
-          "kind": "Variable",
-          "canonicalReference": "@acidic/cli!createCLIAcidicProgram:var",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "createCLIAcidicProgram: "
-            },
-            {
-              "kind": "Content",
-              "text": "(config: "
-            },
-            {
-              "kind": "Reference",
-              "text": "AcidicConfig",
-              "canonicalReference": "@acidic/cli!~AcidicConfig:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ", logger: "
-            },
-            {
-              "kind": "Reference",
-              "text": "StormTrace",
-              "canonicalReference": "!unknown"
-            },
-            {
-              "kind": "Content",
-              "text": ") => "
-            },
-            {
-              "kind": "Reference",
-              "text": "Promise",
-              "canonicalReference": "!Promise:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<number>"
-            }
-          ],
-          "fileUrlPath": "tmp/.tsup/declaration/apps/cli/src/program/cli-program.d.ts",
-          "isReadonly": true,
-          "releaseTag": "Public",
-          "name": "createCLIAcidicProgram",
-          "variableTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 8
-          }
-        }
-      ]
+      "members": []
     }
   ]
 }

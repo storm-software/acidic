@@ -2,17 +2,28 @@
   "name": "@acidic/cli",
   "version": "0.0.1",
   "private": false,
-  "description": "🧪 Acidic is a modeling tool that can be used to describe and generate code for API end points, database tables, type definitions, client components, and so much more!",
+  "description": "A command-line utility to control the Acidic Engine to generate artifacts based on user defined schema files",
   "repository": {
     "type": "github",
     "url": "https://github.com/storm-software/acidic.git",
-    "directory": "packages/cli"
+    "directory": "apps/cli"
   },
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "src/index.js",
+  "module": "src/index.js",
   "bin": {
-    "acidic": "./bin/acidic.js"
+    "acidic": "./bin/run.js"
   },
   "dependencies": {
+    "@oclif/core": "^3.26.0",
+    "@oclif/plugin-help": "^6.0.20",
+    "@oclif/plugin-plugins": "^5.0.1",
     "@storm-software/config-tools": "latest",
     "@storm-stack/cli": "latest",
     "@storm-stack/errors": "latest",
@@ -22,7 +33,42 @@
     "@storm-stack/utilities": "latest",
     "commander": "^11.1.0"
   },
+  "files": [
+    "/assets",
+    "/bin",
+    "/dist",
+    "/oclif.manifest.json"
+  ],
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@oclif/prettier-config": "^0.2.1",
+    "@oclif/test": "^3.2.8",
+    "eslint-config-oclif": "^5.1.1",
+    "eslint-config-oclif-typescript": "^3.1.3",
+    "eslint-config-prettier": "^9.0.0",
+    "oclif": "^4.7.0"
+  },
+  "oclif": {
+    "bin": "acidic",
+    "commands": "./dist/commands",
+    "dirname": "acidic",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "generate": {
+        "description": "Generate artifacts based on user defined schema file(s)"
+      }
+    },
+    "additionalHelpFlags": [
+      "-h"
+    ]
   }
 }

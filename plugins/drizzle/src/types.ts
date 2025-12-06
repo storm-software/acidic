@@ -1,4 +1,4 @@
-import type { TypescriptPluginOptions } from "@acidic/engine";
+import type { TypescriptPluginOptions } from "@acidic/node-engine";
 import { DataSourceType } from "@acidic/definition";
 
 export const VALID_CONNECTOR_TYPES = [

@@ -1,0 +1,18 @@
+[package]
+name = "acidic-diagnostics"
+description = "A core crate containing the Acidic schema definitions and validation logic."
+version = { workspace = true }
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/acidic-diagnostics"
+readme = "./README.md"
+
+[dependencies]
+colored = { workspace = true }
+indoc = { workspace = true }
+pest = { workspace = true }

@@ -1,0 +1,26 @@
+{
+  "name": "@acidic/binding-win32-x64-msvc",
+  "version": "0.0.0",
+  "private": false,
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/binding/npm/win32-x64-msvc"
+  },
+  "main": "acidic-binding.win32-x64-msvc.node",
+  "files": [
+    "acidic-binding.win32-x64-msvc.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  },
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

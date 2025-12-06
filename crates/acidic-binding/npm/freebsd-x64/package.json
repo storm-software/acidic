@@ -1,0 +1,26 @@
+{
+  "name": "@acidic/binding-freebsd-x64",
+  "version": "0.0.0",
+  "private": false,
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/binding/npm/freebsd-x64"
+  },
+  "main": "acidic-binding.freebsd-x64.node",
+  "files": [
+    "acidic-binding.freebsd-x64.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  },
+  "os": [
+    "freebsd"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

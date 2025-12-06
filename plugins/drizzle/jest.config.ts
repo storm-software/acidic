@@ -1,3 +1,11 @@
-import { getJestConfig } from "@storm-software/testing-tools";
-
-export default getJestConfig("plugins/drizzle", true, "drizzle");
+/* eslint-disable */
+export default {
+  displayName: 'drizzle',
+  preset: '../../jest.preset.js',
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../../coverage/plugins/drizzle'
+};

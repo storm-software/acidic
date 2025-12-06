@@ -1,0 +1,20 @@
+[package]
+name = "acidic-sdl"
+description = "A core crate containing the Acidic schema definitions and validation logic."
+version = { workspace = true }
+edition = { workspace = true }
+repository = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+categories = { workspace = true }
+keywords = { workspace = true }
+homepage = { workspace = true }
+documentation = "https://docs.rs/acidic-sdl"
+readme = "./README.md"
+
+[dependencies]
+indoc = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+acidic-diagnostics = { workspace = true }
+strum_macros = { workspace = true }
+strum = { workspace = true }

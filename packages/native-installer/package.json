@@ -1,0 +1,24 @@
+{
+  "name": "@acidic/native-installer",
+  "version": "0.0.1",
+  "description": "🧪 A package used to install the latest, native version of the Acidic Engine.",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/native-installer"
+  },
+  "private": false,
+  "type": "module",
+  "dependencies": {
+    "@storm-stack/telemetry": "latest",
+    "hasha": "^6.0.0",
+    "node-fetch": ">=2.6.7",
+    "p-retry": "^6.2.0",
+    "tempy": "^3.1.0",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

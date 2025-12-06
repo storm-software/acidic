@@ -1,0 +1,29 @@
+{
+  "name": "@acidic/binding-linux-x64-musl",
+  "version": "0.0.0",
+  "private": false,
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/storm-software/acidic.git",
+    "directory": "packages/binding/npm/linux-x64-musl"
+  },
+  "main": "acidic-binding.linux-x64-musl.node",
+  "files": [
+    "acidic-binding.linux-x64-musl.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "libc": [
+    "musl"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

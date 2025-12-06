@@ -1,5 +1,5 @@
 import type { AcidicConfig } from "@acidic/definition";
-import { createAcidicConfig } from "@acidic/engine";
+import { createAcidicConfig } from "@acidic/node-engine";
 import { CommandId, getCommandId } from "@acidic/messages";
 import {
   LOCATE_YOUR_WORKSPACE,
@@ -12,16 +12,28 @@ import { findWorkspaceRootSafe } from "@storm-software/config-tools";
 import { StormError } from "@storm-stack/errors";
 import type { StormTrace } from "@storm-stack/telemetry";
 import { dirname } from "node:path";
-import { type ExtensionContext, RelativePattern, commands, window, workspace } from "vscode";
-import type { LanguageClient } from "vscode-languageclient/node";
+import {
+  type ExtensionContext,
+  RelativePattern,
+  commands,
+  window,
+  workspace,
+  type FileSystemWatcher
+} from "vscode";
+import {
+  CancellationStrategy,
+  LanguageClient,
+  TransportKind
+} from "vscode-languageclient/node";
 import { ReactPanel } from "./webview/react-panel";
+import { joinPaths } from "@storm-stack/file-system";
 
 let client: LanguageClient;
 let context: ExtensionContext;
 let logger: StormTrace;
 
 let hasWorkspaceRoot = false;
-// let fileSystemWatcher: FileSystemWatcher | undefined;
+let fileSystemWatcher: FileSystemWatcher | undefined;
 
 export async function activate(_context: ExtensionContext) {
   try {
@@ -32,8 +44,9 @@ export async function activate(_context: ExtensionContext) {
     context = _context;
 
     context.subscriptions.push(
-      commands.registerCommand(LOCATE_YOUR_WORKSPACE.command?.command || "", async () =>
-        manuallySelectWorkspaceDefinition()
+      commands.registerCommand(
+        LOCATE_YOUR_WORKSPACE.command?.command || "",
+        async () => manuallySelectWorkspaceDefinition()
       )
     );
 
@@ -74,63 +87,62 @@ function writeStatusBarMessage(message: string) {
   }, 3000);
 }
 
-// async function startLanguageClient(
-//   context: ExtensionContext,
-//   logger: StormLog
-// ): Promise<LanguageClient> {
-//   // The debug options for the server
-//   // --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging.
-//   // By setting `process.env.DEBUG_BREAK` to a truthy value, the language server will wait until a debugger is attached.
+async function startLanguageServer(
+  context: ExtensionContext,
+  logger: StormTrace
+): Promise<LanguageClient> {
+  // The debug options for the server
+  // --inspect=6009: runs the server in Node's Inspector mode so VS Code can attach to the server for debugging.
+  // By setting `process.env.DEBUG_BREAK` to a truthy value, the language server will wait until a debugger is attached.
 
-//   fileSystemWatcher = workspace.createFileSystemWatcher("**/{*.acid,*.acidic}");
-//   context.subscriptions.push(fileSystemWatcher);
+  fileSystemWatcher = workspace.createFileSystemWatcher("**/{*.acid,*.acidic}");
+  context.subscriptions.push(fileSystemWatcher);
 
-//   logger.info(
-//     `*** Server path: ${context.asAbsolutePath(joinPaths("language-server", "main.js"))}`
-//   );
+  // Create the language client and start the client.
+  const client = new LanguageClient(
+    "acidic-ls",
+    "Acidic Language Server",
+    {
+      run: {
+        module: context.asAbsolutePath(joinPaths("language-server", "main.js")),
+        transport: TransportKind.ipc
+      },
+      debug: {
+        module: context.asAbsolutePath(joinPaths("language-server", "main.js")),
+        transport: TransportKind.ipc,
+        options: {
+          execArgv: [
+            "--nolazy",
+            `--inspect${process.env.DEBUG_BREAK ? "-brk" : ""}=${
+              process.env.DEBUG_SOCKET || "6009"
+            }`
+          ]
+        }
+      }
+    },
+    {
+      documentSelector: [{ scheme: "file", language: "acidic" }],
+      synchronize: {
+        // Notify the server about file changes to files contained in the workspace
+        fileEvents: fileSystemWatcher
+      },
+      connectionOptions: {
+        cancellationStrategy: CancellationStrategy.Message,
+        maxRestartCount: 5
+      },
+      traceOutputChannel: window.createOutputChannel(
+        "Acidic Language Server trace"
+      )
+    }
+  );
 
-//   // Create the language client and start the client.
-//   const client = new LanguageClient(
-//     "acidic",
-//     "Acidic Language Server",
-//     {
-//       run: {
-//         module: context.asAbsolutePath(joinPaths("language-server", "main.js")),
-//         transport: TransportKind.ipc
-//       },
-//       debug: {
-//         module: context.asAbsolutePath(joinPaths("language-server", "main.js")),
-//         transport: TransportKind.ipc,
-//         options: {
-//           execArgv: [
-//             "--nolazy",
-//             `--inspect${process.env.DEBUG_BREAK ? "-brk" : ""}=${
-//               process.env.DEBUG_SOCKET || "6009"
-//             }`
-//           ]
-//         }
-//       }
-//     },
-//     {
-//       documentSelector: [{ scheme: "file", language: "acidic" }],
-//       synchronize: {
-//         // Notify the server about file changes to files contained in the workspace
-//         fileEvents: fileSystemWatcher
-//       },
-//       connectionOptions: {
-//         cancellationStrategy: CancellationStrategy.Message,
-//         maxRestartCount: 5
-//       }
-//     }
-//   );
+  // Start the client. This will also launch the server
+  await client.start();
 
-//   // Start the client. This will also launch the server
-//   await client.start();
+  logger.info("Started the Acidic Langauge Server");
 
-//   logger.info("Started the Acidic Langauge Server");
-
-//   return client;
-// }
+  return client;
+}
 
 function manuallySelectWorkspaceDefinition() {
   if (workspace.workspaceFolders && workspace.workspaceFolders.length > 0) {
@@ -141,7 +153,7 @@ function manuallySelectWorkspaceDefinition() {
         canSelectMany: false,
         openLabel: "Select workspace directory"
       })
-      .then((value) => {
+      .then(value => {
         if (value?.[0]) {
           loadAcidicWorkspace(value[0].fsPath);
         }
@@ -168,13 +180,17 @@ async function handleWorkspaceReady(config: AcidicConfig, logger: StormTrace) {
   commands.executeCommand("setContext", "isWorkspaceLoading", false);
   await ReactPanel.createOrShow(context, config, logger, "Acidic Workspace");
 
-  window.showInformationMessage("Acidic Workspace successfully loaded services");
+  window.showInformationMessage(
+    "Acidic Workspace successfully loaded services"
+  );
 }
 
 async function loadWorkspaceRoot(_workspacePath: string): Promise<boolean> {
   let workspacePath = _workspacePath;
   try {
-    if (workspacePath.match(/(workspace|angular|nx|project|turbo|storm.config)\.json$/)) {
+    if (
+      workspacePath.match(/(workspace|angular|nx|project|turbo|storm)\.json$/)
+    ) {
       workspacePath = dirname(workspacePath);
     }
 
@@ -195,17 +211,27 @@ async function loadWorkspaceRoot(_workspacePath: string): Promise<boolean> {
       WorkspaceConfigStore.fromContext(context, logger);
       WorkspaceConfigStore.instance.workspaceRoot = workspaceRoot;
 
-      logger.info(`Starting Acidic Language Service from directory: ${workspaceRoot}`);
-      // client = await startLanguageClient(context, logger);
+      logger.info(
+        `Starting Acidic Language Service from directory: ${workspaceRoot}`
+      );
+      client = await startLanguageServer(context, logger);
 
       context.subscriptions.push(
-        commands.registerCommand(getCommandId(CommandId.ON_WORKSPACE_READY), handleWorkspaceReady)
+        commands.registerCommand(
+          getCommandId(CommandId.ON_WORKSPACE_READY),
+          handleWorkspaceReady
+        )
       );
 
-      await initServiceTree(context, config, logger, () => handleWorkspaceReady(config, logger));
+      await initServiceTree(context, config, logger, () =>
+        handleWorkspaceReady(config, logger)
+      );
 
       const fileWatcher = workspace.createFileSystemWatcher(
-        new RelativePattern(workspaceRoot, "{workspace,angular,nx,project,turbo,storm.config}.json")
+        new RelativePattern(
+          workspaceRoot,
+          "{workspace,angular,nx,project,turbo,storm}.json"
+        )
       );
       context.subscriptions.push(
         fileWatcher.onDidChange(() => {

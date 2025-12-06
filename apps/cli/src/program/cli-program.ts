@@ -1,5 +1,5 @@
 import type { AcidicConfig } from "@acidic/definition";
-import { AcidicEngine } from "@acidic/engine";
+import { AcidicEngine } from "@acidic/node-engine";
 import { createCLIProgram } from "@storm-stack/cli";
 import type { StormTrace } from "@storm-stack/telemetry";
 
@@ -24,7 +24,8 @@ export const createCLIAcidicProgram = async (
     commands: [
       {
         name: "info",
-        description: "Get information of installed Acidic and related packages.",
+        description:
+          "Get information of installed Acidic and related packages.",
         argument: [
           {
             flags: "path",
@@ -52,7 +53,8 @@ export const createCLIAcidicProgram = async (
           },
           {
             flags: "tag",
-            description: "the NPM package tag to use when installing dependencies"
+            description:
+              "the NPM package tag to use when installing dependencies"
           }
         ],
         argument: [
@@ -95,7 +97,9 @@ export const createCLIAcidicProgram = async (
         }) => {
           await engine.execute({
             schema: schema ? schema : config.schemaPath,
-            packageManager: packageManager ? packageManager : config.packageManager,
+            packageManager: packageManager
+              ? packageManager
+              : config.packageManager,
             outputPath: output ? output : config.extensions.acidic.outputPath
           });
         }

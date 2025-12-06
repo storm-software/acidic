@@ -22,7 +22,10 @@ module.exports = {
   define: {
     "import.meta.url": "importMetaUrl"
   },
-  inject: ["./apps/vscode-extension/esbuild.shim.js", "./apps/vscode-extension/react.shim.js"],
+  inject: [
+    "./apps/vscode-extension/esbuild.shim.js",
+    "./apps/vscode-extension/react.shim.js"
+  ],
   plugins: [
     esbuildDecorators({
       tsconfig: "apps/vscode-extension/tsconfig.client.json"

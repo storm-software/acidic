@@ -1,23 +1,41 @@
 {
   /******************************
-   * relay graph-ql
+   * Relay GraphQL
    ******************************/
   "relay.autoStartCompiler": true,
   "relay.rootDirectory": "../",
   "relay.pathToConfig": "@storm-software/graphql-tools/config/relay.config.js",
-
- /******************************
+  /******************************
+   * Rust Analyzer
+   ******************************/
+  "rust-analyzer.procMacro.ignored": {
+    "napi-derive": [
+      "napi"
+    ]
+  },
+  "rust-analyzer.linkedProjects": [
+    ".\\crates\\config\\Cargo.toml",
+    ".\\crates\\diagnostics\\Cargo.toml",
+    ".\\crates\\parser\\Cargo.toml",
+    ".\\crates\\sdl\\Cargo.toml",
+    ".\\crates\\rpc\\Cargo.toml",
+    ".\\crates\\server\\Cargo.toml",
+    ".\\crates\\template-engine\\Cargo.toml",
+    ".\\packages\\binding\\Cargo.toml",
+    ".\\apps\\engine\\Cargo.toml"
+  ],
+  /******************************
    * VS Code Search
    ******************************/
-   "search.exclude": {
+  "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
     "**/*.code-search": true,
+    
     "**/.tamagui": true,
     "**/.next": true,
     "**/dist": true
   },
-
   /******************************
    * VS Code colorization
    ******************************/
@@ -26,26 +44,22 @@
     "statusBarItem.hoverBackground": "#313C47",
     "statusBar.foreground": "#1fb2a6"
   },
-
   /******************************
    * Peacock colorization
    ******************************/
   "peacock.color": "#1fb2a6",
-
   /******************************
    * bracket pair colorization
    ******************************/
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
   "editor.tabCompletion": "on",
-
   /******************************
    * Typescript
    ******************************/
   "typescript.tsserver.log": "verbose",
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-
   /******************************
    * Tailwind CSS
    ******************************/
@@ -56,61 +70,57 @@
       "(?:twMerge|twJoin)\\(([^\\);]*)[\\);]"
     ]
   ],
-
   /******************************
-  * BiomeJs
-  ******************************/
+   * BiomeJs
+   ******************************/
   "biome.rename": true,
-
   "editor.codeActionsOnSave": {
     "quickfix.biome": "explicit"
   },
-
   /******************************
-   * eslint / prettier
+   * Linting / Editor Config
    ******************************/
   "editor.formatOnSave": false,
-  "editor.defaultFormatter": "biomejs.biome",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
     "*.hbs": "handlebars",
     "*.acid": "acidic",
     "*.acidic": "acidic"
   },
-
   "[javascript]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-      "quickfix.biome": true,
-      "source.sortMembers": true
+      "source.fixAll.eslint": "explicit",
+      "quickfix.biome": "explicit",
+      "source.sortMembers": "explicit"
     }
   },
   "[javascriptreact]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-      "quickfix.biome": true,
-      "source.sortMembers": true
+      "source.fixAll.eslint": "explicit",
+      "quickfix.biome": "explicit",
+      "source.sortMembers": "explicit"
     }
   },
   "[typescript]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-      "quickfix.biome": true,
-      "source.sortMembers": true
+      "source.fixAll.eslint": "explicit",
+      "quickfix.biome": "explicit",
+      "source.sortMembers": "explicit"
     }
   },
   "[typescriptreact]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-      "quickfix.biome": true,
-      "source.sortMembers": true
+      "source.fixAll.eslint": "explicit",
+      "quickfix.biome": "explicit",
+      "source.sortMembers": "explicit"
     }
   },
   "[json]": {
@@ -119,97 +129,108 @@
   },
   "[jsonc]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
-
-  /******************************
-   * Markdown
-   ******************************/
   "[markdown]": {
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
   },
-
-  /******************************
-   * Prisma
-   ******************************/
   "[prisma]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "Prisma.prisma"
   },
-
-  /******************************
-   * Acidic
-   ******************************/
   "[acidic]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "Prisma.prisma"
   },
-
-  /******************************
-   * Handlebars
-   ******************************/
   "[handlebars]": {
     "editor.formatOnSave": false,
     "editor.defaultFormatter": "biomejs.biome"
   },
-
-  /******************************
-   * csharpier
-   ******************************/
   "[csharp]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "biomejs.biome"
   },
-
+  "[yaml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[toml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[rust]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
   /******************************
    * vscode-icons
    ******************************/
   "vsicons.associations.files": [
     {
       "icon": "registry",
-      "extensions": ["routes.config.ts"],
+      "extensions": [
+        "routes.config.ts"
+      ],
       "filename": true,
       "format": "svg"
     },
     {
       "icon": "dependencies",
-      "extensions": ["dependencies.config.ts"],
+      "extensions": [
+        "dependencies.config.ts"
+      ],
       "filename": true,
       "format": "svg"
     },
     {
       "icon": "swagger",
-      "extensions": ["api-spec.json"],
+      "extensions": [
+        "api-spec.json"
+      ],
       "filename": true,
       "format": "svg"
     },
     {
       "icon": "tailwind",
-      "extensions": ["tailwind.preset.js"],
+      "extensions": [
+        "tailwind.preset.js"
+      ],
       "filename": true,
       "format": "svg"
     },
     {
       "icon": "jest",
-      "extensions": ["jest.preset.js"],
+      "extensions": [
+        "jest.preset.js"
+      ],
       "filename": true,
       "format": "svg"
     },
     {
       "icon": "config",
-      "extensions": ["environment.ts"],
+      "extensions": [
+        "environment.ts"
+      ],
       "format": "svg"
     },
     {
       "icon": "config",
-      "extensions": ["environment.ts"],
+      "extensions": [
+        "environment.ts"
+      ],
       "format": "svg"
     },
     {
       "icon": "dotenv",
-      "extensions": [".env", ".env.local", ".env.production"],
-      "languages": ["dotenv"],
+      "extensions": [
+        ".env",
+        ".env.local",
+        ".env.production"
+      ],
+      "languages": [
+        "dotenv"
+      ],
       "format": "svg"
     },
     {
@@ -226,105 +247,133 @@
   "vsicons.associations.folders": [
     {
       "icon": "graphql",
-      "extensions": ["graphql", "gql"],
+      "extensions": [
+        "graphql",
+        "gql"
+      ],
       "format": "svg"
     },
     {
       "icon": "www",
-      "extensions": ["shell"],
+      "extensions": [
+        "shell"
+      ],
       "format": "svg"
     },
     {
       "icon": "config",
-      "extensions": ["environment"],
+      "extensions": [
+        "environment"
+      ],
       "format": "svg"
     },
     {
       "icon": "tools",
-      "extensions": ["tools", "executors", "generators"],
+      "extensions": [
+        "tools",
+        "executors",
+        "generators"
+      ],
       "format": "svg"
     },
     {
       "icon": "helper",
-      "extensions": ["utilities"],
+      "extensions": [
+        "utilities"
+      ],
       "format": "svg"
     },
     {
       "icon": "typescript",
-      "extensions": ["constants"],
+      "extensions": [
+        "constants"
+      ],
       "format": "svg"
     },
     {
       "icon": "typings2",
-      "extensions": ["enums"],
+      "extensions": [
+        "enums"
+      ],
       "format": "svg"
     },
     {
       "icon": "typings",
-      "extensions": ["types"],
+      "extensions": [
+        "types"
+      ],
       "format": "svg"
     },
     {
       "icon": "db",
-      "extensions": ["state"],
+      "extensions": [
+        "state"
+      ],
       "format": "svg"
     },
     {
       "icon": "api",
-      "extensions": [".openapi-generator", "openapi", "asyncapi"],
+      "extensions": [
+        ".openapi-generator",
+        "openapi",
+        "asyncapi"
+      ],
       "format": "svg"
     },
     {
       "icon": "route",
-      "extensions": ["inversion"],
+      "extensions": [
+        "inversion"
+      ],
       "format": "svg"
     },
     {
       "icon": "route",
-      "extensions": ["inversion"],
+      "extensions": [
+        "inversion"
+      ],
       "format": "svg"
     },
     {
       "icon": "include",
-      "extensions": ["external"],
+      "extensions": [
+        "external"
+      ],
       "format": "svg"
     },
     {
       "icon": "library",
-      "extensions": ["shared"],
+      "extensions": [
+        "shared"
+      ],
       "format": "svg"
     },
     {
       "icon": "server",
-      "extensions": ["dotnet"],
+      "extensions": [
+        "dotnet"
+      ],
       "format": "svg"
     },
     {
       "icon": "style",
-      "extensions": ["design-system"],
+      "extensions": [
+        "design-system"
+      ],
       "format": "svg"
     },
     {
       "icon": "theme",
-      "extensions": ["tokens"],
+      "extensions": [
+        "tokens"
+      ],
       "format": "svg"
     }
   ],
-
   /******************************
    * commitizen
    ******************************/
   "commitizen.capitalizeWindowsDriveLetter": true,
   "commitizen.autoSync": false,
-  "commitizen.showOutputChannel": "always",
-  "[javascript][javascriptreact][typescript][typescriptreact]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit",
-      "quickfix.biome": "explicit",
-      "source.sortMembers": "explicit"
-    }
-  },
-  "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  }
+  "commitizen.showOutputChannel": "always"
 }

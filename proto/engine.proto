@@ -1,0 +1,21 @@
+
+syntax = "proto3";
+
+package engine;
+
+service Engine {
+    // Initialize a workspace in the Acidic engine
+    rpc Initialize (InitializeRequest) returns (InitializeResponse);
+}
+
+// A request to initialize a workspace (and all of the schema files contained within it) in the Acidic engine
+message InitializeRequest {
+    // The root directory of the workspace
+    string workspace_root = 1;
+}
+
+// A response to an Initialize request
+message InitializeResponse {
+    // The schemas that were added to the engine
+    repeated string schemas = 1;
+}

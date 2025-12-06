@@ -8,7 +8,7 @@ import {
 } from "vscode";
 import { getUri } from "./get-uri";
 import type { StormTrace } from "@storm-stack/telemetry";
-import { createAcidicStore, type AcidicStore } from "@acidic/engine";
+import { createAcidicStore, type AcidicStore } from "@acidic/node-engine";
 import { stringifyService, type AcidicConfig } from "@acidic/definition";
 
 /**
@@ -37,7 +37,9 @@ export class ReactPanel {
     logger: StormTrace,
     title: string
   ) {
-    const column = window.activeTextEditor ? window.activeTextEditor.viewColumn : undefined;
+    const column = window.activeTextEditor
+      ? window.activeTextEditor.viewColumn
+      : undefined;
 
     if (ReactPanel.currentPanel) {
       ReactPanel.currentPanel.#panel.reveal(column);
@@ -71,23 +73,36 @@ export class ReactPanel {
     this.#logger = logger;
     this.#extensionPath = this.#context.extensionPath;
 
-    this.#panel = window.createWebviewPanel(ReactPanel.viewType, title, column, {
-      // Enable javascript in the webview
-      enableScripts: true,
-      enableCommandUris: true,
-      retainContextWhenHidden: true,
-      localResourceRoots: [Uri.file(this.#extensionPath)]
-    });
+    this.#panel = window.createWebviewPanel(
+      ReactPanel.viewType,
+      title,
+      column,
+      {
+        // Enable javascript in the webview
+        enableScripts: true,
+        enableCommandUris: true,
+        retainContextWhenHidden: true,
+        localResourceRoots: [Uri.file(this.#extensionPath)]
+      }
+    );
 
     this.#panel.webview.html = this.getHtmlForWebview();
     this.#panel.iconPath = {
-      light: getUri(this.#panel.webview, this.#extensionPath, "assets/logos/test-tube.png"),
-      dark: getUri(this.#panel.webview, this.#extensionPath, "assets/logos/test-tube.png")
+      light: getUri(
+        this.#panel.webview,
+        this.#extensionPath,
+        "assets/logos/test-tube.png"
+      ),
+      dark: getUri(
+        this.#panel.webview,
+        this.#extensionPath,
+        "assets/logos/test-tube.png"
+      )
     };
 
     this.#panel.onDidDispose(() => this.dispose(), null, this.#disposables);
     this.#panel.webview.onDidReceiveMessage(
-      (message) => {
+      message => {
         switch (message.command) {
           case "startup":
             console.log("message received");
@@ -110,9 +125,9 @@ export class ReactPanel {
       command: "updateServices",
       data: {
         services: services
-          .filter((service) => !!service?.definition)
+          .filter(service => !!service?.definition)
           // biome-ignore lint/style/noNonNullAssertion: <explanation>
-          .map((service) => stringifyService(service.definition!))
+          .map(service => stringifyService(service.definition!))
       }
     });
   }
@@ -133,11 +148,7 @@ export class ReactPanel {
   private async setup() {
     this.#store = await createAcidicStore(this.#config, this.#logger);
     this.#unsubscribe = this.#store.subscribe(
-      async (args: {
-        key: string;
-        store: string;
-        value: any;
-      }) => {
+      async (args: { key: string; store: string; value: any }) => {
         this.#logger.info(`Store updated: ${args.key}`);
         if (args.key.includes("service")) {
           await this.sync();
@@ -325,7 +336,8 @@ export class ReactPanel {
 
 function getNonce() {
   let text = "";
-  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   for (let i = 0; i < 32; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }

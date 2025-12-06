@@ -1,0 +1,59 @@
+{
+  "name": "node-engine",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/node-engine/src",
+  "targets": {
+    "build": {
+      "executor": "@storm-software/workspace-tools:tsup-node",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/node-engine",
+        "main": "packages/node-engine/src/index.ts",
+        "tsConfig": "packages/node-engine/tsconfig.json",
+        "project": "packages/node-engine/package.json",
+        "defaultConfiguration": "production",
+        "external": ["pnpapi"],
+        "assets": [
+          {
+            "input": "packages/node-engine",
+            "glob": "README.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          },
+          {
+            "glob": "packages/node-engine/src/schema",
+            "input": "acidic.schema.json",
+            "output": "./schema"
+          }
+        ]
+      },
+      "configurations": {
+        "production": {
+          "debug": false
+        },
+        "development": {
+          "debug": true,
+          "verbose": true
+        }
+      }
+    },
+    "lint": {},
+    "test": {},
+    "nx-release-publish": {
+      "cache": false,
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "executor": "@storm-software/workspace-tools:npm-publish",
+      "options": {
+        "packageRoot": "dist/{projectRoot}",
+        "registry": "https://registry.npmjs.org/"
+      }
+    }
+  },
+  "tags": ["definition"]
+}

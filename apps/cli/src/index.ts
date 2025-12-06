@@ -7,4 +7,4 @@
  * @packageDocumentation
  */
 
-export * from "./program";
+export { run } from '@oclif/core'

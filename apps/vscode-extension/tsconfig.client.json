@@ -10,7 +10,11 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": false,
-    "types": ["@nx/react/typings/cssmodule.d.ts", "@nx/react/typings/image.d.ts", "node"]
+    "types": [
+      "@nx/react/typings/cssmodule.d.ts",
+      "@nx/react/typings/image.d.ts",
+      "node"
+    ]
   },
   "exclude": [
     "client/**/*.spec.ts",
