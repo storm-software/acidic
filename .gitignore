@@ -9,6 +9,8 @@ tmp
 /out-tsc
 out
 .nx
+**/.storm
+# \!examples/**/.storm
 
 # build
 
@@ -26,12 +28,12 @@ node_modules
 
 # IDE - VSCode
 .vscode/*
-!.vscode/README.md
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/cspell.json
+!.vscode/mcp.json
 
 # misc
 /.sass-cache
@@ -46,7 +48,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-
 apps/**/obj
 apps/**/ddata-*
 libs/**/obj
@@ -63,13 +64,7 @@ tools/**/*.properties
 
 .next
 .stoplight
-
 .cspellcache
-
-####### Tool Specific #######
-
-!tools/storm/**/[Bb]in/**
-!tools/storm/**/[Bb]uild/**
 
 ################################################################
 
@@ -99,6 +94,8 @@ bld/
 # [Bb]in/
 [Oo]bj/
 [Ll]og/
+!crates/**/[Ll]og
+!packages/**/[Ll]og
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -128,7 +125,6 @@ BenchmarkDotNet.Artifacts/
 # .NET Core
 project.lock.json
 project.fragment.lock.json
-artifacts/
 
 # StyleCop
 StyleCopReport.xml
@@ -258,12 +254,7 @@ PublishScripts/
 *.nupkg
 # NuGet Symbol Packages
 *.snupkg
-# The packages folder can be ignored because of Package Restore
-# **/[Pp]ackages/*
-# except build/, which is used as an MSBuild target.
-# !**/[Pp]ackages/build/
-# Uncomment if necessary however generally it will be regenerated when needed
-# #!**/[Pp]ackages/repositories.config
+
 # NuGet v3's project.json files produces more ignorable files
 *.nuget.props
 *.nuget.targets
@@ -334,8 +325,6 @@ ServiceFabricBackup/
 *.bim_*.settings
 *.rptproj.rsuser
 *- [Bb]ackup.rdl
-*- [Bb]ackup ([0-9]).rdl
-*- [Bb]ackup ([0-9][0-9]).rdl
 
 # Microsoft Fakes
 FakesAssemblies/
@@ -430,4 +419,28 @@ MigrationBackup/
 # Sentry Auth Token
 .sentryclirc
 
-*.node
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
+vite.config.*.timestamp*
+vitest.config.*.timestamp*

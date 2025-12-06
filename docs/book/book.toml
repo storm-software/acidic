@@ -1,0 +1,34 @@
+[book]
+authors = ["Storm Software", "Pat Sullivan"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Acidic Book"
+description = "A book on all things Acidic"
+
+[preprocessor.external-links]
+
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.2"    # do not edit: managed by `mdbook-admonish install`
+
+[output.html]
+theme = "src/theme"
+git-repository-url = "https://github.com/storm-software/acidic"
+edit-url-template = "https://github.com/storm-software/acidic/edit/master/{path}"
+default-theme = "coal"
+no-section-label = true
+mathjax-support = true
+additional-css = ["./mdbook-admonish.css"]
+cname = "book.acidic.io"
+
+[output.html.fold]
+enable = true
+level = 1
+
+[build]
+create-missing = false
+build-dir = "../../dist/docs/book"
+
+[rust]
+edition = "2024"

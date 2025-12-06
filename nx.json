@@ -1,14 +1,48 @@
 {
-  // "extends": "@storm-software/workspace-tools/config/base.json",
+  "extends": "@storm-software/workspace-tools/config/base.json",
+  "release": {
+    "groups": {
+      "packages": {
+        "projects": [
+          "packages/*"
+        ],
+        "projectsRelationship": "independent",
+        "releaseTag": {
+          "pattern": "{projectName}@{version}"
+        }
+      }
+    }
+  },
   "plugins": [
-    "@nx/eslint/plugin",
     {
-      "plugin": "@nx/jest/plugin",
+      "plugin": "@nx/js/typescript",
       "options": {
-        "targetName": "test"
+        "typecheck": true,
+        "build": false,
+        "verboseOutput": false
       }
     },
+    "@storm-software/workspace-tools/plugins/typescript",
+    "@storm-software/workspace-tools/plugins/typescript/untyped",
+    "@storm-software/workspace-tools/plugins/typescript/tsdown",
     "@storm-software/workspace-tools/plugins/rust",
-    "@storm-software/workspace-tools/plugins/typescript"
-  ]
+    {
+      "plugin": "@powerlines/nx/plugin",
+      "options": {
+        "build": {
+          "dependsOn": [
+            "^build",
+            "prepare",
+            "typecheck"
+          ]
+        }
+      }
+    }
+  ],
+  "sync": {
+    "applyChanges": true,
+    "globalGenerators": [
+      "@nx/js:typescript-sync"
+    ]
+  }
 }

@@ -1,0 +1,2 @@
+- [`earthquake`](./earthquake.md)
+  - [`earthquake run`](./earthquake/run.md)

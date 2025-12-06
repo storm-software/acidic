@@ -3,8 +3,8 @@
 #   https: //github.com/evilmartians/lefthook/blob/master/docs/configuration.md
 #
 
-# extends:
-#   - "./node_modules/@storm-software/git-tools/lefthook/lefthook.yml"
+extends:
+  - "./node_modules/@storm-software/git-tools/lefthook/lefthook.yml"
 assert_lefthook_installed: true
 colors: true
 no_tty: false
@@ -17,26 +17,60 @@ pre-commit:
       glob: "./{pnpm-lock.yaml,lefthook.yml}"
       run: "pnpm install && pnpm lefthook install"
       stage_fixed: true
+    nx-sync:
+      glob: "**/*"
+      run: "pnpm nx sync"
+      stage_fixed: true
     prepare:
       glob: "**/{lefthook.yml,biome.json}"
       run: pnpm exec storm-prepare
-    # validate:
-    #   glob: "**/*"
-    #   run: "pnpm exec storm-pre-commit {staged_files}"
-    #   stage_fixed: true
+    validate:
+      glob: "**/*"
+      run: "pnpm exec storm-pre-commit {staged_files}"
+      stage_fixed: true
     lint:
-      glob: "./{*.js,*.ts,*.cjs,*.mjs,*.d.cts,*.d.mts,*.jsx,*.tsx,*.json,*.jsonc,*.yaml,*.yml,*.md,*.mdx,*.markdown,*.css,*.scss,*.sass,*.less,*.stylus,*.graphql,*.gql,*.xml,*.svg,*.env,.env.{local,development,test,production,staging}}"
+      glob:
+        - "*.js"
+        - "*.ts"
+        - "*.cjs"
+        - "*.mjs"
+        - "*.d.cts"
+        - "*.d.mts"
+        - "*.jsx"
+        - "*.tsx"
+        - "*.json"
+        - "*.jsonc"
+        - "*.yaml"
+        - "*.yml"
+        - "*.md"
+        - "*.mdx"
+        - "*.markdown"
+        - "*.css"
+        - "*.scss"
+        - "*.sass"
+        - "*.less"
+        - "*.stylus"
+        - "*.graphql"
+        - "*.gql"
+        - "*.xml"
+        - "*.svg"
+        - "*.env"
+        - ".env.{local,development,test,production,staging}"
       run: pnpm exec storm-lint all --skip-cspell --skip-circular-deps
       stage_fixed: true
 
-# commit-msg:
-#   commands:
-#     validate:
-#       run: "pnpm exec storm-git commitlint --message {1}"
+commit-msg:
+  commands:
+    validate:
+      run: "pnpm exec storm-git commitlint --message {1}"
 
 pre-push:
   piped: true
   commands:
+    nx-sync:
+      glob: "**/*"
+      run: "pnpm nx sync"
+      stage_fixed: true
     build:
       glob: "**/*"
       run: pnpm build
@@ -56,17 +90,27 @@ pre-push:
     lint-codeowners:
       glob: "**/CODEOWNERS"
       run: pnpm exec storm-lint codeowners
-    # lint-github-actions:
-    #   glob: ".github/workflows/*.*"
-    #   run: zizmor --offline --config="./tools/config/zizmor.yml" .github/workflows/
+    lint-github-actions:
+      glob: ".github/workflows/*.*"
+      run: zizmor --offline --config="./tools/config/zizmor.yml" .github/workflows/
     sherif:
-      glob: "**/*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      glob:
+        - "*.js"
+        - "*.ts"
+        - "*.cjs"
+        - "*.mjs"
+        - "*.d.cts"
+        - "*.d.mts"
+        - "*.jsx"
+        - "*.tsx"
+        - "*.json"
+        - "*.jsonc"
       run: pnpm exec sherif -i typescript -i react -i react-dom
       stage_fixed: true
     readme:
       glob: "**/*"
       run: 'pnpm exec storm-git readme --templates="tools/readme-templates"
-        --project="@stryke/monorepo" '
+        --project="@acidic/monorepo" '
       stage_fixed: true
     format:
       glob: "**/*"

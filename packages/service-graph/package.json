@@ -12,26 +12,30 @@
   "sideEffects": false,
   "types": "index.d.ts",
   "typings": "index.d.ts",
-  "typescript": { "definition": "index.d.ts" },
+  "typescript": {
+    "definition": "index.d.ts"
+  },
   "main": "index.cjs",
   "module": "index.js",
-  "files": ["**/*"],
+  "files": [
+    "**/*"
+  ],
   "dependencies": {
-    "@dagrejs/dagre": "^1.0.4",
+    "@dagrejs/dagre": "^1.1.8",
     "@storm-stack/jotai": "latest",
     "@storm-stack/serialization": "latest",
     "@storm-stack/unique-identifier": "latest",
     "@storm-stack/utilities": "latest",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "dagre": "^0.8.5",
-    "jotai": "^2.6.0",
-    "html-to-image": "^1.11.11",
-    "reactflow": "^11.10.3",
-    "tailwind-merge": "^2.2.0"
+    "html-to-image": "^1.11.13",
+    "jotai": "^2.15.2",
+    "reactflow": "^11.11.4",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.55"
+    "@types/react": "^18.3.27"
   },
   "peerDependencies": {
     "react": "18.2.0",

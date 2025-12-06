@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://devenv.sh/devenv.schema.json
+inputs:
+  storm-ops:
+    url: github:storm-software/storm-ops
+    flake: false
+  fenix:
+    url: github:nix-community/fenix
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
+  nixpkgs:
+    url: github:cachix/devenv-nixpkgs/rolling
+  nixpkgs-unstable:
+    url: github:nixos/nixpkgs/nixpkgs-unstable
+  rust-overlay:
+    url: github:oxalica/rust-overlay
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
+imports:
+  - storm-ops/devenv-modules/base
+  - storm-ops/devenv-modules/rust
+  - storm-ops/devenv-modules/mdbook

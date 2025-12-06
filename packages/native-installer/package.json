@@ -12,11 +12,11 @@
   "dependencies": {
     "@storm-stack/telemetry": "latest",
     "hasha": "^6.0.0",
-    "node-fetch": ">=2.6.7",
-    "p-retry": "^6.2.0",
-    "tempy": "^3.1.0",
     "http-proxy-agent": "^7.0.2",
-    "https-proxy-agent": "^7.0.4"
+    "https-proxy-agent": "^7.0.6",
+    "node-fetch": "^3.3.2",
+    "p-retry": "^6.2.1",
+    "tempy": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"

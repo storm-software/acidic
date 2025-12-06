@@ -1,4 +1,15 @@
 [toolchain]
-# renovate-automation: rustc version
-channel = "stable"
-components = ["rustfmt", "clippy"]
+channel = "1.91.1"
+components = [
+    "rustc",
+    "cargo",
+    "clippy",
+    "rustfmt",
+    "rust-analyzer",
+    "rust-docs",
+    "rust-std",
+]
+profile = "default"
+targets = ["x86_64-unknown-linux-gnu", "wasm32-wasip1-threads"]
+
+# components = ["llvm-tools"]

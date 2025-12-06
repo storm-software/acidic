@@ -15,16 +15,16 @@
     "@storm-stack/logging": "latest",
     "@storm-stack/telemetry": "latest",
     "@storm-stack/utilities": "latest",
-    "glob": "^10.3.10",
-    "jotai": "^2.6.0",
-    "pino-pretty": "^10.3.0",
+    "glob": "^10.5.0",
+    "jotai": "^2.15.2",
+    "pino-pretty": "^10.3.1",
     "vscode": "^1.1.37",
     "vscode-languageserver": "^9.0.1",
-    "vscode-uri": "^3.0.8"
+    "vscode-uri": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "20.9.0",
-    "@types/vscode": "^1.85.0"
+    "@types/vscode": "^1.106.1"
   },
   "engines": {
     "vscode": "^1.67.0"

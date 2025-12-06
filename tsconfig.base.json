@@ -1,88 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@storm-software/tsconfig/base.json",
-  "display": "Storm Software - Acidic Monorepo",
+  "extends": "@powerlines/tsconfig/recommended.json",
+  "display": "Acidic - Monorepo",
   "compilerOptions": {
-    "rootDir": ".",
-    "baseUrl": ".",
-    "preserveSymlinks": true,
-    "paths": {
-      "@acidic/binding": [
-        "crates/acidic-binding/index.js"
-      ],
-      "@acidic/cli": [
-        "apps/cli/src/index.ts"
-      ],
-      "@acidic/cli/*": [
-        "apps/cli/src/*"
-      ],
-      "@acidic/definition": [
-        "packages/definition/src/index.ts"
-      ],
-      "@acidic/definition/*": [
-        "packages/definition/src/*"
-      ],
-      "@acidic/language-server": [
-        "apps/language-server/src/index.ts"
-      ],
-      "@acidic/language-server/*": [
-        "apps/language-server/src/*"
-      ],
-      "@acidic/messages": [
-        "packages/messages/src/index.ts"
-      ],
-      "@acidic/messages/*": [
-        "packages/messages/src/*"
-      ],
-      "@acidic/native-installer": [
-        "packages/native-installer/src/index.ts"
-      ],
-      "@acidic/native-installer/*": [
-        "packages/native-installer/src/*"
-      ],
-      "@acidic/node-engine": [
-        "packages/node-engine/src/index.ts"
-      ],
-      "@acidic/node-engine/*": [
-        "packages/node-engine/src/*"
-      ],
-      "@acidic/plugin-drizzle": [
-        "plugins/drizzle/src/index.ts"
-      ],
-      "@acidic/plugin-drizzle/*": [
-        "plugins/drizzle/src/*"
-      ],
-      "@acidic/plugin-valibot": [
-        "plugins/valibot/src/index.ts"
-      ],
-      "@acidic/plugin-valibot/*": [
-        "plugins/valibot/src/*"
-      ],
-      "@acidic/plugin": [
-        "packages/plugin/src/index.ts"
-      ],
-      "@acidic/plugin/*": [
-        "packages/plugin/src/*"
-      ],
-      "@acidic/service-graph": [
-        "packages/service-graph/src/index.ts"
-      ],
-      "@acidic/service-graph/*": [
-        "packages/service-graph/src/*"
-      ],
-      "@acidic/syntax": [
-        "packages/syntax/src/index.ts"
-      ],
-      "@acidic/syntax/*": [
-        "packages/syntax/src/*"
-      ],
-      "@acidic/vscode-state": [
-        "packages/vscode-state/src/index.ts"
-      ],
-      "@acidic/vscode-state/*": [
-        "packages/vscode-state/src/*"
-      ]
-    }
-  },
-  "references": []
+    "composite": true,
+    "incremental": true,
+    "declaration": true,
+    "declarationMap": true,
+    "isolatedModules": true,
+    // "isolatedDeclarations": true,
+    "jsx": "react-jsx",
+    "types": [
+      "node"
+    ],
+    "verbatimModuleSyntax": true
+  }
 }
