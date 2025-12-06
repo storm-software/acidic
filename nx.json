@@ -1,5 +1,5 @@
 {
-  "extends": "@storm-software/workspace-tools/config/nx.json",
+  // "extends": "@storm-software/workspace-tools/config/base.json",
   "plugins": [
     "@nx/eslint/plugin",
     {
@@ -10,23 +10,5 @@
     },
     "@storm-software/workspace-tools/plugins/rust",
     "@storm-software/workspace-tools/plugins/typescript"
-  ],
-  "generators": {
-    "@nx/react": {
-      "application": {
-        "style": "css",
-        "linter": "eslint",
-        "bundler": "vite",
-        "babel": true
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint",
-        "unitTestRunner": "vitest"
-      },
-      "component": {
-        "style": "css"
-      }
-    }
-  }
+  ]
 }

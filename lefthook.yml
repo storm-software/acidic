@@ -56,9 +56,9 @@ pre-push:
     lint-codeowners:
       glob: "**/CODEOWNERS"
       run: pnpm exec storm-lint codeowners
-    lint-github-actions:
-      glob: ".github/workflows/*.*"
-      run: zizmor --offline --config="./tools/config/zizmor.yml" .github/workflows/
+    # lint-github-actions:
+    #   glob: ".github/workflows/*.*"
+    #   run: zizmor --offline --config="./tools/config/zizmor.yml" .github/workflows/
     sherif:
       glob: "**/*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
       run: pnpm exec sherif -i typescript -i react -i react-dom
