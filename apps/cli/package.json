@@ -51,7 +51,7 @@
     "eslint-config-oclif": "^5.2.2",
     "eslint-config-oclif-typescript": "^3.1.14",
     "eslint-config-prettier": "^9.1.2",
-    "oclif": "^4.22.54"
+    "oclif": "^4.22.57"
   },
   "oclif": {
     "bin": "acidic",

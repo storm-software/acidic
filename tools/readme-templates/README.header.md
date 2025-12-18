@@ -1,4 +1,10 @@
-<div align="center"><img src="https://public.storm-cdn.com/storm-banner.gif" width="100%" alt="Storm Stack" /></div>
+<div align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://public.storm-cdn.com/acidic/banner-1280x640-dark.gif">
+  <source media="(prefers-color-scheme: light)" srcset="https://public.storm-cdn.com/acidic/banner-1280x640-light.gif">
+<img src="https://public.storm-cdn.com/acidic/banner-1280x640-dark.gif" width="100%" alt="Acidic" />
+</picture>
+</div>
 <br />
 
 <div align="center">

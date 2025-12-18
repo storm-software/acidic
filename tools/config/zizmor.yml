@@ -5,17 +5,13 @@ rules:
   dangerous-triggers:
     ignore:
       - greetings.yml:3:1
-  use-trusted-publishing:
-    ignore:
-      # ignore line 12, column 10 on pypi.yml
-      # - pypi.yml:12:10
   unpinned-uses:
     ignore:
       - release.yml
       - zizmor.yml
       - sync-labels.yml
       - lock.yml
-      - gitguardian.yml
+      - git-guardian.yml
       - contributors.yml
       - codeql.yml
       - dependabot-approval.yml
@@ -25,4 +21,4 @@ rules:
       - zizmor.yml
       - sync-labels.yml
       - lock.yml
-      - gitguardian.yml
+      - git-guardian.yml

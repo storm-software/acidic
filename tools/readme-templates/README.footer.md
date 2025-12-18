@@ -12,8 +12,8 @@ maintainable.
 
 ## Roadmap
 
-See the [open issues](https://github.com/storm-software/earthquake/issues) for
-a list of proposed features (and known issues).
+See the [open issues](https://github.com/storm-software/earthquake/issues) for a
+list of proposed features (and known issues).
 
 - [Top Feature Requests](https://github.com/storm-software/earthquake/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc)
   (Add your votes using the 👍 reaction)
@@ -118,7 +118,11 @@ specification. Contributions of any kind welcome!
 <br />
 
 <div align="center">
-<img src="https://public.storm-cdn.com/brand-banner.png" width="100%" alt="Storm Software" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://public.storm-cdn.com/storm-software/banner-1280x320-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="https://public.storm-cdn.com/storm-software/banner-1280x320-light.webp">
+<img src="https://public.storm-cdn.com/storm-software/banner-1280x320-dark.webp" width="100%" alt="Storm Software" />
+</picture>
 </div>
 <br />
 
