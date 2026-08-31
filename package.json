@@ -19,7 +19,7 @@
     "url": "https://github.com/sponsors/storm-software"
   },
   "license": "Apache-2.0",
-  "packageManager": "pnpm@10.26.0",
+  "packageManager": "pnpm@10.26.2",
   "engines": { "node": ">=22.14.0", "pnpm": ">=10.22.0" },
   "keywords": ["acidic", "storm-software", "storm"],
   "scripts": {
