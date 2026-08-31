@@ -58,7 +58,7 @@ jobs:
 
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.1
+        uses: styfle/cancel-workflow-action@0.13.1
         with:
           all_but_latest: true
           access_token: ${{ secrets.STORM_BOT_GITHUB_TOKEN }}
@@ -76,7 +76,7 @@ jobs:
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v3.37.9
         with:
           languages: ${{ matrix.language }}
 
@@ -107,6 +107,6 @@ jobs:
         shell: bash
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v3.37.9
         with:
           category: "/language:${{matrix.language}}"

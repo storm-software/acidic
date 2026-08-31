@@ -110,46 +110,46 @@ acidic-server = { path = "./crates/acidic-server" }
 acidic-template-engine = { path = "./crates/acidic-template-engine" }
 
 # Storm Software Crates
-storm-config = "0.2.8"
-storm-workspace = "0.19.59"
+storm-config = "=0.2.8"
+storm-workspace = "=0.19.369"
 
 # Other Dependencies
-indoc = "2.0.4"
-itertools = "0.12.1"
-indexmap = { version = "2.2.6", features = ["serde"] }
-thiserror = "2.0.17"
-tempfile = "3.10.1"
-directories = "5.0.1"
-lazy_static = "1.4.0"
-handlebars = "6.3.2"
-colored = "2.1.0"
-cacache = "13.0.0"
-backtrace = "0.3.71"
-protoc-bin-vendored = "3.0.0"
+indoc = "=2.0.5"
+itertools = "=0.12.1"
+indexmap = { version = "=2.2.6", features = ["serde"] }
+thiserror = "=2.0.20"
+tempfile = "=3.10.1"
+directories = "=5.0.1"
+lazy_static = "=1.4.0"
+handlebars = "=6.4.4"
+colored = "=2.1.0"
+cacache = "=13.0.0"
+backtrace = "=0.3.71"
+protoc-bin-vendored = "=3.0.0"
 
-napi = { version = '2.10.2', default-features = false, features = ['napi4'] }
-napi-build = '2.0.1'
-napi-derive = '2.9.3'
+napi = { version = '=2.16.1', default-features = false, features = ['napi4'] }
+napi-build = '=2.1.2'
+napi-derive = '=2.16.1'
 
-pest = "2.7.8"
-pest_derive = "2.7.8"
+pest = "=2.7.9"
+pest_derive = "=2.7.9"
 
-prost = "0.12.3"
-prost-types = "0.12.3"
+prost = "=0.12.3"
+prost-types = "=0.12.3"
 
-serde = { version = "1.0.197", features = ["derive"] }
-serde_derive = "1.0.197"
-serde_json = "1.0.115"
+serde = { version = "=1.0.197", features = ["derive"] }
+serde_derive = "=1.0.197"
+serde_json = "=1.0.115"
 
-strum = "0.27.2"
-strum_macros = "0.27.2"
+strum = "=0.27.2"
+strum_macros = "=0.27.2"
 
-tonic = "0.11.0"
-tonic-build = { version = "0.11.0", default-features = false, features = [
+tonic = "=0.11.0"
+tonic-build = { version = "=0.11.0", default-features = false, features = [
     "prost",
     "cleanup-markdown",
 ] }
-tonic-reflection = "0.6.0"
+tonic-reflection = "=0.6.0"
 
 [profile.release]
 # configuration adapted from oxc
