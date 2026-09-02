@@ -65,7 +65,7 @@ catalog:
   copyfiles: "^2.4.1"
   defu: "^6.1.4"
   es-module-lexer: "^1.7.0"
-  esbuild: "^0.24.2"
+  esbuild: "^0.25.0"
   eslint: "^9.39.1"
   eslint-flat-config-utils: "^2.1.4"
   estree-walker: "^3.0.3"
