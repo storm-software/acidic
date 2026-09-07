@@ -19,7 +19,7 @@ jobs:
     name: 🔒 Lock closed issues and PRs
     runs-on: ubuntu-latest
     steps:
-      - uses: dessant/lock-threads@v5
+      - uses: dessant/lock-threads@v5.0.1
         with:
           github-token: ${{ secrets.STORMIE_GITHUB_TOKEN }}
           issue-inactive-days: "30"
