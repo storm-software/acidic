@@ -7,7 +7,7 @@ packages:
   - "docs/**"
 catalog:
   "@ls-lint/ls-lint": "^2.3.1"
-  "@monodon/rust": "^2.3.0"
+  "@monodon/rust": "^3.0.0"
   "@napi-rs/cli": "^3.5.0"
   "@napi-rs/wasm-runtime": "^1.1.0"
   "@nx/devkit": "22.3.1"
