@@ -79,7 +79,7 @@ catalog:
   lefthook: "^1.13.6"
   log4brains: "^1.1.0"
   magic-string: "^0.30.21"
-  nx: "22.3.1"
+  nx: "22.7.7"
   periscopic: "^4.0.2"
   powerlines: "^0.30.13"
   prettier: "^3.7.4"
