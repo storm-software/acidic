@@ -14,7 +14,7 @@
     "@storm-stack/telemetry": "latest",
     "@storm-stack/unique-identifier": "latest",
     "@storm-stack/utilities": "latest",
-    "bentocache": "1.0.0-beta.7",
+    "bentocache": "1.6.1",
     "chalk": "^5.6.2",
     "chokidar": "^3.6.0",
     "eslint": "^8.57.1",
