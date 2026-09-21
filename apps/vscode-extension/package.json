@@ -303,7 +303,7 @@
   "devDependencies": {
     "@storm-software/testing-tools": "latest",
     "@storm-software/workspace-tools": "latest",
-    "@types/node": "20.9.0",
+    "@types/node": "20.9.5",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
     "@types/vscode": "^1.107.0",
