@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "@oclif/core": "^3.27.0",
-    "@oclif/plugin-help": "^6.2.36",
-    "@oclif/plugin-plugins": "^5.4.54",
+    "@oclif/plugin-help": "^6.3.0",
+    "@oclif/plugin-plugins": "^5.5.2",
     "@storm-software/config-tools": "latest",
     "@storm-stack/cli": "latest",
     "@storm-stack/errors": "latest",
