@@ -21,9 +21,9 @@
     "acidic": "./bin/run.js"
   },
   "dependencies": {
-    "@oclif/core": "^3.27.0",
-    "@oclif/plugin-help": "^6.2.36",
-    "@oclif/plugin-plugins": "^5.4.54",
+    "@oclif/core": "3.27.0",
+    "@oclif/plugin-help": "6.2.36",
+    "@oclif/plugin-plugins": "5.4.54",
     "@storm-software/config-tools": "latest",
     "@storm-stack/cli": "latest",
     "@storm-stack/errors": "latest",
@@ -31,7 +31,7 @@
     "@storm-stack/logging": "latest",
     "@storm-stack/telemetry": "latest",
     "@storm-stack/utilities": "latest",
-    "commander": "^11.1.0"
+    "commander": "11.1.0"
   },
   "files": [
     "/assets",
